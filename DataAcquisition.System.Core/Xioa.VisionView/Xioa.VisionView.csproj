@@ -1,0 +1,259 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Cognex.VisionPro">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.AutoSelect">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.AutoSelect.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Barcode">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Barcode.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Barcode.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Barcode.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Blob">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Blob.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Blob.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Blob.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.CalibFix">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CalibFix.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.CalibFix.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CalibFix.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.CalibFixPlus">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CalibFixPlus.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Caliper">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Caliper.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Caliper.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Caliper.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.CNLSearch">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CNLSearch.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.CNLSearch.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CNLSearch.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ColorExtractor">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ColorExtractor.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ColorExtractor.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ColorExtractor.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ColorMatch">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ColorMatch.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ColorMatch.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ColorMatch.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ColorSegmenter">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ColorSegmenter.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ColorSegmenter.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ColorSegmenter.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Comm">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Comm.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Comm.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Comm.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.CompositeColorMatch">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CompositeColorMatch.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.CompositeColorMatch.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CompositeColorMatch.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Core">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.CorePlus">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CorePlus.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Database">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Database.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Dimensioning">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Dimensioning.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Dimensioning.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Dimensioning.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Display.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Display.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.FG1394DCAM">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FG1394DCAM.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.FG8100">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FG8100.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.FG8100L">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FG8100L.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.FG8120">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FG8120.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.FG8500L">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FG8500L.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.FG8501">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FG8501.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.FG8504">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FG8504.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.FG8600">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FG8600.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.FGGigE">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FGGigE.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ID">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ID.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ID.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ID.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ImageFile">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageFile.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ImageFile.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageFile.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ImageProcessing">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageProcessing.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ImageProcessing.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageProcessing.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ImagingDevice">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImagingDevice.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Inspection">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Inspection.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Inspection.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Inspection.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.Interop.Core">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Interop.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.LinescanDistortionCorrection">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.LinescanDistortionCorrection.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.LinescanDistortionCorrection.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.LinescanDistortionCorrection.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.MultiLineFinder">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.MultiLineFinder.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.MultiLineFinder.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.MultiLineFinder.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.OC">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.OC.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.OCRMax">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.OCRMax.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.OCRMax.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.OCRMax.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.OCVMax">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.OCVMax.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.OCVMax.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.OCVMax.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.PatInspect">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PatInspect.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.PatInspect.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PatInspect.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.PixelMap">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PixelMap.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.PixelMap.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PixelMap.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.PMAlign">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMAlign.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.PMAlign.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMAlign.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.PMRedLine">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMRedLine.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.PMRedLine.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMRedLine.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.QuickBuild.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.QuickBuild.Core">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.QuickBuild.IO">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.IO.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ResultsAnalysis">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ResultsAnalysis.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ResultsAnalysis.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ResultsAnalysis.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.SearchMax">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.SearchMax.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.SearchMax.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.SearchMax.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ToolGroup">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ToolGroup.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.ToolGroup.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ToolGroup.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.TwoDSymbol">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.TwoDSymbol.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro.TwoDSymbol.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.TwoDSymbol.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro3D">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro3D.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro3D.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro3D.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro3D.Core">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro3D.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro3D.Display.Controls">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro3D.Display.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Cognex.VisionPro3D.Graphic">
+        <HintPath>C:\Program Files (x86)\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro3D.Graphic.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

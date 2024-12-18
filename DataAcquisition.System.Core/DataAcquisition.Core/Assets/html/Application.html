@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能工业自动化解决方案 - IntelliFactory</title>
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --text-color: #1d1d1f;
+            --secondary-text: #86868b;
+            --background-light: #fbfbfd;
+            --spacing-unit: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: calc(var(--spacing-unit) * 2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 4);
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+        }
+
+        .hero {
+            height: 100vh;
+            background: var(--background-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: calc(var(--spacing-unit) * 4);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: var(--secondary-text);
+            max-width: 600px;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            color: white;
+            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .features {
+            padding: calc(var(--spacing-unit) * 12) calc(var(--spacing-unit) * 4);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: calc(var(--spacing-unit) * 6);
+            background: white;
+        }
+
+        .feature {
+            text-align: center;
+            padding: calc(var(--spacing-unit) * 3);
+        }
+
+        .feature img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .feature p {
+            color: var(--secondary-text);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .product-section {
+            display: flex;
+            align-items: center;
+            padding: calc(var(--spacing-unit) * 12) calc(var(--spacing-unit) * 4);
+            background: var(--background-light);
+        }
+
+        .product-content {
+            flex: 1;
+            padding: calc(var(--spacing-unit) * 6);
+        }
+
+        .product-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-content h2 {
+            font-size: 40px;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .product-content p {
+            font-size: 18px;
+            color: var(--secondary-text);
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        .stats {
+            background: white;
+            padding: calc(var(--spacing-unit) * 12) calc(var(--spacing-unit) * 4);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: calc(var(--spacing-unit) * 6);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat {
+            padding: calc(var(--spacing-unit) * 3);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: calc(var(--spacing-unit));
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: var(--secondary-text);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 20px;
+            }
+
+            .product-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .product-content {
+                padding: calc(var(--spacing-unit) * 4);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* 添加动画相关样式 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-left.visible,
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .parallax {
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,102,204,0.1), rgba(0,102,204,0));
+            transform-origin: 0 0;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .nav {
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease;
+        }
+
+        .product-image img {
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .product-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .stat {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,102,204,0.1), rgba(0,102,204,0));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes numberCount {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat-number {
+            opacity: 0;
+        }
+
+        .stat-number.visible {
+            animation: numberCount 0.8s forwards;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="#" class="nav-logo">IntelliFactory</a>
+        <div class="nav-links">
+            <a href="#" class="nav-link">解决方案</a>
+            <a href="#" class="nav-link">产品</a>
+            <a href="#" class="nav-link">服务</a>
+            <a href="#" class="nav-link">关于我们</a>
+            <a href="#" class="nav-link">联系</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>重新定义工业自动化<br>智造未来</h1>
+        <p>通过人工智能和物联网技术，为制造业带来革命性的智能化解决方案</p>
+        <a href="#" class="cta-button">了解更多</a>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" alt="AI">
+            <h3>智能制造</h3>
+            <p>利用人工智能技术，实现生产过程的智能决策和优化控制</p>
+        </div>
+        <div class="feature">
+            <img src="https://cdn-icons-png.flaticon.com/512/2103/2103666.png" alt="IoT">
+            <h3>物联网集成</h3>
+            <p>通过物联网技术，实现设备互联互通，数据实时监控</p>
+        </div>
+        <div class="feature">
+            <img src="https://cdn-icons-png.flaticon.com/512/2103/2103658.png" alt="Analytics">
+            <h3>数据分析</h3>
+            <p>深度分析生产数据，提供决策支持，优化生产效率</p>
+        </div>
+    </section>
+
+    <section class="product-section">
+        <div class="product-content">
+            <h2>智能工厂解决方案</h2>
+            <p>我们的智能工厂解决方案集成了先进的自动化控制、实时监控和智能分析系统，帮助企业实现生产过程的数字化转型。</p>
+            <a href="#" class="cta-button">探索解决方案</a>
+        </div>
+        <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1581091226825-c6a89e7e4801?auto=format&fit=crop&w=800&q=80" alt="Smart Factory">
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">客户满意度</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">成功案例</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">30%</div>
+                <div class="stat-label">平均效率提升</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">全天候支持</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 滚动动画
+        function handleScroll() {
+            const elements = document.querySelectorAll('.fade-in, .scale-in, .slide-in-left, .slide-in-right, .stat-number');
+            const nav = document.querySelector('.nav');
+            
+            // 导航栏滚动效果
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isVisible = (rect.top <= window.innerHeight * 0.8);
+                
+                if (isVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // 视差效果
+        function handleParallax(e) {
+            const parallaxElements = document.querySelectorAll('.parallax');
+            const hero = document.querySelector('.hero');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+
+            parallaxElements.forEach(element => {
+                const speed = element.getAttribute('data-speed') || 1;
+                const x = (mouseX - 0.5) * speed * 50;
+                const y = (mouseY - 0.5) * speed * 50;
+                element.style.transform = `translate(${x}px, ${y}px)`;
+            });
+
+            hero.style.setProperty('--x', `${mouseX * 100}%`);
+            hero.style.setProperty('--y', `${mouseY * 100}%`);
+        }
+
+        // 数字动画
+        function animateNumbers() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const targetNumber = stat.textContent;
+                if (stat.classList.contains('visible')) {
+                    let currentNumber = 0;
+                    const increment = parseInt(targetNumber) / 50;
+                    const interval = setInterval(() => {
+                        currentNumber += increment;
+                        if (currentNumber >= parseInt(targetNumber)) {
+                            clearInterval(interval);
+                            stat.textContent = targetNumber;
+                        } else {
+                            stat.textContent = Math.round(currentNumber) + (targetNumber.includes('+') ? '+' : '');
+</body>
+</html>
