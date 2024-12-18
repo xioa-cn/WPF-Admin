@@ -1,0 +1,133 @@
+﻿<Page
+    x:Class="DataAcquisition.Core.Views.VsuaButton.VsuaButtonPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DataAcquisition.Core.Views.VsuaButton"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="VsuaButtonPage"
+    d:DataContext="{d:DesignInstance Type=local:VsuaButtonViewModel}"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <local:VsuaButtonViewModel />
+    </Page.DataContext>
+    <Grid Margin="10">
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button Foreground="#FFF">
+                按 钮
+                <Button.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground" Value="#FFF" />
+                        <Setter Property="Width" Value="200" />
+                        <Setter Property="Height" Value="60" />
+                        <Setter Property="FontSize" Value="20" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
+                                    <GradientStop Offset="0.1" Color="#19454D" />
+                                    <GradientStop Offset="0.5" Color="#051021" />
+                                    <GradientStop Offset="0.9" Color="#19454D" />
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border
+                                        Width="{TemplateBinding Width}"
+                                        Height="{TemplateBinding Height}"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="auto" />
+                                            </Grid.ColumnDefinitions>
+
+
+                                            <Path
+                                                x:Name="path1"
+                                                Grid.Column="0"
+                                                Width="18"
+                                                Height="18"
+                                                Margin="10"
+                                                Fill="#FCB043"
+                                                Stretch="Fill"
+                                                Stroke="#5BE3CC"
+                                                StrokeThickness="2">
+                                                <Path.RenderTransform>
+                                                    <RotateTransform x:Name="MyAnimatedTransform1" Angle="0" CenterX="9" CenterY="9" />
+                                                </Path.RenderTransform>
+                                                <Path.Data>
+                                                    <PathGeometry>
+                                                        M512 69.479l442.498 442.498-442.498 442.498-442.498-442.498 442.498-442.498z
+                                                    </PathGeometry>
+                                                </Path.Data>
+                                            </Path>
+
+                                            <ContentPresenter
+                                                Grid.Column="1"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center" />
+                                            <ContentPresenter
+                                                Grid.Column="1"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center" />
+                                            <Path
+                                                x:Name="path2"
+                                                Grid.Column="2"
+                                                Width="18"
+                                                Height="18"
+                                                Margin="10"
+                                                Fill="#FCB043"
+                                                Stretch="Fill"
+                                                Stroke="#5BE3CC"
+                                                StrokeThickness="2">
+                                                <Path.RenderTransform>
+                                                    <RotateTransform x:Name="MyAnimatedTransform2" Angle="0" CenterX="9" CenterY="9" />
+                                                </Path.RenderTransform>
+                                                <Path.Data>
+                                                    <PathGeometry>
+                                                        M512 69.479l442.498 442.498-442.498 442.498-442.498-442.498 442.498-442.498z
+                                                    </PathGeometry>
+                                                </Path.Data>
+                                            </Path>
+
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <EventTrigger RoutedEvent="MouseEnter">
+                                            <BeginStoryboard Name="SpinStoryboard">
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        By="360"
+                                                        RepeatBehavior="Forever"
+                                                        Storyboard.TargetName="MyAnimatedTransform1"
+                                                        Storyboard.TargetProperty="(RotateTransform.Angle)"
+                                                        Duration="0:0:1" />
+                                                    <DoubleAnimation
+                                                        By="360"
+                                                        RepeatBehavior="Forever"
+                                                        Storyboard.TargetName="MyAnimatedTransform2"
+                                                        Storyboard.TargetProperty="(RotateTransform.Angle)"
+                                                        Duration="0:0:1" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="MouseLeave">
+                                            <StopStoryboard BeginStoryboardName="SpinStoryboard" />
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

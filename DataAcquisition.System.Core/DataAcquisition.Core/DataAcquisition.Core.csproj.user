@@ -17,6 +17,9 @@
     <Compile Update="Views\MainView\Components\NaviControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\VsuaButton\VsuaButtonPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\WindowsBase\PageWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -35,6 +38,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainView\Components\NaviControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\VsuaButton\VsuaButtonPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\WindowsBase\PageWindow.xaml">

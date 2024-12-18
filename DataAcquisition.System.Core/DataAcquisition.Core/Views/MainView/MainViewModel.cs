@@ -15,6 +15,7 @@ using DataAcquisition.Core.Views.QrCode;
 using DataAcquisition.Core.Views.VisionView;
 using DataAcquisition.Core.Views.WeldingMonitor;
 using DataAcquisition.Core.Views.XioaIcon;
+using DataAcquisition.Core.Views.VsuaButton;
 
 namespace DataAcquisition.Core.Views.MainView;
 
@@ -108,6 +109,11 @@ public partial class MainViewModel : ObservableObject
                         Page = new WriteMLPage(),
                         Content = "代码编辑器",
                         Icon = IconPaths.CodeEdit
+                    },
+                    new TreeItemModel()
+                    {
+                        Page = new VsuaButtonPage(),
+                        Content = "可视化按钮",
                     },
                     new TreeItemModel()
                     {
