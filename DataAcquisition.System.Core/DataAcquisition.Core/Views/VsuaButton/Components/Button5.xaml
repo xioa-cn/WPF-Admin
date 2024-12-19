@@ -25,6 +25,7 @@
                             <Border x:Name="BtnBorder" Background="Transparent">
                                 <Grid>
                                     <Polygon
+                                        Name="header_polygon"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         Fill="#5BE3CC"
@@ -56,12 +57,12 @@
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames
                                                 RepeatBehavior="Forever"
-                                                Storyboard.TargetName="Polygon_Base"
-                                                Storyboard.TargetProperty="Stroke.Opacity">
+                                                Storyboard.TargetName="header_polygon"
+                                                Storyboard.TargetProperty="Opacity">
                                                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.5" />
                                                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.7" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <PointAnimationUsingKeyFrames
+                                            <!--<PointAnimationUsingKeyFrames
                                                 AutoReverse="True"
                                                 RepeatBehavior="Forever"
                                                 Storyboard.TargetName="Polygon_Base"
@@ -77,7 +78,23 @@
                                                 Storyboard.TargetProperty="(Polygon.Stroke).(LinearGradientBrush.EndPoint)">
                                                 <EasingPointKeyFrame KeyTime="0:0:0" Value="0,0" />
                                                 <EasingPointKeyFrame KeyTime="0:0:2" Value="1,1" />
-                                            </PointAnimationUsingKeyFrames>
+                                            </PointAnimationUsingKeyFrames>-->
+                                            <PointAnimation
+                                                AutoReverse="True"
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetName="Polygon_Base"
+                                                Storyboard.TargetProperty="(Polygon.Stroke).(LinearGradientBrush.EndPoint)"
+                                                From="1,1"
+                                                To="0,0"
+                                                Duration="0:0:3" />
+                                            <PointAnimation
+                                                AutoReverse="True"
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetName="Polygon_Base"
+                                                Storyboard.TargetProperty="(Polygon.Stroke).(LinearGradientBrush.StartPoint)"
+                                                From="0,0"
+                                                To="1,1"
+                                                Duration="0:0:3" />
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
