@@ -3,7 +3,11 @@ using CommunityToolkit.Mvvm.Input;
 using DataAcquisition.Core.Views.QrCode.Utils;
 using HandyControl.Controls;
 using ICSharpCode.AvalonEdit;
+using QRCoder;
 using System.IO;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace DataAcquisition.Core.Views.QrCode;
@@ -51,6 +55,42 @@ public partial class QrCodeViewModel : ObservableObject
 
         var res = QrCodeHelper.CreateQRCode(Content, 10, iconFile);
         Source = res;
+    }
+
+
+    [RelayCommand]
+    private async Task ReaderCode(Page page)
+    {
+        var window = System.Windows.Window.GetWindow(page);
+        window.Hide();
+        var bytes = DataAcquisition.Core.Views.QrCode.Utils.QrCodeHelper.CaptureScreen(window);
+        await ScanScreenResult(bytes);
+        window?.Show();
+        if (window?.WindowState == WindowState.Minimized)
+        {
+            window.WindowState = WindowState.Normal;
+        }
+        window?.Activate();
+        window?.Focus();
+    }
+
+
+    public async Task ScanScreenResult(byte[]? bytes)
+    {
+        var result = DataAcquisition.Core.Views.QrCode.Utils.QrCodeHelper.ParseBarcode(bytes);
+        await AddScanResultAsync(result);
+    }
+
+    private async Task AddScanResultAsync(string? result)
+    {
+        if (DataAcquisition.Core.Views.QrCode.Utils.QrCodeHelper.IsNullOrEmpty(result))
+        {
+            Growl.Success("未识别到二维码");
+        }
+        else
+        {
+            Growl.Success("识别内容：" + result);
+        }
     }
 
 }

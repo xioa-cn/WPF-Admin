@@ -47,11 +47,16 @@ public partial class MainWindow : System.Windows.Window
             this.WindowState = WindowState.Normal;
         }
     }
-
+    private NotifyIconView? _NotifyIconView;
     private async void Close_Click(object sender, RoutedEventArgs e)
     {
+        if(_NotifyIconView is null)
+        {
+            _NotifyIconView = new NotifyIconView();
+        }
+
         CloseEnum closeEnum = CloseEnum.None;
-        var dialog = Dialog.Show<NotificationView.NotifyIconView>(MessageToken.DialogPageToken);
+        var dialog = Dialog.Show(_NotifyIconView,MessageToken.DialogPageToken);
         await dialog.Initialize<NotifyIconViewModel>(
             vm => { }).GetResultAsync<CloseEnum>().ContinueWith(re => { closeEnum = re.Result; });
 

@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:DataAcquisition.Core.Views.QrCode"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+    Name="QrCodePage"
     Title="QrCodeView"
     d:DataContext="{d:DesignInstance Type=local:QrCodeViewModel}"
     Background="{DynamicResource Background.Brush}"
@@ -68,6 +69,17 @@
                 FontSize="20"
                 Style="{StaticResource ButtonSuccess}">
                 生成二维码
+            </Button>
+            <Button
+                Width="150"
+                Height="60"
+                Margin="10"
+                Background="{DynamicResource Primary.Brush}"
+                Command="{Binding ReaderCodeCommand}"
+                CommandParameter="{Binding ElementName=QrCodePage}"
+                FontSize="20"
+                Style="{StaticResource ButtonSuccess}">
+                识别二维码
             </Button>
         </StackPanel>
 
