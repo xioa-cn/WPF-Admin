@@ -113,7 +113,7 @@ public partial class MainViewModel : ObservableObject
                     new TreeItemModel()
                     {
                         Page = new VsuaButtonPage(),
-                        Content = "可视化按钮",
+                        Content = "自定义按钮",
                     },
                     new TreeItemModel()
                     {

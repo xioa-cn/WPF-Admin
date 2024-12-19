@@ -10,7 +10,11 @@
         Button2
         <Button.Resources>
             <Style TargetType="Button">
-                <Setter Property="Background" Value="#4D4014" />
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Opacity="0.3" Color="#D8BB63" />
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="BorderBrush" Value="#D8BB63" />
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="Template">

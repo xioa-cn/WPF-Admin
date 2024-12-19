@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DataAcquisition.lib")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4adaf7b95e0413b5b9c26bb017e25ea05253a67")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8e697ff050a55e9eeb21d4b88613ce777a2a85a")]
 [assembly: System.Reflection.AssemblyProductAttribute("DataAcquisition.lib")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DataAcquisition.lib")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

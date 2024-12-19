@@ -1,0 +1,93 @@
+﻿<UserControl
+    x:Class="DataAcquisition.Core.Views.VsuaButton.Components.Button4"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DataAcquisition.Core.Views.VsuaButton.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Button>
+        Button4
+        <Button.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Width" Value="200" />
+                <Setter Property="Height" Value="60 " />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="Transparent">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Path
+                                        x:Name="path1"
+                                        Width="40"
+                                        Fill="Cyan"
+                                        Stretch="Uniform">
+                                        <Path.Data>
+                                            <PathGeometry>
+                                                M497 705.5l30-30L333.5 482 527 288.5l-30-30L303.5 452l-30 30L497 705.5z m-226.5 0l30-30.00000001L108.50000001 482 300.49999999 288.5l-29.99999999-30L77 451.99999999l-30 30.00000001 223.5 223.5z M947.00000001 705.5l29.99999999-30L783.5 482 977 288.5l-29.99999999-30L753.5 452l-29.99999999 30L947.00000001 705.5z m-226.50000001 0l30-30L558.5 482 750.5 288.5l-30-30L527 452l-30 30 223.5 223.5z
+                                            </PathGeometry>
+                                        </Path.Data>
+                                    </Path>
+
+                                    <Grid Grid.Column="1">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Grid>
+                                    <Path
+                                        x:Name="path2"
+                                        Grid.Column="2"
+                                        Width="40"
+                                        Fill="Cyan"
+                                        Stretch="Uniform">
+                                        <Path.Data>
+                                            <PathGeometry>
+                                                M527 318.5l-30 30L690.5 542 497 735.5l30 30L720.5 572l30-30L527 318.5z m226.5 0l-30 30L915.5 542 723.5 735.5l30 30L947 572l30-30-223.5-223.5z M77 318.5l-30 30L240.5 542 47 735.5l30 30L270.5 572l30-30L77 318.5z m226.5 0l-30 30L465.5 542 273.5 735.5l30 30L497 572l30-30-223.5-223.5z
+                                            </PathGeometry>
+                                        </Path.Data>
+                                    </Path>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Cursor" Value="Hand" />
+                                </Trigger>
+                                <EventTrigger RoutedEvent="MouseEnter">
+                                    <BeginStoryboard Name="Storyboard">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames
+                                                AutoReverse="True"
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetName="path1"
+                                                Storyboard.TargetProperty="Fill.Color"
+                                                Duration="0:0:1">
+                                                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="Red" />
+                                                <EasingColorKeyFrame KeyTime="0:0:1" Value="Cyan" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames
+                                                AutoReverse="True"
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetName="path2"
+                                                Storyboard.TargetProperty="Fill.Color"
+                                                Duration="0:0:1">
+                                                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="Red" />
+                                                <EasingColorKeyFrame KeyTime="0:0:1" Value="Cyan" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="MouseLeave">
+                                    <StopStoryboard BeginStoryboardName="Storyboard" />
+                                </EventTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Button.Resources>
+    </Button>
+</UserControl>
