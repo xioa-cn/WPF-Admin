@@ -41,7 +41,11 @@
                                         <Polygon.Stroke>
                                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                                 <GradientStop Offset="0.0" Color="#5BE3CC" />
-                                                <GradientStop Offset="0.6" Color="#005A9E" />
+                                                <GradientStop Offset="0.0" Color="#5BE3CC" />
+                                                <GradientStop Offset="0.25" Color="#005A9E" />
+                                                <GradientStop Offset="0.5" Color="#5BE3CC" />
+                                                <GradientStop Offset="0.75" Color="#005A9E" />
+                                                <GradientStop Offset="1.0" Color="#5BE3CC" />
                                             </LinearGradientBrush>
                                         </Polygon.Stroke>
                                     </Polygon>
@@ -55,6 +59,46 @@
                                 <EventTrigger RoutedEvent="MouseEnter">
                                     <BeginStoryboard x:Name="storyboard">
                                         <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetName="Polygon_Base"
+                                                Storyboard.TargetProperty="(Polygon.Stroke).(LinearGradientBrush.GradientStops)[0].Offset">
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0.0" />
+                                                <LinearDoubleKeyFrame KeyTime="0:0:1" Value="1.0" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetName="Polygon_Base"
+                                                Storyboard.TargetProperty="(Polygon.Stroke).(LinearGradientBrush.GradientStops)[1].Offset">
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0.25" />
+                                                <LinearDoubleKeyFrame KeyTime="0:0:1" Value="1.25" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetName="Polygon_Base"
+                                                Storyboard.TargetProperty="(Polygon.Stroke).(LinearGradientBrush.GradientStops)[2].Offset">
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0.5" />
+                                                <LinearDoubleKeyFrame KeyTime="0:0:1" Value="1.5" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetName="Polygon_Base"
+                                                Storyboard.TargetProperty="(Polygon.Stroke).(LinearGradientBrush.GradientStops)[3].Offset">
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0.75" />
+                                                <LinearDoubleKeyFrame KeyTime="0:0:1" Value="1.75" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetName="Polygon_Base"
+                                                Storyboard.TargetProperty="(Polygon.Stroke).(LinearGradientBrush.GradientStops)[4].Offset">
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="1.0" />
+                                                <LinearDoubleKeyFrame KeyTime="0:0:1" Value="2.0" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <!--<DoubleAnimation
+                                                By="20"
+                                                Storyboard.TargetName="Polygon_Base"
+                                                Storyboard.TargetProperty="(Polygon.Stroke).(Shape.StrokeDashOffset)"
+                                                Duration="0:0:1" />-->
                                             <DoubleAnimationUsingKeyFrames
                                                 RepeatBehavior="Forever"
                                                 Storyboard.TargetName="header_polygon"
@@ -79,7 +123,7 @@
                                                 <EasingPointKeyFrame KeyTime="0:0:0" Value="0,0" />
                                                 <EasingPointKeyFrame KeyTime="0:0:2" Value="1,1" />
                                             </PointAnimationUsingKeyFrames>-->
-                                            <PointAnimation
+                                            <!--<PointAnimation
                                                 AutoReverse="True"
                                                 RepeatBehavior="Forever"
                                                 Storyboard.TargetName="Polygon_Base"
@@ -94,7 +138,7 @@
                                                 Storyboard.TargetProperty="(Polygon.Stroke).(LinearGradientBrush.StartPoint)"
                                                 From="0,0"
                                                 To="1,1"
-                                                Duration="0:0:3" />
+                                                Duration="0:0:3" />-->
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
