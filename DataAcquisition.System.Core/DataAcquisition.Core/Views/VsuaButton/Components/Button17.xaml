@@ -1,0 +1,163 @@
+﻿<UserControl
+    x:Class="DataAcquisition.Core.Views.VsuaButton.Components.Button17"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Button x:Name="AnimatedButton" Content="Button17">
+        <Button.Resources>
+            <Style TargetType="Button">
+                <Setter Property="MinWidth" Value="200" />
+                <Setter Property="Height" Value="60" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="#ff0081" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <!--  粒子动画背景  -->
+                                <Canvas
+                                    x:Name="TopParticles"
+                                    Width="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Height="{Binding ActualHeight, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Opacity="0" />
+
+                                <Canvas
+                                    x:Name="BottomParticles"
+                                    Width="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Height="{Binding ActualHeight, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Opacity="0" />
+
+                                <!--  主按钮  -->
+                                <Border
+                                    x:Name="MainBorder"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="4">
+                                    <Border.Effect>
+                                        <DropShadowEffect
+                                            BlurRadius="25"
+                                            Opacity="0.5"
+                                            ShadowDepth="2"
+                                            Color="#ff0081" />
+                                    </Border.Effect>
+                                    <Border.RenderTransform>
+                                        <ScaleTransform />
+                                    </Border.RenderTransform>
+
+                                    <ContentPresenter
+                                        x:Name="ContentPresenter"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding Content}" />
+                                </Border>
+                            </Grid>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <!--  缩放动画  -->
+                                                <!--
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="MainBorder"
+                                                    Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                    To="0.9"
+                                                    Duration="0:0:0.1" />
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="MainBorder"
+                                                    Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                    To="0.9"
+                                                    Duration="0:0:0.1" />-->
+
+                                                <!--  颜色变化  -->
+                                                <ColorAnimation
+                                                    Storyboard.TargetName="MainBorder"
+                                                    Storyboard.TargetProperty="Background.Color"
+                                                    To="#e60074"
+                                                    Duration="0:0:0.1" />
+
+                                                <!--  粒子动画  -->
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="TopParticles"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="1"
+                                                    Duration="0:0:0.1" />
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="TopParticles"
+                                                    Storyboard.TargetProperty="(Canvas.RenderTransform).(TranslateTransform.Y)"
+                                                    From="-75"
+                                                    To="-150"
+                                                    Duration="0:0:0.75">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CircleEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="BottomParticles"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="1"
+                                                    Duration="0:0:0.1" />
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="BottomParticles"
+                                                    Storyboard.TargetProperty="(Canvas.RenderTransform).(TranslateTransform.Y)"
+                                                    From="75"
+                                                    To="150"
+                                                    Duration="0:0:0.75">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CircleEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <!--  恢复动画  -->
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="MainBorder"
+                                                    Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                    To="1"
+                                                    Duration="0:0:0.1" />
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="MainBorder"
+                                                    Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                    To="1"
+                                                    Duration="0:0:0.1" />
+
+                                                <ColorAnimation
+                                                    Storyboard.TargetName="MainBorder"
+                                                    Storyboard.TargetProperty="Background.Color"
+                                                    To="#ff0081"
+                                                    Duration="0:0:0.1" />
+
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="TopParticles"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0"
+                                                    Duration="0:0:0.75" />
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="BottomParticles"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0"
+                                                    Duration="0:0:0.75" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Cursor" Value="Hand" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Button.Resources>
+    </Button>
+</UserControl>

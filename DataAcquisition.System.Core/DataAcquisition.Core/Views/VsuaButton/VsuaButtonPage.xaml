@@ -36,6 +36,8 @@
                 <components:Button14 Margin="10" />
                 <components:Button15 Margin="10" />
                 <components:Button16 Margin="10" />
+                <components:Button17 Margin="10" />
+                <components:Button18 Margin="10" />
             </WrapPanel>
         </Grid>
     </ScrollViewer>
