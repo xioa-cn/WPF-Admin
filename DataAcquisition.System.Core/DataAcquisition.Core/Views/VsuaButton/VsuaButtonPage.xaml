@@ -17,13 +17,26 @@
     <Page.DataContext>
         <local:VsuaButtonViewModel />
     </Page.DataContext>
-    <Grid Margin="10">
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
-            <components:Button1 Margin="10" />
-            <components:Button2 Margin="10" />
-            <components:Button3 Margin="10" />
-            <components:Button4 Margin="10" />
-            <components:Button5 Margin="10" />
-        </StackPanel>
-    </Grid>
+    <ScrollViewer>
+        <Grid Margin="10">
+            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+                <components:Button1 Margin="10" />
+                <components:Button2 Margin="10" />
+                <components:Button3 Margin="10" />
+                <components:Button4 Margin="10" />
+                <components:Button5 Margin="10" />
+                <components:Button6 Margin="10" />
+                <components:Button7 Margin="10" />
+                <components:Button8 Margin="10" />
+                <components:Button9 Margin="10" />
+                <components:Button10 Margin="10" />
+                <components:Button11 Margin="10" />
+                <components:Button12 Margin="10" />
+                <components:Button13 Margin="10" />
+                <components:Button14 Margin="10" />
+                <components:Button15 Margin="10" />
+                <components:Button16 Margin="10" />
+            </WrapPanel>
+        </Grid>
+    </ScrollViewer>
 </Page>

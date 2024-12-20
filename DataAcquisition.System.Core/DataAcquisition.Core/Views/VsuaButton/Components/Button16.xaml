@@ -1,0 +1,92 @@
+﻿<UserControl
+    x:Class="DataAcquisition.Core.Views.VsuaButton.Components.Button16"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Button
+        x:Name="DeleteButton"
+        Click="Clear_Click"
+        Content="Button16">
+        <Button.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Width" Value="200" />
+                <Setter Property="Height" Value="60" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="#1A1B1E" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid x:Name="RootGrid">
+                                <Border
+                                    x:Name="MainBorder"
+                                    Background="{TemplateBinding Background}"
+                                    ClipToBounds="True"
+                                    CornerRadius="6">
+
+                                    <Grid x:Name="PART_ContentGrid" Width="200">
+                                        <!--  删除图标  -->
+                                        <Path
+                                            x:Name="DeleteIcon"
+                                            Width="16"
+                                            Height="16"
+                                            Margin="12,0,0,0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Data="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                            Stretch="Uniform"
+                                            Stroke="White"
+                                            StrokeThickness="1.5">
+                                            <Path.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform />
+                                                    <RotateTransform CenterX="8" CenterY="8" />
+                                                </TransformGroup>
+                                            </Path.RenderTransform>
+                                        </Path>
+
+                                        <!--  垃圾动画  -->
+                                        <Path
+                                            x:Name="TrashItem"
+                                            Width="6"
+                                            Height="4"
+                                            Margin="17,-20,0,0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Data="M 0,0 L 6,0 L 3,4 Z"
+                                            Fill="White"
+                                            Opacity="0">
+                                            <Path.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform />
+                                                    <RotateTransform />
+                                                    <TranslateTransform />
+                                                </TransformGroup>
+                                            </Path.RenderTransform>
+                                        </Path>
+
+                                        <!--  文字  -->
+                                        <TextBlock
+                                            x:Name="ButtonText"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Text="{TemplateBinding Content}" />
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#2A2B2E" />
+                                    <Setter Property="Cursor" Value="Hand" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Button.Resources>
+    </Button>
+</UserControl>

@@ -20,6 +20,27 @@
     <Compile Update="Views\VsuaButton\Components\Button1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\VsuaButton\Components\Button10.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\VsuaButton\Components\Button11.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\VsuaButton\Components\Button12.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\VsuaButton\Components\Button13.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\VsuaButton\Components\Button14.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\VsuaButton\Components\Button15.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\VsuaButton\Components\Button16.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\VsuaButton\Components\Button2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -30,6 +51,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\VsuaButton\Components\Button5.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\VsuaButton\Components\Button6.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\VsuaButton\Components\Button7.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\VsuaButton\Components\Button8.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\VsuaButton\Components\Button9.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\VsuaButton\VsuaButtonPage.xaml.cs">
@@ -58,6 +91,27 @@
     <Page Update="Views\VsuaButton\Components\Button1.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\VsuaButton\Components\Button10.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\VsuaButton\Components\Button11.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\VsuaButton\Components\Button12.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\VsuaButton\Components\Button13.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\VsuaButton\Components\Button14.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\VsuaButton\Components\Button15.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\VsuaButton\Components\Button16.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\VsuaButton\Components\Button2.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -68,6 +122,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\VsuaButton\Components\Button5.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\VsuaButton\Components\Button6.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\VsuaButton\Components\Button7.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\VsuaButton\Components\Button8.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\VsuaButton\Components\Button9.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\VsuaButton\VsuaButtonPage.xaml">

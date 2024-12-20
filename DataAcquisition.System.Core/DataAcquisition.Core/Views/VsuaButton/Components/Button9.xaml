@@ -1,0 +1,133 @@
+﻿<UserControl
+    x:Class="DataAcquisition.Core.Views.VsuaButton.Components.Button9"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Button Content="Button9">
+        <Button.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Width" Value="200" />
+                <Setter Property="Height" Value="60" />
+                <Setter Property="Background" Value="#2E86DE" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border
+                                x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="22.5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <Border
+                                        x:Name="CartIconBorder"
+                                        Width="32"
+                                        Height="32"
+                                        Margin="10,10"
+                                        Background="White"
+                                        CornerRadius="16">
+                                        <Border.Effect>
+                                            <DropShadowEffect
+                                                x:Name="CartIconEffect"
+                                                BlurRadius="0"
+                                                ShadowDepth="0"
+                                                Color="#2E86DE" />
+                                        </Border.Effect>
+                                        <Path
+                                            x:Name="CartIcon"
+                                            Width="20"
+                                            Height="20"
+                                            Data="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"
+                                            Fill="#2E86DE"
+                                            Stretch="Uniform" />
+                                    </Border>
+
+
+                                    <ContentPresenter
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" />
+
+
+                                    <Path
+                                        Grid.Column="2"
+                                        Width="16"
+                                        Height="16"
+                                        Margin="20"
+                                        VerticalAlignment="Center"
+                                        Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+                                        Fill="White"
+                                        Stretch="Uniform" />
+
+                                </Grid>
+                            </Border>
+
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Cursor" Value="Hand" />
+                                    <Setter TargetName="border" Property="Background" Value="#1E76CE" />
+                                    <!--<Trigger.EnterActions>
+                                        <BeginStoryboard />
+                                    </Trigger.EnterActions>-->
+                                    <!--<Trigger.ExitActions>
+                                        <RemoveStoryboard BeginStoryboardName="CartIconAnimation" />
+                                    </Trigger.ExitActions>-->
+                                </Trigger>
+
+                                <EventTrigger RoutedEvent="MouseEnter">
+
+                                    <BeginStoryboard Name="story">
+                                        <Storyboard>
+                                            <!--  图标缩放动画  -->
+                                            <DoubleAnimation
+                                                AutoReverse="True"
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetName="CartIcon"
+                                                Storyboard.TargetProperty="Opacity"
+                                                From="1"
+                                                To="0.5"
+                                                Duration="0:0:0.5" />
+                                            <!--  背景发光动画  -->
+                                            <DoubleAnimation
+                                                AutoReverse="True"
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetName="CartIconEffect"
+                                                Storyboard.TargetProperty="BlurRadius"
+                                                From="0"
+                                                To="10"
+                                                Duration="0:0:0.5" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                                <EventTrigger RoutedEvent="MouseLeave">
+                                    <StopStoryboard BeginStoryboardName="story" />
+                                </EventTrigger>
+
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Cursor" Value="Hand" />
+                                    <Setter TargetName="border" Property="Background" Value="#1E76CE" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#0E66BE" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Button.Resources>
+    </Button>
+</UserControl>
