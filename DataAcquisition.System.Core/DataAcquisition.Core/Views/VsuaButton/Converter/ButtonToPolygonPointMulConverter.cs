@@ -20,7 +20,7 @@ namespace DataAcquisition.Core.Views.VsuaButton.Converter
             // 计算斜切角的大小（可以调整这个值来改变斜切角度）
             double cutSize = height / 2;
 
-            // 按照顺序生成六个点
+            // 按照顺序生成点
             var points = new PointCollection
         {
             new Point(cutSize, 0),           // 左上角切点
