@@ -16,7 +16,10 @@ namespace DataAcquisition.Core.Views.WindowBase
 
         public PageWindow(TreeItemModel model, double width = 800, double height = 450)
         {
-            Dialog.Register(MessageToken.NewPageToken,this);
+            this.Loaded += (sender, args) =>
+            {
+                Dialog.Register(MessageToken.NewPageToken, this);
+            };
             model.PageStatus = PageStatus.Windows;
             ItemModel = model;
             InitializeComponent();
@@ -24,7 +27,7 @@ namespace DataAcquisition.Core.Views.WindowBase
             this.Height = height;
             this.Title = ItemModel.Content;
             this.frame.Navigate(ItemModel.Page);
-            
+            this.Unloaded += (sender, args) => { Dialog.Unregister(this); };
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -44,10 +47,11 @@ namespace DataAcquisition.Core.Views.WindowBase
             {
                 return;
             }
+
             BreadCrumbBar.items.Remove(ItemModel);
             ItemModel.IsChecked = true;
             WeakReferenceMessenger.Default.Send(ItemModel);
-            
+
             this.Close();
         }
 
