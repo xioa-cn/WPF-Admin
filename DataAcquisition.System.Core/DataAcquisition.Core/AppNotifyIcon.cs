@@ -7,28 +7,28 @@ namespace DataAcquisition.Core;
 
 /// <summary>
 /// @author Xioa
-/// @date  2024Äê12ÔÂ17ÈÕ
+/// @date  2024å¹´12æœˆ17æ—¥
 /// </summary>
-public partial class App: Application
+public partial class App : Application
 {
     private NotifyIcon? _notifyIcon;
-    
+
     private void InitializeNotifyIcon()
     {
         _notifyIcon = new NotifyIcon
         {
-            Icon = new System.Drawing.Icon("Assets/png/logo_32x32.ico"), 
+            Icon = new System.Drawing.Icon("Assets/png/logo_32x32.ico"),
             Visible = true,
             Text = "Xioa-Admin"
         };
 
         _notifyIcon.DoubleClick += NotifyIcon_DoubleClick;
-        
+
         _notifyIcon.ContextMenuStrip = new ContextMenuStrip();
-        _notifyIcon.ContextMenuStrip.Items.Add("´ò¿ª", null, Open_Click);
-        _notifyIcon.ContextMenuStrip.Items.Add("ÍË³ö", null, Exit_Click);
+        _notifyIcon.ContextMenuStrip.Items.Add("æ‰“å¼€", null, Open_Click);
+        _notifyIcon.ContextMenuStrip.Items.Add("é€€å‡º", null, Exit_Click);
     }
-    
+
     private void NotifyIcon_DoubleClick(object? sender, EventArgs e)
     {
         MainWindowShow?.Show();
@@ -50,8 +50,7 @@ public partial class App: Application
 
     protected override void OnExit(ExitEventArgs e)
     {
-        _notifyIcon.Dispose(); // ÇåÀíÍĞÅÌÍ¼±ê
+        _notifyIcon.Dispose(); // æ¸…ç†æ‰˜ç›˜å›¾æ ‡
         base.OnExit(e);
     }
-    
 }

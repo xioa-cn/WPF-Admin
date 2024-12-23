@@ -47,28 +47,30 @@ public partial class MainWindow : System.Windows.Window
             this.WindowState = WindowState.Normal;
         }
     }
-    private NotifyIconView? _NotifyIconView;
+    private NotifyIconView? _notifyIconView;
     private async void Close_Click(object sender, RoutedEventArgs e)
     {
-        if(_NotifyIconView is null)
-        {
-            _NotifyIconView = new NotifyIconView();
-        }
+        _notifyIconView ??= new NotifyIconView();
 
-        CloseEnum closeEnum = CloseEnum.None;
-        var dialog = Dialog.Show(_NotifyIconView,MessageToken.DialogPageToken);
+        var closeEnum = CloseEnum.None;
+        var dialog = Dialog.Show(_notifyIconView,MessageToken.DialogPageToken);
         await dialog.Initialize<NotifyIconViewModel>(
             vm => { }).GetResultAsync<CloseEnum>().ContinueWith(re => { closeEnum = re.Result; });
 
-        if (closeEnum == CloseEnum.Close)
+        switch (closeEnum)
         {
-            this.CloseWindowWithFade();
-            Environment.Exit(0);
-        }
-        else if(closeEnum == CloseEnum.Notify)
-        {
-            await Task.Delay(100);
-            this.Visibility = Visibility.Hidden;
+            case CloseEnum.Close:
+                this.CloseWindowWithFade();
+                Environment.Exit(0);
+                break;
+            case CloseEnum.Notify:
+                await Task.Delay(100);
+                this.Visibility = Visibility.Hidden;
+                break;
+            case CloseEnum.None:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
