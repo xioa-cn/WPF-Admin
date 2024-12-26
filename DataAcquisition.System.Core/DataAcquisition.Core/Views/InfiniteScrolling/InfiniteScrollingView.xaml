@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:DataAcquisition.Core.Views.InfiniteScrolling"
       mc:Ignorable="d"
-      Title="InfiniteScrollingView" Height="450" Width="800">
+      Title="InfiniteScrollingView" >
     <Page.DataContext>
         <local:InfiniteScrollingViewModel />
     </Page.DataContext>

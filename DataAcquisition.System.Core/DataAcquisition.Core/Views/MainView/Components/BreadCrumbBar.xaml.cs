@@ -13,31 +13,31 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Navigation;
+using System.Windows.Threading;
 
 
-namespace DataAcquisition.Core.Views.MainView.Components
-{
+namespace DataAcquisition.Core.Views.MainView.Components {
     /// <summary>
     /// BreadCrumbBar.xaml 的交互逻辑
     /// </summary>
-    public partial class BreadCrumbBar : UserControl
-    {
-        public static Dictionary<TreeItemModel, System.Windows.Window> items { get; set; } = new Dictionary<TreeItemModel, System.Windows.Window>();
+    /// /// <summary>
+    /// @author Xioa
+    /// @date  2024-12-18 14:02:20
+    /// </summary>
+    public partial class BreadCrumbBar : UserControl {
+        public static Dictionary<TreeItemModel, System.Windows.Window> items { get; set; } =
+            new Dictionary<TreeItemModel, System.Windows.Window>();
 
         private Page _basepage = new BasePage();
 
         private ObservableCollection<TreeItemModel>? _baseItem;
-        public ObservableCollection<TreeItemModel> BaseList
-        {
+
+        public ObservableCollection<TreeItemModel> BaseList {
             get => _baseItem;
-            set
-            {
-                _baseItem = value;
-            }
+            set { _baseItem = value; }
         }
 
-        private TreeItemModel BaselistRemove(TreeItemModel value)
-        {
+        private TreeItemModel BaselistRemove(TreeItemModel value) {
             var index = Array.IndexOf(BaseList.ToArray(), value);
             TreeItemModel? page = new TreeItemModel();
 
@@ -51,6 +51,7 @@ namespace DataAcquisition.Core.Views.MainView.Components
                 BaseList[1].IsChecked = true;
                 page = BaseList[1];
             }
+
             value.IsChecked = false;
             this.BaseList.Remove(value);
             //items.Remove(value);
@@ -58,13 +59,12 @@ namespace DataAcquisition.Core.Views.MainView.Components
             {
                 this.HeaderBorder.Visibility = Visibility.Collapsed;
                 page.Page = _basepage;
-
             }
+
             return page;
         }
 
-        private void BaselistAdd(TreeItemModel value)
-        {
+        private void BaselistAdd(TreeItemModel value) {
             var r = this.BaseList.FirstOrDefault(x => x == value);
             if (r is not null)
             {
@@ -77,15 +77,13 @@ namespace DataAcquisition.Core.Views.MainView.Components
             }
 
 
-
             if (this.HeaderBorder.Visibility == Visibility.Collapsed)
             {
                 this.HeaderBorder.Visibility = Visibility.Visible;
             }
         }
 
-        public BreadCrumbBar()
-        {
+        public BreadCrumbBar() {
             InitializeComponent();
             BaseList = new ObservableCollection<TreeItemModel>();
             Binding binding = new Binding();
@@ -94,162 +92,131 @@ namespace DataAcquisition.Core.Views.MainView.Components
             binding.Mode = BindingMode.TwoWay;
             navButton.SetBinding(ItemsControl.ItemsSourceProperty, binding);
 
-            WeakReferenceMessenger.Default.Register<TreeItemModel>(this, PageAddItem);
+            WeakReferenceMessenger.Default.Register<TreeItemModelMessenger>(this, PageAddItem);
             this.frame.Navigate(_basepage);
         }
 
-        private void PageAddItem(object recipient, TreeItemModel message)
-        {
+        private void PageAddItem(object recipient, TreeItemModelMessenger message) {
             this.Dispatcher.Invoke(() =>
             {
-
-                if (message.Page is not null)
+                if (message.Item.Page is null) return;
+                var windowOpen =
+                    items.FirstOrDefault(e => e.Key == message.Item);
+                if (windowOpen.Value is not null)
                 {
-                    var windowOpen = items.FirstOrDefault(e => e.Key == message);
-                    if (windowOpen.Value is not null)
-                    {
-                        windowOpen.Value.Activate();
-                        windowOpen.Value.Focusable = true;
-                        return;
-                    }
-
-                    if (NaviControl.olditemModel is not null 
-                    && message == NaviControl.olditemModel && message.PageStatus == PageStatus.Page) 
-                    {
-                        Growl.Warning($"页面正在显示！");
-                        return;
-                    }
-
-
-                    if (message.IsPersistence)
-                        this.frame.Navigate(message.Page);
-                    else
-                    {
-                        var temp = Activator.CreateInstance(message.Page.GetType());
-                        this.frame.Navigate(temp);
-
-                        message.Page = temp as Page;
-                    }
-                    BaselistAdd(message);
-                    NaviControl.olditemModel = message;
-
-                    if(App.MainWindowShow.WindowState == WindowState.Minimized)
-                    {
-                        App.MainWindowShow.WindowState = WindowState.Normal;
-                    }
-
-                    App.MainWindowShow.Activate();
+                    windowOpen.Value.Activate();
+                    windowOpen.Value.Focusable = true;
+                    return;
                 }
+
+                if (NaviControl.olditemModel is not null
+                    && message.Item == NaviControl.olditemModel && message.Item.PageStatus == PageStatus.Page)
+                {
+                    Growl.Warning($"页面正在显示！");
+                    return;
+                }
+
+
+                if (message.Item.IsPersistence || message.MessengerStatus == MessengerStatus.FromWindowToPage)
+                    this.frame.Navigate(message.Item.Page);
+                else
+                {
+                    var temp = Activator.CreateInstance(message.Item.Page.GetType());
+                    this.frame.Navigate(temp);
+
+                    message.Item.Page = temp as Page;
+                }
+
+                BaselistAdd(message.Item);
+                NaviControl.olditemModel = message.Item;
+
+                if (App.MainWindowShow.WindowState == WindowState.Minimized)
+                {
+                    App.MainWindowShow.WindowState = WindowState.Normal;
+                }
+
+                App.MainWindowShow.Activate();
             });
             WeakReferenceMessenger.Default.Send<NaviSendMessenger<TreeItemModel>>(
-                           new NaviSendMessenger<TreeItemModel>(message)
-                           );
-            NaviControl.olditemModel = message;
+                new NaviSendMessenger<TreeItemModel>(message.Item)
+            );
+            NaviControl.olditemModel = message.Item;
         }
 
-        private async void Close_Click(object sender, RoutedEventArgs e)
-        {
-            if ((sender as Button).Tag is TreeItemModel value)
+        private async void Close_Click(object sender, RoutedEventArgs e) {
+            if ((sender as Button)?.Tag is not TreeItemModel value) return;
+            var nav = value.IsChecked;
+
+            var page = BaselistRemove(value);
+            if (!nav) return;
+            await Dispatcher.InvokeAsync(() =>
             {
-                var nav = value.IsChecked;
-
-                var page = BaselistRemove(value);
-                if (nav&& page is not null)
+                try
                 {
-                    await Dispatcher.InvokeAsync(() =>
-                     {
-                         try
-                         {
-                             this.frame.RemoveBackEntry();
-                         }
-                         catch (InvalidOperationException)
-                         {
-
-
-                         }
-                         this.frame.Navigate(null);
-                         this.frame.Navigate(page.Page);
-                     });
-
-
-
-
-                    WeakReferenceMessenger.Default.Send<NaviSendMessenger<TreeItemModel>>(
-                        new NaviSendMessenger<TreeItemModel>(page)
-                        );
-
-
-
+                    this.frame.RemoveBackEntry();
+                }
+                catch (InvalidOperationException)
+                {
                 }
 
+                this.frame.Navigate(null);
+                this.frame.Navigate(page.Page);
+            });
+
+
+            WeakReferenceMessenger.Default.Send<NaviSendMessenger<TreeItemModel>>(
+                new NaviSendMessenger<TreeItemModel>(page)
+            );
+        }
+
+        private void GotoView_Click(object sender, RoutedEventArgs e) {
+            if ((sender as RadioButton)?.Tag is not TreeItemModel value) return;
+            if (value.Page is not null)
+            {
+                this.frame.Navigate(value.Page);
             }
+
+            WeakReferenceMessenger.Default.Send<NaviSendMessenger<TreeItemModel>>(
+                new NaviSendMessenger<TreeItemModel>(value)
+            );
         }
 
-        private void GotoView_Click(object sender, RoutedEventArgs e)
-        {
-            if ((sender as RadioButton).Tag is TreeItemModel value)
+        private void frame_Navigated(object sender, NavigationEventArgs e) {
+        }
+
+        private void Eject_Click(object sender, RoutedEventArgs e) {
+            if ((sender as Button)?.Tag is not TreeItemModel value) return;
+            var nav = value.IsChecked;
+
+
+            PageWindow pageWindow = new PageWindow(value);
+            items.Add(value, pageWindow);
+            pageWindow.Show();
+
+            var page = BaselistRemove(value);
+            if (!nav) return;
+            Dispatcher.Invoke(() =>
             {
-                if (value.Page is not null)
+                try
                 {
-                    this.frame.Navigate(value.Page);
+                    this.frame.RemoveBackEntry();
                 }
+                catch (InvalidOperationException)
+                {
+                }
+
+                this.frame.Navigate(null);
+            });
+
+            Task.Run(() =>
+            {
+                Thread.Sleep(5);
+                Dispatcher.Invoke(() => { this.frame.Navigate(page.Page); });
+
                 WeakReferenceMessenger.Default.Send<NaviSendMessenger<TreeItemModel>>(
-                          new NaviSendMessenger<TreeItemModel>(value)
-                          );
-            }
-        }
-
-        private void frame_Navigated(object sender, NavigationEventArgs e)
-        {
-
-        }
-
-        private void Eject_Click(object sender, RoutedEventArgs e)
-        {
-            if ((sender as Button).Tag is TreeItemModel value)
-            {
-                var nav = value.IsChecked;
-
-
-                PageWindow pageWindow = new PageWindow(value);
-                items.Add(value, pageWindow);
-                pageWindow.Show();
-
-                var page = BaselistRemove(value);
-                if (nav && page is not null)
-                {
-                    Dispatcher.Invoke(() =>
-                    {
-                        try
-                        {
-                            this.frame.RemoveBackEntry();
-                        }
-                        catch (InvalidOperationException)
-                        {
-
-
-                        }
-                        this.frame.Navigate(null);
-
-                    });
-
-                    Task.Run(() =>
-                    {
-                        Thread.Sleep(5);
-                        Dispatcher.Invoke(() =>
-                        {
-                            this.frame.Navigate(page.Page);
-                        });
-
-                        WeakReferenceMessenger.Default.Send<NaviSendMessenger<TreeItemModel>>(
-                           new NaviSendMessenger<TreeItemModel>(page)
-                           );
-
-                    });
-
-                }
-
-            }
+                    new NaviSendMessenger<TreeItemModel>(page)
+                );
+            });
         }
     }
 }

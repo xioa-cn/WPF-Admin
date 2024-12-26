@@ -10,13 +10,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Threading;
 
-namespace DataAcquisition.Core.Views.MainView.Components
-{
-    public partial class NaviControl : UserControl
-    {
+namespace DataAcquisition.Core.Views.MainView.Components {
+    public partial class NaviControl : UserControl {
         private ObservableCollection<TreeItemModel>? _baseItem;
-        public ObservableCollection<TreeItemModel> BaseList
-        {
+
+        public ObservableCollection<TreeItemModel> BaseList {
             get => _baseItem;
             set => _baseItem = value;
         }
@@ -25,8 +23,7 @@ namespace DataAcquisition.Core.Views.MainView.Components
         private bool _isUpdatingSelection = false;
         private bool _isMouseOverPopup = false;
 
-        public NaviControl()
-        {
+        public NaviControl() {
             InitializeComponent();
             BaseList = MainViewModel.TreeItemModels;
             WeakReferenceMessenger.Default.Register<NaviSendMessenger<TreeItemModel>>(
@@ -34,8 +31,7 @@ namespace DataAcquisition.Core.Views.MainView.Components
             );
         }
 
-        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e) {
             ScrollViewer scrollviewer = sender as ScrollViewer;
             if (scrollviewer != null)
             {
@@ -44,8 +40,7 @@ namespace DataAcquisition.Core.Views.MainView.Components
             }
         }
 
-        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e) {
             if (e.NewSize.Width < 200 && !_isCollapsed)
             {
                 _isCollapsed = true;
@@ -57,8 +52,7 @@ namespace DataAcquisition.Core.Views.MainView.Components
             }
         }
 
-        private void CollapseAllItems()
-        {
+        private void CollapseAllItems() {
             if (BaseList == null) return;
 
             foreach (var item in BaseList)
@@ -67,8 +61,7 @@ namespace DataAcquisition.Core.Views.MainView.Components
             }
         }
 
-        private void CollapseItem(TreeItemModel item)
-        {
+        private void CollapseItem(TreeItemModel item) {
             item.IsExpanded = false;
             foreach (var child in item.Children)
             {
@@ -76,8 +69,7 @@ namespace DataAcquisition.Core.Views.MainView.Components
             }
         }
 
-        private void ChangeIsChecked(object recipient, NaviSendMessenger<TreeItemModel> message)
-        {
+        private void ChangeIsChecked(object recipient, NaviSendMessenger<TreeItemModel> message) {
             if (_isUpdatingSelection) return;
 
             _isUpdatingSelection = true;
@@ -104,8 +96,7 @@ namespace DataAcquisition.Core.Views.MainView.Components
 
         public static TreeItemModel? olditemModel;
 
-        private void NavToPage_Click(object sender, RoutedEventArgs e)
-        {
+        private void NavToPage_Click(object sender, RoutedEventArgs e) {
             if (_isUpdatingSelection) return;
 
             if (sender is RadioButton radioButton && radioButton.Tag is TreeItemModel value)
@@ -117,19 +108,19 @@ namespace DataAcquisition.Core.Views.MainView.Components
                     {
                         WeakReferenceMessenger.Default.Send(new ChangeMainBorderSizeMessanger());
                         value.IsExpanded = !value.IsExpanded;
-                        
                     }
-                    
+
                     // 如果是展开状态，处理子项的展开/折叠
                     if (ActualWidth >= 200)
                     {
                         if (value.HasChildren)
                         {
                             value.IsChecked = false;
-                            if(olditemModel is not null)
+                            if (olditemModel is not null)
                             {
                                 olditemModel.IsChecked = true;
                             }
+
                             value.IsExpanded = !value.IsExpanded;
                             e.Handled = true;
                             return;
@@ -156,13 +147,18 @@ namespace DataAcquisition.Core.Views.MainView.Components
                             windowOpen.Value.Focusable = true;
                             return;
                         }
+
                         PageWindow pageWindow = new PageWindow(value);
                         BreadCrumbBar.items.Add(value, pageWindow);
                         pageWindow.Show();
                         return;
                     }
 
-                    WeakReferenceMessenger.Default.Send(value);
+                    var page = new TreeItemModelMessenger() {
+                        Item = value,
+                        MessengerStatus = MessengerStatus.FromNavBarToPage,
+                    };
+                    WeakReferenceMessenger.Default.Send(page);
                 }
                 finally
                 {
@@ -171,8 +167,7 @@ namespace DataAcquisition.Core.Views.MainView.Components
             }
         }
 
-        private void Popup_MouseLeave(object sender, MouseEventArgs e)
-        {
+        private void Popup_MouseLeave(object sender, MouseEventArgs e) {
             _isMouseOverPopup = false;
             if (sender is FrameworkElement element && element.Parent is Popup popup)
             {
@@ -187,8 +182,7 @@ namespace DataAcquisition.Core.Views.MainView.Components
             }
         }
 
-        private void Popup_MouseEnter(object sender, MouseEventArgs e)
-        {
+        private void Popup_MouseEnter(object sender, MouseEventArgs e) {
             _isMouseOverPopup = true;
         }
     }

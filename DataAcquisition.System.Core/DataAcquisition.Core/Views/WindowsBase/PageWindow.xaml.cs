@@ -5,21 +5,15 @@ using System.Windows;
 using DataAcquisition.Core.Views.DialogView.Model;
 using HandyControl.Controls;
 
-namespace DataAcquisition.Core.Views.WindowBase
-{
+namespace DataAcquisition.Core.Views.WindowBase {
     /// <summary>
     /// PageWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class PageWindow : System.Windows.Window
-    {
+    public partial class PageWindow : System.Windows.Window {
         public TreeItemModel ItemModel { get; set; }
 
-        public PageWindow(TreeItemModel model, double width = 800, double height = 450)
-        {
-            this.Loaded += (sender, args) =>
-            {
-                Dialog.Register(MessageToken.NewPageToken, this);
-            };
+        public PageWindow(TreeItemModel model, double width = 800, double height = 450) {
+            this.Loaded += (sender, args) => { Dialog.Register(MessageToken.NewPageToken, this); };
             model.PageStatus = PageStatus.Windows;
             ItemModel = model;
             InitializeComponent();
@@ -30,19 +24,16 @@ namespace DataAcquisition.Core.Views.WindowBase
             this.Unloaded += (sender, args) => { Dialog.Unregister(this); };
         }
 
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
+        private void Close_Click(object sender, RoutedEventArgs e) {
             BreadCrumbBar.items.Remove(ItemModel);
             this.Close();
         }
 
-        private void MiniSize_Click(object sender, RoutedEventArgs e)
-        {
+        private void MiniSize_Click(object sender, RoutedEventArgs e) {
             this.WindowState = WindowState.Minimized;
         }
 
-        private void BackWindow_Click(object sender, RoutedEventArgs e)
-        {
+        private void BackWindow_Click(object sender, RoutedEventArgs e) {
             if (ItemModel.PageCanInterchange == PageCanInterchange.NonePage)
             {
                 return;
@@ -50,13 +41,16 @@ namespace DataAcquisition.Core.Views.WindowBase
 
             BreadCrumbBar.items.Remove(ItemModel);
             ItemModel.IsChecked = true;
-            WeakReferenceMessenger.Default.Send(ItemModel);
+            var page = new TreeItemModelMessenger() {
+                Item = ItemModel,
+                MessengerStatus = MessengerStatus.FromWindowToPage,
+            };
+            WeakReferenceMessenger.Default.Send(page);
 
             this.Close();
         }
 
-        private void Max_Click(object sender, RoutedEventArgs e)
-        {
+        private void Max_Click(object sender, RoutedEventArgs e) {
             if (this.WindowState == WindowState.Normal)
             {
                 this.WindowState = WindowState.Maximized;
