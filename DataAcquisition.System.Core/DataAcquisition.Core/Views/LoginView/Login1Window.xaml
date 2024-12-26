@@ -103,8 +103,8 @@
             <Border
                 Width="250"
                 Height="30"
-                BorderBrush="#FFF"
                 Background="Transparent"
+                BorderBrush="#FFF"
                 BorderThickness="1"
                 CornerRadius="15">
                 <TextBox
@@ -130,7 +130,8 @@
             </TextBlock>
             <Border
                 Width="250"
-                Height="30" Background="Transparent"
+                Height="30"
+                Background="Transparent"
                 BorderBrush="#FFF"
                 BorderThickness="1"
                 CornerRadius="15">
@@ -152,12 +153,11 @@
                 Width="250"
                 Height="30"
                 hc:IconElement.Geometry="{StaticResource loginIcon}"
+                Background="{DynamicResource Primary.Brush}"
                 Command="{Binding LoginCommand}"
                 CommandParameter="{Binding ElementName=loginWindow}"
                 FontSize="15"
-                Style="{StaticResource ButtonPrimary}"
-                Background="{DynamicResource Primary.Brush}"
-                >
+                Style="{StaticResource ButtonPrimary}">
                 登 录
             </Button>
         </StackPanel>

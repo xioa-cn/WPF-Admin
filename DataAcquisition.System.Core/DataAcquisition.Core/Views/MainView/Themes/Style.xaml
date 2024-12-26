@@ -81,6 +81,12 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="Cursor" Value="Hand" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!--  以下是正常窗体按钮 样式  -->
@@ -243,7 +249,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 
 
     <Geometry x:Key="logo1">
