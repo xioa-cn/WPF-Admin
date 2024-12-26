@@ -11,6 +11,18 @@ DataAcquisition.Core 是一个基于 WPF (.NET 6.0) 开发的数据采集与监�
 - 数据库: SQLite
 - UI组件: Handycontrol
 
+## 项目截图
+-主页
+![主页](ProjectImg/主页.jpg)
+-导航按钮
+![导航按钮](ProjectImg/导航按钮.jpg)
+-主题
+![主题](ProjectImg/主题配色.jpg)
+-页固钉
+![页固钉](ProjectImg/页固钉.jpg)
+-页弹出与回溯
+![页弹出与回溯](ProjectImg/页弹出与回溯.jpg)
+
 ## 系统架构 🏗️
 
 ### MVVM架构
