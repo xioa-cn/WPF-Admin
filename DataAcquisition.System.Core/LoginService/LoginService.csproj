@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DataAcquisition.Model\DataAcquisition.Model.csproj" />
+      <ProjectReference Include="..\Xioa.Admin.Model\Xioa.Admin.Model.csproj" />
     </ItemGroup>
 
     <ItemGroup>

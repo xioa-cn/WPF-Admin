@@ -1,0 +1,195 @@
+<Window
+    x:Class="Xioa.Admin.Core.Views.LoginView.Login1Window"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:Xioa.Admin.Core.Views.LoginView"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Xioa.Admin.Core.Views.LoginView.ViewModel"
+    Name="loginWindow"
+    Title="Login..."
+    Width="400"
+    Height="500"
+    d:DataContext="{d:DesignInstance Type=local:LoginViewModel}"
+    AllowsTransparency="True"
+    Background="{x:Null}"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="50" GlassFrameThickness="1" />
+    </WindowChrome.WindowChrome>
+    <Window.Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Microsoft YaHei" />
+            <Setter Property="FontWeight" Value="ExtraLight" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Border Background="Transparent">
+                            <Grid>
+                                <Border
+                                    Grid.Row="0"
+                                    Width="350"
+                                    Height="500"
+                                    BorderBrush="#FFF"
+                                    BorderThickness="1"
+                                    CornerRadius="8">
+
+                                    <Border.Background>
+                                        <ImageBrush
+                                            ImageSource="../../Assets/Img/login2.jpg"
+                                            Opacity="0.5"
+                                            Stretch="UniformToFill" />
+                                    </Border.Background>
+                                    <Border.Effect>
+                                        <BlurEffect Radius="3" />
+                                    </Border.Effect>
+
+                                </Border>
+                                <Grid>
+                                    <Button
+                                        Width="50"
+                                        Height="40"
+                                        Margin="30,10"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Click="CloseWindow_Click"
+                                        Style="{DynamicResource WindowMaxButtonStyle}">
+                                        <Path
+                                            Width="10"
+                                            Height="10"
+                                            Data="{StaticResource CloseIco}"
+                                            Fill="Black"
+                                            Stretch="Fill" />
+
+                                    </Button>
+                                    <ContentPresenter />
+                                </Grid>
+
+
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Style>
+    <Grid Margin="40,50,40,10">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <hc:Gravatar Id="User2" />
+        </Grid>
+        <StackPanel
+            Grid.Row="1"
+            Margin="10,40,10,10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <TextBlock
+                Margin="10"
+                FontSize="12"
+                Foreground="#FFF">
+                账户：
+            </TextBlock>
+            <Border
+                Width="250"
+                Height="30"
+                Background="Transparent"
+                BorderBrush="#FFF"
+                BorderThickness="1"
+                CornerRadius="15">
+                <TextBox
+                    Width="230"
+                    Height="30"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    FontSize="20"
+                    Foreground="#FFF"
+                    Text="{Binding UserName}" />
+            </Border>
+        </StackPanel>
+        <StackPanel
+            Grid.Row="2"
+            Margin="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <TextBlock
+                Margin="10"
+                FontSize="12"
+                Foreground="#FFF">
+                密码：
+            </TextBlock>
+            <Border
+                Width="250"
+                Height="30"
+                Background="Transparent"
+                BorderBrush="#FFF"
+                BorderThickness="1"
+                CornerRadius="15">
+                <PasswordBox
+                    Width="230"
+                    Height="30"
+                    vm:LoginPasswordBoxHelper.IsPasswordBindingEnable="True"
+                    vm:LoginPasswordBoxHelper.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    FontSize="20"
+                    Foreground="#FFF"
+                    Style="{x:Null}" />
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Margin="0,40">
+            <Button
+                Width="250"
+                Height="30"
+                hc:IconElement.Geometry="{StaticResource loginIcon}"
+                Background="{DynamicResource Primary.Brush}"
+                Command="{Binding LoginCommand}"
+                CommandParameter="{Binding ElementName=loginWindow}"
+                FontSize="15"
+                Style="{StaticResource ButtonPrimary}">
+                登 录
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Row="4">
+            <TextBlock
+                Margin="35,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Foreground="#FFF">
+                <Hyperlink
+                    Foreground="#FFF"
+                    NavigateUri="http://www.google.com"
+                    RequestNavigate="Hyperlink_RequestNavigate">
+                    忘记密码
+                </Hyperlink>
+            </TextBlock>
+
+            <TextBlock
+                Margin="38,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Foreground="#FFF">
+                <Hyperlink
+                    Foreground="#FFF"
+                    NavigateUri="http://www.google.com"
+                    RequestNavigate="Hyperlink_RequestNavigate">
+                    立即注册
+                </Hyperlink>
+
+            </TextBlock>
+        </Grid>
+
+    </Grid>
+</Window>

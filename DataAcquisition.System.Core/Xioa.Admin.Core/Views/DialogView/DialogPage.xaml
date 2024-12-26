@@ -1,0 +1,21 @@
+<Page
+    x:Class="Xioa.Admin.Core.Views.DialogView.DialogPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="clr-namespace:Xioa.Admin.Core.Views.DialogView.Model"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:Xioa.Admin.Core.Views.DialogView"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="Dialog_Pgae"
+    Title="DialogPage"
+    d:DataContext="{d:DesignInstance Type=local:DialogViewModel}"
+    mc:Ignorable="d">
+    <Grid>
+        <Button
+            Margin="10"
+            Command="{Binding ShowInteractiveDialogCmdCommand}"
+            Content="HC对话窗口"
+            Style="{StaticResource ButtonSuccess}" />
+    </Grid>
+</Page>

@@ -1,0 +1,315 @@
+<Window
+    x:Class="Xioa.Admin.Core.Views.MainView.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="clr-namespace:Xioa.Admin.Core.Views.MainView.Components"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:Xioa.Admin.Core.Views.MainView"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:Xioa.Admin.Core.Views.MainView.Model"
+    Title="Xioa.Admin_V1.0"
+    Width="1600"
+    Height="900"
+    MaxWidth="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width, Converter={StaticResource ConvertToDouble}}"
+    MaxHeight="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height, Converter={StaticResource ConvertToDouble}}"
+    AllowsTransparency="True"
+    Background="{x:Null}"
+    ResizeMode="CanResizeWithGrip"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Microsoft YaHei" />
+            <Setter Property="FontWeight" Value="ExtraLight" />
+            <Setter Property="MaxHeight" Value="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height, Converter={StaticResource ConvertToDouble}}" />
+            <Setter Property="MaxWidth" Value="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width, Converter={StaticResource ConvertToDouble}}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <hc:Watermark Mark="Xioa.Admin">
+                            <Border Background="Transparent">
+                                <Border
+                                    x:Name="MainBorder"
+                                    Margin="5"
+                                    Background="{DynamicResource Background.Brush}"
+                                    BorderBrush="{DynamicResource Border.Brush}"
+                                    BorderThickness="1"
+                                    CornerRadius="8">
+                                    <Border.Effect>
+                                        <DropShadowEffect
+                                            BlurRadius="5"
+                                            Direction="0"
+                                            Opacity="0.3"
+                                            ShadowDepth="0"
+                                            Color="Gray" />
+                                    </Border.Effect>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50" />
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+
+                                        <WrapPanel
+                                            Grid.Row="0"
+                                            Margin="20,10,10,0"
+                                            VerticalAlignment="Center">
+                                            <!--<Image
+                                            Width="32"
+                                            Height="32"
+                                            Source="{StaticResource logo}" />-->
+                                            <Path
+                                                Width="32"
+                                                Height="32"
+                                                Data="{StaticResource logo1}"
+                                                Fill="{DynamicResource Primary.Brush}"
+                                                Stretch="Uniform" />
+
+                                            <TextBlock
+                                                Margin="10,0,0,0"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Bold"
+                                                Foreground="{DynamicResource Text.Primary.Brush}"
+                                                Text="{TemplateBinding Title}" />
+                                        </WrapPanel>
+
+                                        <WrapPanel
+                                            Grid.Row="0"
+                                            Margin="10,0,10,0"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Stretch">
+                                            <Button
+                                                Width="50"
+                                                Height="40"
+                                                VerticalAlignment="Stretch"
+                                                Click="MiniSize_Click"
+                                                Style="{DynamicResource WindowMaxButtonStyle}">
+                                                <Path
+                                                    Width="10"
+                                                    Height="2"
+                                                    Data="{StaticResource MiniIco}"
+                                                    Fill="Black"
+                                                    Stretch="Fill" />
+
+                                            </Button>
+
+                                            <Button
+                                                Width="50"
+                                                VerticalAlignment="Stretch"
+                                                Click="MaxSize_Click"
+                                                Style="{DynamicResource WindowMaxButtonStyle}">
+                                                <Path
+                                                    Width="10"
+                                                    Height="10"
+                                                    Data="{StaticResource MaxIco}"
+                                                    Fill="Black"
+                                                    Stretch="Fill" />
+                                            </Button>
+
+                                            <Button
+                                                Width="50"
+                                                VerticalAlignment="Stretch"
+                                                Click="Close_Click"
+                                                Style="{DynamicResource WindowCloseButtonStyle}">
+                                                <Path
+                                                    Width="10"
+                                                    Height="10"
+                                                    Data="{StaticResource CloseIco}"
+                                                    Fill="Black"
+                                                    Stretch="Fill" />
+                                            </Button>
+                                        </WrapPanel>
+
+                                        <Grid Grid.Row="1">
+                                            <ContentPresenter />
+                                        </Grid>
+
+
+                                    </Grid>
+                                </Border>
+                            </Border>
+                        </hc:Watermark>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Style>
+    <Window.Resources>
+        <Style x:Key="HeaderBase" TargetType="TextBlock">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Width, ElementName=naviGrid}" Value="55">
+                    <DataTrigger.Setters>
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger.Setters>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="IconBase" TargetType="Grid">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Width, ElementName=naviGrid}" Value="200">
+                    <DataTrigger.Setters>
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger.Setters>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="50" GlassFrameThickness="1" />
+    </WindowChrome.WindowChrome>
+    <!--  额外的层，用于在其子元素上方渲染装饰（如边框、高亮显示等）。这个层是独立于常规的视觉树，允许装饰元素覆盖或环绕其子元素，而不影响子元素的布局和事件处理。  -->
+    <AdornerDecorator>
+        <Grid Name="Grid" Margin="10,10,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border
+                Background="{DynamicResource Surface.Brush}"
+                BorderBrush="{DynamicResource Border.Brush}"
+                BorderThickness="0,0,1,0" />
+            <Border
+                x:Name="naviGrid"
+                Grid.Column="0"
+                Width="55"
+                Margin="10"
+                Background="{DynamicResource Surface.Brush}"
+                BorderBrush="{DynamicResource Border.Brush}">
+                <Grid>
+
+                    <Grid Height="35" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Border
+                            Background="{DynamicResource Surface.Brush}"
+                            BorderBrush="{DynamicResource Border.Brush}"
+                            BorderThickness="0,0,0,2">
+                            <StackPanel>
+                                <TextBlock
+                                    Name="System_Title"
+                                    Grid.Column="0"
+                                    Margin="10,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="{DynamicResource Primary.Brush}"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Foreground="#FFF"
+                                    Style="{StaticResource HeaderBase}">
+                                    Xioa.Admin
+                                    <TextBlock.RenderTransform>
+                                        <RotateTransform Angle="-1" CenterX="50" CenterY="-600" />
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                                <Grid
+                                    Name="Icon_grid"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource IconBase}"
+                                    Visibility="Visible">
+                                    <Path
+                                        Name="netIcon"
+                                        Width="50"
+                                        Data="{StaticResource Dotnet}"
+                                        Fill="{DynamicResource Primary.Brush}"
+                                        Stretch="Uniform" />
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+
+                    <components:NaviControl
+                        x:Name="naviControl"
+                        Width="{Binding Width, ElementName=naviGrid}"
+                        Height="{Binding Height, ElementName=naviGrid}"
+                        Margin="0,50,0,0" />
+
+                </Grid>
+
+            </Border>
+            <Grid Grid.Column="1" Margin="5,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Border
+                    Grid.Row="0"
+                    Height="45"
+                    Margin="5,0,0,0"
+                    Background="{DynamicResource Surface.Brush}"
+                    BorderBrush="{DynamicResource Border.Brush}"
+                    BorderThickness="0,0,0,1">
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Button
+                                x:Name="toggleButton"
+                                Grid.Column="1"
+                                Width="50"
+                                Height="50"
+                                Margin="0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Click="OpenOrCloseNaviBar"
+                                Style="{DynamicResource OpenOrCloseButton}">
+                                <Button.Resources>
+                                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+                                </Button.Resources>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        <TextBlock>导航折叠</TextBlock>
+                                    </ToolTip>
+                                </Button.ToolTip>
+                                <Grid>
+                                    <Path
+                                        x:Name="leftArrow"
+                                        Data="{StaticResource ArrowLeft}"
+                                        Fill="{DynamicResource Primary.Brush}"
+                                        Stretch="Uniform"
+                                        Visibility="{Binding Width, ElementName=naviGrid, Converter={StaticResource WidthToVisibilityConverter}, ConverterParameter=200}" />
+                                    <Path
+                                        x:Name="rightArrow"
+                                        Data="{StaticResource ArrowRight}"
+                                        Fill="{DynamicResource Primary.Brush}"
+                                        Stretch="Uniform"
+                                        Visibility="{Binding Width, ElementName=naviGrid, Converter={StaticResource WidthToVisibilityConverter}, ConverterParameter=55}" />
+                                </Grid>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel
+                            Margin="10,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <ToggleButton
+                                x:Name="ThemeToggle"
+                                Margin="10,0"
+                                IsChecked="{Binding Source={x:Static model:ThemeManager.Instance}, Path=IsDarkTheme, Mode=TwoWay}"
+                                Style="{StaticResource ThemeToggleStyle}" />
+
+                            <hc:Gravatar
+                                Width="40"
+                                Height="40"
+                                Source="../../Assets/Img/Header.jpg" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <components:BreadCrumbBar Grid.Row="1" />
+                <ScrollViewer
+                    Grid.Row="1"
+                    HorizontalAlignment="Right"
+                    VerticalScrollBarVisibility="Hidden">
+                    <StackPanel
+                        Margin="0,10,10,10"
+                        VerticalAlignment="Top"
+                        hc:Growl.GrowlParent="True" />
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </AdornerDecorator>
+</Window>

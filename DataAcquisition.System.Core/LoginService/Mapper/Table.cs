@@ -1,4 +1,4 @@
-using DataAcquisition.Model.Model.Login;
+using Xioa.Admin.Model.Model.Login;
 using Microsoft.EntityFrameworkCore;
 
 namespace LoginService.Mapper;
