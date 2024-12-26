@@ -3,12 +3,21 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Xioa.Admin.Service.Web.Api.Services;
 using Microsoft.OpenApi.Models;
+using NLog.Web;
 using Xioa.Admin.Service.Web.Api.Controllers;
+using Xioa.Admin.Service.Web.Api.Services.NlogService.Model;
+using Xioa.Admin.Service.Web.Api.Services.NlogService.Service;
 using Xioa.Admin.Service.Web.Api.Services.TokenService;
 using Xioa.Admin.Service.Web.Api.Services.TokenService.Impl;
 using Xioa.Admin.Service.Web.Api.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//NLogBuilder.ConfigureNLog(LoggerConfig.LoggerFileName).GetCurrentClassLogger();
+// 初始化 NLog
+builder.Logging.ClearProviders();
+builder.Logging.AddNLog(LoggerConfig.LoggerFileName);
+
 // 添加控制器服务
 builder.Services.AddControllers();
 // Add services to the container.
@@ -92,6 +101,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware<ExceptionHandlingMiddleware>(); // 注册异常处理中间件
+app.UseMiddleware<LoggingMiddleware>(); // 注册自定义日志中间件
 
 app.UseHttpsRedirection();
 
