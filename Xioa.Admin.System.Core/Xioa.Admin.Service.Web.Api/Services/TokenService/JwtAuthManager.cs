@@ -43,7 +43,7 @@ public class JwtAuthManager : IJwtAuthManager {
             return tokenHandler.WriteToken(token);
         }
 
-        public string Refresh(string refreshToken, string accessToken) {
+        public string? Refresh(string refreshToken, string accessToken) {
             // 解析 refreshToken
             var tokenHandler = new JwtSecurityTokenHandler();
             var validationParameters = new TokenValidationParameters {
