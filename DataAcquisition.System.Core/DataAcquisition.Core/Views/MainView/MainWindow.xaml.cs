@@ -58,6 +58,7 @@ public partial class MainWindow : System.Windows.Window {
         switch (closeEnum)
         {
             case CloseEnum.Close:
+                App.DisposeNotifyIcon();
                 this.CloseWindowWithFade();
                 Environment.Exit(0);
                 break;

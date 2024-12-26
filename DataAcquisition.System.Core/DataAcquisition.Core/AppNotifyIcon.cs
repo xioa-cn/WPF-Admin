@@ -11,7 +11,7 @@ namespace DataAcquisition.Core;
 /// </summary>
 public partial class App : Application
 {
-    private NotifyIcon? _notifyIcon;
+    private static NotifyIcon? _notifyIcon;
 
     private void InitializeNotifyIcon()
     {
@@ -48,9 +48,13 @@ public partial class App : Application
         Environment.Exit(0);
     }
 
+    public static void DisposeNotifyIcon() {
+        _notifyIcon?.Dispose();
+    }
+    
     protected override void OnExit(ExitEventArgs e)
     {
-        _notifyIcon.Dispose(); // 清理托盘图标
+        _notifyIcon?.Dispose(); // 清理托盘图标
         base.OnExit(e);
     }
 }

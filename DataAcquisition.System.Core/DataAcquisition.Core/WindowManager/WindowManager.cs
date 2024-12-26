@@ -66,7 +66,7 @@ public static class WindowManager
             Duration = TimeSpan.FromMilliseconds(AnimationDuration),
             EasingFunction = new CubicEase { EasingMode = EasingMode.EaseInOut }
         };
-
+        
         fadeOutAnimation.Completed += (s, e) => window.Close();
         window.BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
     }
