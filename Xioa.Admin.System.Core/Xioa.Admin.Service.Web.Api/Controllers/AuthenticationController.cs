@@ -6,7 +6,7 @@ using Xioa.Admin.Service.Web.Api.Services.TokenService.Models;
 
 namespace Xioa.Admin.Service.Web.Api.Controllers {
     public static class RefreshTokenApi {
-        public static readonly string Router = "/api/Authentication/refresh-token";
+        public const string Router = "/api/Authentication/refresh-token";
     }
     
     [ApiController]
