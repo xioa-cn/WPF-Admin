@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("LoginService")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Xioa.Admin.Service.Web.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ed9aefd385365ce828d67852fb031d5792beece")]
-[assembly: System.Reflection.AssemblyProductAttribute("LoginService")]
-[assembly: System.Reflection.AssemblyTitleAttribute("LoginService")]
+[assembly: System.Reflection.AssemblyProductAttribute("Xioa.Admin.Service.Web.Api")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Xioa.Admin.Service.Web.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // 由 MSBuild WriteCodeFragment 类生成。

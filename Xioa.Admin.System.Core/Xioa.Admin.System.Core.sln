@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginService", "LoginServic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xioa.VisionView", "Xioa.VisionView\Xioa.VisionView.csproj", "{A99E3529-2B24-46C1-BF17-14ADFAB9FC33}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xioa.Admin.Service.Web.Api", "Xioa.Admin.Service.Web.Api\Xioa.Admin.Service.Web.Api.csproj", "{D33668E1-6646-4BCD-BEC2-764BF773B13D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWebService", "TestWebService\TestWebService.csproj", "{EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{A99E3529-2B24-46C1-BF17-14ADFAB9FC33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A99E3529-2B24-46C1-BF17-14ADFAB9FC33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A99E3529-2B24-46C1-BF17-14ADFAB9FC33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D33668E1-6646-4BCD-BEC2-764BF773B13D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D33668E1-6646-4BCD-BEC2-764BF773B13D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D33668E1-6646-4BCD-BEC2-764BF773B13D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D33668E1-6646-4BCD-BEC2-764BF773B13D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +74,8 @@ Global
 		{3A1139F3-D70A-48B0-9457-90CD585614E5} = {4CACC8CF-5655-43A1-B46B-07DB98CF0150}
 		{59D1449A-A55A-4F0E-9FE2-DE873258480D} = {1CE07582-FF87-493D-9E88-65E46BCF00BD}
 		{A99E3529-2B24-46C1-BF17-14ADFAB9FC33} = {4CACC8CF-5655-43A1-B46B-07DB98CF0150}
+		{D33668E1-6646-4BCD-BEC2-764BF773B13D} = {1CE07582-FF87-493D-9E88-65E46BCF00BD}
+		{EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0} = {1CE07582-FF87-493D-9E88-65E46BCF00BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C2DB9D8-89BC-48AD-A093-C9D2E65BA466}
