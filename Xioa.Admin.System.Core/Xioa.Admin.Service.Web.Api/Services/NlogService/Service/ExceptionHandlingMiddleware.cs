@@ -23,53 +23,77 @@ public class ExceptionHandlingMiddleware
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Unhandled exception occurred.");
-            await HandleExceptionAsync(context, ex);
+            var (fileName, lineNumber, methodName) = GetExceptionDetails(ex);
+            
+            // 构建详细的错误日志信息
+            var errorMessage = 
+                $"[异常信息]"
+                + $"\n请求路径: {context.Request.Path}"
+                + $"\n异常消息: {ex.Message}"
+                + $"\n文件名: {fileName}"
+                + $"\n行号: {lineNumber}"
+                + $"\n方法名: {methodName}"
+                + $"\n堆栈跟踪: {ex.StackTrace}"
+                ;
+            
+            // 改用 LogError 记录异常
+            _logger.LogError(errorMessage);
+            await HandleExceptionAsync(context, ex, fileName, lineNumber, methodName);
         }
     }
 
-    private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+    private (string fileName, string lineNumber, string methodName) GetExceptionDetails(Exception ex)
     {
-        context.Response.ContentType = "application/json";
-        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        var fileName = "未知文件";
+        var lineNumber = "0";
+        var methodName = "未知方法";
 
-        var stackTrace = exception.StackTrace;
-        var controllerName = "";
-        var line = "";
-
-        // 尝试从堆栈跟踪中提取控制器名称和行号
-        if (!string.IsNullOrEmpty(stackTrace))
+        if (ex.StackTrace != null)
         {
-            var firstLine = stackTrace.Split(new[] { Environment.NewLine }, StringSplitOptions.None).FirstOrDefault();
-            if (firstLine != null)
+            // 获取第一行堆栈信息（最接近异常发生点）
+            var stackFrames = ex.StackTrace.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var frame in stackFrames)
             {
-                var regex = new Regex(@"at\s+(.*?)\s+in\s+(.*?):line\s+(\d+)");
-                var match = regex.Match(firstLine);
+                // 匹配包含文件信息的堆栈行
+                var match = Regex.Match(frame, @"at (.*?) in (.*?):line (\d+)");
                 if (match.Success)
                 {
-                    controllerName = match.Groups[1].Value;  // 获取方法全名
-                    line = match.Groups[3].Value;           // 获取行号
+                    methodName = match.Groups[1].Value.Trim();
+                    fileName = Path.GetFileName(match.Groups[2].Value.Trim());
+                    lineNumber = match.Groups[3].Value.Trim();
+                    break;
                 }
             }
         }
 
+        return (fileName, lineNumber, methodName);
+    }
+
+    private async Task HandleExceptionAsync(HttpContext context, Exception exception, 
+        string fileName, string lineNumber, string methodName)
+    {
+        context.Response.ContentType = "application/json";
+        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
         var result = JsonSerializer.Serialize(new
         {
-            error = "An unexpected error occurred.",
-            detail = exception.Message,
-            controller = controllerName,
-            line = line
+            success = false,
+            code = context.Response.StatusCode,
+            message = "服务器发生错误",
+            error = new
+            {
+                message = exception.Message,
+                fileName = fileName,
+                lineNumber = lineNumber,
+                methodName = methodName,
+                stackTrace = exception.StackTrace
+            }
+        }, new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
         });
 
         await context.Response.WriteAsync(result);
     }
-    
-    // private static Task HandleExceptionAsync(HttpContext context, Exception exception)
-    // {
-    //     context.Response.ContentType = "application/json";
-    //     context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-    //
-    //     var result = JsonSerializer.Serialize(new { error = "An unexpected error occurred." });
-    //     return context.Response.WriteAsync(result);
-    // }
 }

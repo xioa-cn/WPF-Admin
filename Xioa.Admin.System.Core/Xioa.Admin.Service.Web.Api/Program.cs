@@ -13,16 +13,17 @@ using Xioa.Admin.Service.Web.Api.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//NLogBuilder.ConfigureNLog(LoggerConfig.LoggerFileName).GetCurrentClassLogger();
 // 初始化 NLog
 builder.Logging.ClearProviders();
 builder.Logging.AddNLog(LoggerConfig.LoggerFileName);
+builder.Logging.SetMinimumLevel(LogLevel.Information);  // 设置最低日志级别为Information
+// builder.Logging.AddFilter("Microsoft", LogLevel.Warning);    // Microsoft命名空间下的日志最低级别为Warning
+// builder.Logging.AddFilter("System", LogLevel.Warning);       // System命名空间下的日志最低级别为Warning
 
 // 添加控制器服务
 builder.Services.AddControllers();
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddEndpointsApiExplorer(); //最小Api
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "Xioa-Admin", Version = "v1" });
@@ -91,7 +92,8 @@ builder.Services.AddAuthentication(options =>
     });
 //Token 策略
 builder.Services.ConfigureTokenServices();
-builder.Services.AddSingleton<IJwtAuthManager>(new JwtAuthManager(builder.Configuration["Jwt:Key"]));
+
+builder.AddAllServices();
 
 var app = builder.Build();
 
@@ -102,7 +104,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseMiddleware<ExceptionHandlingMiddleware>(); // 注册异常处理中间件
-app.UseMiddleware<LoggingMiddleware>(); // 注册自定义日志中间件
+app.UseMiddleware<LoggingMiddleware>(); // 注册接口日志中间件
 
 app.UseHttpsRedirection();
 

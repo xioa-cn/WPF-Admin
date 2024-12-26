@@ -14,6 +14,7 @@ public class LoggerTestController {
     [HttpGet]
     public string TestLogger() {
         _logger.LogInformation("TestLogger");
+        
         int.Parse("-");
         return "TestLogger";
     }
