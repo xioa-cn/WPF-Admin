@@ -56,7 +56,7 @@
                                         Height="40"
                                         Margin="30,10"
                                         HorizontalAlignment="Right"
-                                        VerticalAlignment="Top"
+                                        VerticalAlignment="Top" 
                                         Click="CloseWindow_Click"
                                         Style="{DynamicResource WindowMaxButtonStyle}">
                                         <Path
@@ -170,7 +170,7 @@
                 Foreground="#FFF">
                 <Hyperlink
                     Foreground="#FFF"
-                    NavigateUri="http://www.google.com"
+                    NavigateUri="https://github.com/xioa-cn/WPF-Admin"
                     RequestNavigate="Hyperlink_RequestNavigate">
                     忘记密码
                 </Hyperlink>
@@ -183,7 +183,7 @@
                 Foreground="#FFF">
                 <Hyperlink
                     Foreground="#FFF"
-                    NavigateUri="http://www.google.com"
+                    NavigateUri="https://github.com/xioa-cn/WPF-Admin"
                     RequestNavigate="Hyperlink_RequestNavigate">
                     立即注册
                 </Hyperlink>

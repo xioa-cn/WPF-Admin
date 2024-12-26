@@ -1,5 +1,6 @@
 using Xioa.Admin.Core.WindowManager;
 using System;
+using System.Diagnostics;
 using System.Windows;
 using CommunityToolkit.Mvvm.Messaging;
 using Xioa.Admin.Core.Views.DialogView.Model;
@@ -11,6 +12,7 @@ using HandyControl.Tools.Extension;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using System.Windows.Navigation;
 
 namespace Xioa.Admin.Core.Views.MainView;
 
@@ -91,5 +93,16 @@ public partial class MainWindow : System.Windows.Window {
 
         Icon_grid.Visibility = Math.Abs(width - minWidth) < 0.01 ? Visibility.Collapsed : Visibility.Visible;
         naviGrid.BeginAnimation(Border.WidthProperty, doubleAnimation);
+    }
+
+    private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e) {
+        // 使用默认浏览器打开链接
+        Process.Start(new ProcessStartInfo {
+            FileName = e.Uri.AbsoluteUri,
+            UseShellExecute = true
+        });
+
+        // 标记事件已处理
+        e.Handled = true;
     }
 }

@@ -75,7 +75,10 @@ namespace Xioa.Admin.Core
                 Logger.LogError("Dispatcher Unhandled Exception", args.Exception);
                 args.Handled = true;
             };
-            InitializeNotifyIcon();
+            MainWindowShow.Loaded += (s, args) =>
+            {
+                InitializeNotifyIcon();
+            };
             base.OnStartup(e);
         }
     }

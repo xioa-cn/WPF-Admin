@@ -202,7 +202,7 @@ public partial class MainViewModel : ObservableObject {
         };
 
 
-    private static LoginUser? _loginUser = new LoginUser() { LoginAuth = LoginAuth.None };
+    private static LoginUser? _loginUser = null;
 
     public static LoginUser? LoginUser {
         get => _loginUser;

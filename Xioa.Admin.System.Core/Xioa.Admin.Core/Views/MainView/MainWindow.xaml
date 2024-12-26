@@ -201,7 +201,13 @@
                                     FontWeight="Bold"
                                     Foreground="#FFF"
                                     Style="{StaticResource HeaderBase}">
-                                    Xioa.Admin
+                                    <Hyperlink NavigateUri="https://github.com/xioa-cn/WPF-Admin"
+                                               RequestNavigate="Hyperlink_RequestNavigate">
+                                        <TextBlock>
+                                            Xioa.Admin
+                                        </TextBlock>
+                                    </Hyperlink>
+                                         
                                     <TextBlock.RenderTransform>
                                         <RotateTransform Angle="-1" CenterX="50" CenterY="-600" />
                                     </TextBlock.RenderTransform>
