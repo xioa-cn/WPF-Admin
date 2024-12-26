@@ -1,0 +1,8 @@
+F:\git\github\WPF-Xioa-Admin\DataAcquisition.System.Core\LoginService\obj\Debug\net6.0\LoginService.csproj.AssemblyReference.cache
+F:\git\github\WPF-Xioa-Admin\DataAcquisition.System.Core\LoginService\obj\Debug\net6.0\LoginService.GeneratedMSBuildEditorConfig.editorconfig
+F:\git\github\WPF-Xioa-Admin\DataAcquisition.System.Core\LoginService\obj\Debug\net6.0\LoginService.AssemblyInfoInputs.cache
+F:\git\github\WPF-Xioa-Admin\DataAcquisition.System.Core\LoginService\obj\Debug\net6.0\LoginService.AssemblyInfo.cs
+F:\git\github\WPF-Xioa-Admin\DataAcquisition.System.Core\LoginService\obj\Debug\net6.0\LoginService.csproj.CoreCompileInputs.cache
+F:\git\github\WPF-Xioa-Admin\DataAcquisition.System.Core\LoginService\obj\Debug\net6.0\LoginService.MvcApplicationPartsAssemblyInfo.cs
+F:\git\github\WPF-Xioa-Admin\DataAcquisition.System.Core\LoginService\obj\Debug\net6.0\LoginService.MvcApplicationPartsAssemblyInfo.cache
+F:\git\github\WPF-Xioa-Admin\DataAcquisition.System.Core\LoginService\obj\Debug\net6.0\LoginService.sourcelink.json
