@@ -1,0 +1,1631 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "Cognex.VisionPro.PixelMap"
+    </assembly>
+    <members>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapTool.BuildHistogramRecord8(Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult)">
+            <summary>
+Constructs and returns a record containing a histogram graphic
+for use in the tool's last run record.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapTool.BuildHistogramRecord16(Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult)">
+            <summary>
+Constructs and returns a record containing a histogram graphic
+for use in the tool's last run record.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapTool.GetMaxNumPixels(System.Int32[])">
+            <summary>
+The statistical mode is not included in 
+the results returned from CVT.
+This function finds the mode of the histogram.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapTool.BuildHistogramChangeSpaceNameCmd(System.String,System.String)">
+            <summary>
+Creates a DisplayMethod to be used as the content of
+a parent image record's subrecord. When the parent image
+record is displayed by a CogRecordDisplay, the subrecord
+will cause a transform to be renamed in the Display's
+UserPixelTree.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapTool.BuildHistogramAddSpaceCmd(Cognex.VisionPro.CogTransform2DLinear,System.String)">
+            <summary>
+Creates a DisplayMethod to be used as the content of
+a parent image record's subrecord. When the parent image
+record is displayed by a CogRecordDisplay, the subrecord
+will cause a transform to be added to the Display's UserPixelTree.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapTool.AddMarker(System.String,System.Double,System.Double,System.Int32,System.Drawing.Font,Cognex.VisionPro.CogGraphicCollection,System.String)">
+            <summary>
+Draws a vertical line to mark a notable height 
+locations in the histogram graphics.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapTool.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogPixelMapTool object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapTool.CreateGraphicRecord(System.Int32)">
+            <summary>
+Creates a record that contains all the graphic elements needed to set up the tool,
+independently from the CurrentRecordEnable settings.
+</summary>
+            <returns>
+A record with the graphic elements needed to set up the tool
+</returns>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapTool.OutputImage">
+            <summary>
+Gets the output image from the last call to the Run method.
+A new instance of ICogImage is created for each
+run of the tool.
+</summary>
+            <value>
+The output image. This is a CogImage8Grey or CogImage16Grey object which 
+will be null if the last call to Run() failed.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapTool.RunParams">
+            <summary>
+Gets or sets the CogPixelMap operator used by this tool.
+</summary>
+            <value>
+The operator.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapTool.Region">
+            <summary>
+Gets or sets the optional region that specifies a portion of the
+input image to be used during pixel mapping. The
+property specifies exactly how this region will be applied to the
+InputImage. 
+</summary>
+            <value>
+The region. May be null.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapTool.InputImage">
+            <summary>
+Gets or sets the input image that is to be mapped.
+</summary>
+            <value>
+The image to be mapped.
+</value>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+If the supplied input image is not CogImage8Grey or CogImage16Grey.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapTool.LastRunRecordDiagEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+CogPixelMapLastRunRecordDiagConstants.
+</summary>
+            <value>
+A bitwise combination of CogPixelMapLastRunRecordDiagConstants.
+Options include None, InputImageDeepCopy, InputImageByReference,
+and All.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapTool.LastRunRecordEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+CogPixelMapLastRunRecordConstants.
+</summary>
+            <value>
+A bitwise combination of CogPixelMapLastRunRecordConstants.
+Options include None, OutputImage, and All.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapTool.CurrentRecordEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+CogPixelMapCurrentRecordConstants.
+</summary>
+            <value>
+A bitwise combination of CogPixelMapCurrentRecordConstants.
+Options include None, InputImage, Region, Histogram, ReferencePoints,
+RawMappingFunction, FinalMappingFunction and All.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapTool.Finalize">
+            <summary>
+Finalize this CogPixelMapTool object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapTool.Dispose">
+            <summary>
+Destruct this CogPixelMapTool object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapTool.#ctor(Cognex.VisionPro.PixelMap.CogPixelMapTool)">
+            <summary>
+Construct a deep copy of the supplied CogPixelMapTool object.
+</summary>
+            <param name="Other">
+The CogPixelMapTool object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapTool.#ctor">
+            <summary>
+Construct a default CogPixelMapTool object. This
+will initially have a CogCPixelMap which has zero reference points.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapTool.SfOutputImage">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by OutputImage may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapTool.SfRegion">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Region may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapTool.SfInputImage">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by InputImage may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapTool.SfRunParams">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by PixelMap may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapTool.SfCurrentRecordEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by CurrentRecordEnable may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapTool.SfLastRunRecordDiagEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by LastRunRecordDiagEnable may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapTool.SfLastRunRecordEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by LastRunRecordEnable may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PixelMap.CogPixelMapTool">
+            <summary>
+This class provides tool level access to the
+<see cref="T:Cognex.VisionPro.PixelMap.CogPixelMap" />
+operator. This class encapsulates all of the classes needed to perform
+CogPixelMap image mapping.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.SetupRange16(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+Setup a range in the the internal 16 bit lookup-table. The mapped values
+between the start and the end of the range will be linearly 
+ interpolated from outMin to outMax.
+</summary>
+            <param name="inMin">
+The start of the range to be initialized.
+</param>
+            <param name="inMax">
+The end of the range to be initialized.
+</param>
+            <param name="outMin">
+The mapped value at the start of the range.
+</param>
+            <param name="outMax">
+The mapped value at the end of the range.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.SetupRange8(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+Setup a range in the the internal 8 bit lookup-table. The mapped values
+between the start and the end of the range will be linearly 
+ interpolated from outMin to outMax.
+</summary>
+            <param name="inMin">
+The start of the range to be initialized.
+</param>
+            <param name="inMax">
+The end of the range to be initialized.
+</param>
+            <param name="outMin">
+The mapped value at the start of the range.
+</param>
+            <param name="outMax">
+The mapped value at the end of the range.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.SetupMap16(std.vector&lt;ccPair&lt;System.Int32!System.Runtime.CompilerServices.IsLong&gt;&gt;*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Setup the internal 16 bit lookup-table for the CogPixelMap object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.SetupMap8(std.vector&lt;ccPair&lt;System.Int32!System.Runtime.CompilerServices.IsLong&gt;&gt;*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Setup the internal 8 bit lookup-table for the CogPixelMap object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.SetupMap">
+            <summary>
+Setup the internal lookup-table for the CogPixelMap object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogPixelMap object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.Execute(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion)">
+            <summary>
+Perform pixel mapping on the supplied image.
+</summary>
+            <returns>
+The mapped image. This image will have the grey value pixel depth
+specified in the OutputDepth property.
+</returns>
+            <param name="image">
+The image to be pixel mapped.
+</param>
+            <param name="region">
+An optional region. May be null. If supplied, this region is used to
+limit the amount of processing performed on the input image. The region
+mode is always PixelAlignedBoundingBox. If no
+inputRegion is supplied, the entire input image is processed.
+</param>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+If the supplied input image argument is not a CogImage8Grey or CogImage16Grey.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoInputImageException">
+If the supplied input image argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied input image depth is smaller than the output image depth.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If MappingMode is CogPixelMapMappingModeConstants::Quantize and 
+NumQuantizeBins is larger than the max. number of output grey values.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If MappingMode is CogPixelMapMappingModeConstants::Interpolate and
+the reference points list is  invalid.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException">
+If licensing for this operator cannot be confirmed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.ComputeMapping(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion)">
+            <summary>
+Computes a set of reference points using the ComputMapParams properties, InputImage and Region and replaces the reference points in the list if necessary.
+</summary>
+            <returns>
+4 Reference points. 
+</returns>
+            <param name="image">
+The input image to be processed (CogImage8Grey, CogImage16Grey or CogImage16Range)
+</param>
+            <param name="region">
+An optional region. May be null. If supplied, this region is used to
+limit the amount of processing performed on the input image. The region
+mode is always PixelAlignedBoundingBox. If no
+inputRegion is supplied, the entire input image is processed.
+</param>
+            <para>
+If the user has specified any points in the reference points list, this function will replace the points.
+The result of the calling ComputMapping method is a set of reference points: 2 points computed in CVT that indicate the beginning and end of the linear ramp and VisionPro will add 2 other points to reflect the full range mapping of input image to full range of output image.
+For CogImage16Range, the pixels that are “visible” and “care” are used in CVT to compute the histogram from which the reference points are derived.
+</para>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+If the supplied input image argument is not a CogImage8Grey, CogImage16Grey or CogImage16Range.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoInputImageException">
+If the supplied input image argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied input image depth is smaller than the output image depth.
+</exception>
+            <exception cref="T:System.ArgumentNullException" />
+            <exception cref="T:System.ArgumentException">
+if region is outside image.
+</exception>
+            <exception cref="T:System.ArgumentException">
+if any of the ComputeMapParams do not apply or outside boundaries of the range image in or out.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.EnforceReferencePointsOrder">
+            <summary>
+Sorts the reference points for a monotonically increasing order of
+their input values. 
+</summary>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the order of reference points in the list changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.ValidateReferencePointsOrder(System.Int32@)">
+            <summary>
+Validates the reference points for a monotonically increasing order of
+their input values.
+</summary>
+            <param name="firstBadIndex">
+The index of the first invalid reference point, if any, -1 otherwise.
+</param>
+            <returns>
+True if all points are valid, false otherwise
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.ResetQuantized(System.Int32)">
+            <summary>
+Initializes the reference points to reflect a quantized full range mapping of the
+input grey value range to the output grey value range. Creates a stairway function
+with the specified number of steps.
+</summary>
+            <param name="numBins">
+The number of steps on the stairway function.
+</param>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the number of reference points changes.
+</event>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when any reference point value changes .
+</event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If numBins is less than 2 or greater than maxOutGrey / 2
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.ResetLinear(System.Int32)">
+            <summary>
+Initializes the reference points to reflect a linear full range mapping of the
+input grey value range to the output grey value range. Creates  a number of
+equally spaced reference points.
+</summary>
+            <param name="numPts">
+The number of reference points to create.
+</param>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the number of reference points changes.
+</event>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when any reference point value changes .
+</event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If numPts is less than 2 or greater than maxOutGrey / 2
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.ResetLinear">
+            <summary>
+Initializes the reference points to reflect a linear full range mapping of the
+input grey value range to the output grey value range. Creates two referene points
+at relative locations (0,0) and (1,1)
+</summary>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the number of reference points changes.
+</event>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when any reference point value changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.ClearReferencePoints">
+            <summary>
+Deletes all reference points
+</summary>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the number of reference points changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.GetReferencePointOutputAbsolute(System.Int32)">
+            <summary>
+Gets the absolute output value of an existing reference point.
+</summary>
+            <param name="index">
+The index of the reference point.
+</param>
+            <returns>
+The absolute output value of the reference point.
+</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.GetReferencePointOutput(System.Int32)">
+            <summary>
+Gets the relative output value of an existing reference point.
+</summary>
+            <param name="index">
+The index of the reference point.
+</param>
+            <returns>
+The relative output value of the reference point.
+</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.GetReferencePointInputAbsolute(System.Int32)">
+            <summary>
+Gets the absolute input value of an existing reference point.
+</summary>
+            <param name="index">
+The index of the reference point.
+</param>
+            <returns>
+The absolute input value of the reference point.
+</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.GetReferencePointInput(System.Int32)">
+            <summary>
+Gets the relative input value of an existing reference point.
+</summary>
+            <param name="index">
+The index of the reference point.
+</param>
+            <returns>
+The relative input value of the reference point.
+</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.GetReferencePointAbsolute(System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+Gets the absolute values of an existing reference point.
+</summary>
+            <param name="index">
+The index of the reference point.
+</param>
+            <param name="inputVal">
+A reference to the destination where the input value of the reference
+point shell be returned.
+</param>
+            <param name="outputVal">
+A reference to the destination where the output value of the reference
+point shell be returned.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.GetReferencePoint(System.Int32,System.Double@,System.Double@)">
+            <summary>
+Gets the relative values of an existing reference point.
+</summary>
+            <param name="index">
+The index of the reference point.
+</param>
+            <param name="inputVal">
+A reference to the destination where the input value of the reference
+point shell be returned.
+</param>
+            <param name="outputVal">
+A reference to the destination where the output value of the reference
+point shell be returned.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.SetReferencePointOutputAbsolute(System.Int32,System.Int32)">
+            <summary>
+Sets the absolute output value for an existing reference point.
+</summary>
+            <param name="index">
+The index of the reference point.
+</param>
+            <param name="outputVal">
+The absolute output value for the reference point.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If outputVal is outside the range of [0,maxOutGrey] inclusive.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the output value  of the reference point changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.SetReferencePointOutput(System.Int32,System.Double)">
+            <summary>
+Sets the relative output value for an existing reference point.
+</summary>
+            <param name="index">
+The index of the reference point.
+</param>
+            <param name="outputVal">
+The relative output value for the reference point.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If outputVal is outside the range of [0,1] inclusive.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the output value  of the reference point changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.SetReferencePointInputAbsolute(System.Int32,System.Int32)">
+            <summary>
+Sets the absolute input value for an existing reference point.
+</summary>
+            <param name="index">
+The index of the reference point.
+</param>
+            <param name="inputVal">
+The input value for the reference point.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If inputVal is outside the range of [0, maxInGrey] inclusive.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the input value  of the reference point changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.SetReferencePointInput(System.Int32,System.Double)">
+            <summary>
+Sets the relative input value for an existing reference point.
+</summary>
+            <param name="index">
+The index of the reference point.
+</param>
+            <param name="inputVal">
+The input value for the reference point.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If inputVal is outside the range of [0,1] inclusive.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the input value  of the reference point changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.SetReferencePointAbsolute(System.Int32,System.Int32,System.Int32)">
+            <summary>
+Sets the absolute values for an existing reference point.
+</summary>
+            <param name="index">
+The index of the reference point.
+</param>
+            <param name="inputVal">
+The absolute input value for the reference point.
+It must be in the range of [0,maxInGrey] inclusive.
+</param>
+            <param name="outputVal">
+The absolute output value for the reference point.
+It must be in the range of [0,maxOutGrey] inclusive.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points.
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If inputVal is outside the range of [0,maxInGrey] inclusive.
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If outputVal is outside the range of [0,maxOutGrey] inclusive.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the input value or the output value of the reference point.
+changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.SetReferencePoint(System.Int32,System.Double,System.Double)">
+            <summary>
+Sets the relative values for an existing reference point.
+</summary>
+            <param name="index">
+The index of the reference point.
+</param>
+            <param name="inputVal">
+The relative input value for the reference point.
+It must be in the range of [0,1] inclusive.
+</param>
+            <param name="outputVal">
+The relative output value for the reference point.
+It must be in the range of [0,1] inclusive.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points.
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If inputVal or outputVal are outside the range of [0,1] inclusive.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the input value or the output value of the reference point.
+changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.DeleteReferencePoint(System.Int32)">
+            <summary>
+Removes a reference point from the internal list. 
+</summary>
+            <param name="index">
+The index of the reference point to be deleted.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index is negative or &gt;= the number of reference points.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the number of referenmce points changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.AddReferencePointAbsolute(System.Int32,System.Int32)">
+            <summary>
+Adds a reference point to the internal list. The new reference point
+will be inserted so that the input values of all reference points are
+kept in increasing order. If a reference point with the same input value
+already exists, the new one will be added immediately before that
+reference point.
+</summary>
+            <param name="inputVal">
+The absolute input value for the reference point. 
+It must be in the range of [0,maxInGrey] inclusive.
+</param>
+            <param name="outputVal">
+The absolute output value for the reference point.
+It must be in the range of [0,maxOutGrey] inclusive.
+</param>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the number of referenmce points changes.
+</event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If inputVal is outside the range of [0,maxInGrey] inclusive.
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If outputVal is outside the range of [0,maxOutGrey] inclusive.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.AddReferencePoint(System.Double,System.Double)">
+            <summary>
+Adds a reference point to the internal list. The new reference point
+will be inserted so that the input values of all reference points are
+kept in increasing order. If a reference point with the same input value
+already exists, the new one will be added immediately before that
+reference point.
+</summary>
+            <param name="inputVal">
+The relative input value for the reference point. 
+It must be in the range of [0,1] inclusive.
+</param>
+            <param name="outputVal">
+The relative output value for the reference point.
+It must be in the range of [0,1] inclusive.
+</param>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the number of reference points changes.
+</event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If inputVal or outputVal are outside the range of [0,1] inclusive.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.SetInputDepth(Cognex.VisionPro.ICogImage)">
+            <summary>
+Sets the input bit depth. The conversion between
+absolute and relative ReferencePoint input values will be based on this
+value.
+</summary>
+            <param name="image">
+The image the inputDepth is derived from.
+</param>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+If the image is not a CogImage8Grey or CogImage16Grey.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when the imput depth changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.GetInputDepth">
+            <summary>
+Gets the input bit depth. The conversion between
+absolute and relative ReferencePoint input values is based on this
+value.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMap.NumReferencePoints">
+            <summary>
+Gets the number of configured reference points.
+</summary>
+            <value>
+The number of reference points.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMap.NonVisiblePixelValue">
+            <summary>
+Gets or sets the NonVisiblePixelValue.
+</summary>
+            <value>
+The NonVisiblePixelValue. Default is 0. 
+Applies only to CogImage16Range. Used to map invisible pixels when NonVisiblePixelValue set to false.
+The value must be between 0 and 65535 and a runtime error will occur if the value specified is outside 
+the maximum for the output depth specified.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMap.UseDefaultNonVisiblePixelValue">
+            <summary>
+Gets or sets the UseDefaultNonVisiblePixelValue.
+</summary>
+            <value>
+The UseDefaultNonVisiblePixelValue. Default is true.
+Applies only to CogImage16Range. 
+When set to true, any invisible pixel value will be mapped to the first output map value. 
+When set to false, map the invisible pixels to NonVisiblePixelValue
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMap.AutoComputeEnabled">
+            <summary>
+Gets or sets the AutoComputeEnabled value. Compute with each run
+</summary>
+            <value>
+AutoComputedEnabled value. Default is true for newly constructed object and false when de-persisting 
+an older object from VisionPro 8.1 or earlier.  
+</value>
+            <para>
+ When set to true:
+	The setter will call ComputeMapping(). 
+	The ComputMapping() will be called whenever a different image is set on the tool
+	The ComputeMapping() will be called whenever a property in the ComputeMapParams has changed.
+	The Execute() will always call ComputeMapping() first
+ When set to false:
+	The pixel map is in custom mode. The user defines their reference points. 
+	The Execute() will only apply the mapping
+</para>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMap.OnlyUseRegionToComputeRefPoints">
+            <summary>
+Gets or sets the OnlyUseRegionToComputeRefPoints value. This property
+applies only when AutoComputeEnabled is true.
+</summary>
+            <value>
+OnlyUseRegionToComputeRefPoints default value is false for newly constructed object and false when de-persisting 
+an older object. 
+</value>
+            <para>
+ When set to true:
+	The reference points are computed using the content of the region and the mapping is applied to the whole image. 
+  The output image size is the same as the input image.
+ When set to false:
+	The reference points are computed using the content of the region.
+	The output image size is the same as the region.
+</para>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMap.OutputInverted">
+            <summary>
+Gets or sets the OutputInverted value used for lookup table creation.
+</summary>
+            <value>
+The OutputInverted value.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMap.OutputOffset">
+            <summary>
+Gets or sets the OutputOffset value used for lookup table creation.
+</summary>
+            <value>
+The OutputOffset value.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMap.OutputScale">
+            <summary>
+Gets or sets the OutputScale value used for lookup table creation.
+</summary>
+            <value>
+The OutputScale value.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If newVal is less than 0.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMap.OutputDepth">
+            <summary>
+Gets or sets the bit depth of the output image.
+</summary>
+            <value>
+The bit depth.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentException">
+If new value is not a valid member of CogPixelMapImageDepthConstants.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMap.ComputeMapParams">
+            <summary>
+Gets or sets the ComputeMapParams
+</summary>
+            <value>
+the ComputeMapParams object 
+</value>
+            <para>
+Holds the parameters that will be used whenever ComputeMapping() is called. 
+When de-persisting an older object from VisionPro 8.1 or earlier, a new default constructed instance will be created. 
+</para>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+                <para>Fires when this property changes.</para>
+                <list type="bullet">
+                    <item>SfComputeMapParams</item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.Finalize">
+            <summary>
+Finalize this CogPixelMap.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.Dispose">
+            <summary>
+Destruct this CogPixelMap.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.#ctor(Cognex.VisionPro.PixelMap.CogPixelMap!System.Runtime.CompilerServices.IsConst)">
+            <summary>
+Construct a deep copy of the supplied CogPixelMap object.
+</summary>
+            <param name="Other">
+The CogPixelMap object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMap.#ctor">
+            <summary>
+Construct a default CogPixelMap object. 
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfOnlyUseRegionToComputeRefPoints">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by OnlyUseRegionToComputeRefPoints may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfNonVisiblePixelValue">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by NonVisiblePixelValue may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfUseDefaultNonVisiblePixelValue">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by UseDefaultNonVisiblePixelValue may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfAutoComputeEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by AutoComputeEnabled may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfComputeMapParams">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by ComputeMapParams may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfGetReferencePointOutput">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by GetReferencePointOutputValue may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfGetReferencePointInput">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by GetReferencePointInputValue may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfOutputInverted">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by OutputInverted may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfOutputOffset">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by OutOffset may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfOutputScale">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by OutScale may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfGetInputDepth">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by GetInputDepth may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfOutputDepth">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by OutputDepth may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMap.SfNumReferencePoints">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by NumReferencePoints may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PixelMap.CogPixelMap">
+            <summary>
+  This class represents the operator for the CogPixelMap tool.
+It holds all the data required to do a PixelMap operation, except for the
+input image and an optional region.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogPixelMap object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.MaxRangeMultiplier">
+            <summary>
+Gets or sets MaxRangeMultiplier. 
+The maximum rangle multiplier that will be used to convert input pixels to 
+output pixels. The maximum pixel value is clipped to the maximum allowed for the image type.
+</summary>
+            <value>
+The MaxRangeMultiplier default value is 1.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentException">
+If newVal is less than 1.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.HighStdDevMultiplier">
+            <summary>
+Gets or sets HighStdDevMultiplier. 
+The High standard deviation multiplier, in the range of (0, +HUGE_VAL). Used only if Algorithm is MeanStdDev 
+</summary>
+            <value>
+The HighStdDevMultiplier value. Default is 3.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentException">
+If newVal is less than 0
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.LowStdDevMultiplier">
+            <summary>
+Gets or sets LowStdDevMultiplier. 
+The Low standard deviation multiplier in the range of (-HUGE_VAL, 0). Used only if the Algorithm is MeanStdDev. 
+</summary>
+            <value>
+The LowStdDevMultiplier value. Default is -3
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentException">
+If newVal is greater than 0
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.HighTailFraction">
+            <summary>
+Gets or sets HighTailFraction. The High tail fraction is in the range [0, 1].  Used only if algorithm is Tails
+</summary>
+            <value>
+The HighTailFraction value. Default is 0.01
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentException">
+If newVal is not within 0 and 1
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.LowTailFraction">
+            <summary>
+Gets or sets LowTailFraction. The Low tail fraction is in the range [0, 1]. Used only if algorithm is Tails.
+It is the fraction of the sum of all the histogram bins that should be contained in the histogram range [0, LowTailFraction]
+</summary>
+            <value>
+The LowTailFraction value. Default is 0.01.
+</value>
+            <remarks>
+The low tail fraction and high tail fraction must be less or equal to 1. As you increase the low tail, 
+the high tail will decrease if combined the value is greater than 1,
+and as you decrease the low tail, the high tail will increase if the combined value is greater than 1.
+</remarks>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentException">
+If newVal is not within 0 and 1.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.Output2Fraction">
+            <summary>
+Gets or sets Output2Fraction. 
+Specifies the second relative output pixel value used in the mapping. Used only if OutputRange is SpecifiedRelative
+</summary>
+            <value>
+The Output1Fraction value. Default is 1. The value is relative between 0 and 1.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentException">
+If newVal is less than 0 or greater than 1.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.Output1Fraction">
+            <summary>
+Gets or sets Output1Fraction. 
+Specifies the first relative output pixel value used in the mapping. Used only if OutputRange is SpecifiedRelative
+</summary>
+            <value>
+The Output1Fractuon value. Default is 0. The value is relative between 0 and 1.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentException">
+If newVal is less than 0 or greater than 1
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.HighPadFraction">
+            <summary>
+Gets or sets HighPadFraction. 
+The fraction of the initially-computed input range added to the initially-computed value of second map value. This value is typically positive
+</summary>
+            <value>
+The  HighPadFraction value. Default is 0.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentException">
+If newVal is less than 0.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.LowPadFraction">
+            <summary>
+Gets or sets LowPadFraction. 
+The fraction of the initially-computed input range added to the initially-computed value of first map value. This value is typically negative.
+</summary>
+            <value>
+The LowPadFraction. Default is 0.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentException">
+If newVal is greater than 0.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.OutputRange">
+            <summary>
+Gets or sets the OutputRange. Specifies the output range used in the mapping.
+</summary>
+            <value>
+The OutputRange value. Default is Full.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If newVal is out of range.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.Algorithm">
+            <summary>
+Gets or sets the algorithm value used to compute the pixel map. Specifies the algorithm used to compute the input range that will be mapped to the output range.
+</summary>
+            <value>
+The algorithm value. Default is Tails. 
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If newVal is out of range.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.Finalize">
+            <summary>
+Finalize this CogPixelMapComputeParams.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.Dispose">
+            <summary>
+Destruct this CogPixelMapComputeParams.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.#ctor(Cognex.VisionPro.PixelMap.CogPixelMapComputeParams!System.Runtime.CompilerServices.IsConst)">
+            <summary>
+Construct a deep copy of the supplied CogPixelMapComputeParams object.
+</summary>
+            <param name="Other">
+The CogPixelMapComputeParams object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.#ctor">
+            <summary>
+Construct a default CogPixelMapComputeParams object. 
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.SfMaxRangeMultiplier">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by MaxRangeMultiplier may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.SfOutputRange">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by OutputRange may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.SfOutput2Fraction">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Output2Fraction may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.SfOutput1Fraction">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Output1Fraction may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.SfHighPadFraction">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by HighPadFraction may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.SfLowPadFraction">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by LowPadFraction may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.SfHighStdDevMultiplier">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by HightTailFraction may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.SfLowStdDevMultiplier">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by HightTailFraction may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.SfHighTailFraction">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by HightTailFraction may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.SfLowTailFraction">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by LowTailFraction may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams.SfAlgorithm">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Algorithm may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PixelMap.CogPixelMapComputeParams">
+            <summary>
+  This class represents the operator for the CogPixelMap tool.
+It holds all the data required to do a PixelMap operationwhen Auto mode is used.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.Histogram">
+            <summary>
+Returns a histogram
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.HighTail">
+            <summary>
+Returns the high tail
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.LowTail">
+            <summary>
+Returns the low tail
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.Maximum">
+            <summary>
+Returns the maximum
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.Minimum">
+            <summary>
+Returns the minimum
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.Variance">
+            <summary>
+Returns the variance
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.StdDev">
+            <summary>
+Returns the standard deviation
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.Mode">
+            <summary>
+Returns the mode
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.Median">
+            <summary>
+Returns the median
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.Mean">
+            <summary>
+Returns the mean
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.NumSamples">
+            <summary>
+Returns the number of samples 
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogPixelMapHistogramStatResult object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.#ctor(cip_pelHistogramStatResult)">
+            <summary>
+Construct a CogPixelMapHistogramStatResult based on its CVT equivilent.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.Finalize">
+            <summary>
+Finalize this CogPixelMapHistogramStatResult.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.Dispose">
+            <summary>
+Destruct this CogPixelMapHistogramStatResult.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.#ctor(Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult)">
+            <summary>
+Constructs a new instance of this class as a deep copy of the
+given instance.
+</summary>
+            <param name="other">
+The CogPixelMapHistogramStatResult object to be copied. 
+May not be null.
+</param>
+            <exception cref="T:System.ArgumentException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult.#ctor">
+            <summary>
+Constructs a new instance of this class.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PixelMap.CogPixelMapHistogramStatResult">
+            <summary>
+The result of histogram statistics. Internal Cognex Class.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PixelMap.CogPixelMapOutputRangeConstants">
+            <summary>
+Enumeration of constants used to specify the computed output range 
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapOutputRangeConstants.CustomRelative">
+            <summary>
+Use user-specified values
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapOutputRangeConstants.FullInverted">
+            <summary>
+Use the maximum and minimum values of the range of the output type (e.g. 256 and 0 for 8-bit output images)
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapOutputRangeConstants.Full">
+            <summary>
+Use the minimum and maximum values of the range of the output type (e.g. 0 and 256 for 8-bit output images)
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PixelMap.CogPixelMapAlgorithmConstants">
+            <summary>
+Enumeration of constants used to specify the algorithm to use to compute the mapping. 
+The algorithm dictates which histogram statistics is performed and how the reference points are selected
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapAlgorithmConstants.TypeRange">
+            <summary>
+Use the minimum and maximum values of the range of the input type (e.g. 0 and 65536 for 16-bit input images) 
+to fill the output range. Note that the "proper" mapping of, e.g., the full 16-bit range to the full 8-bit 
+range is a shift by 8 bits (or, equivalently, a division by 256), which implies that the correct mapping is 
+from 65536 to 256, rather than from 65535 to 255
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapAlgorithmConstants.MeanStdDev">
+            <summary>
+Use the mean minus a multiple of the standard deviation and the mean plus a (possibly different) multiple 
+of the standard deviation to fill the output range
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapAlgorithmConstants.Tails">
+            <summary>
+Use the low tail and high tail in the histograms statistics of the input image to fill the output range
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapAlgorithmConstants.MinMax">
+            <summary>
+Use the minimum and maximum values in the histogram statistics of the input image to fill the output range
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PixelMap.CogPixelMapLastRunRecordDiagConstants">
+            <summary>
+Enumeration of diagnostic data that can be provided in the
+Tool's LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapLastRunRecordDiagConstants.All">
+            <summary>
+Include all of the diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapLastRunRecordDiagConstants.Region">
+            <summary>
+Include a copy of the region in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapLastRunRecordDiagConstants.InputImageDeepCopy">
+            <summary>
+Include a deep copy of the input image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapLastRunRecordDiagConstants.InputImageByReference">
+            <summary>
+Include a reference to the input image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapLastRunRecordDiagConstants.None">
+            <summary>
+Do not include any of the diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PixelMap.CogPixelMapLastRunRecordConstants">
+            <summary>
+Enumeration of non-diagnostic data that can be provided in
+the Tool's LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapLastRunRecordConstants.All">
+            <summary>
+Include all of the non-diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapLastRunRecordConstants.OutputImage">
+            <summary>
+Include the last run's OutputImage in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapLastRunRecordConstants.None">
+            <summary>
+Do not include any of the non-diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PixelMap.CogPixelMapCurrentRecordConstants">
+            <summary>
+Enumeration of data that can be provided in the Tool's
+CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapCurrentRecordConstants.All">
+            <summary>
+Include all possible records in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapCurrentRecordConstants.HistogramStatistics">
+            <summary>
+Specifies whether the histogram statistics will be added (if enabled)
+in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapCurrentRecordConstants.LogarithmicHistogram">
+            <summary>
+Specifies whether a linear or logarithmic histogram will be drawn (if enabled)
+in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapCurrentRecordConstants.FinalMappingFunction">
+            <summary>
+Include the static final mapping function graph
+in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapCurrentRecordConstants.RawMappingFunction">
+            <summary>
+Include the static raw mapping function graph
+in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapCurrentRecordConstants.ReferencePoints">
+            <summary>
+Include the reference points (interactive CogPointMarker)
+in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapCurrentRecordConstants.Histogram">
+            <summary>
+Enables drawing of the Histogram graph
+in the CurrentRecord.
+The LinearHistogram setting specifies whether a linear or logarithmic
+histogram will be drawn.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapCurrentRecordConstants.CoordinateAxes">
+            <summary>
+Include the coordinate axes
+in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapCurrentRecordConstants.Region">
+            <summary>
+Include the (interactive) region to be used for mapping
+in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapCurrentRecordConstants.InputImage">
+            <summary>
+Include the input image in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapCurrentRecordConstants.None">
+            <summary>
+Do not include any records in the CurrentRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PixelMap.CogPixelMapImageDepthConstants">
+            <summary>
+Constants used to specify the bit depth of an image
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapImageDepthConstants.Range16">
+            <summary>
+CogImage16Range
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapImageDepthConstants.Grey16">
+            <summary>
+CogImage16Grey, Encoding = 16
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapImageDepthConstants.Grey14">
+            <summary>
+CogImage16Grey, Encoding = 14
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapImageDepthConstants.Grey12">
+            <summary>
+CogImage16Grey, Encoding = 12
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapImageDepthConstants.Grey10">
+            <summary>
+CogImage16Grey, Encoding = 10
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapImageDepthConstants.Grey8">
+            <summary>
+CogImage16Grey, Encoding = 8
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PixelMap.CogPixelMapImageDepthConstants.Grey">
+            <summary>
+CogImage8Grey 
+</summary>
+        </member>
+    </members>
+</doc>

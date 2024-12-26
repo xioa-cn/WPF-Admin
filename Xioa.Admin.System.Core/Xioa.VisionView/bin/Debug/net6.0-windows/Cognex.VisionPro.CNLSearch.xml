@@ -1,0 +1,1013 @@
+<?xml version="1.0"?><doc><assembly><name>Cognex.VisionPro.CNLSearch</name></assembly><members><member name="T:Cognex.VisionPro.Exceptions.CogCNLSearchCanNotTrainException"><summary>The exception that is thrown when <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" /> does not contain a trainable image (not enough features).</summary></member><member name="T:Cognex.VisionPro.Exceptions.CogCNLSearchAlgorithmNotTrainedException"><summary>The exception that is thrown when a <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern" /> has not been trained for the algorithm specified in <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Algorithm" />.</summary></member><member name="T:Cognex.VisionPro.Exceptions.CogCNLSearchAccuracyNotTrainedException"><summary>The exception that is thrown when a <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern" /> has not been trained for the accuracy specified in <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Accuracy" />.</summary></member><member name="T:Cognex.VisionPro.Exceptions.CogCNLSearchEdgeScoreNotComputedException"><summary>The exception that is thrown when attempting to read <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.EdgeScore" /> if the containing result was was not created using the 'NonLinearCNLPAS' algorithm.</summary></member><member name="T:Cognex.VisionPro.Exceptions.CogCNLSearchContrastNotComputedException"><summary>The exception that is thrown when attempting to read <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.Contrast" /> if the containing result was was not created using the 'LinearSearch' algorithm.</summary></member><member name="T:Cognex.VisionPro.Exceptions.CogCNLSearchTooSmallToTrainException"><summary>The exception that is thrown when either the TrainRegion or TrainImage of a <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern" /> is too small to train. The minimum trainable image size is 8x8 pixels.</summary></member><member name="T:Cognex.VisionPro.Exceptions.CogCNLSearchTooSmallToSearchException"><summary>The exception that is thrown when either the SearchRegion or InputImage of a <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool" /> is too small to contain the pattern.  Note that this error condition may be thrown in cases where a partially matched pattern could fit within the image or region.</summary></member><member name="T:Cognex.VisionPro.Exceptions.CogCNLSearchInvalidSearchPointException"><summary>The exception that is thrown when the supplied starting point for a point search would place the pattern outside of the input image.  Note that this exception will properly consider any specified partial-match parameters.</summary></member><member name="T:Cognex.VisionPro.Exceptions.CogCNLSearchNoTrainedEdgeImageException"><summary>The exception that is thrown when a <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern" /> was not trained using the 'NonLinearCNLPAS' algorithm (the only algorithm that generates an edge image).</summary></member><member name="T:Cognex.VisionPro.Exceptions.CogCNLSearchImportFromCVLErrorException"><summary>The exception that is thrown when there was an error reading the contents of the file that contains the CVL search model.</summary></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchResult"><summary>Class which holds a single CNLSearch result.  Each result corresponds to a found instance of the pattern.</summary><remarks><PARA>Interface for a single CNLSearch result.  Each result corresponds to a found instance of the pattern.</PARA></remarks></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.#ctor(Cognex.VisionPro.CNLSearch.CogCNLSearchResult)"><param name="other">The instance to copy from.</param><summary>Constructs a new instance of this class as a deep copy of the given instance.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.#ctor"><summary>Constructs a new instance of this class.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.#ctor(System.IntPtr)"><param name="impl">n/a</param><summary>Constructs a new instance of this class using com pointer.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.SelectedSpaceName"><summary>Returns the name of the selected space of the input image at run-time.  The location of this result is specified in units of the selected space.</summary><remarks><PARA>
+Returns the name of the selected space of the input image at run-time.  The location of this result is specified in units of the selected space.
+</PARA></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.Contrast"><summary>The Contrast is the ratio of the standard deviation of the pixels in the trained pattern to the standard deviation of the care pixels in the located pattern.</summary><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchContrastNotComputedException" cgnxHRESULT="E_CogCNLSearch_ContrastNotComputed"><para>This result was not created using the 
+		<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAlgorithmConstants">LinearSearch</see><see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Algorithm">algorithm</see>.
+	</para></exception><remarks><PARA>
+The contrast value is the ratio of the standard deviation of the image pixel values to the standard deviation of the model image pixels (including only "care" model pixels and image pixels that correspond to "care" model pixels). Contrast provides a measure of the image contrast of the search image relative to the image contrast of the trained model. Values greater than 1.0 indicate a search image with greater contrast than the trained model; values less than 1.0 indicate a search image with lower contrast.</PARA></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.EdgeScore"><summary>The EdgeScore represents the quality of the match between the edges of the trained pattern and the edges of the pattern match in the search image.  This value is between 0.0 and 1.0 with higher values indicating a closer match.</summary><remarks><PARA>
+The edge score is the percentage (from 0.0 through 1.0) of the edge pixels 
+in the trained pattern that are also present in the found pattern instance 
+(Nonlinear CNLPAS searches only).</PARA><PARA>
+You can use the edge score in conjunction with the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaScore" /> to
+determine whether a low overall score was caused by 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="occlusion_and_clutter">occlusion or clutter</see>.
+</PARA></remarks><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchEdgeScoreNotComputedException" cgnxHRESULT="E_CogCNLSearch_EdgeScoreNotComputed"><para>This result was not created using the 
+		<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAlgorithmConstants">NonLinearCNLPAS</see><see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Algorithm">algorithm</see>.
+	</para></exception></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaCoverageScore"><remarks><PARA>
+The area coverage score is the fraction (in the range 0.0 through 1.0) of the
+pattern instance that lies within the portion of the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage" /> being searched.
+</PARA><PARA>
+Keep in mind that the actual part of the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage" />  that is 
+searched depends on the type of <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SearchRegion" /> 
+and the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode" /> that you
+specify. If you specify a <see cref="T:Cognex.VisionPro.CogRectangle" /> for 
+the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SearchRegion" />, then the entire region is searched. If you specify 
+a <see cref="T:Cognex.VisionPro.CogRectangleAffine" /><ITALIC>and</ITALIC> 
+you specify 
+<see cref="T:Cognex.VisionPro.CogRegionModeConstants">AffineTransform</see>, 
+then the entire region is searched. If you specify any other type of <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SearchRegion" />,
+then the pixel-aligned bounding box that encloses the region is searched.
+</PARA><PARA>
+ This score only applies to
+searches performed using the Linear Search algorithm (other algorithms will not find patterns that are partially outside of the search image). 
+</PARA></remarks><summary>The AreaCoverageScore indicates the fraction of the pattern that lies within the search region. The returned value is in the range 0.0 through 1.0.  Only the Linear Search algorithm can find pattern matches that are partially outside of the search region.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaScore"><summary>The AreaScore represents the quality of the match regardless of the amount of the pattern that appears in the image.  This value is between 0.0 and 1.0 with higher values indicating a closer match between the trained pattern and the pattern match.</summary><remarks><PARA>
+The <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaScore" /> represents the quality of the match regardless of the amount of the pattern that appears in the image.  This value is between 0.0 and 1.0 with higher values indicating a closer match between the trained pattern and the pattern match.
+</PARA><PARA>
+For searches that use one of the Linear algorithms (Linear Search or Linear 
+CNLPAS), the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaScore" /> is the 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="computing_the_correlation_coefficient">correlation coefficient</see> of the trained pattern pixels with the search image pixels 
+squared. (If you set <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.IgnorePolarity" /> to 
+true, then pattern instances with negative correlation coefficients receive a score of 0.0.)
+</PARA><PARA>
+For 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="score_for_nonlinear_mode_searches">nonlinear searches</see>, 
+the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaScore" /> is based on the correlation coefficient between the entire area of the pattern image edge map and the search image edge map.
+</PARA><PARA>
+For Linear and Nonlinear CNLPAS algorithm searches, the value reported by the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.Score" /> property is actually 
+the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaScore" />. The Score is equal to the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaScore" /> times the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaCoverageScore" /> if the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchReduceScore" /> property is true 
+and you are using the Linear Search algorithm.
+</PARA></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.Score"><remarks><PARA>
+The Score (in the range 0.0 through 1.0) is a measure of the overall 
+similarity between the trained pattern and this pattern instance.
+</PARA><PARA>
+If this pattern instance lies partially outside of the search image and
+the value of the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchReduceScore" /> 
+property is true, then the score is equal to 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaScore" /> times 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaCoverageScore" />. Otherwise,
+the score (for all algorithms) is equal to the
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaScore" />.
+</PARA></remarks><summary>The Score is between 0.0 and 1.0 with higher values indicating a closer match between the trained pattern and the pattern in the search image.  The Score will be reduced if the result is a partial match and PartialMatchReduceScore is true.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.EdgeHit"><summary>Indicates whether this pattern instance was found against one or more edges of the search region.  This value is composed by performing a bitwise OR of CogCNLSearchEdgeHitConstants.</summary><remarks><PARA>
+Indicates whether this pattern instance was found against one or more edges of the search image.  
+The value is formed by ORing together one or more of the values defined in 
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchEdgeHitConstants" />.
+</PARA><PARA>
+If you are using the Linear Search algorithm, then the value of this property 
+is either 
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchEdgeHitConstants">Unknown</see> 
+if any edge was hit or 
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchEdgeHitConstants">None</see> if
+no edge was hit (the Linear Search algorithm cannot detect which edge or 
+edges were hit).
+</PARA></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.LocationY"><remarks><PARA>
+The Y component of the location at which this pattern instance was found.  
+The location corresponds the pattern's 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="pattern_origin">origin</see> and 
+is specified in units of the selected space of the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage" />.
+</PARA></remarks><summary>The Y component of the location at which this pattern instance was found.  The location corresponds the pattern's origin and is specified in units of the selected space of the InputImage.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.LocationX"><remarks><PARA>
+The X component of the location at which this pattern instance was found.  
+The location corresponds the pattern's 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="pattern_origin">origin</see> and 
+is specified in units of the selected space of the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage" />.
+</PARA></remarks><summary>The X component of the location at which this pattern instance was found.  The location corresponds the pattern's origin and is specified in units of the selected space of the InputImage.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.EdgeScoreComputed"><summary>True if the result's EdgeScore has been computed. This will only be true if the NonLinearCNLPAS algorithm was used to compute this result.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.ContrastComputed"><summary>True if the result's Contrast has been computed. This will only be true if the LinearSearch algorithm was used to compute this result.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.Accepted"><summary>True if the result's Score was &gt;= the AcceptThreshold specified in the CogCNLSearchRunParams.</summary><remarks><PARA>
+True if the result's <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.Score" />
+is greater than or equal to the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.AcceptThreshold" /> 
+that you specified for the search, false otherwise.
+</PARA></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.ID"><remarks><PARA>
+A unique ID used to identify this CNLSearch result.  This ID also corresponds to the index of this result in the 
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchResults" /> object to which this result belongs.
+</PARA></remarks><summary>A unique ID used to identify this CNLSearch result.  This ID also corresponds to the index of this result in the CogCNLSearchResults to which this result belongs.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.Dispose(System.Boolean)"><param name="disposing">Should be set to true when called from your public Dispose() method, thus disposing of all managed and unmanaged resources.  It should be set to false when called from your Finalizer, thus disposing of only unmanaged resources.</param><summary>Releases all resources used by this class instance.  Only derived classes that implement Dispose should call this method; Other clients who wish to explicitly release resources should call IDisposable.Dispose.   Do not attempt to access an object after it has been disposed.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.Clone"><summary>Returns a deep copy of this class instance.  Derived classes that implement Clone should override this method; other clients who wish to clone this instance should call ICloneable.Clone. See also CogSerializer.DeepCopyObject</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.CreateResultGraphics(Cognex.VisionPro.CNLSearch.CogCNLSearchResultGraphicConstants)"><param name="graphicOptions"><PARA>
+	A value specifying which graphics to create. Must be formed by ORing together 
+	one or more values from <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchResultGraphicConstants" />.
+	</PARA></param><summary>Creates a composite result graphic containing child graphics specified by the GraphicOptions which is a bitwise combination of CogCNLSearchResultGraphicConstants.</summary><returns><PARA>
+	A  <see cref="T:Cognex.VisionPro.CogCompositeShape" /> that contains the requested graphics.
+	</PARA></returns><remarks><PARA>
+Creates a 
+<see cref="T:Cognex.VisionPro.CogCompositeShape" /> 
+that contains  child graphics specified by the <paramref name="graphicOptions" />, which is a bitwise combination of
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchResultGraphicConstants" />.
+
+The <see cref="P:Cognex.VisionPro.ICogGraphicInteractive.Interactive" />  property
+of all the child graphics is set to True.
+The name space for the returned 
+graphic is the name of the selected space of <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage" /> at the time the search was performed.
+</PARA><PARA>
+The <see cref="P:Cognex.VisionPro.CogCompositeShape.ID" /> of the
+graphic is set to the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.ID" /> of this result. 
+
+If the result's <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.Accepted" /> property is true,
+the graphics appear in green; otherwise they appear in red.
+</PARA><PARA>
+The
+<see cref="M:Cognex.VisionPro.CogGraphicChildren.GetKey(System.Int32)" />
+of each child graphic has the same name as the
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchResultGraphicConstants" /> bit
+that it represents.
+For example, the graphic that depicts the <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchResultGraphicConstants">Origin</see>, has the key "Origin".
+</PARA></remarks></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchResults"><remarks><PARA>
+Interface for a collection of CNLSearch results.  An instance of the 
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchResults" /> 
+class will be created and filled with individual results in order of 
+decreasing score.
+</PARA></remarks><summary>Class which holds a collection of CNLSearch results.  An instance of this class will be created and filled with individual results in order of decreasing score.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResults.#ctor(Cognex.VisionPro.CNLSearch.CogCNLSearchResults)"><param name="other">The instance to copy from.</param><summary>Constructs a new instance of this class as a deep copy of the given instance.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResults.#ctor"><summary>Constructs a new instance of this class.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResults.#ctor(System.IntPtr)"><param name="impl">n/a</param><summary>Constructs a new instance of this class using com pointer.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResults.Item(System.Int32)"><param name="index">The index of the item to get or set.</param><summary>Gets or sets the item at the specified index.  In C#, this property is the indexer for the collection.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResults.SyncRoot"><summary>Gets an object that can be used to synchronize access to this collection.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResults.IsSynchronized"><summary>Gets a value indicating whether access to this collection is synchronized (thread-safe).</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResults.Count"><summary>Gets the number of items contained in this collection.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResults.Dispose(System.Boolean)"><param name="disposing">Should be set to true when called from your public Dispose() method, thus disposing of all managed and unmanaged resources.  It should be set to false when called from your Finalizer, thus disposing of only unmanaged resources.</param><summary>Releases all resources used by this class instance.  Only derived classes that implement Dispose should call this method; Other clients who wish to explicitly release resources should call IDisposable.Dispose.   Do not attempt to access an object after it has been disposed.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResults.Clone"><summary>Returns a deep copy of this class instance.  Derived classes that implement Clone should override this method; other clients who wish to clone this instance should call ICloneable.Clone. See also CogSerializer.DeepCopyObject</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResults.CopyTo(System.Array,System.Int32)"><param name="array">The array into which to copy.</param><param name="index">The index from which to start copying.</param><summary>Copies the contents of this collection to an array.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResults.IndexOf(Cognex.VisionPro.CNLSearch.CogCNLSearchResult)"><param name="value">The item whose index is desired.</param><summary>Gets the index of the given item.  If the item cannot be found -1 is returned.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResultsShared.#ctor(Cognex.VisionPro.CNLSearch.CogCNLSearchResultsShared)"><param name="other">The instance to copy from.</param><summary>Constructs a new instance of this class as a deep copy of the given instance.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResultsShared.#ctor"><summary>Constructs a new instance of this class.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResultsShared.#ctor(System.IntPtr)"><param name="impl">n/a</param><summary>Constructs a new instance of this class using com pointer.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResultsShared.Dispose(System.Boolean)"><param name="disposing">Should be set to true when called from your public Dispose() method, thus disposing of all managed and unmanaged resources.  It should be set to false when called from your Finalizer, thus disposing of only unmanaged resources.</param><summary>Releases all resources used by this class instance.  Only derived classes that implement Dispose should call this method; Other clients who wish to explicitly release resources should call IDisposable.Dispose.   Do not attempt to access an object after it has been disposed.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchResultsShared.Clone"><summary>Returns a deep copy of this class instance.  Derived classes that implement Clone should override this method; other clients who wish to clone this instance should call ICloneable.Clone. See also CogSerializer.DeepCopyObject</summary></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams"><remarks><PARA>
+Interface which provides access to the CNLSearch run parameters.  The run parameters are used to control how CNLSearch locates matching patterns in the run-time image.
+</PARA></remarks><summary>Class which holds CNLSearch run parameters.  The run parameters are used to control how CNLSearch locates matching patterns in the run-time image.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.#ctor(Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams)"><param name="other">The instance to copy from.</param><summary>Constructs a new instance of this class as a deep copy of the given instance.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.#ctor"><summary>Constructs a new instance of this class.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.#ctor(System.IntPtr)"><param name="impl">n/a</param><summary>Constructs a new instance of this class using com pointer.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfSearchRegionMode"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by SearchRegionMode may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfSearchPointX"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by SearchPointX may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfSearchPointY"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by SearchPointY may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfSearchPointEnabled"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by SearchPointEnabled may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfPartialMatchLimitUp"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by PartialMatchLimitUp may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfPartialMatchLimitDown"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by PartialMatchLimitDown may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfPartialMatchLimitRight"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by PartialMatchLimitRight may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfPartialMatchLimitLeft"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by PartialMatchLimitLeft may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfPartialMatchLimitsUsePattern"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by PartialMatchLimitsUsePattern may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfPartialMatchReduceScore"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by PartialMatchReduceScore may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfAlgorithm"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by Algorithm may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfAccuracy"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by Accuracy may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfAcceptThreshold"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by AcceptThreshold may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfConfusionThreshold"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by ConfusionThreshold may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfMaxResults"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by MaxResults may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfEdgeThresholdLow"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by EdgeThresholdLow may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfEdgeThresholdHigh"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by EdgeThresholdHigh may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfEdgeThresholdsUsePattern"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by EdgeThresholdsUsePattern may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfXYOverlap"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by XYOverlap may have changed.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.XYOverlap"><remarks><PARA>
+The maximum allowed percentage (0.0 through 1.0) of 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="userconfigurable_overlap_tolerance">overlap </see> 
+between two pattern instances.  If the overlapping area of the two pattern instances is greater than the specified percentage, then the pattern instance with the lower score is discarded.
+</PARA><PARA>
+By default, CNLSearch does not return pattern instances that overlap at all (the default 
+overlap threshold is 1.0). By specifying a value of less than 1.0, you can obtain multiple overlapping pattern instances.
+</PARA><DEFAULT>1.0</DEFAULT></remarks><summary>The maximum allowed percentage (0 to 1,inclusive) of overlap between two pattern instances.  If the overlapping area of the two pattern instances is greater than the specified percentage, then the pattern instance with the lower score is discarded.</summary><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than 0.0 or greater than 1.0.
+	</para></exception><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_XYOverlap--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfXYOverlap" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.EdgeThresholdsUsePattern"><remarks><PARA>
+If true, the <see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="edge_detection">edge</see> 
+thresholds from the trained <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern" /> will be used to 
+limit the edges included in the edge map generated from the run-time search image.  
+If false, the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.EdgeThresholdLow" /> and <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.EdgeThresholdHigh" /> 
+values in this <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams" /> are used.
+</PARA></remarks><summary>If true, the edge thresholds of ICogCNLSearchPattern will be used to generate a run-time edge map.  If false, the edge thresholds in this run parameters interface will be used.  Edge thresholds only apply to the NonLinear CNLPAS algorithm.</summary><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_EdgeThresholdsUsePattern--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfEdgeThresholdsUsePattern" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.EdgeThresholdHigh"><summary>All edges with strengths above the high threshold are included in the run-time edge map.  Only applies to NonLinear CNLPAS.</summary><remarks><PARA>
+All 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="edge_detection">edges</see> with strengths above the high threshold are included in the edge map generated from the run-time search 
+image.  All edges with strengths below the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.EdgeThresholdLow">low threshold</see> are excluded from the edge map. 
+Edges with strengths between the thresholds are included in the edge map if they are 
+8-connected (vertically, horizontally, or diagonally adjacent) to another 
+edge with a strength above the threshold, either directly or 
+through other edges with strengths between the thresholds. This property
+only applies to the Nonlinear CNLPAS algorithm.
+</PARA><PARA>
+The low threshold must be less than or equal to the high threshold; if this value 
+is set below the low threshold, the low threshold is also set to the supplied value.
+</PARA><DEFAULT>9.0</DEFAULT></remarks><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than 0 or greater than 255.
+	</para></exception><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+
+		Fires when the high threshold is changed. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_EdgeThresholdHigh--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfEdgeThresholdHigh" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when both the low and high thresholds are changed. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchRunParams_EdgeThresholds--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfEdgeThresholdLow" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfEdgeThresholdHigh" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.EdgeThresholdLow"><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than 0 or greater than 255.
+	</para></exception><summary>Edges with strengths below the low threshold are excluded from the run-time edge map.  Edges with strengths between low &amp; high (inclusive) are included if 8-connected to an edge already belonging to the edge map.  Only applies to NonLinear CNLPAS.</summary><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the low threshold is changed. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_EdgeThresholdLow--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfEdgeThresholdLow" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when both the low and high thresholds are changed. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchRunParams_EdgeThresholds--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfEdgeThresholdLow" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfEdgeThresholdHigh" /></li></ul></event><remarks><PARA>
+All 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="edge_detection">edges</see> with strengths below the low threshold are excluded from the edge map generated from the run-time search image. 
+Edges with strengths between the thresholds are included in the edge map if they are 
+8-connected (vertically, horizontally, or diagonally adjacent) to another 
+edge with a strength above the threshold, either directly or 
+through other edges with strengths between the thresholds. 
+Only applies to Nonlinear CNLPAS.
+</PARA><PARA>
+The low threshold must be less than or equal to the high threshold; if this value 
+is set above the high threshold, the high threshold is also set to the supplied value.
+</PARA><DEFAULT>3.0</DEFAULT></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.MaxResults"><summary>CNLSearch will return up to the maximum number of results specified by this property.</summary><remarks><PARA>
+CNLSearch will return up to the maximum number of results specified by this property.
+</PARA></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_MaxResults--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfMaxResults" /></li></ul></event><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than one.
+	</para></exception></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.ConfusionThreshold"><summary>Confusion threshold is a hint regarding how confusing the search image is likely to be.  A high value slows the search but ensures that wrong features are not found.  A low value speeds up the search for non-confusing scenes.  Must be &gt;= AcceptThreshold.</summary><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than 0.0 or greater than 1.0.
+	</para></exception><remarks><PARA>
+The 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="selecting_a_confusion_threshold_and_an_acceptance"> 
+confusion threshold</see>. The confusion threshold is the highest score that something other than a valid pattern instance will receive. You specify a confusion threshold to 
+indicate how confusing you expect the search image to be; the higher a value you 
+specify, the more careful the tool is. The Confusion threshold must be greater than or
+equal to the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.AcceptThreshold" /> (which is the score above which all valid 
+pattern instances lie).
+</PARA><PARA>
+The <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.ConfusionThreshold" /> must be greater than or equal to the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.AcceptThreshold" />. If this property is set to a value less than the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.AcceptThreshold" />, the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.AcceptThreshold" /> is set
+to the new value.
+</PARA><PARA>
+The following diagram summarizes the relationship between the Accept and Confusion thresholds. Keep in mind that you supply these thresholds to help the tool find the trained pattern as quickly and reliably as possible; you use these thresholds to provide information about the search image.
+</PARA><PICTURE SRC="thresholds.jpg" apiSRC="ConfusionThreshold_thresholds.jpg" /><DEFAULT>0.5</DEFAULT></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+
+		Fires when the confusion threshold is changed. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_ConfusionThreshold--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfConfusionThreshold" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when both the accept threshold and the confusion threshold are changed. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchRunParams_AcceptConfusion--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfAcceptThreshold" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfConfusionThreshold" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.AcceptThreshold"><remarks><PARA>
+The 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="selecting_a_confusion_threshold_and_an_acceptance"> 
+acceptance threshold</see>. You should supply an acceptance threshold value such that 
+no actual instance of a pattern will receive a score less than the threshold. CNLSearch 
+assumes that any location in the search image which receives a value less than this 
+threshold is not an actual instance of the pattern.  The valid range is from 0.0 to 1.0.
+</PARA><PARA>
+The <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.ConfusionThreshold" /> must be greater than or equal to the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.AcceptThreshold" />. If this property is set to a value greater than 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.ConfusionThreshold" />, the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.ConfusionThreshold" /> is set
+to the new value.
+</PARA><PARA>
+	After performing several test searches, you may be tempted to set the acceptance threshold value
+	equal to or very close to the score of your test search. Because of the way the confusion threshold
+	interacts with the acceptance threshold, doing so may result in your search not finding any valid instances.
+	The acceptance threshold is the lowest score that any possible instance will receive.
+</PARA><PARA>
+The following diagram summarizes the relationship between the Accept and Confusion thresholds. Keep in mind that you supply these thresholds to help the tool find the trained pattern as quickly and reliably as possible; you use these thresholds to provide information about the search image.
+</PARA><PICTURE SRC="thresholds.jpg" apiSRC="AcceptThreshold_thresholds.jpg" /><DEFAULT>0.3</DEFAULT></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+
+		Fires when the accept threshold is changed. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_AcceptThreshold--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfAcceptThreshold" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when both the accept threshold and the confusion threshold are changed. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchRunParams_AcceptConfusion--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfAcceptThreshold" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfConfusionThreshold" /></li></ul></event><summary>Acceptance threshold on the score of a result.  Only instances of the pattern that receive scores greater than or equal to this threshold are accepted.  Valid range is from 0 to 1.</summary><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than 0.0 or greater than 1.0.
+	</para></exception></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Accuracy"><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is not a member of <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAccuracyConstants" />.
+	</para></exception><summary>The accuracy that should be used to perform a CNLSearch inspection.  The accuracy specified must be among those for which the CNLSearch pattern object is trained.</summary><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_Accuracy--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfAccuracy" /></li></ul></event><remarks><PARA>
+The 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="selecting_a_search_accuracy">accuracy</see> 
+that should be used to perform a CNLSearch inspection.  
+The accuracy specified must be among those for which this CNLSearch pattern object is <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Accuracies">trained</see>.
+</PARA></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Algorithm"><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is not a member of <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAlgorithmConstants" />.
+	</para></exception><summary>The algorithm that should be used to perform a CNLSearch inspection.  The algorithm specified must be among those for which the CNLSearch pattern object is trained.</summary><remarks><PARA>
+The algorithm that should be used to perform a CNLSearch inspection.  
+You can specify <see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="linear_mode_search_algorithms">
+Linear Search or Linear CNLPAS</see> algorithms for search images with linear 
+brightness changes from the trained image or the <see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="nonlinear_searches">Nonlinear CNLPAS</see> algorithm for search images 
+with nonlinear brightness changes.
+The algorithm you specify must be among those for which the CNLSearch pattern object is <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Algorithms">trained</see>.
+</PARA></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_Algorithm--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfAlgorithm" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchReduceScore"><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_PartialMatchReduceScore--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfPartialMatchReduceScore" /></li></ul></event><remarks><PARA>
+If true, a matched pattern that lies partially outside of the image will receive a reduced score that reflects the fact that only part of the pattern was found. If false, 
+then the pattern instance is scored based on the quality of the matched portion and the 
+missing part of the pattern is ignored.
+</PARA><PARA>
+If this property is true, the pattern instance's <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.Score" /> is equal to 
+its <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaScore" /> times its 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaCoverageScore" />. If false, then 
+the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.Score" /> is simply the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchResult.AreaScore" />.
+</PARA></remarks><summary>If true, a matched pattern that lies partially outside of the image will receive a reduced score.  In this case, the Score will be equal to (AreaScore * AreaCoverageScore).  Otherwise, the Score is simply the AreaScore.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitsUsePattern"><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_PartialMatchLimitsUsePattern--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfPartialMatchLimitsUsePattern" /></li></ul></event><remarks><PARA>
+If true, the partial match limits set in the trained 
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern" /> will be used at run-time.  
+If false, the partial match limits in this <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams" /> interface will be 
+used.  
+Partial match limits only apply to the Linear Search algorithm.
+</PARA><DEFAULT>False</DEFAULT></remarks><summary>If true, the partial match limits of ICogCNLSearchPattern will be used at run-time.  If false, the partial match limits in this run parameters interface will be used.  Partial match limits only apply to the Linear Search algorithm.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitLeft"><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than zero.
+	</para></exception><summary>Limit-left specifies how many columns of pixels on the left side of the pattern may lie outside of the search region and still be found.  Ignored if PartialMatchLimitsUsePattern is true.  Partial match results are not supported by the CNLPAS algorithms.</summary><remarks><PARA>
+Limit-left specifies how many rows of pixels on the left side of the pattern may lie outside of the search image and still be found.  Partial match searching is only supported for 
+the Linear Search algorithm.
+</PARA><PARA>
+The value of this property is ignored in favor of the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.PartialMatchLimitLeft">training-time</see> 
+partial match limits if 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitsUsePattern" /> 
+is true.
+</PARA><DEFAULT>0</DEFAULT></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_PartialMatchLimitLeft--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfPartialMatchLimitLeft" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitRight"><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_PartialMatchLimitRight--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfPartialMatchLimitRight" /></li></ul></event><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than zero.
+	</para></exception><summary>Limit-right specifies how many columns of pixels on the right side of the pattern may lie outside of the search region and still be found.  Ignored if PartialMatchLimitsUsePattern is true.  Partial match results are not supported by the CNLPAS algorithms.</summary><remarks><PARA>
+Limit-right specifies how many rows of pixels on the right side of the pattern may lie outside of the search image and still be found.  Partial match searching is only supported for 
+the Linear Search algorithm.
+</PARA><PARA>
+The value of this property is ignored in favor of the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.PartialMatchLimitRight">training-time</see> 
+partial match limits if 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitsUsePattern" /> 
+is true.
+</PARA><DEFAULT>0</DEFAULT></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitDown"><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_PartialMatchLimitDown--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfPartialMatchLimitDown" /></li></ul></event><summary>Limit-down specifies how many rows of pixels at the bottom of the pattern may lie outside of the search region and still be found.  Ignored if PartialMatchLimitsUsePattern is true.  Partial match results are not supported by the CNLPAS algorithms.</summary><remarks><PARA>
+Limit-down specifies how many rows of pixels at the bottom of the pattern may lie outside of the search image and still be found.  Partial match searching is only supported for 
+the Linear Search algorithm.
+</PARA><PARA>
+The value of this property is ignored in favor of the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.PartialMatchLimitDown">training-time</see> 
+partial match limits if 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitsUsePattern" /> 
+is true.
+</PARA><DEFAULT>0</DEFAULT></remarks><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than zero.
+	</para></exception></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitUp"><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_PartialMatchLimitUp--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfPartialMatchLimitUp" /></li></ul></event><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than zero.
+	</para></exception><summary>Limit-up specifies how many rows of pixels at the top of the pattern may lie outside of the search region and still be found.  Ignored if PartialMatchLimitsUsePattern is true.  Partial match results are not supported by the CNLPAS algorithms.</summary><remarks><PARA>
+Limit-up specifies how many rows of pixels at the top of the pattern may lie outside of the search image and still be found.  Partial match searching is only supported for 
+the Linear Search algorithm.
+</PARA><PARA>
+The value of this property is ignored in favor of the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.PartialMatchLimitUp">training-time</see> 
+partial match limits if 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitsUsePattern" /> 
+is true.
+</PARA><DEFAULT>0</DEFAULT></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchPointEnabled"><summary>If SearchPointEnabled is true then CNLSearch will search for a single instance of the pattern starting at the point specified by SearchPointX &amp; Y.  In this case, the SearchRegion is ignored.  Search point is only supported by the Linear search algorithm.</summary><remarks><PARA>
+If SearchPointEnabled is true then CNLSearch will search for a single instance of the pattern starting at the point specified by 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchPointX" /> and <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchPointY" />. Also, the tool ignores the value of the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SearchRegion">ICogCNLSearchTool.SearchRegion</see> property.
+</PARA><PARA>
+Point search is only supported by the Linear search algorithm.
+</PARA><DEFAULT>False</DEFAULT></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_SearchPointEnabled--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfSearchPointEnabled" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchPointY"><summary>CNLSearch will search for a single instance of this pattern starting at the point specified by SearchPointX &amp; Y when SearchPointEnabled is true.  This point corresponds to the pattern's origin and is specified in the selected space of the InputImage.</summary><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_SearchPointY--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfSearchPointY" /></li></ul></event><remarks><PARA>
+If <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchPointEnabled" /> is true, then CNLSearch attempts to locate 
+a single pattern instance starting at the point specified by 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchPointX" /> and
+ <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchPointY" />. The supplied point is in the selected space of 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage" /> and corresponds to the 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="pattern_origin">origin</see> of the pattern.
+</PARA><PARA>
+Unlike non-point search, CNLSearch searches for (and always returns) a single 
+pattern instance. You should make sure that the point location you supply is close to 
+the pattern instance you want to locate.
+</PARA><DEFAULT>70.0</DEFAULT></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchPointX"><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_SearchPointX--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfSearchPointX" /></li></ul></event><summary>CNLSearch will search for a single instance of this pattern starting at the point specified by SearchPointX &amp; Y when SearchPointEnabled is true.  This point corresponds to the pattern's origin and is specified in the selected space of the InputImage.</summary><remarks><PARA>
+If <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchPointEnabled" /> is true, then CNLSearch attempts to locate 
+a single pattern instance starting at the point specified by <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchPointX" /> and
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchPointY" />. The supplied point is in the selected space of 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage" /> and corresponds to the 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="pattern_origin">origin</see> of the pattern.
+</PARA><PARA>
+Unlike non-point search, CNLSearch searches for (and always returns) a single 
+pattern instance. You should make sure that the point location you supply is close to 
+the pattern instance you want to locate.
+</PARA><DEFAULT>70.0</DEFAULT></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode"><remarks><PARA><see cref="T:Cognex.VisionPro.CogRegionModeConstants">Mode</see> which specifies how the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SearchRegion" /> 
+is to be applied to the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage" /> 
+of a CNLSearch inspection.
+</PARA><PARA>
+The CNLSearch tool only supports the 
+<see cref="T:Cognex.VisionPro.CogRegionModeConstants">PixelAlignedBoundingBox</see> 
+and 
+<see cref="T:Cognex.VisionPro.CogRegionModeConstants">AffineTransform</see> 
+region modes.
+If you specify a <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode" /> other than a 
+<see cref="T:Cognex.VisionPro.CogRectangle" />, then the actual portion of the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage" />  that is searched is a pixel-aligned bounding rectangle 
+that encloses the supplied <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode" /> (unless the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode" /> is a 
+<see cref="T:Cognex.VisionPro.CogRectangleAffine" /><ITALIC>and</ITALIC> 
+the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode" /> is <see cref="T:Cognex.VisionPro.CogRegionModeConstants">AffineTransform</see>.
+</PARA></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchRunParams_SearchRegionMode--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SfSearchRegionMode" /></li></ul></event><summary>Mode which specifies how the search region is to be applied to the input image of a CNLSearch inspection.</summary><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is one of the supported 
+	<see cref="T:Cognex.VisionPro.CogRegionModeConstants" />.
+	</para></exception></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.ChangedEventSuspended"><summary>If nonzero, indicates that the raising of the Changed event has been suspended. This value is incremented when SuspendChangedEvent is called and decremented when ResumeAndRaiseChangedEvent is called.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.HasChanged"><summary>If true, the serializable state of this object has changed since the last time it was serialized.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Dispose(System.Boolean)"><param name="disposing">Should be set to true when called from your public Dispose() method, thus disposing of all managed and unmanaged resources.  It should be set to false when called from your Finalizer, thus disposing of only unmanaged resources.</param><summary>Releases all resources used by this class instance.  Only derived classes that implement Dispose should call this method; Other clients who wish to explicitly release resources should call IDisposable.Dispose.   Do not attempt to access an object after it has been disposed.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Clone"><summary>Returns a deep copy of this class instance.  Derived classes that implement Clone should override this method; other clients who wish to clone this instance should call ICloneable.Clone. See also CogSerializer.DeepCopyObject</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SuspendChangedEvent"><summary>Temporarily suspends the raising of the Changed event. May be called more than once, and a corresponding call to ResumeAndRaiseChangedEvent must be made for each call to SuspendChangedEvent.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.ResumeAndRaiseChangedEvent"><summary>Re-enables raising of the Changed event after SuspendChangedEvent has been called.  Also raises the Changed event if the ChangedEventSuspended count is reduced to zero and any changes were made while events were suspended. Must be called once for each call to SuspendChangedEvent.</summary></member><member name="E:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Changed"><summary>Occurs when one or more parts of the object's state may have changed.</summary></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern"><remarks><PARA>
+Provides access to all of the train time parameters and to the results of training a CNLSearch pattern.  
+You must train the pattern by calling <see cref="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Train" /> before searching. You 
+locate the trained pattern by calling <see cref="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Execute(Cognex.VisionPro.CogImage8Grey,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams)" />.
+</PARA></remarks><summary>Class which holds a single CNLSearch pattern used for locating features within an image.  Primary interface provides access to the training parameters, a method to train the pattern, results of training the pattern, and a method to execute an inspection.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.#ctor(Cognex.VisionPro.CNLSearch.CogCNLSearchPattern)"><param name="other">The instance to copy from.</param><summary>Constructs a new instance of this class as a deep copy of the given instance.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.#ctor"><summary>Constructs a new instance of this class.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.#ctor(System.IntPtr)"><param name="impl">n/a</param><summary>Constructs a new instance of this class using com pointer.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfOriginX"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by OriginX may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfOriginY"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by OriginY may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImage"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by TrainImage may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainRegion"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by TrainRegion may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainRegionMode"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by TrainRegionMode may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMask"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by TrainImageMask may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMaskOffsetX"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by TrainImageMaskOffsetX may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMaskOffsetY"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by TrainImageMaskOffsetY may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitUp"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by PartialMatchLimitUp may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitDown"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by PartialMatchLimitDown may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitLeft"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by PartialMatchLimitLeft may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitRight"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by PartialMatchLimitRight may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfAlgorithms"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by Algorithms may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfAccuracies"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by Accuracies may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfIgnorePolarity"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by IgnorePolarity may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfAdvancedTrainingEnabled"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by AdvancedTrainingEnabled may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfEdgeThresholdLow"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by EdgeThresholdLow may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfEdgeThresholdHigh"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by EdgeThresholdHigh may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrained"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by Trained may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternWidth"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by TrainedPatternWidth may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternHeight"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by TrainedPatternHeight may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImage"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by GetTrainedPatternImage may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImageMask"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by GetTrainedPatternImageMask may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedEdgeImage"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by TrainedEdgeImage may have changed.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainedEdgeImage"><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException" cgnxHRESULT="E_CogOperator_NotTrained"><para>
+	This pattern has not been trained.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchNoTrainedEdgeImageException" cgnxHRESULT="E_CogCNLSearch_NoTrainedEdgeImage"><para>This pattern was not trained using the 
+		<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAlgorithmConstants">NonLinearCNLPAS</see><see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.Algorithm">algorithm</see> 
+		(the only algorithm that generates an edge image).
+	</para></exception><remarks><PARA>Gets an image containing the trained edge pattern.  Pixels in the TrainedEdgeImage will be either 255 if the pixel is part of the edge pattern or 0 if the pixel is not part of the edge pattern.</PARA></remarks><summary>Gets an image containing the trained edge pattern.  Pixels in the TrainedEdgeImage will be either 255 if the pixel is part of the edge pattern or 0 if the pixel is not part of the edge pattern.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainedPatternHeight"><remarks><PARA>
+Gets the height (in pixels) of the trained pattern.  This is the as same width of the images returned by 
+<see cref="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.GetTrainedPatternImage" />, 
+<see cref="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.GetTrainedPatternImageMask" />, and  
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainedEdgeImage" />.
+</PARA></remarks><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException" cgnxHRESULT="E_CogOperator_NotTrained"><para>
+	This pattern has not been trained.
+	</para></exception><summary>Gets the height (in pixels) of the trained pattern.  This is the same as the height of the images returned by GetTrainedPatternImage, GetTrainedPatternImageMask, &amp; TrainedEdgeImage.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainedPatternWidth"><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException" cgnxHRESULT="E_CogOperator_NotTrained"><para>
+	This pattern has not been trained.
+	</para></exception><remarks><PARA>Gets the width (in pixels) of the trained pattern.  This is the as same width of the images returned by 
+<see cref="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.GetTrainedPatternImage" />, 
+<see cref="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.GetTrainedPatternImageMask" />, and  
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainedEdgeImage" />.
+</PARA></remarks><summary>Gets the width (in pixels) of the trained pattern.  This is the same as the width of the images returned by GetTrainedPatternImage, GetTrainedPatternImageMask, &amp; TrainedEdgeImage.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Trained"><remarks><PARA>True if the pattern is trained.</PARA></remarks><summary>True if the pattern is trained.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.EdgeThresholdHigh"><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than 0 or greater than 255.
+	</para></exception><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_EdgeThresholdHigh--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfEdgeThresholdHigh" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when both the low and high thresholds change but the pattern does not become untrained 
+		(because it has not been trained). 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_EdgeThresholds--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfEdgeThresholdLow" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfEdgeThresholdHigh" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when either or both thresholds change and the pattern becomes untrained. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_EdgeThresholds | cogFA_CNLSearchPattern_TrainResults--></ul></event><remarks><PARA>
+All 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="edge_detection">edges</see> with strengths above the high threshold are included in the trained pattern.  All edges with strengths below the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.EdgeThresholdLow">low threshold</see> are excluded from the edge map. 
+Edges with strengths between the thresholds are included in the edge map if they are 
+8-connected (vertically, horizontally, or diagonally adjacent) to another 
+edge with a strength above the threshold, either directly or 
+through other edges with strengths between the thresholds. This property
+only applies to the Nonlinear CNLPAS algorithm.
+</PARA><PARA>
+The high threshold must be greater than or equal to the low threshold; if this value 
+is set below the low threshold, the low threshold is also set to the supplied value.
+</PARA><DEFAULT>9.0</DEFAULT></remarks><summary>All edges with strengths above the high threshold are included in the trained pattern.  Only applies to NonLinear CNLPAS.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.EdgeThresholdLow"><remarks><PARA>
+All 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="edge_detection">edges</see> with strengths above the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.EdgeThresholdHigh">high threshold</see> are included in the trained pattern.  All edges with strengths below the low threshold are excluded from the edge map. 
+Edges with strengths between the thresholds are included in the edge map if they are 
+8-connected (vertically, horizontally, or diagonally adjacent) to another 
+edge with a strength above the threshold, either directly or 
+through other edges with strengths between the thresholds. This property
+only applies to the Nonlinear CNLPAS algorithm.
+</PARA><PARA>
+The low threshold must be less than or equal to the high threshold; if this value 
+is set above the high threshold, the high threshold is also set to the supplied value.
+</PARA><DEFAULT>3.0</DEFAULT></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_EdgeThresholdLow--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfEdgeThresholdLow" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when both the low and high thresholds change but the pattern does not become untrained 
+		(because it has not been trained). 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_EdgeThresholds--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfEdgeThresholdLow" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfEdgeThresholdHigh" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when either or both thresholds change and the pattern becomes untrained. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_EdgeThresholds | cogFA_CNLSearchPattern_TrainResults--></ul></event><summary>Edges with strengths below the low threshold are excluded from the trained pattern.  Edges with strengths between low &amp; high (inclusive) are included if 8-connected to an edge already belonging to the trained pattern.  Only applies to NonLinear CNLPAS.</summary><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than 0 or greater than 255.
+	</para></exception></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.AdvancedTrainingEnabled"><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_AdvancedTrainingEnabled--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfAdvancedTrainingEnabled" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when the value of this property changes and the pattern becomes untrained as result 
+		of the property value change. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_Misc | cogFA_CNLSearchPattern_TrainResults--></ul></event><summary>Advanced training only applies to the Linear Search algorithm.  It should only be enabled if CNLSearch is returning inaccurate result locations.  Enabling advanced training will cause longer training time and may effect execution time.</summary><remarks><PARA><see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="cnlsearch_advanced_training">Advanced training</see> 
+only applies to the Linear Search algorithm.  It should only be enabled if CNLSearch is returning inaccurate result locations.  Enabling advanced training will cause longer training time and may affect  execution time.
+</PARA><DEFAULT>False</DEFAULT></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.IgnorePolarity"><summary>If true, pattern polarity is ignored.  If false, only patterns with polarity matching the trained pattern will be found.  Only applies to linear search.  Linear CNLPAS never ignores polarity.  NonLinear CNLPAS always ignores polarity.</summary><remarks><PARA>
+If true, <see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="computing_the_correlation_coefficient">pattern polarity</see> is ignored.  If false, only patterns with polarity matching the trained pattern will be found.  This property only 
+applies to Linear Search. Linear CNLPAS always considers polarity while Nonlinear CNLPAS always ignores polarity.
+</PARA><PARA>
+In general, ignoring polarity increases potential image confusion. Unless you know that 
+your application will need to recognize inverted polarity
+</PARA><DEFAULT>False</DEFAULT></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_IgnorePolarity--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfIgnorePolarity" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Accuracies"><remarks><PARA>
+Specifies the 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="cnlsearch_parameter_overview">accuracies</see> for which to train this CNLSearch pattern.  Multiple accuracies may be trained by performing a bitwise OR of 
+the <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAccuracyConstants">accuracy constants</see>.
+</PARA><PARA>
+You can only search using an accuracy for which you have trained this <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern" />.
+</PARA><DEFAULT><see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAccuracyConstants">VeryFine</see></DEFAULT></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_Accuracies--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfAccuracies" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when the value of this property changes and the pattern becomes untrained as result 
+		of the property value change (there is a change to which accuracies are included). 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_Misc | cogFA_CNLSearchPattern_TrainResults--></ul></event><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is not formed by ORing together one or more of the values 
+	defined in <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAccuracyConstants" />.
+	</para></exception><summary>Specifies the accuracies for which to train this CNLSearch pattern.  Multiple accuracies may be trained by performing a bitwise OR of the accuracy constants.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Algorithms"><remarks><PARA>
+Specifies the algorithm or algorithms for which to train this CNLSearch pattern.  Multiple algorithms may be trained by performing a bitwise OR of the 
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAlgorithmConstants">algorithm constants</see>.
+</PARA><PARA>
+You can only search using an algorithm for which this pattern is trained. Training multiple algorithms does not affect search speed.
+</PARA><DEFAULT><see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAlgorithmConstants">LinearSearch</see></DEFAULT></remarks><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is not formed by ORing together one or more of the values 
+	defined in <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAlgorithmConstants" />.
+	</para></exception><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_Algorithms--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfAlgorithms" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when the value of this property changes and the pattern becomes untrained as result 
+		of the property value change (there is a change to which algorithms are included). 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_Misc | cogFA_CNLSearchPattern_TrainResults--></ul></event><summary>Specifies the algorithm(s) for which to train this CNLSearch pattern.  Multiple algorithms may be trained by performing a bitwise OR of the algorithm constants.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.PartialMatchLimitRight"><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than zero.
+	</para></exception><remarks><PARA>
+Limit-right specifies how many columns of pixels on the right side of the pattern may lie outside of the search image and still be found. Partial match searching is only supported for 
+the Linear Search algorithm.
+</PARA><PARA>
+The partial match limits that you specify for training are only used during training if you have 
+specified <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.AdvancedTrainingEnabled">advanced training</see>. Advanced training 
+uses these limits to help train a pattern that will be effective at run time when the 
+pattern is partially outside of the image.
+</PARA><PARA>
+The training-time 
+partial match limits that you specify <ITALIC>are</ITALIC> used at run time if you specify 
+true for the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitsUsePattern" /> 
+property.
+</PARA><DEFAULT>0</DEFAULT></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property is changed, but the change does cause the 
+		pattern to become untrained (because it has not been trained yet). 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_PartialMatchLimitRight--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitRight" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when the value of this property is changed and this pattern becomes untrained. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_PartialMatchLimits--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitUp" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitDown" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitLeft" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitRight" /></li><!--FA:cogFA_CNLSearchPattern_TrainResults--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrained" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternWidth" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternHeight" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImage" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImageMask" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedEdgeImage" /></li></ul></event><summary>Limit-right specifies how many columns of pixels on the right side of the pattern may lie outside of the search region and still be found.  Partial match results are not supported by the CNLPAS algorithms.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.PartialMatchLimitLeft"><remarks><PARA>
+Limit-left specifies how many columns of pixels on the left side of the pattern may lie outside of the search image and still be found. Partial match searching is only supported for 
+the Linear Search algorithm.
+</PARA><PARA>
+The partial match limits that you specify for training are only used during training if you have 
+specified <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.AdvancedTrainingEnabled">advanced training</see>. Advanced training 
+uses these limits to help train a pattern that will be effective at run time when the 
+pattern is partially outside of the image.
+</PARA><PARA>
+The training-time 
+partial match limits that you specify <ITALIC>are</ITALIC> used at run time if you specify 
+true for the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitsUsePattern" /> 
+property.
+</PARA><DEFAULT>0</DEFAULT></remarks><summary>Limit-left specifies how many columns of pixels on the left side of the pattern may lie outside of the search region and still be found.  Partial match results are not supported by the CNLPAS algorithms.</summary><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than zero.
+	</para></exception><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property is changed, but the change does cause the 
+		pattern to become untrained (because it has not been trained yet). 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_PartialMatchLimitLeft--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitLeft" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when the value of this property is changed and this pattern becomes untrained. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_PartialMatchLimits--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitUp" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitDown" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitLeft" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitRight" /></li><!--FA:cogFA_CNLSearchPattern_TrainResults--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrained" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternWidth" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternHeight" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImage" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImageMask" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedEdgeImage" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.PartialMatchLimitDown"><summary>Limit-down specifies how many rows of pixels at the bottom of the pattern may lie outside of the search region and still be found.  Partial match results are not supported by the CNLPAS algorithms.</summary><remarks><PARA>
+Limit-down specifies how many rows of pixels at the bottom of the pattern may lie outside of the search image and still be found. Partial match searching is only supported for 
+the Linear Search algorithm.
+</PARA><PARA>
+The partial match limits that you specify for training are only used during training if you have 
+specified <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.AdvancedTrainingEnabled">advanced training</see>. Advanced training 
+uses these limits to help train a pattern that will be effective at run time when the 
+pattern is partially outside of the image.
+</PARA><PARA>
+The training-time 
+partial match limits that you specify <ITALIC>are</ITALIC> used at run time if you specify 
+true for the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitsUsePattern" /> 
+property.
+</PARA><DEFAULT>0</DEFAULT></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property is changed, but the change does cause the 
+		pattern to become untrained (because it has not been trained yet). 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_PartialMatchLimitDown--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitDown" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when the value of this property is changed and this pattern becomes untrained. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_PartialMatchLimits--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitUp" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitDown" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitLeft" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitRight" /></li><!--FA:cogFA_CNLSearchPattern_TrainResults--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrained" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternWidth" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternHeight" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImage" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImageMask" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedEdgeImage" /></li></ul></event><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than zero.
+	</para></exception></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.PartialMatchLimitUp"><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is less than zero.
+	</para></exception><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property is changed, but the change does cause the 
+		pattern to become untrained (because it has not been trained yet). 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_PartialMatchLimitUp--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitUp" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when the value of this property is changed and this pattern becomes untrained. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_PartialMatchLimits--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitUp" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitDown" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitLeft" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfPartialMatchLimitRight" /></li><!--FA:cogFA_CNLSearchPattern_TrainResults--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrained" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternWidth" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternHeight" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImage" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImageMask" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedEdgeImage" /></li></ul></event><remarks><PARA>
+Limit-up specifies how many rows of pixels at the top of the pattern may lie outside of the search image and still be found. Partial match searching is only supported for 
+the Linear Search algorithm.
+</PARA><PARA>
+The partial match limits that you specify for training are only used during training if you have 
+specified <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.AdvancedTrainingEnabled">advanced training</see>. Advanced training 
+uses these limits to help train a pattern that will be effective at run time when the 
+pattern is partially outside of the image.
+</PARA><PARA>
+The training-time 
+partial match limits that you specify <ITALIC>are</ITALIC> used at run time if you specify 
+true for the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.PartialMatchLimitsUsePattern" /> 
+property.
+</PARA><DEFAULT>0</DEFAULT></remarks><summary>Limit-up specifies how many rows of pixels at the top of the pattern may lie outside of the search region and still be found.  Partial match results are not supported by the CNLPAS algorithms.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMaskOffsetY"><remarks><PARA>The Y-offset from the upper-left corner of the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" /> 
+to the upper-left corner 
+of the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMask" /> in pixels.</PARA><PARA>
+If these values are changed, the pattern becomes untrained.
+</PARA><DEFAULT>0</DEFAULT></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMaskOffsetY" /> is changed, but the change does cause the 
+		pattern to become untrained (because it has not been trained yet). 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_TrainImageMaskOffsetY--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMaskOffsetY" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMaskOffsetY" /> is changed and this pattern becomes untrained. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_TrainImageMask--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMask" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMaskOffsetX" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMaskOffsetY" /></li><!--FA:cogFA_CNLSearchPattern_TrainResults--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrained" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternWidth" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternHeight" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImage" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImageMask" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedEdgeImage" /></li></ul></event><summary>Y offset value in pixels.  The X &amp; Y offset values measure the offset from the upper-left corner of the TrainImage to the upper-left corner of the TrainImageMask in image coordinates of the TrainImage.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMaskOffsetX"><remarks><PARA>The X-offset from the upper-left corner of the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" /> 
+to the upper-left corner 
+of the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMask" /> in pixels.</PARA><PARA>
+If these values are changed, the pattern becomes untrained.
+</PARA><DEFAULT>0</DEFAULT></remarks><summary>X offset value in pixels.  The X &amp; Y offset values measure the offset from the upper-left corner of the TrainImage to the upper-left corner of the TrainImageMask in image coordinates of the TrainImage.</summary><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMaskOffsetX" /> is changed, but the change does cause the 
+		pattern to become untrained (because it has not been trained yet). 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_TrainImageMaskOffsetX--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMaskOffsetX" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMaskOffsetX" /> is changed and this pattern becomes untrained. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_TrainImageMask--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMask" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMaskOffsetX" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMaskOffsetY" /></li><!--FA:cogFA_CNLSearchPattern_TrainResults--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrained" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternWidth" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternHeight" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImage" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImageMask" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedEdgeImage" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMask"><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMask" /> is changed, but the change does cause the 
+		pattern to become untrained (because it has not been trained yet). 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_TrainImageMask--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMask" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMask" /> is changed and this pattern becomes untrained. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_TrainImageMask--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImageMask" /></li></ul></event><summary>A mask which allows the user to identify areas of the pattern as care or don't care.  TrainImage pixels that correspond to don't care mask pixels are not trained as part of the pattern.  Mask is not supported by the CNLPAS algorithms.</summary><remarks><PARA>
+A mask which allows the user to identify areas of the pattern as care or don't care.  Pixels in the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" /> that correspond to pixels in the mask image
+with zero values ("don't care" pixels) are not trained. Pixels in the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" /> that correspond to pixels in the mask image with nonzero values 
+("care" pixels) are trained. 
+</PARA><PARA>
+Mask images are only supported for the Linear Search 
+algorithm.
+</PARA><PARA>
+The mask image does not need to be the same size as the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" />. Any 
+training image pixels not covered by the mask are treated as care pixels. By default, the
+mask image's upper-left corner is anchored to the training image's upper-left corner. You 
+can specify a different offset using the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMaskOffsetX" /> and 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMaskOffsetY" /> properties. 
+</PARA><PARA>
+Changing the value of this property will untrain this pattern.
+</PARA><DEFAULT>NULL</DEFAULT></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegionMode"><summary>Specifies how the TrainRegion is applied to the TrainImage.</summary><remarks><PARA>Specifies how the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegion" /> is applied to the 
+	<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" />.</PARA><PARA>
+	If you supply an image-aligned <see cref="T:Cognex.VisionPro.CogRectangle" />,
+	then the <see cref="T:Cognex.VisionPro.CogRegionModeConstants">region mode</see> 
+	has no effect. If you specify 
+	<see cref="T:Cognex.VisionPro.CogRegionModeConstants">PixelAlignedBoundingBox</see>, then all pixels enclosed by a pixel-aligned 
+bounding box around the input region are used for training. If you specify 
+<see cref="T:Cognex.VisionPro.CogRegionModeConstants">PixelAlignedBoundingBoxAdjustMask</see> and you are using the
+Linear Search algorithm, then pixels outside of the region are masked as "don't care" pixels. The Linear CNLPAS and Nonlinear CNLPAS algorithms do not support this 
+region mode; if you specify PixelAlignedBoundingBoxAdjustMask, the tool
+actually uses PixelAlignedBoundingBox.
+	</PARA><PARA>
+If you supply a rotated or skewed <see cref="T:Cognex.VisionPro.CogRectangleAffine" /> 
+you have an additional option. If you specify <see cref="T:Cognex.VisionPro.CogRegionModeConstants">AffineTransform</see>, then the pixels within 
+the region are affine-transformed to produce a new, image-aligned training image. This 
+option can be useful if you know that the search images will be rotated or skewed by a known amount from the training image, although if you can train from an image that resembles the expected search images, you may obtain better results, since the affine transformation resamples the pixels in the acquired image to produce the training image.
+</PARA><PARA>
+The pattern is untrained when you supply a new value for this property.
+</PARA><DEFAULT><see cref="T:Cognex.VisionPro.CogRegionModeConstants">PixelAlignedBoundingBoxAdjustMask</see></DEFAULT></remarks><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para>
+	The supplied value is not a member of <see cref="T:Cognex.VisionPro.CogRegionModeConstants" />.
+	</para></exception><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegionMode" /> is changed, but the change does cause the 
+		pattern to become untrained (because it has not been trained yet). 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_TrainRegionMode--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainRegionMode" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegionMode" /> is changed and this pattern becomes untrained. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_TrainRegionMode--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainRegionMode" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegion"><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegion" /> is changed, but the change does cause the 
+		pattern to become untrained (because it has not been trained yet). 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_TrainRegion--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainRegion" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegion" /> is changed and this pattern becomes untrained. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_TrainRegion--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainRegion" /></li></ul></event><summary>Region of interest in the TrainImage that will be used to train the pattern.  A NULL TrainRegion indicates that the entire TrainImage will be used to train the CNLSearch pattern.</summary><remarks><PARA>Region of interest in the TrainImage that will be used to train the pattern.  A NULL TrainRegion indicates that the entire TrainImage will be used to train the CNLSearch pattern.</PARA><PARA>
+You can specify any type of region and you can enable any degrees of freedom in the region. 
+Use the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegionMode" /> property to control how the input region is used.
+</PARA><DEFAULT>An interactive, default-constructed 
+<see cref="T:Cognex.VisionPro.CogRectangle" /> with all degrees of 
+freedom enabled.</DEFAULT></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage"><summary>Pattern image used to train CNLSearch.  The TrainRegion is applied to this TrainImage in order to define the region that will be used to train the pattern.  The TrainRegionMode property specifies how the region will be applied to this image.</summary><remarks><PARA>
+Pattern image used to train CNLSearch.  The 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegion" /> is applied to this image in order to define the region 
+that will be used to train the pattern.  The 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegionMode" /> property specifies how the region will be applied to this image.
+</PARA><PARA>
+If <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegion" /> is NULL, then the entire image is used for training. 
+If the value of this property changes (as when you supply a new training image), the
+pattern becomes untrained.
+</PARA><DEFAULT>NULL</DEFAULT></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" /> is changed, but the change does cause the 
+		pattern to become untrained (because it has not been trained yet). 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_TrainImage--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImage" /></li></ul></event><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" /> is changed and this pattern becomes untrained. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_TrainImage--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainImage" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.OriginY"><remarks><PARA>
+	The Y-component of the 
+	<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="pattern_origin">origin</see> of this CNLSearch pattern.  
+	The location returned by a CogCNLSearchResult is the position of this origin in the search 
+	image. This value is 
+	specified in the selected space of the supplied <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" />.
+</PARA><DEFAULT>70.0.</DEFAULT></remarks><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_OriginY--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfOriginY" /></li></ul></event><summary>The Y component of the origin of this CNLSearch pattern.  The location returned by a CogCNLSearchResult is the position of the origin in the search image.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.OriginX"><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="singleState"><para>
+		
+		Fires when the value of this property changes. 
+	</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchPattern_OriginX--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfOriginX" /></li></ul></event><summary>The X component of the origin of this CNLSearch pattern.  The location returned by a CogCNLSearchResult is the position of the origin in the search image.</summary><remarks><PARA>
+	The X-component of the 
+	<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="pattern_origin">origin</see> of this CNLSearch pattern.  
+	The location returned by a CogCNLSearchResult is the position of this origin in the search 
+	image. This value is 
+	specified in the selected space of the supplied <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" />.
+</PARA><DEFAULT>70.0.</DEFAULT></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.ChangedEventSuspended"><summary>If nonzero, indicates that the raising of the Changed event has been suspended. This value is incremented when SuspendChangedEvent is called and decremented when ResumeAndRaiseChangedEvent is called.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.HasChanged"><summary>If true, the serializable state of this object has changed since the last time it was serialized.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Dispose(System.Boolean)"><param name="disposing">Should be set to true when called from your public Dispose() method, thus disposing of all managed and unmanaged resources.  It should be set to false when called from your Finalizer, thus disposing of only unmanaged resources.</param><summary>Releases all resources used by this class instance.  Only derived classes that implement Dispose should call this method; Other clients who wish to explicitly release resources should call IDisposable.Dispose.   Do not attempt to access an object after it has been disposed.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Clone"><summary>Returns a deep copy of this class instance.  Derived classes that implement Clone should override this method; other clients who wish to clone this instance should call ICloneable.Clone. See also CogSerializer.DeepCopyObject</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SuspendChangedEvent"><summary>Temporarily suspends the raising of the Changed event. May be called more than once, and a corresponding call to ResumeAndRaiseChangedEvent must be made for each call to SuspendChangedEvent.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.ResumeAndRaiseChangedEvent"><summary>Re-enables raising of the Changed event after SuspendChangedEvent has been called.  Also raises the Changed event if the ChangedEventSuspended count is reduced to zero and any changes were made while events were suspended. Must be called once for each call to SuspendChangedEvent.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.GetTrainedPatternImage"><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException" cgnxHRESULT="E_CogOperator_NotTrained"><para>
+	This pattern is not trained.
+	</para></exception><remarks><PARA>Gets the image used to train the current pattern.  How this image is generated depends on the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegionMode" />.  Actual features within this image that are trained also depends on the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegionMode" />, as well as the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMask" />.</PARA></remarks><returns><PARA>The image.</PARA></returns><summary>Gets the image used to train the current pattern.  How this image is generated depends on the TrainRegionMode.  Actual features within this image that are trained also depends on the TrainRegionMode, as well as the TrainImageMask.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.GetTrainedPatternImageMask"><returns><PARA>The mask image. NULL is returned if this pattern is not trained 
+	for the Linear Search algorithm (the only algorithm that supports the
+	use of a mask.</PARA></returns><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException" cgnxHRESULT="E_CogOperator_NotTrained"><para>
+	This pattern is not trained.
+	</para></exception><summary>Gets the actual mask image used to train the current pattern.  This mask is the combination of the TrainImageMask and any mask that may be required by TrainRegionMode.  This mask is the same size as the image returned by GetTrainedPatternImage.</summary><remarks><PARA>Gets the actual mask image used to train the current pattern.  This mask is the combination of the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImageMask" /> and any mask that may be required by <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegionMode" />.  This mask is the same size as the image returned by <see cref="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.GetTrainedPatternImage" />.</PARA></remarks></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Train"><exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException" cgnxHRESULT="E_Cog_SecurityViolation"><para>Security is not enabled for this vision tool. See 
+<see cref="u:Programming.Tools.Theory.Security" cgnxAnchor="resolving_securityrelated_error_messages">Resolving Security-Related Error Messages</see>
+for more information.</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoTrainImageException" cgnxHRESULT="E_CogOperator_NoTrainImage"><para><see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" /> is NULL.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException" cgnxHRESULT="E_CogImage_NoPixels"><para><see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" /> is not allocated.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException" cgnxHRESULT="E_CogOperator_InvalidRegion"><para>
+	The selected space of the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegion" /> is 
+	not a valid space of the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" />.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException" cgnxHRESULT="E_CogOperator_InvalidRegion"><para><see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegion" /> lies completely outside of  
+	<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" />. (Clipping of the train region
+	by the input image is permitted, except when the 
+	<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegionMode" /> is 
+	<see cref="T:Cognex.VisionPro.CogRegionModeConstants">AffineTransform</see>.
+	In that case, the input region must line completely within the 
+	image. This error may be thrown if the input region is within a 
+	few pixels of the edge of the image.)
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException" cgnxHRESULT="E_CogOperator_InvalidRegion"><para><see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegionMode" /> is 
+	<see cref="T:Cognex.VisionPro.CogRegionModeConstants">AffineTransform</see> but 
+	<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegion" /> is not of type 
+	<see cref="T:Cognex.VisionPro.CogRectangleAffine" />.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchTooSmallToTrainException" cgnxHRESULT="E_CogCNLSearch_TooSmallToTrain"><para>
+	Either the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainRegion" /> or the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" /> 
+	is too small to train. The minimum trainable image size is 8x8 pixels.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchCanNotTrainException" cgnxHRESULT="E_CogCNLSearch_CanNotTrain"><para><see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.TrainImage" /> 
+	does not contain a trainable image (not enough features).
+	</para></exception><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when this pattern is trained. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_TrainResults--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrained" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternWidth" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternHeight" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImage" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImageMask" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedEdgeImage" /></li></ul></event><remarks><PARA>Trains this CNLSearch pattern.  If the pattern is already trained then it will be untrained and retrained.</PARA><PARA>
+The pattern is trained for the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Algorithms" /> and <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Accuracies" /> 
+specified in this object. Keep in mind that only the trained algorithms and accuracies can be used at run time.
+</PARA></remarks><summary>Trains this CNLSearch pattern.  If the pattern is already trained then it will be untrained and retrained.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Untrain"><event cref="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when this pattern is untrained. 
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_CNLSearchPattern_TrainResults--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrained" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternWidth" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedPatternHeight" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImage" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfGetTrainedPatternImageMask" /></li><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.SfTrainedEdgeImage" /></li></ul></event><summary>Untrain this pattern.</summary><remarks><PARA>Untrains this pattern. Once a pattern has been untrained, it cannot be 
+	used to perform a search until it is retrained. This function has no effect if 
+	the pattern is not currently trained.</PARA></remarks></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Execute(Cognex.VisionPro.CogImage8Grey,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams)"><param name="inputImage"><PARA>The image to search.</PARA></param><param name="searchRegion"><PARA>
+	The region to search. 
+	If the 
+	<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode">region mode</see> specified in <paramref name="runParams" /> 
+is <see cref="T:Cognex.VisionPro.CogRegionModeConstants">PixelAlignedBoundingBox</see> then clipping is permitted.
+	</PARA></param><param name="runParams"><PARA>
+	An <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams" /> specifying the search parameters.
+	</PARA></param><summary>Run this CNLSearch pattern on the given region/image with the given runtime parameters.  A results collection will be created and filled with CogCNLSearchResult classes in order of decreasing score.</summary><remarks><PARA>
+Run this CNLSearch pattern on the supplied input image and search region using
+the supplied <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams" />.
+A <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchResults" /> will be created and 
+filled with CogCNLSearchResult classes in order of decreasing score.
+</PARA><PARA>
+If you have specified a point search, then this function returns a single result object, even if the score for the search is zero.
+</PARA><PARA>
+If an error occurs, then a NULL result object is returned.</PARA></remarks><returns><PARA>A <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchResults" /> results collection, sorted in order 
+	of decreasing score, containing the results of the search. </PARA></returns><exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException" cgnxHRESULT="E_Cog_SecurityViolation"><para>Security is not enabled for this vision tool. See 
+<see cref="u:Programming.Tools.Theory.Security" cgnxAnchor="resolving_securityrelated_error_messages">Resolving Security-Related Error Messages</see>
+for more information.</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoInputImageException" cgnxHRESULT="E_CogOperator_NoInputImage"><para><paramref name="inputImage" /> is NULL.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException" cgnxHRESULT="E_CogImage_NoPixels"><para><paramref name="inputImage" /> is not allocated.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException" cgnxHRESULT="E_CogOperator_NotTrained"><para>
+	This object has not been <see cref="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Train" />.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchAlgorithmNotTrainedException" cgnxHRESULT="E_CogCNLSearch_AlgorithmNotTrained"><para>
+	This object has not been trained for the algorithm specified in 
+	<paramref name="runParams" />.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchAccuracyNotTrainedException" cgnxHRESULT="E_CogCNLSearch_AccuracyNotTrained"><para>
+	This object has not been trained for the accuracy specified in 
+	<paramref name="runParams" />.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException" cgnxHRESULT="E_CogOperator_InvalidRegion"><para>
+	The selected space of <paramref name="searchRegion" /> is 
+	not a valid space in <paramref name="inputImage" />.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException" cgnxHRESULT="E_CogOperator_InvalidRegion"><para>
+	The <paramref name="searchRegion" /> lies completely outside of <paramref name="inputImage" />.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException" cgnxHRESULT="E_CogOperator_InvalidRegion"><para>
+	The 
+	<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode">region mode</see> 
+	specified in <paramref name="runParams" /> is 
+	<see cref="T:Cognex.VisionPro.CogRegionModeConstants">AffineTransform</see> but
+	the <paramref name="searchRegion" /> does not fall completely within 
+	<paramref name="inputImage" /> 
+	Note that if the <paramref name="searchRegion" /> falls within 2 or 3 pixels of any edge of
+	<paramref name="inputImage" />, then this error will occur.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException" cgnxHRESULT="E_CogOperator_InvalidRegion"><para>
+	The 
+	<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode">region mode</see> specified in <paramref name="runParams" />  is <see cref="T:Cognex.VisionPro.CogRegionModeConstants">AffineTransform</see> but 
+<paramref name="searchRegion" /> is not of type <see cref="T:Cognex.VisionPro.CogRectangleAffine" />.	</para></exception><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para><paramref name="runParams" /> is NULL.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchTooSmallToSearchException" cgnxHRESULT="E_CogCNLSearch_TooSmallToSearch"><para><paramref name="inputImage" /> or 
+	the 
+	<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode">region mode</see> 
+	specified in <paramref name="runParams" /> is too small to contain the pattern. Note that 
+	this error condition may be thrown in cases where a partially matched pattern could fit 
+	within the image or region.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchInvalidSearchPointException" cgnxHRESULT="E_CogCNLSearch_InvalidSearchPoint"><para> 
+	The supplied starting point for a point search would place the pattern outside of
+	<paramref name="inputImage" />. Note that this error will properly consider any specified 
+	partial-match parameters.
+	</para></exception></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.ImportFromCvlArchive(System.String)"><param name="filename"><PARA>The name of the file containing the CVL archive.</PARA></param><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para><paramref name="filename" /> is empty.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogFileOpenException" cgnxHRESULT="E_Cog_FileOpen"><para><paramref name="filename" /> could not be opened.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchImportFromCVLErrorException" cgnxHRESULT="E_CogCNLSearch_ImportFromCVLError"><para>
+	There was an error reading the contents of <paramref name="filename" />.
+	</para></exception><remarks><PARA>Loads a ccCnlSearchModel class from the specified CVL archive file into this CogCNLSearchPattern class.  The archive should contain only a single ccCnlSearchModel class.  Non-CVL parameters are set to their default VisionPro values.</PARA><PARA>
+This method suspends events while it runs. It typically generates a single event with the 
+<see cref="T:Cognex.VisionPro.CogStateIDs">cogState_MoreThanOneStateIDChanged</see> state ID and
+the appropriate functional areas set. In case of an error, this function may call the <see cref="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Train" /> 
+method to return this pattern to a known state. In this case, the function generates the events thrown by
+<see cref="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Train" />.
+</PARA></remarks><summary>Loads a ccCnlSearchModel class from the specified CVL archive file into this CogCNLSearchPattern class.  The archive should contain only a single ccCnlSearchModel class.  Non-CVL parameters are set to their default VisionPro values.</summary></member><member name="E:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Changed"><summary>Occurs when one or more parts of the object's state may have changed.</summary></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchTool"><remarks><PARA>
+Tool  that  locates features using a CNLSearch pattern.  This tool encompasses all of the classes required to run a CNLSearch inspection.
+</PARA></remarks><summary>Tool which locates features using a CNLSearch pattern.  This tool encompasses all of the classes required to run a CNLSearch inspection.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.#ctor(Cognex.VisionPro.CNLSearch.CogCNLSearchTool)"><param name="other">The instance to copy from.</param><summary>Constructs a new instance of this class as a deep copy of the given instance.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.#ctor"><summary>Constructs a new instance of this class.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.#ctor(System.IntPtr)"><param name="impl">n/a</param><summary>Constructs a new instance of this class using com pointer.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfLastRunRecordEnable"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by LastRunRecordEnable may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfLastRunRecordDiagEnable"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by LastRunRecordDiagEnable may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfCurrentRecordEnable"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by CurrentRecordEnable may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfInputImage"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by InputImage may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfPattern"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by Pattern may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfRunParams"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by RunParams may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfResults"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by Results may have changed.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfSearchRegion"><summary>This bit will be set in the EventArgs of a Changed event every time the value returned by SearchRegion may have changed.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SearchRegion"><event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed" cgnxEvent="singleState"><para>
+        
+Fires when the value of this property changes. 
+</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchTool_SearchRegion--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfSearchRegion" /></li></ul></event><remarks><PARA>
+The region of interest in the <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage" /> 
+in which the tool searches for the trained <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.Pattern" />.  
+Specify NULL to search the entire image.  
+The 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode">RunParams.SearchRegionMode</see>
+property specifies exactly how the region will be applied to this image.
+</PARA></remarks><summary>Region of interest in the InputImage that is used to locate CNLSearch pattern(s).  NULL means use entire InputImage.  The SearchRegionMode property of CogCNLSearchRunParams specifies exactly how the region will be applied to this image.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.Results"><summary>Results from the last invocation of the Run method.  A new CogCNLSearchResults is factoried for each inspection.  Previous results will be released prior to the new inspection.</summary><remarks><PARA>
+Results from the last invocation of the Run method.  A new 
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchResults" /> object is 
+factoried for each inspection.  Previous results will be released prior to the new 
+inspection.
+</PARA></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.RunParams"><event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed" cgnxEvent="singleState"><para>
+        
+Fires when the value of this property changes. 
+</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchTool_RunParams--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfRunParams" /></li></ul></event><remarks><PARA>
+A <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams" /> object containing the parameters 
+to use in locating the trained <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.Pattern" />.
+</PARA></remarks><summary>The CNLSearch run parameters.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.Pattern"><event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed" cgnxEvent="singleState"><para>
+        
+Fires when the value of this property changes. 
+</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchTool_Pattern--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfPattern" /></li></ul></event><remarks><PARA>
+The trained <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern" /> to
+locate in <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage" />.
+</PARA></remarks><summary>The CNLSearch pattern.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage"><remarks><PARA>
+Search image used to run a CNLSearch inspection.  
+The <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SearchRegion" /> is applied to this InputImage to 
+determine the region which is searched for the trained pattern.
+</PARA></remarks><event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed" cgnxEvent="singleState"><para>
+        
+Fires when the value of this property changes. 
+</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchTool_InputImage--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfInputImage" /></li></ul></event><summary>Search image used to run a CNLSearch inspection.  The SearchRegion is applied to this InputImage in order to define the region that will be used locate CNLSearch pattern(s).</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.CurrentRecordEnable"><summary>Enable creation of records by bitwise ORing the appropriate CurrentRecordConstants.</summary><remarks><PARA>
+Enable creation of records by bitwise ORing the appropriate 
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants" />.
+</PARA><DEFAULT><see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants">TrainImage </see> +
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants">TrainRegion </see> +
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants">TrainImageMask </see> +
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants">PatternOrigin </see> +
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants">InputImage </see> +
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants">SearchRegion </see> +
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants">SearchPoint</see></DEFAULT></remarks><event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed" cgnxEvent="singleState"><para>
+        
+Fires when the value of this property changes. 
+</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchTool_CurrentRecordEnable--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfCurrentRecordEnable" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.LastRunRecordDiagEnable"><summary>Enable creation of records by bitwise ORing the appropriate LastRunRecordDiagConstants.  These are diagnostic records that may cause the Tool to have a longer execution time.</summary><remarks><PARA>
+Enable creation of records by bitwise ORing the appropriate 
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants" />.  
+These are diagnostic records that may cause the Tool to have a longer execution time.
+</PARA><DEFAULT><see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants">InputImageByReference</see></DEFAULT></remarks><event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed" cgnxEvent="singleState"><para>
+        
+Fires when the value of this property changes. 
+</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchTool_LastRunRecordDiagEnable--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfLastRunRecordDiagEnable" /></li></ul></event></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.LastRunRecordEnable"><event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed" cgnxEvent="singleState"><para>
+        
+Fires when the value of this property changes. 
+</para><para>The following state flag may be affected:</para><!--STATEID:cogCNLSearchTool_LastRunRecordEnable--><ul><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfLastRunRecordEnable" /></li></ul></event><summary>Enable creation of records by bitwise ORing the appropriate LastRunRecordConstants.</summary><remarks><PARA>
+Enable creation of records by bitwise ORing the appropriate 
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordConstants" />.
+</PARA><DEFAULT><see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordConstants">ResultsOrigin</see> +
+<see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordConstants">ResultsMatchRegion</see></DEFAULT></remarks></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.RunStatus"><summary>Gets general information about the last call to Run.</summary></member><member name="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.Name"><summary>Gets or sets the name of the tool.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.Clone"><summary>Returns a deep copy of this class instance.  Derived classes that implement Clone should override this method; other clients who wish to clone this instance should call ICloneable.Clone. See also CogSerializer.DeepCopyObject.</summary></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.Run"><summary>Runs the tool using the current parameter settings.</summary><exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException" cgnxHRESULT="E_Cog_SecurityViolation"><para>Security is not enabled for this vision tool. See 
+<see cref="u:Programming.Tools.Theory.Security" cgnxAnchor="resolving_securityrelated_error_messages">Resolving Security-Related Error Messages</see>
+for more information.</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoInputImageException" cgnxHRESULT="E_CogOperator_NoInputImage"><para><paramref name="InputImage" /> is NULL.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException" cgnxHRESULT="E_CogImage_NoPixels"><para><paramref name="InputImage" /> is not allocated.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException" cgnxHRESULT="E_CogOperator_NotTrained"><para>
+	This object has not been <see cref="M:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.Train" />.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchAlgorithmNotTrainedException" cgnxHRESULT="E_CogCNLSearch_AlgorithmNotTrained"><para>
+	This object has not been trained for the algorithm specified in 
+	<paramref name="RunParams" />.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchAccuracyNotTrainedException" cgnxHRESULT="E_CogCNLSearch_AccuracyNotTrained"><para>
+	This object has not been trained for the accuracy specified in 
+	<paramref name="RunParams" />.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException" cgnxHRESULT="E_CogOperator_InvalidRegion"><para>
+	The selected space of <paramref name="SearchRegion" /> is 
+	not a valid space in <paramref name="InputImage" />.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException" cgnxHRESULT="E_CogOperator_InvalidRegion"><para><paramref name="SearchRegion" /> does not fall completely within 
+	<paramref name="InputImage" /> and the 
+	<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode">region mode</see> specified in <paramref name="RunParams" /> is 
+	not 
+	<see cref="T:Cognex.VisionPro.CogRegionModeConstants">AffineTransform</see>.
+	Note that if the <paramref name="SearchRegion" /> falls within 2 or 3 pixels of any edge of
+	<paramref name="InputImage" />, then this error will occur.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException" cgnxHRESULT="E_CogOperator_InvalidRegion"><para>
+	The 
+	<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode">region mode</see> specified in <paramref name="RunParams" />  is <see cref="T:Cognex.VisionPro.CogRegionModeConstants">AffineTransform</see> but 
+<paramref name="SearchRegion" /> is not of type <see cref="T:Cognex.VisionPro.CogRectangleAffine" />.	</para></exception><exception cref="T:System.ArgumentException" cgnxHRESULT="E_INVALIDARG"><para><paramref name="RunParams" /> is NULL.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchTooSmallToSearchException" cgnxHRESULT="E_CogCNLSearch_TooSmallToSearch"><para><paramref name="InputImage" /> or 
+	the 
+	<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.SearchRegionMode">region mode</see> 
+	specified in <paramref name="RunParams" /> is too small to contain the pattern. Note that 
+	this error condition may be thrown in cases where a partially matched pattern could fit 
+	within the image or region.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogCNLSearchInvalidSearchPointException" cgnxHRESULT="E_CogCNLSearch_InvalidSearchPoint"><para> 
+	The supplied starting point for a point search would place the pattern outside of
+	<paramref name="InputImage" />. Note that this error will properly consider any specified 
+	partial-match parameters.
+	</para></exception><exception cref="T:Cognex.VisionPro.Exceptions.CogToolNoOperatorException" cgnxHRESULT="E_CogTool_NoOperator"><para><see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.Pattern" /> is null.
+</para></exception><event cref="E:Cognex.VisionPro.ICogTool.Running" cgnxEvent="PreRun"><para>
+		Fires before the tool runs.
+	</para></event><event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed" cgnxEvent="multiState"><para>
+		
+		Fires when the tool runs. If the run was successful, results are generated;
+		if the run was not successful, no results are generated and the previous results are cleared.
+		Use <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.RunStatus" /> after <see cref="T:Cognex.VisionPro.CNLSearch.CogCNLSearchTool" /> returns or in a
+	<event cref="E:Cognex.VisionPro.ICogTool.Ran" cgnxEvent="PostRun" /> event handler
+		to determine whether a run was successful or unsuccessful.
+	</para><para>The following state flags may be affected:</para><ul><!--FA:cogFA_Tool_Results--><li><see cref="F:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.SfResults" /></li><!--FA:cogFA_Tool_LastRunRecord--></ul></event><event cref="E:Cognex.VisionPro.ICogTool.Ran" cgnxEvent="PostRun"><para>
+		Fires after the tool runs.
+	</para></event><remarks><PARA>
+Attempts to locate the trained <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.Pattern" /> in the 
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.InputImage" /> using the current <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.RunParams" />. Results
+are placed in <see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.Results" />.
+</PARA><NOTE>
+		This method does not actually raise the exceptions listed below. 
+		Use the <see cref="P:Cognex.VisionPro.CogFitCircleTool.RunStatus" /> property
+		to obtain a <see cref="T:Cognex.VisionPro.ICogRunStatus" /> reference. Then use
+		its <see cref="P:Cognex.VisionPro.ICogRunStatus.Exception" /> property to see
+		if the Run method raised any exceptions.
+	</NOTE></remarks></member><member name="M:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.Dispose(System.Boolean)"><param name="disposing">n/a</param><summary>Releases all resources used by this class instance.  Only derived classes that implement Dispose should call this method; Other clients who wish to explicitly release resources should call IDisposable.Dispose.   Do not attempt to access an object after it has been disposed.</summary></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAlgorithmConstants"><summary>Enumeration of CNLSearch algorithms.</summary><remarks><PARA>Enumeration of CNLSearch 
+	<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="how_cnlsearch_works">algorithms</see>.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchAlgorithmConstants.NonLinearCNLPAS"><summary>A nonlinear search mode which handles nonlinear changes in brightness of the image when searching for a pattern.  This is an edge based algorithm which locates a pattern by finding the best match of the pattern's edge and non-edge pixels.</summary><remarks><PARA>
+A 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="nonlinear_searches">nonlinear search mode</see> 
+which handles nonlinear changes in brightness of the image when searching for a pattern.  This is an edge based algorithm which locates a pattern by finding the best match of the pattern's edge and non-edge pixels.
+</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchAlgorithmConstants.LinearCNLPAS"><remarks><PARA>
+A <see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="searching_in_linear_mode">linear search mode</see> 
+which uses a conservative search strategy for identifying likely matches within an 
+image.  This strategy is somewhat time consuming, but it greatly reduces the risk of missing an actual instance of the pattern in an image.
+</PARA></remarks><summary>A linear search mode which uses a conservative search strategy for identifying likely matches within an image.  This strategy is somewhat time consuming, but it greatly reduces the risk of missing an actual instance of the pattern in an image.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchAlgorithmConstants.LinearSearch"><remarks><PARA>
+A 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="searching_in_linear_mode">linear search mode</see> 
+which uses an aggressive search strategy.  The aggressiveness of this algorithm maximizes speed.  However, because of this, it may tend to discard some unpromising locations prematurely.
+</PARA></remarks><summary>A linear search mode which uses an aggressive search strategy.  The aggressiveness of this algorithm maximizes speed.  However, because of this, it may tend to discard some unpromising locations prematurely.</summary></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchAccuracyConstants"><remarks><PARA>
+Enumeration of CNLSearch 
+<see cref="u:Search.CNLSearch.Theory.CNLSearch" cgnxAnchor="selecting_a_search_accuracy">accuracy</see> levels.
+</PARA></remarks><summary>Enumeration of CNLSearch accuracy levels.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchAccuracyConstants.Coarse"><summary>Specifies lowest-accuracy search.  A higher accuracy search produces increasingly accurate results at the expense of additional time and memory.</summary><remarks><PARA>
+Specifies lowest-accuracy but fastest search.  Search results may be accurate
+to within ± 2 pixels.
+</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchAccuracyConstants.Fine"><remarks><PARA>
+Specifies intermediate-accuracy search.  Search results may be accurate
+to within ± 1 pixel.
+</PARA></remarks><summary>Specifies intermediate-accuracy search.  A higher accuracy search produces increasingly accurate results at the expense of additional time and memory.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchAccuracyConstants.VeryFine"><remarks><PARA>
+Specifies highest-accuracy but slowest search.  Search results may be accurate
+to within ± 0.25 pixels for Linear Search and Linear CNLPAS and ± 0.5 pixels 
+for Nonlinear CNLPAS.
+</PARA></remarks><summary>Specifies highest-accuracy search.  A higher accuracy search produces increasingly accurate results at the expense of additional time and memory.</summary></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchEdgeHitConstants"><summary>Enumeration used to indicate whether a pattern instance was found against one or more edges of the search region.</summary><remarks><PARA>Enumeration used to indicate whether a pattern instance was found against one or more edges of the search image.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchEdgeHitConstants.Bottom"><remarks><PARA>The pattern match was found against the bottom edge of the search image.</PARA></remarks><summary>The pattern match was found against the bottom edge of the search region.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchEdgeHitConstants.Right"><summary>The pattern match was found against the right edge of the search region.</summary><remarks><PARA>The pattern match was found against the right edge of the search image.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchEdgeHitConstants.Top"><remarks><PARA>The pattern match was found against the top edge of the search image.</PARA></remarks><summary>The pattern match was found against the top edge of the search region.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchEdgeHitConstants.Left"><summary>The pattern match was found against the left edge of the search region.</summary><remarks><PARA>The pattern match was found against the left edge of the search image.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchEdgeHitConstants.Unknown"><summary>The pattern match was found against an unknown edge of the search region.  The Linear Search algorithm can indicate that an edge was hit, but this algorithm can not indicate the specific edge.</summary><remarks><PARA>The pattern match was found against an unknown edge of the search image.  The Linear Search algorithm can indicate that an edge was hit, but this algorithm can not indicate the specific edge.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchEdgeHitConstants.None"><remarks><PARA>The pattern match was not found against any of the edges of the search image.</PARA></remarks><summary>The pattern match was not found against any of the edges of the search region.</summary></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchResultGraphicConstants"><summary>Constants used to specify desired result graphics.</summary><remarks><PARA>Constants used to specify desired result graphics.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchResultGraphicConstants.All"><summary>Draw all result graphics.</summary><remarks><PARA>Draw all result graphics.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchResultGraphicConstants.MatchRegion"><remarks><PARA>Draw the match region for this result.  This is a mapped version of the TrainRegion indicating where the pattern was found in the run-time image.</PARA></remarks><summary>Draw the match region for this result.  This is a mapped version of the TrainRegion indicating where the pattern was found in the run-time image.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchResultGraphicConstants.BoundingBox"><remarks><PARA>Draw a bounding box around the match region for this result.  The bounding box will be aligned with the selected space of the run-time image.</PARA></remarks><summary>Draw a bounding box around the match region for this result.  The bounding box will be aligned with the selected space of the run-time image.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchResultGraphicConstants.Origin"><remarks><PARA>Draw a cross at the pattern origin of this result.</PARA></remarks><summary>Draw a cross at the pattern origin of this result.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchResultGraphicConstants.TipText"><summary>Turn on tip text for result graphics.</summary><remarks><PARA>Turn on tip text for result graphics.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchResultGraphicConstants.None"><summary>Draw no result graphics.</summary><remarks><PARA>Draw no result graphics.</PARA></remarks></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordConstants"><remarks><PARA>
+    Use these constants with
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.LastRunRecordEnable" /> to specify the 
+<!--TAGFIX: 0 nodes matched the following tag --><see cref="u:Programming.Tools.Theory.ToolRecords">tool records</see> that the
+CogCNLSearch Tool
+generates when you call
+<see cref="M:Cognex.VisionPro.ICogTool.CreateLastRunRecord" />.
+</PARA><PARA>
+See <see cref="u:Programming.Tools.Theory.RecordKeys" cgnxAnchor="cgcnlsearchtool_record_keys">About Record Keys</see>  for a list of the record keys that the tool uses.
+</PARA></remarks><summary>Enumeration of Non-Diagnostic data that can be provided in the Tool's LastRunRecord.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordConstants.ResultsMatchRegion"><remarks><PARA>Include the match region of each result in the LastRunRecord.</PARA></remarks><summary>Include the match region of each result in the LastRunRecord.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordConstants.ResultsBoundingBox"><summary>Include the bounding box of each result in the LastRunRecord.</summary><remarks><PARA>Include the bounding box of each result in the LastRunRecord.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordConstants.ResultsOrigin"><remarks><PARA>Include the origin of each result in the LastRunRecord.</PARA></remarks><summary>Include the origin of each result in the LastRunRecord.</summary></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants"><summary>Enumeration of Diagnostic data that can be provided in the Tool's LastRunRecord.</summary><remarks><PARA>
+    Use these constants with
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.LastRunRecordDiagEnable" /> to specify the 
+diagnostic
+<!--TAGFIX: 0 nodes matched the following tag --><see cref="u:Programming.Tools.Theory.ToolRecords">tool records</see> that the
+CogCNLSearch Tool
+generates when you call
+<see cref="M:Cognex.VisionPro.ICogTool.CreateLastRunRecord" />.
+</PARA><PARA>
+See <see cref="u:Programming.Tools.Theory.RecordKeys" cgnxAnchor="cgcnlsearchtool_record_keys">About Record Keys</see>  for a list of the record keys that the tool uses.
+</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.SearchRegion"><summary>Include the search region in the LastRunRecord.  The search region is not included in the LastRunRecord if SearchPointEnabled is true and the run-time algorithm is set to Linear Search.</summary><remarks><PARA>Include the search region in the LastRunRecord.  The search region is not included in the LastRunRecord if SearchPointEnabled is true and the run-time algorithm is set to Linear Search.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.TransformedRegionImage"><summary>Include an image constructed by applying a search region, which must be an affine rectangle, to the run-time input image.  Only available if the region mode is affine transform.</summary><remarks><PARA>Include an image constructed by applying a search region, which must be an affine rectangle, to the run-time input image.  Only available if the region mode is affine transform.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.TrainedPatternEdges"><remarks><PARA>Include a graphic representing the trained edges on the trained pattern image.  Only available if running with the Nonlinear CNLPAS algorithm.</PARA></remarks><summary>Include a graphic representing the trained edges on the trained pattern image.  Only available if running with the NonLinear CNLPAS algorithm.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.TrainedPatternImageMask"><summary>Include a graphic representing the mask used to train the pattern.  This mask may include adjustments required to apply the region to the training image, based on the train region mode.  Only available if running with the Linear Search algorithm.</summary><remarks><PARA>Include a graphic representing the mask used to train the pattern.  This mask may include adjustments required to apply the region to the training image, based on the train region mode.  Only available if running with the Linear Search algorithm.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.TrainedPatternOrigin"><summary>Include a non interactive pattern origin on the trained pattern image of the LastRunRecord.</summary><remarks><PARA>Include a non interactive pattern origin on the trained pattern image of the LastRunRecord.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.TrainedPatternRegion"><summary>Include the non interactive train region on the trained pattern image of the LastRunRecord.</summary><remarks><PARA>Include the non interactive train region on the trained pattern image of the LastRunRecord.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.TrainedPatternImage"><remarks><PARA>Include the trained pattern image in the LastRunRecord.  Only available if the pattern is trained.</PARA></remarks><summary>Include the trained pattern image in the LastRunRecord.  Only available if the pattern is trained.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.TrainedEdges"><remarks><PARA>Include a graphic representing the trained edges in the LastRunRecord.  Only available if running with the Nonlinear CNLPAS algorithm.</PARA></remarks><summary>Include a graphic representing the trained edges in the LastRunRecord.  Only available if running with the NonLinear CNLPAS algorithm.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.TrainImageMask"><remarks><PARA>Include a graphic representing the train image mask in the LastRunRecord.  Only available if running with the Linear Search algorithm.</PARA></remarks><summary>Include a graphic representing the train image mask in the LastRunRecord.  Only available if running with the Linear Search algorithm.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.PatternOrigin"><remarks><PARA>Include a pattern origin in the LastRunRecord.</PARA></remarks><summary>Include a pattern origin in the LastRunRecord.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.TrainRegion"><summary>Include a clone of the train region in the LastRunRecord.</summary><remarks><PARA>Include a clone of the train region in the LastRunRecord.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.TrainImageDeepCopy"><remarks><PARA>Include a deep copy of the entire train image in the LastRunRecord.</PARA></remarks><summary>Include a deep copy of the entire train image in the LastRunRecord.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.SearchPoint"><summary>Include the search point in the LastRunRecord.  The search point is only included in the LastRunRecord if SearchPointEnabled is true and the run-time algorithm is set to Linear Search.</summary><remarks><PARA>Include the search point in the LastRunRecord.  The search point is only included in the LastRunRecord if SearchPointEnabled is true and the run-time algorithm is set to Linear Search.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.InputImageDeepCopy"><summary>Include a deep copy of the input image in the LastRunRecord.</summary><remarks><PARA>Include a deep copy of the input image in the LastRunRecord.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchLastRunRecordDiagConstants.InputImageByReference"><remarks><PARA>Include a reference to the input image in the LastRunRecord.</PARA></remarks><summary>Include a reference to the input image in the LastRunRecord.</summary></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants"><summary>Enumeration of data that can be provided in the Tool's CurrentRecord.</summary><remarks><PARA>
+    Use these constants with
+<see cref="P:Cognex.VisionPro.CNLSearch.CogCNLSearchTool.CurrentRecordEnable" /> to specify the 
+<!--TAGFIX: 0 nodes matched the following tag --><see cref="u:Programming.Tools.Theory.ToolRecords">tool records</see> that the
+CogCNLSearch Tool
+generates when you call
+<see cref="M:Cognex.VisionPro.ICogTool.CreateCurrentRecord" />.
+</PARA><PARA>
+See <see cref="u:Programming.Tools.Theory.RecordKeys" cgnxAnchor="cgcnlsearchtool_record_keys">About Record Keys</see>  for a list of the record keys that the tool uses.
+</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.SearchRegion"><remarks><PARA>Include the search region in the CurrentRecord.  The search region is not included in the CurrentRecord if SearchPointEnabled is true and the run-time algorithm is set to Linear Search.</PARA></remarks><summary>Include the search region in the CurrentRecord.  The search region is not included in the CurrentRecord if SearchPointEnabled is true and the run-time algorithm is set to Linear Search.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.InputImage"><remarks><PARA>Include the input image in the CurrentRecord.</PARA></remarks><summary>Include the input image in the CurrentRecord.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.SearchPoint"><summary>Include the search point in the CurrentRecord.  The search point is only included in the CurrentRecord if SearchPointEnabled is true and the run-time algorithm is set to Linear Search.</summary><remarks><PARA>Include the search point in the CurrentRecord.  The search point is only included in the CurrentRecord if SearchPointEnabled is true and the run-time algorithm is set to Linear Search.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.TrainedPatternEdges"><remarks><PARA>Include a graphic representing the trained edges on the trained pattern image.  Only available if the pattern has been trained for the Nonlinear CNLPAS algorithm.</PARA></remarks><summary>Include a graphic representing the trained edges on the trained pattern image.  Only available if the pattern has been trained for the NonLinear CNLPAS algorithm.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.TrainedPatternImageMask"><remarks><PARA>Include a graphic representing the mask used to train the pattern.  This mask may include adjustments required to apply the region to the train image.  Only available if pattern has been trained for the Linear Search algorithm.</PARA></remarks><summary>Include a graphic representing the mask used to train the pattern.  This mask may include adjustments required to apply the region to the train image.  Only available if pattern has been trained for the Linear Search algorithm.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.TrainedPatternOrigin"><remarks><PARA>Include a non interactive pattern origin on the trained pattern image of the current record.</PARA></remarks><summary>Include a non interactive pattern origin on the trained pattern image of the current record.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.TrainedPatternRegion"><summary>Include the non interactive train region on the trained pattern image of the current record.</summary><remarks><PARA>Include the non interactive train region on the trained pattern image of the current record.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.TrainedPatternImage"><remarks><PARA>Include the trained pattern image in the CurrentRecord.  Only available if the pattern is trained.</PARA></remarks><summary>Include the trained pattern image in the CurrentRecord.  Only available if the pattern is trained.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.TrainedEdges"><summary>Include a graphic representing the trained edges on the train image.  Only available if the pattern has been trained for the NonLinear CNLPAS algorithm.</summary><remarks><PARA>Include a graphic representing the trained edges on the train image.  Only available if the pattern has been trained for the Nonlinear CNLPAS algorithm.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.TrainImageMask"><remarks><PARA>Include a graphic representing the train image mask in the CurrentRecord.  Only available if the Linear Search algorithm is enabled for training.</PARA></remarks><summary>Include a graphic representing the train image mask in the CurrentRecord.  Only available if the Linear Search algorithm is enabled for training.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.PatternOrigin"><summary>Include the (interactive) pattern origin in the CurrentRecord.</summary><remarks><PARA>Include the (interactive) pattern origin in the CurrentRecord.</PARA></remarks></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.TrainRegion"><remarks><PARA>Include the (interactive) train region in the CurrentRecord.</PARA></remarks><summary>Include the (interactive) train region in the CurrentRecord.</summary></member><member name="F:Cognex.VisionPro.CNLSearch.CogCNLSearchCurrentRecordConstants.TrainImage"><summary>Include the entire train image in the CurrentRecord.</summary><remarks><PARA>Include the entire train image in the CurrentRecord.</PARA></remarks></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchRunParams.ChangedEventHandler"><summary>Occurs when one or more parts of the object's state may have changed.</summary></member><member name="T:Cognex.VisionPro.CNLSearch.CogCNLSearchPattern.ChangedEventHandler"><summary>Occurs when one or more parts of the object's state may have changed.</summary></member></members></doc>

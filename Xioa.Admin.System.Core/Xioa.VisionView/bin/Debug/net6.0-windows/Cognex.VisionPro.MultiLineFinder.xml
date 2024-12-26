@@ -1,0 +1,1777 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "Cognex.VisionPro.MultiLineFinder"
+    </assembly>
+    <members>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool.InputImageMaskOffsetYs">
+            <summary>
+Gets the collection of view mask y offsets used by this tool. Mask offset
+values are in pixel units.
+</summary>
+            <remarks>
+This property defines the mask y offset for each view. That is, the
+offset from the top of the view image to the top of the view mask, in
+pixel units.
+</remarks>
+            <value>
+The view mask y offsets.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool.InputImageMaskOffsetXs">
+            <summary>
+Gets the collection of view mask x offsets used by this tool. Mask offset
+values are in pixel units.
+</summary>
+            <remarks>
+This property defines the mask x offset for each view. That is, the
+offset from the left side of the view image to the left side of the view
+mask, in pixel units.
+</remarks>
+            <value>
+The view mask x offsets.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool.InputImageMasks">
+            <summary>
+Gets the collection of view masks used by this tool. View mask items can
+be null.
+</summary>
+            <remarks>
+                <para>
+This property configures view input image pixels as "care" or "don't
+care". "Care" image pixels are processed normally. "Don't care" image
+pixels are not considered. Non-zero pixel values in the view mask
+translate to "care" in the view image. Zero pixel values translate to
+"don't care".
+</para>
+                <para>
+View mask pixels are aligned to view image pixels according to the view
+mask offset values.
+</para>
+            </remarks>
+            <value>
+The view masks.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool.Regions">
+            <summary>
+Gets the collection of view regions processed by this tool. View region
+items can be null.
+</summary>
+            <value>
+The view regions.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool.InputImages">
+            <summary>
+Gets the collection of view input images processed by this tool.
+</summary>
+            <value>
+The view input images.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool.NumFOV">
+            <summary>
+Gets or sets the number of views processed by this tool.
+</summary>
+            <remarks>
+This property represents the number of views (i.e. image, region, mask
+sets) processed by the tool. That is, the size of the InputImages,
+Regions, InputImageMasks, InputImageMaskOffsetXs and
+InputImageMaskOffsetYs collections. Setting this property implicitly
+resizes the view collections to the new value. When NumFOV is increased
+new items are added to the end of their collections. And new item values
+are equal to the default item value, as specified in the following
+sections, for the particular collection.
+</remarks>
+            <value>
+The number of fields of view.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinderMFOVTool.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool.OnDeserialization(System.Object)">
+            <summary>
+Implementation of IDeserializationCallback::OnDeserialization.
+</summary>
+            <param name="sender">
+Not used.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool.#ctor(Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool)">
+            <summary>
+Constructs a deep copy of the supplied CogMultiLineFinderMFOVTool instance.
+</summary>
+            <param name="other">
+The object to copy. Cannot be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool.#ctor">
+            <summary>
+Construct a default CogMultiLineFinderMFOVTool object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool.SfNumFOV">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by NumFOV may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVTool">
+            <summary>
+This class provides tool level access to the
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder" />
+operator.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.InputImageMaskOffsetY">
+            <summary>
+Gets or sets the Y offset value in pixels.
+</summary>
+            <remarks>
+The <see cref="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.InputImageMaskOffsetX" />
+and InputImageMaskOffsetY values
+measure the offset from the upper-left corner of the InputImage to the
+upper-left corner of the
+<see cref="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.InputImageMask" />,
+in image coordinates of the InputImage.
+</remarks>
+            <value>
+The y offset. The default is 0.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+                <para>
+The following state flag may be affected:
+</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.SfInputImageMaskOffsetY" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.InputImageMaskOffsetX">
+            <summary>
+Gets or sets the X offset value in pixels.
+</summary>
+            <remarks>
+The InputImageMaskOffsetX and
+<see cref="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.InputImageMaskOffsetY" />
+values measure the offset from the upper-left corner of the InputImage to the
+upper-left corner of the
+<see cref="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.InputImageMask" />,
+in image coordinates of the InputImage.
+</remarks>
+            <value>
+The x offset. The default is 0.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+                <para>
+The following state flag may be affected:
+</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.SfInputImageMaskOffsetX" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.InputImageMask">
+            <summary>
+Gets or sets the InputImage mask. Non-zero pixel values
+indicate "care" and zero pixel values indicate "don't care".
+</summary>
+            <remarks>
+                <para>
+A mask <see cref="T:Cognex.VisionPro.CogImage8Grey" />
+indicating areas of "Care" and "Don't Care". 
+Pixels with nonzero values are interpreted as "Care"
+pixels: image pixels that correspond to "Care" pixels
+in the mask are treated normally. Pixels with zero values
+are interpreted as "Don't Care" pixels: image pixels that
+correspond to "Don't Care" pixels in the mask do not affect
+edge detection or coverage scores.
+</para>
+                <para>
+The mask is aligned to the input image using the 
+<see cref="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.InputImageMaskOffsetX" />
+and
+<see cref="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.InputImageMaskOffsetY" />
+properties.
+</para>
+            </remarks>
+            <value>
+The default is a NULL image.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+                <para>
+The following state flag may be affected:
+</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.SfInputImageMask" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.Region">
+            <summary>
+Gets or sets the input image region, if any, to be processed by this
+tool.
+</summary>
+            <value>
+The region.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.InputImage">
+            <summary>
+Gets or sets the input image to be processed by this tool.
+</summary>
+            <value>
+The input image.
+</value>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+Raised when assign an image that is not of type <see cref="T:Cognex.VisionPro.CogImage8Grey" />.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinderTool.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.OnDeserialization(System.Object)">
+            <summary>
+Implementation of IDeserializationCallback::OnDeserialization.
+</summary>
+            <param name="sender">
+Not used.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.#ctor(Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool)">
+            <summary>
+Constructs a deep copy of the supplied CogMultiLineFinderTool instance.
+</summary>
+            <param name="other">
+The object to copy. Cannot be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.#ctor">
+            <summary>
+Construct a default CogMultiLineFinderTool object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.SfInputImageMaskOffsetY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by InputImageMaskOffsetY may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.SfInputImageMaskOffsetX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by InputImageMaskOffsetX may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.SfInputImageMask">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by InputImageMask may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.SfRegion">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Region may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool.SfInputImage">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by InputImage may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderTool">
+            <summary>
+This class provides tool level access to the
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder" />
+operator.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.Results">
+            <summary>
+Gets the tool results.
+</summary>
+            <value>
+The results.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.LastRunRecordDiagEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordDiagConstants" />.
+</summary>
+            <value>
+A bitwise combination of
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordDiagConstants" />
+flags.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.LastRunRecordEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordConstants" />.
+</summary>
+            <value>
+A bitwise combination of
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordConstants" />
+flags.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.CurrentRecordEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderCurrentRecordConstants" />.
+</summary>
+            <value>
+A bitwise combination of
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderCurrentRecordConstants" />
+flags.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.RunParams">
+            <summary>
+Gets or sets the run parameters used by this tool.
+</summary>
+            <value>
+The run parameters.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.Clone">
+            <summary>
+Creates a deep copy of this instance. 
+</summary>
+            <returns>
+The deep copy.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinderToolBase object.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.OnDeserialization(System.Object)">
+            <summary>
+Implementation of IDeserializationCallback::OnDeserialization.
+</summary>
+            <param name="sender">
+Not used.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.#ctor(Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3{`0,`1,`2})">
+            <summary>
+Constructs a deep copy of the supplied CogMultiLineFinderTool instance.
+</summary>
+            <param name="other">
+The object to copy. Cannot be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.#ctor(Cognex.VisionPro.CogIndexableCollection`1{Cognex.VisionPro.ICogImage},Cognex.VisionPro.CogIndexableCollection`1{Cognex.VisionPro.ICogRegion},Cognex.VisionPro.CogIndexableCollection`1{Cognex.VisionPro.CogImage8Grey},Cognex.VisionPro.CogIndexableCollection`1{System.Int32},Cognex.VisionPro.CogIndexableCollection`1{System.Int32})">
+            <summary>
+Construct a default CogMultiLineFinderToolBase object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.#ctor(System.Boolean)">
+            <summary>
+Construct a default CogMultiLineFinderToolBase object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.SfResults">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Result may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.SfLastRunRecordDiagEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by LastRunRecordDiagEnable may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.SfLastRunRecordEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by LastRunRecordEnable may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.SfCurrentRecordEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by CurrentRecordEnable may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.SfRunParams">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by RunParams may have changed.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.CogLastRunFromResultGraphicsAdapter.ConstructContent(Cognex.VisionPro.ICogRecord,System.Int32)">
+            <summary>
+Set the content of <paramref name="record" />.
+</summary>
+            <param name="record">
+The record for whom the content is created and assigned.
+</param>
+            <param name="flags">
+The
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordConstants" />
+flags to be mapped to their
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResultGraphicConstants" />.
+counterparts and passed to
+<see cref="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.CreateResultGraphics(Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResultGraphicConstants)" />.
+</param>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.CogLastRunFromResultGraphicsAdapter">
+            <summary>
+This class allows us to maintain a single shared implementation of result
+graphics creation for
+<see cref="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3.LastRunRecordEnable" />
+and
+<see cref="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.CreateResultGraphics(Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResultGraphicConstants)" />
+implementations.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderToolBase`3">
+            <summary>
+This class provides tool level access to the
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder" />
+operator. It is a VisionPro tool for MultiLineFinder functionality.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.Execute(System.Collections.Generic.IEnumerable`1{Cognex.VisionPro.ICogImage},System.Collections.Generic.IEnumerable`1{Cognex.VisionPro.ICogRegion},System.Collections.Generic.IEnumerable`1{Cognex.VisionPro.CogImage8Grey},System.Collections.Generic.IEnumerable`1{System.Int32},System.Collections.Generic.IEnumerable`1{System.Int32})">
+            <summary>
+Performs line finding on the supplied images creating a
+CogMultiLineFinderMFOVResults object which contains the found results.
+</summary>
+            <param name="inputImages">
+The images to process. Must contain one or more images and
+all images must be of type CogImage8Grey.
+</param>
+            <param name="regions">
+A collection of clip regions. A null collection means none of the 
+images are clipped. A null collection item means the image
+at the corresponding index is not clipped.
+</param>
+            <param name="imageMasks">
+A collection of masks. A null collection means none of the images
+are masked. A null collection item means the image at the
+corresponding index is not masked. Mask pixels having value zero are
+considered "don't care"; those having a nonzero value are considered
+"care".
+</param>
+            <param name="imageMaskOffsetXs">
+A collection of mask x-offsets. Each x offset in imageMaskOffsetXs
+applies to the mask at the corresponding index in masks.
+</param>
+            <param name="imageMaskOffsetYs">
+A collection of mask y-offsets. Each y offset in imageMaskOffsetYs
+applies to the mask at the corresponding index in masks.
+</param>
+            <returns>
+A <see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVResults" />
+containing the found results.
+</returns>
+            <remarks>
+See
+<see cref="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.RegionMode" />
+for information on how the clip regions will be applied to the images.
+</remarks>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoInputImageException">
+                <paramref name="inputImages" /> is null, empty, or contains a null image.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException">
+                <paramref name="inputImages" /> contains an unallocated image.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException">
+The selected space of a <paramref name="regions" /> clip region is not
+a valid space of the corresponding <paramref name="inputImages" />
+image.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException">
+One or more <paramref name="regions" /> items are completely outside of
+the corresponding <paramref name="inputImages" /> item.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.Execute(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.CogImage8Grey,System.Int32,System.Int32)">
+            <summary>
+Performs line finding on the supplied image creating a CogMultiLineFinderResults object which
+contains the found results.
+</summary>
+            <param name="inputImage">
+The input image to process. Must be a CogImage8Grey.
+</param>
+            <param name="region">
+An optional <see cref="T:Cognex.VisionPro.ICogRegion" />. If supplied,
+only the pixels which lie within this region (subject to the
+value of <see cref="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.RegionMode" />)
+will be considered. Supply null to process the entire image.
+</param>
+            <param name="imageMask">
+An optional <see cref="T:Cognex.VisionPro.CogImage8Grey" />. If supplied, 
+mask pixels having a zero value are considered "don't care"; those having a
+nonzero value are considered "care".
+</param>
+            <param name="imageMaskOffsetX">
+The x offset used to align the <paramref name="imageMask" /> pixels to the
+corresponding <paramref name="inputImage" /> pixels.
+</param>
+            <param name="imageMaskOffsetY">
+The y offset used to align the <paramref name="imageMask" /> pixels to the
+corresponding <paramref name="inputImage" /> pixels.
+</param>
+            <returns>
+A <see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResults" />
+containing the found results.
+</returns>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoInputImageException">
+                <paramref name="inputImage" /> is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException">
+                <paramref name="inputImage" /> is not allocated.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException">
+The selected space of <paramref name="region" /> is not
+a valid space in <paramref name="inputImage" />.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException">
+                <paramref name="region" /> is completely outside of
+<paramref name="inputImage" />.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.Assurance">
+            <summary>
+Gets or sets the degree of point selection rigor.
+</summary>
+            <remarks>
+This value equates to the likelihood that the best edge points will be
+selected, by the RANSAC algorithm, for line fitting. It only applies when
+<see cref="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.LineFittingMode" />
+is set to
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLineFittingModeConstants">RANSAC</see>.
+</remarks>
+            <value>
+The assurance.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfAssurance" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.LineFittingMode">
+            <summary>
+Gets or sets the combinatorics technique used to select edge points
+for line fitting.
+</summary>
+            <value>
+The line fitting mode.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfLineFittingMode" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.CoverageThreshold">
+            <summary>
+Gets or sets the minimum acceptable proportion of edge points found along
+the span of a line.
+</summary>
+            <remarks>
+A value of 0.5 means there are gaps, spans where edges were not detected,
+along fifty percent of a line. And 1.0 means a continuous edge, having no
+gaps, along the line.
+</remarks>
+            <value>
+The coverage threshold. 
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfCoverageThreshold" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.DistanceTolerance">
+            <summary>
+Gets or sets the maximum allowable distance between an edge point
+and a fit line.
+</summary>
+            <value>
+The distance tolerance.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfDistanceTolerance" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.FeatureGradientAngleTolerance">
+            <summary>
+Gets or sets the maximum allowable angle difference between an edge point
+gradient direction and a fit line's normal.
+</summary>
+            <value>
+The feature gradient angle tolerance.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfFeatureGradientAngleTolerance" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.ExpectedLineNormalAngleTolerance">
+            <summary>
+Gets or sets the maximum allowable angle difference
+between a fit line's normal and the expected line normal.
+</summary>
+            <value>
+The expected line normal angle tolerance.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfExpectedLineNormalAngleTolerance" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.LinePolarity">
+            <summary>
+Gets or sets the polarity of a fit line along the expected
+line normal direction.
+</summary>
+            <value>
+The line polarity.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfLinePolarity" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.MaxNumLines">
+            <summary>
+Gets or sets the maximum number of lines to be found.
+</summary>
+            <value>
+The maximum number of lines.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfMaxNumLines" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.EdgeDetectionParams">
+            <summary>
+Gets or sets the edge detection parameters.
+</summary>
+            <value>
+The edge detection parameters.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfEdgeDetectionParams" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SearchDirection">
+            <summary>
+Gets or sets the direction in which edge detection processes image
+gradients. Additionally, this value defines the nominal line normal used
+in the line fitting algorithm.
+</summary>
+            <value>
+The search direction.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfSearchDirection" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.Timeout">
+            <summary>
+Gets or sets the timeout, in milliseconds, for line finding.
+</summary>
+            <remarks>
+If TimeoutEnabled is false then this property is ignored.
+</remarks>
+            <value>
+The Timeout value. The default value is 20000.0.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfTimeout" />
+                    </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+Thrown if set to a value less than 0.0.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.TimeoutEnabled">
+            <summary>
+Enables the timeout for line finding.
+</summary>
+            <value>
+The TimeoutEnabled value. The default value is true.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfTimeoutEnabled" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.RegionMode">
+            <summary>
+Specifies whether line finding will be performed strictly within the
+region or within the image aligned bounding box of the region.
+</summary>
+            <remarks>
+                <para>
+Specifies whether line finding will be performed
+strictly within the confines of the region specified or within the image aligned bounding box of
+the region.
+</para>
+                <para>
+This property may only be set to one of the following values:
+<see cref="T:Cognex.VisionPro.CogRegionModeConstants">
+PixelAlignedBoundingBoxAdjustMask</see> or 
+<see cref="T:Cognex.VisionPro.CogRegionModeConstants">
+PixelAlignedBoundingBox</see>.
+</para>
+                <para>
+If no Region is used then this property is ignored.
+</para>
+            </remarks>
+            <value>
+The default is
+<see cref="T:Cognex.VisionPro.CogRegionModeConstants">
+PixelAlignedBoundingBoxAdjustMask</see></value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+                <para>
+The following state flag may be affected:
+</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfRegionMode" />
+                    </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The property is set to a value other than those specified above.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.Clone">
+            <summary>
+Returns a deep copy of this class instance. Derived classes need not
+override this implementation. Other clients who wish to clone this
+instance should call ICloneable::Clone.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinder.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.#ctor">
+            <summary>
+Constructs a new instance of this class.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfTimeout">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by Timeout may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfTimeoutEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by TimeoutEnabled may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfAssurance">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by Assurance may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfLineFittingMode">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by LineFittingMode may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfCoverageThreshold">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by CoverageThreshold may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfDistanceTolerance">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by DistanceTolerance may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfFeatureGradientAngleTolerance">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by FeatureGradientAngleTolerance may
+have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfExpectedLineNormalAngleTolerance">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by ExpectedLineNormalAngleTolerance may
+have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfLinePolarity">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by LinePolarity may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfMaxNumLines">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by MaxNumLines may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfEdgeDetectionParams">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by EdgeDetectionParams may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfSearchDirection">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by SearchDirection may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder.SfRegionMode">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by RegionMode may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinder">
+            <summary>
+This class provides functionality for finding lines in images. It will
+return candidate lines that meet the requirements specified by its
+properties.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVResults.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinderMFOVResults.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVResults.#ctor(Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVResults)">
+            <summary>
+Constructs a deep copy of the supplied CogMultiLineFinderMFOVResults instance.
+</summary>
+            <param name="other">
+The CogMultiLineFinderMFOVResults to copy.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVResults">
+            <summary>
+This class holds all of the result information from a MultiLineFinderMFOV
+operation.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResults.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinderResults.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResults.#ctor(Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResults)">
+            <summary>
+Constructs a deep copy of the supplied CogMultiLineFinderResults instance.
+</summary>
+            <param name="other">
+The CogMultiLineFinderResults to copy.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResults">
+            <summary>
+This class holds all of the result information from a MultiLineFinder
+operation.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2.ProportionNotUsed">
+            <summary>
+Gets the proportion of outlier edge points, relative to all extracted
+edge points.
+</summary>
+            <value>
+The proportion of outlier edge points.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2.UnconsideredOutlierEdgePoints">
+            <summary>
+Get the set of edge points having no possibility of qualifying as
+inliers.
+</summary>
+            <value>
+The outliers pruned prior to the line fitting algorithm.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2.ConsideredOutlierEdgePoints">
+            <summary>
+Get the set of potential inlier edge points that ultimately fail to meet
+the fitting algorithm constraints.
+</summary>
+            <value>
+The outliers evaluated by the line fitting algorithm.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2.IndexOf(`0)">
+            <summary>
+Get the index of the given item. If the item cannot be
+found -1 is returned.
+</summary>
+            <param name="value">
+The item whose index is desired.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2.CopyTo(System.Array,System.Int32)">
+            <summary>
+Copies the contents of this collection to an array.
+</summary>
+            <param name="dest">
+The array into which to copy.
+</param>
+            <param name="index">
+The index from which to start copying.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2.Item(System.Int32)">
+            <summary>
+Gets the item at the specified index. In C#, this property
+is the indexer for the collection.
+</summary>
+            <param name="index">
+The index of the item to get.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied index parameter is not valid.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2.GetEnumerator">
+            <summary>
+Gets an enumerator for this collection.
+</summary>
+            <returns>
+An enumerator for this collection.
+</returns>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2.SyncRoot">
+            <summary>
+Gets an object that can be used to synchronize access to this
+collection.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2.IsSynchronized">
+            <summary>
+Gets a value indicating whether access to this collection
+is synchronized (thread-safe).
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2.Count">
+            <summary>
+Gets the number of results contained in this collection.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinderResults.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2.#ctor(Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2{`0,`1})">
+            <summary>
+Constructs a deep copy of the supplied CogMultiLineFinderResults instance.
+</summary>
+            <param name="other">
+The CogMultiLineFinderResults to copy.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultsBase`2">
+            <summary>
+This class holds all of the result information from a MultiLineFinder operation.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVResult.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinderMFOVResult.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVResult.#ctor(Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVResult)">
+            <summary>
+Constructs a deep copy of the supplied CogMultiLineFinderMFOVResult instance.
+</summary>
+            <param name="other">
+The CogMultiLineFinderMFOVResult to copy.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVResult">
+            <summary>
+This class holds result information from a MultiLineFinderMFOV operation.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResult.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinderResult.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResult.#ctor(Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResult)">
+            <summary>
+Constructs a deep copy of the supplied CogMultiLineFinderResult instance.
+</summary>
+            <param name="other">
+The CogMultiLineFinderResult to copy.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResult">
+            <summary>
+This class holds result information from a MultiLineFinder operation.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.CreateResultGraphics(Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResultGraphicConstants)">
+            <summary>
+Creates a composite result graphic containing child graphics specified 
+by <paramref name="flags" /> which is a bitwise combination of
+CogMultiLineFinderResultGraphicConstants.
+</summary>
+            <param name="flags">
+The graphics options. Supply a value formed by ORing together one or 
+more of the
+<see cref="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResultGraphicConstants" />
+flags.
+</param>
+            <returns>
+The CogCompositeShape which contains the requested graphics.
+</returns>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.NumProjectionRegions">
+            <summary>
+Gets the total number of projection regions intersected by the found line
+at pixels in care regions.
+</summary>
+            <value>
+The number of projection regions intersected by the found line.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.EdgePoints">
+            <summary>
+Gets all contributing edge points used during the line fitting phase.
+</summary>
+            <value>
+The edge points used by this result.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.MaxError">
+            <summary>
+Gets the maximum fit error (relative to the selected space of the input
+image) from a contributing edge point to the found line.
+</summary>
+            <value>
+The maximum fit error.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.RMSError">
+            <summary>
+Gets the residual RMS fit error (relative to the selected space of the
+input image) from the contributing edge points to the found line.
+</summary>
+            <value>
+The residual root mean square fit error.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.Coverage">
+            <summary>
+Gets the proportion of spanned (care) projection regions contributing an
+edge point.
+</summary>
+            <value>
+The coverage ratio.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.Intensity">
+            <summary>
+Gets the average intensity of all contributing edge points.
+</summary>
+            <value>
+The average intensity.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.NormalizedContrast">
+            <summary>
+Gets the average normalized contrast of all contributing edge points.
+</summary>
+            <value>
+The average normalized contrast.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.Contrast">
+            <summary>
+Gets the average absolute contrast of all contributing edge points.
+</summary>
+            <value>
+The average contrast.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.LinePolarity">
+            <summary>
+Gets the found line segment's polarity as measured from the InputImage.
+</summary>
+            <value>
+The line segment polarity.
+</value>
+            <remarks>
+The polarity is measured relative to the normal direction of the line
+segment enclosed in this result.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.FoundLine">
+            <summary>
+Gets the found line segment in the selected coordinate space of 
+InputImage.
+</summary>
+            <value>
+The found line segment.
+</value>
+            <remarks>
+The direction of the found line segment (i.e., the direction from start
+point to end point) points in the same general direction as the expected
+line angle.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.ID">
+            <summary>
+Gets the unique ID used to identify this MultiLineFinder result.  This
+ID also corresponds to the index of this result in the
+CogMultiLineFinderResults to which it belongs.
+</summary>
+            <value>
+The ID of this result.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinderResult.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1.#ctor(Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1{`0})">
+            <summary>
+Constructs a deep copy of the supplied CogMultiLineFinderResult instance.
+</summary>
+            <param name="other">
+The CogMultiLineFinderResult to copy.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If <paramref name="other" /> is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.Implementation.CogMultiLineFinderResultBase`1">
+            <summary>
+This class holds all of the result information from a MultiLineFinder operation.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVEdgePoint.ImageIndex">
+            <summary>
+Gets the index of the image from which the edge point was detected.
+</summary>
+            <value>
+The image index.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVEdgePoint.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinderMFOVEdgePoint.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderMFOVEdgePoint">
+            <summary>
+Class describing a CogMFOVMultiLineFinder edge point.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint.ProjectionRegionIndex">
+            <summary>
+Gets the index of the projection region from which the edge point was
+detected.
+</summary>
+            <value>
+The projection region index.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint.ProjectionLength">
+            <summary>
+Gets the sampled projection length of the edge point in pixels.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint.IntensityNormalizedGradientY">
+            <summary>
+Gets the normalized y gradient magnitude of the edge point in client coordinates.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint.IntensityNormalizedGradientX">
+            <summary>
+Gets the normalized x gradient magnitude of the edge point in client coordinates.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint.GradientY">
+            <summary>
+Gets the y gradient magnitude of the edge point in client coordinates.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint.GradientX">
+            <summary>
+Gets the x gradient magnitude of the edge point in client coordinates.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint.Intensity">
+            <summary>
+Gets the intensity of the edge point.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint.GradientDirection">
+            <summary>
+Gets the gradient angle of the edge point in client coordinates.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint.Y">
+            <summary>
+Gets the y position of the edge point in client coordinates.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint.X">
+            <summary>
+Gets the x position of the edge point in client coordinates.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint.Clone">
+            <summary>
+Returns a deep copy of this class instance. Derived classes that
+implement Clone should override this method. Other clients who wish
+to clone this instance should call ICloneable::Clone.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinderEdgePoint.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgePoint">
+            <summary>
+Class describing a CogMultiLineFinder edge point.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.NormalizedContrastThreshold">
+            <summary>
+Gets or sets the normalized edge contrast threshold.
+</summary>
+            <remarks>
+Normalized contrast is calculated by dividing the projected gradient
+magnitude by the projected intensity at an edge point.
+</remarks>
+            <value>
+The normalized contrast threshold.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.SfNormalizedContrastThreshold" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.ContrastThreshold">
+            <summary>
+Gets or sets the edge contrast threshold.
+</summary>
+            <remarks>
+Contrast is calculated as the projected gradient magnitude at an edge
+point.
+</remarks>
+            <value>
+The contrast threshold.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.SfContrastThreshold" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.ProjectionLength">
+            <summary>
+Gets or sets the projection length in pixels.
+</summary>
+            <remarks>
+The projection length affects the number of projection regions
+computed by the algorithm.
+</remarks>
+            <value>
+The projection length.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.SfProjectionLength" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.GradientFieldSize">
+            <summary>
+Gets or sets the gradient field size in pixels.
+</summary>
+            <remarks>
+The gradient field size determines the isotropic kernel size used
+during Gaussian smoothing and decimation. This image processing is done
+prior to field projection.
+</remarks>
+            <value>
+The gradient field size.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>
+                        <see cref="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.SfGradientFieldSize" />
+                    </item>
+                </list>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.Clone">
+            <summary>
+Returns a deep copy of this class instance. Derived classes that
+implement Clone should override this method. Other clients who wish
+to clone this instance should call ICloneable::Clone.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogMultiLineFinderEdgeDetectionParams.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.#ctor">
+            <summary>
+Constructs a new instance of this class.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.SfNormalizedContrastThreshold">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by NormalizedContrastThreshold may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.SfContrastThreshold">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by ContrastThreshold may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.SfProjectionLength">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by ProjectionLength may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams.SfGradientFieldSize">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every
+time the value returned by GradientFieldSize may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderEdgeDetectionParams">
+            <summary>
+Class for configuring the edge detection behavior of CogMultiLineFinder.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordDiagConstants">
+            <summary>
+Enumeration of diagnostic data that can be included in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordDiagConstants.All">
+            <summary>
+Include all of the diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordDiagConstants.UnconsideredOutliers">
+            <summary>
+Include graphics for edge points not considered for line
+fitting in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordDiagConstants.ConsideredOutliers">
+            <summary>
+Include graphics for edge points considered for line fitting,
+but ultimately not used, in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordDiagConstants.InputImageMask">
+            <summary>
+Include a copy of the input image mask in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordDiagConstants.Region">
+            <summary>
+Include a copy of the region in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordDiagConstants.InputImageDeepCopy">
+            <summary>
+Include a deep copy of the input image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordDiagConstants.InputImageByReference">
+            <summary>
+Include a reference to the input image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordDiagConstants.None">
+            <summary>
+Do not include any of the diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordConstants">
+            <summary>
+Enumeration of result data that can be included in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordConstants.All">
+            <summary>
+Include all of the non-diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordConstants.Inliers">
+            <summary>
+Include graphics for the edge points used by a result in the
+LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordConstants.FoundLines">
+            <summary>
+Include the found lines in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLastRunRecordConstants.None">
+            <summary>
+Do not include any of the non-diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderCurrentRecordConstants">
+            <summary>
+Enumeration of data that can be included in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderCurrentRecordConstants.All">
+            <summary>
+Include all possible records in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderCurrentRecordConstants.InputImageMask">
+            <summary>
+Include the input image mask in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderCurrentRecordConstants.Region">
+            <summary>
+Include the interactive region in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderCurrentRecordConstants.InputImage">
+            <summary>
+Include the input image in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderCurrentRecordConstants.None">
+            <summary>
+Do not include any records in the CurrentRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResultGraphicConstants">
+            <summary>
+Enumeration of flags used for creating CogMultiLineFinder result graphics.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResultGraphicConstants.All">
+            <summary>
+Draw all result graphics.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResultGraphicConstants.TipText">
+            <summary>
+Turn on tip text for result graphics.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResultGraphicConstants.Inliers">
+            <summary>
+Draw the edge points for this result.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResultGraphicConstants.FoundLine">
+            <summary>
+Draw the found line for this result.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderResultGraphicConstants.None">
+            <summary>
+Draw no result graphics.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLinePolarityConstants">
+            <summary>
+Enumeration of line polarity values.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLinePolarityConstants.Mixed">
+            <summary>
+Both dark-to-light and light-to-dark transitions are allowed at
+different portions of the same line segment.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLinePolarityConstants.Either">
+            <summary>
+The brightness transitions either from dark to light or from light to dark.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLinePolarityConstants.LightToDark">
+            <summary>
+The brightness transitions from light to dark, relative to line normal direction.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLinePolarityConstants.DarkToLight">
+            <summary>
+The brightness transitions from dark to light, relative to line normal direction.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLineFittingModeConstants">
+            <summary>
+Enumeration of modes for fitting lines to edge points.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLineFittingModeConstants.RANSAC">
+            <summary>
+Random Sample Consensus is used to select edge point combinations
+evaluated for line fitting.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.MultiLineFinder.CogMultiLineFinderLineFittingModeConstants.Exhaustive">
+            <summary>
+All edge point combinations are evaluated for line fitting.
+</summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,3016 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "Cognex.VisionPro.ID"
+    </assembly>
+    <members>
+        <member name="M:Cognex.VisionPro.ID.CogIDTool.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDTool object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDTool.Results">
+            <summary>
+Gets the results from the last call to the Run method.
+A new instance of CogIDResults is created for each
+run of the tool.
+</summary>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>SfResult</item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDTool.RunParams">
+            <summary>
+Gets or sets the run parameters (operator) for this CogIDTool.
+</summary>
+            <value>
+The value can not be null.
+The default is a default CogID.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>SfRunParams</item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDTool.Region">
+            <summary>
+Gets or sets the optional region that specifies a portion of the
+input image to be used for locating the symbol. 
+</summary>
+            <remarks> 
+The region operates in one mode only "pixel aligned bounding box". 
+The pixel aligned bounding box region encloses the defined region within
+a recatngle. This means that the portions of the image that are outside
+the defined region but within the bounding rectangle are included.
+</remarks>
+            <value>
+The default is null.
+</value>
+            <para>Fires when this property changes.</para>
+            <para>The following state flag may be affected:</para>
+            <list type="bullet">
+                <item>SfRegion</item>
+            </list>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDTool.InputImage">
+            <summary>
+Gets or sets the input range image for use in plane estimation.
+</summary>
+            <value>
+The default is null.
+</value>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+If the supplied input image is not CogImage8Grey.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>SfInputImage</item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDTool.LastRunRecordDiagEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+CogIDLastRunRecordDiagConstants.
+</summary>
+            <value>
+the default is (int)CogIDLastRunRecordDiagConstants::InputImageByReference | (int)CogIDLastRunRecordDiagConstants::Region | (int)CogIDLastRunRecordDiagConstants::InputImageMask
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>SfLastRunRecordDiagEnable</item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDTool.LastRunRecordEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+CogIDLastRunRecordConstants.
+</summary>
+            <value>
+The default is CogIDLastRunRecordConstants::All
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>SfLastRunRecordEnable</item>
+                    <item>SfCreateLastRunRecord</item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDTool.CurrentRecordEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+CogIDCurrentRecordConstants.
+</summary>
+            <value>
+The default is (int)CogIDCurrentRecordConstants::InputImage | (int)CogIDCurrentRecordConstants::Region | (int)CogIDCurrentRecordConstants::InputImageMask
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>SfCurrentRecordEnable</item>
+                    <item>SfCreateCurrentRecord</item>
+                </list>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDTool.Finalize">
+            <summary>
+Finalize this CogIDTool object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDTool.Dispose">
+            <summary>
+Destruct this CogIDTool object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDTool.#ctor(Cognex.VisionPro.ID.CogIDTool)">
+            <summary>
+Construct a deep copy of the supplied CogIDTool object.
+</summary>
+            <param name="Other">
+The CogIDTool object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDTool.#ctor">
+            <summary>Tool that finds, decodes, and optionally grades one or more symbols.
+</summary>
+            <remarks>
+The ID tool locates and decodes one or more symbols in a user-specified region of an input image, 
+and characterizes each symbol in quality terms. The symbols within the region can be of different symbologies and can also be arbitrarily positioned and oriented. 
+The ID tool can be trained for 2D symbols only.
+</remarks>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDTool.SfResults">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Results may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDTool.SfRunParams">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by RunParams may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDTool.SfRegion">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Region may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDTool.SfInputImage">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by InputImage may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDTool.SfCurrentRecordEnable">
+            <summary>This bit will be set in the EventArgs of a Changed event
+  every time the value returned by CurrentRecordEnable may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDTool.SfLastRunRecordDiagEnable">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LastRunRecordDiagEnable may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDTool.SfLastRunRecordEnable">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LastRunRecordEnable may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDTool">
+            <summary>Tool that finds and decodes one or 
+more symbols.</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogID.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogID object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogID.Execute(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion)">
+            <summary>Find and decode up to NumToFind 
+symbols within the specified region of the input image.</summary>
+            <returns>
+A CogIDResults object which holds zero or more CogIDResult objects.
+</returns>
+            <param name="image">
+The image containing the symbol(s). 
+</param>
+            <param name="region">
+The Region that specifies the region containing the symbol(s). If the CogRegion is NULL, the entire image is processed. 
+</param>
+            <remarks>
+Find and decode up to NumToFind symbols within the specified region of the input image. 
+The function creates an CogIDResults object which holds zero or more CogIDResult objects
+</remarks>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+If the supplied input image argument is not a CogImage8Grey.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoInputImageException">
+If the supplied input image argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied input image unbound.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If more than a 2D symbol is enabled.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the TrainedData does not match the enabled symbol. The tool will untrain in this case.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException">
+If licensing for this operator cannot be confirmed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogID.Train(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion)">
+            <summary>Train the tool.</summary>
+            <param name="image">
+The image containing the symbol(s). 
+</param>
+            <param name="region">
+The Region that specifies the region containing the symbol(s). If the CogRegion is NULL, the entire image is processed. 
+</param>
+            <remarks>
+The train method is only supported for 2D symbols. Currently the tool can only be trained for a single 2D symbol.
+When training is successful, the Trained flag is set to true and the TrainedData will contain the trained information.
+</remarks>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+If the supplied input image argument is not a CogImage8Grey.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoInputImageException">
+If the supplied input image argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied input image unbound.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If more than one symbol is enabled.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException">
+If licensing for this operator cannot be confirmed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogID.Untrain">
+            <summary>Function to untrain the tool.</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogID.DisableAll2DCodes">
+            <summary>Helper function to disable all 2D codes.</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogID.DisableAll1DCodes">
+            <summary>Helper function to disable all 1D codes.</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogID.DisableAllCodes">
+            <summary>Helper function to disable all codes.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.Trained">
+            <summary>Returns true if the tool is trained.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.TrainedData">
+            <summary>The Trained Data.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.EANUCCComposite">
+            <summary>The EANUCCComposite parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.UpcEan">
+            <summary>The UpcEan parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.FourState">
+            <summary>The Four State parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.PDF417">
+            <summary>The PDF417 parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.DataBar">
+            <summary>The DataBar parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.Planet">
+            <summary>The Planet parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.Postnet">
+            <summary>The Postnet parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.I2Of5">
+            <summary>The interleaved 2 of 5 parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.Codabar">
+            <summary>The Codabar parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.QRCode">
+            <summary>The QRCode parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.DataMatrix">
+            <summary>The DataMatrix parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.Pharmacode">
+            <summary>The Pharmacode parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.Code128">
+            <summary>The Code 128 parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.Code93">
+            <summary>The Code 93 parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.Code39">
+            <summary>The Code 39 parameters.</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.ShortQuietZone">
+            <summary>Get or set whether the quiet zone can be shorter.
+When true the quiet zone can be about 6X, when false, the quiet zone can
+be 10X.</summary>
+            <value>Default is false.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.AllowIdenticalSymbols">
+            <summary>Get or set whether identical symbols within the 
+same image should be decoded. If true, decode results may 
+be returned for identical symbols within the same image. 
+Otherwise, at most one result for such symbols will be 
+returned. Two symbols are considered identical if they have 
+the same length, symbology tpe, and decoded string.</summary>
+            <value>Whether identical symbols within the same 
+image should be decoded. Default is false.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.AllowPartialResults">
+            <summary>Get or set whether to allow partial results
+when timeout is enabled.
+</summary>
+            <value>Default is false.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.ProcessingMode">
+            <summary>Processing mode: IDQuick or IDMax.</summary>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.ID.CogIDProcessingModeConstants" /></exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.DecodedStringCodePage">
+            <summary>Code page to use when constructing a decoded string.</summary>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.ID.CogIDCodePageConstants" /></exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.TimeoutEnabled">
+            <summary>
+If true then the Timeout property limits the execution 
+time of the symbol decoding.  If false then timeout is disabled and 
+the Timeout property is ignored."
+</summary>
+            <value>
+The TimeoutEnabled value. The default value is false.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>SfTimeoutEnabled</item>
+                </list>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.Timeout">
+            <summary>
+The maximum execution time (msec) allowed to decode a 
+symbole.  If decoding has not finished by the end of the timeout 
+period, it will stop soon thereafter and return E_Cog_TimeoutExpired.  
+This value only applies if TimeoutEnabled is true.
+</summary>
+            <value>
+The Timeout value. The default value is 5000.0.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item>SfTimeout</item>
+                </list>
+            </event>
+            <remarks>
+                <para>
+This timeout is independent of the CogOCRMaxTool Timeout property when the
+classifier is used as part of the OCRMax Tool
+</para>
+            </remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+Thrown if set to a value less than 0.0 or greater than
+System::Double::MaxValue
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogID.NumToFind">
+            <summary>Maximum number of symbols to find and process.</summary>
+            <value> Default value is 1. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is less than 1
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogID.Finalize">
+            <summary>
+Finalize this CogID.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogID.Dispose">
+            <summary>
+Destruct this CogID.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogID.#ctor(Cognex.VisionPro.ID.CogID)">
+            <summary>
+Construct a deep copy of the supplied CogID object.
+</summary>
+            <param name="Other">
+The CogID object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogID.#ctor">
+            <summary>
+Construct a default CogID object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfAllowPartialResults">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by AllowPartialResults
+may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfEANUCCComposite">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Composite
+may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfShortQuietZone">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by ShortQuietZone
+may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfTrained">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Trained
+may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfTrainedData">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by TrainResult
+may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfAllowIdenticalSymbols">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by AllowIdenticalSymbols 
+may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfProcessingMode">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by ProcessingMode may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfDecodedStringCodePage">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by DecodedStringCodePage may have
+changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfQRCode">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by QRCode may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfDataMatrix">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by DataMatrix may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfPDF417">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by PDF417 may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfPharmacode">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Pharmacode may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfCodabar">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Codabar may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfCode93">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Code93 may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfDataBar">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by DataBar may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfPlanet">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Planet may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfPostnet">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Postnet may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfFourState">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by FourState may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfUpcEan">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by UpcEan may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfCode128">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Code128 may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfCode39">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Code39 may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfI2Of5">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by I2Of5 may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfTimeout">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Timeout may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfTimeoutEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by TimeoutEnabled may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogID.SfNumToFind">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by NumToFind may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogID">
+            <summary>Class containing the ID run parameters.</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDQRCode.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDQRCode object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDQRCode.MaxGridSize">
+            <summary>Gets or sets the maximum grid size to look for.</summary>
+            <value>Default value is 49.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 49 or &gt; 177 with a step size of 4.
+</exception>
+            <remarks>
+The value is used at train time. If the tool is not trained, the value is used at run time.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDQRCode.PerspectiveEnabled">
+            <summary>Sets or gets whether to consider perspective distortion for symbol (symbol acquired at an angle).
+</summary>
+            <value>Default value is true. </value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDQRCode.FlexibleGridSize">
+            <summary>Sets or gets the flag to override the trained grid size at run time. If true, 
+the grid size can on step larger or one step smaller than trained size.
+</summary>
+            <value>Default value is true. </value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDQRCode.Model">
+            <summary>Sets or gets the model type used for the QR Code symbology.
+</summary>
+            <remarks>
+Model refers to the version of the QR Code to be decoded. It may be either Model 1 (original)
+or Model 2 (enhanced), or MicroQR (reduced size). 
+</remarks>
+            <value> Default value is Model1.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.ID.CogIDQRCodeModelConstants" /></exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDQRCode.IgnorePolarity">
+            <summary>Sets or gets the flag to ignore trained polarity at run time.
+</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDQRCode.Enabled">
+            <summary>If True, attempt to find and process QRCode symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDQRCode.Finalize">
+            <summary>
+Finalize this CogIDQRCode.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDQRCode.Dispose">
+            <summary>
+Destruct this CogIDQRCode.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDQRCode.#ctor(Cognex.VisionPro.ID.CogIDQRCode)">
+            <summary>
+Construct a deep copy of the supplied CogIDQRCode object.
+</summary>
+            <param name="Other">
+The CogIDQRCode object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDQRCode.#ctor">
+            <summary>
+Construct a default CogIDQRCode object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDQRCode.SfMaxGridSize">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by MaxGridSize may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDQRCode.SfPerspectiveEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by PerspectiveEnabled may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDQRCode.SfIgnorePolarity">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by IgnorePolarity may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDQRCode.SfModel">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Model may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDQRCode.SfFlexibleGridSize">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by FlexibleGridSize may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDQRCode.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDQRCode">
+            <summary>
+Class containing the QRCode parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataMatrix.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDDataMatrix object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataMatrix.PerspectiveEnabled">
+            <summary>Sets or gets whether to consider perspective distortion for the symbol (symbol acquired at an angle).
+</summary>
+            <value>Default value is true. </value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataMatrix.FlexibleGridSize">
+            <summary>Sets or gets the flag to override the trained grid size at run time. If true, 
+the grid size can on step larger or one step smaller than trained size.
+</summary>
+            <value>Default value is false. </value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataMatrix.Enabled">
+            <summary>If True, attempt to find and process DataMatrix symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataMatrix.IgnorePolarity">
+            <summary>Sets or gets the flag to ignore trained polarity at run time.
+</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataMatrix.Finalize">
+            <summary>
+Finalize this CogIDDataMatrix.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataMatrix.Dispose">
+            <summary>
+Destruct this CogIDDataMatrix.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataMatrix.#ctor(Cognex.VisionPro.ID.CogIDDataMatrix)">
+            <summary>
+Construct a deep copy of the supplied CogIDDataMatrix object.
+</summary>
+            <param name="Other">
+The CogIDDataMatrix object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataMatrix.#ctor">
+            <summary>
+Construct a default CogIDDataMatrix object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataMatrix.SfPerspectiveEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by PerspectiveEnabled may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataMatrix.SfFlexibleGridSize">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by FlexibleGridSize may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataMatrix.SfIgnorePolarity">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by IgnorePolarity may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataMatrix.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDDataMatrix">
+            <summary>
+Class containing the DataMatrix parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDUpcEan.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDUpcEan object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDUpcEan.UPCEExpanded">
+            <summary>If True, transmit decoded string in 13 digit EAN-13 format. 
+If False, transmit as number system + 6 digits + implicit check.
+</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDUpcEan.UPCE1Enabled">
+            <summary>UPC-E is applicable only to number system 0. If this property is True, 
+allow processing of a non-standard UPC-E variation using number system 1.
+</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDUpcEan.EAN8AddOnValid">
+            <summary>If True, allow EAN-8 symbols with add-on symbols (2 or 5 digit). If True, AddOnEnabled must also be True.
+</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDUpcEan.AddOnEnabled">
+            <summary>If True, allow processing of UPC/EAN symbols with a 2 or 5-digit 'add-on' component.
+</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDUpcEan.Enabled">
+            <summary>If True, attempt to find and process UpcEan symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDUpcEan.Finalize">
+            <summary>
+Finalize this CogIDUpcEan.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDUpcEan.Dispose">
+            <summary>
+Destruct this CogIDUpcEan.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDUpcEan.#ctor(Cognex.VisionPro.ID.CogIDUpcEan)">
+            <summary>
+Construct a deep copy of the supplied CogIDUpcEan object.
+</summary>
+            <param name="Other">
+The CogIDUpcEan object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDUpcEan.#ctor">
+            <summary>
+Construct a default CogIDUpcEan object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDUpcEan.SfUPCEExpanded">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by UPCEEEnabled may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDUpcEan.SfUPCE1Enabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by UPCE1Enabled may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDUpcEan.SfEAN8AddOnValid">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDUpcEan.SfAddOnEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by AddOnEnabled may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDUpcEan.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDUpcEan">
+            <summary>
+Class containing the UpcEan parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDFourState.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDFourState object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDFourState.Type">
+            <summary>4-State symbology type: AustraliaPost, UPU, JapanPost, or IntelligentMailBarcode.
+</summary>
+            <remarks>Sets or gets the FourState symbology types to decode. 
+</remarks>
+            <value> Default value is IntelligentMailBarcode.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.ID.CogIDFourStateTypeConstants" /></exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDFourState.Enabled">
+            <summary>If True, attempt to find and process FourState symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDFourState.Finalize">
+            <summary>
+Finalize this CogIDFourState.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDFourState.Dispose">
+            <summary>
+Destruct this CogIDFourState.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDFourState.#ctor(Cognex.VisionPro.ID.CogIDFourState)">
+            <summary>
+Construct a deep copy of the supplied CogIDFourState object.
+</summary>
+            <param name="Other">
+The CogIDFourState object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDFourState.#ctor">
+            <summary>
+Construct a default CogIDFourState object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDFourState.SfType">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Type may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDFourState.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDFourState">
+            <summary>
+Class containing the FourState parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPDF417.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDPDF417 object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPDF417.Type">
+            <summary>PDF417 symbology type: PDF417, microPDF417 or All
+</summary>
+            <value> Default value is All.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.ID.CogIDPDFTypeConstants" /></exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPDF417.Enabled">
+            <summary>If True, attempt to find and process PDF417 symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPDF417.Finalize">
+            <summary>
+Finalize this CogIDPDF417.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPDF417.Dispose">
+            <summary>
+Destruct this CogIDPDF417.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPDF417.#ctor(Cognex.VisionPro.ID.CogIDPDF417)">
+            <summary>
+Construct a deep copy of the supplied CogIDPDF417 object.
+</summary>
+            <param name="Other">
+The CogIDPDF417 object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPDF417.#ctor">
+            <summary>
+Construct a default CogIDPDF417 object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPDF417.SfType">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Type may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPDF417.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDPDF417">
+            <summary>
+Class containing the PDF417 parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataBar.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDDataBar object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataBar.Type">
+            <summary>DataBar symbology type: GS1 DataBar, GS1 DataBar Limited, GS1 DataBar Expanded.
+</summary>
+            <remarks>Sets or gets the DataBar symbology types to decode. The supported types are GS1 DataBar, GS1 DataBar Limited, GS1 DataBar Expanded. 
+If a 2D composite is required, please enable the EANUCCComposite and select the data transmission of the results.
+</remarks>
+            <value> Default value is TypeAll.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.ID.CogIDDataBarTypeConstants" /></exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataBar.LengthMax">
+            <summary>Maximum number of characters in the decoded string.</summary>
+            <value>Default value is 56.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 56.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataBar.LengthMin">
+            <summary>Minimum number of characters in the decoded string.</summary>
+            <value>Default value is 1.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 56.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataBar.Enabled">
+            <summary>If True, attempt to find and process DataBar symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataBar.Finalize">
+            <summary>
+Finalize this CogIDDataBar.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataBar.Dispose">
+            <summary>
+Destruct this CogIDDataBar.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataBar.#ctor(Cognex.VisionPro.ID.CogIDDataBar)">
+            <summary>
+Construct a deep copy of the supplied CogIDDataBar object.
+</summary>
+            <param name="Other">
+The CogIDDataBar object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataBar.#ctor">
+            <summary>
+Construct a default CogIDDataBar object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataBar.SfLengthMax">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMax may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataBar.SfLengthMin">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMin may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataBar.SfType">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Type may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataBar.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDDataBar">
+            <summary>
+Class containing the DataBar parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPlanet.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDPlanet object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPlanet.TransmitCheckChar">
+            <summary>If True, include the embedded checksum character in the output.
+</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPlanet.LengthMax">
+            <summary>Maximum number of characters in the decoded string.</summary>
+            <value>Default value is 12.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 5 or &gt; 12.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPlanet.LengthMin">
+            <summary>Minimum number of characters in the decoded string.</summary>
+            <value>Default value is 5.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 5 or &gt; 12.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPlanet.Enabled">
+            <summary>If True, attempt to find and process Planet symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPlanet.Finalize">
+            <summary>
+Finalize this CogIDPlanet.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPlanet.Dispose">
+            <summary>
+Destruct this CogIDPlanet.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPlanet.#ctor(Cognex.VisionPro.ID.CogIDPlanet)">
+            <summary>
+Construct a deep copy of the supplied CogIDPlanet object.
+</summary>
+            <param name="Other">
+The CogIDPlanet object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPlanet.#ctor">
+            <summary>
+Construct a default CogIDPlanet object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPlanet.SfTransmitCheckChar">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by TransmitCheckChar may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPlanet.SfLengthMax">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMax may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPlanet.SfLengthMin">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMin may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPlanet.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDPlanet">
+            <summary>
+Class containing the Planet parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPostnet.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDPostnet object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPostnet.Type">
+            <summary>Postnet symbology type: Postnet or Cepnet
+</summary>
+            <value> Default value is Postnet.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.ID.CogIDPostnetTypeConstants" /></exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPostnet.TransmitCheckChar">
+            <summary>If True, include the embedded checksum character in the output.
+</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPostnet.LengthMax">
+            <summary>Gets or sets the desired postal code to decode.</summary>
+            <value>Default value is 12.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 5 or &gt; 14.
+</exception>
+            <remarks>
+For 13 digit Cepnet, the maxinum number of characters must 
+be set to 13. With a checksum character is set, the maximun number of characters 
+must be set to 14.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPostnet.LengthMin">
+            <summary>Minimum number of characters in the decoded string.</summary>
+            <value>Default value is 5.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 5 or &gt; 12.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPostnet.Enabled">
+            <summary>If True, attempt to find and process Postnet symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPostnet.Finalize">
+            <summary>
+Finalize this CogIDPostnet.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPostnet.Dispose">
+            <summary>
+Destruct this CogIDPostnet.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPostnet.#ctor(Cognex.VisionPro.ID.CogIDPostnet)">
+            <summary>
+Construct a deep copy of the supplied CogIDPostnet object.
+</summary>
+            <param name="Other">
+The CogIDPostnet object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPostnet.#ctor">
+            <summary>
+Construct a default CogIDPostnet object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPostnet.SfType">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Type may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPostnet.SfTransmitCheckChar">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by TransmitCheckChar may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPostnet.SfLengthMax">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMax may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPostnet.SfLengthMin">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMin may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPostnet.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDPostnet">
+            <summary>
+Class containing the postnet parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDI2Of5.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDI2Of5 object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDI2Of5.TransmitCheckChar">
+            <summary>If True, include the embedded checksum character in the output. Requires HasCheckChar be set to True.
+</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDI2Of5.HasCheckChar">
+            <summary>Whether the decoded string contains a check character.
+If true, the checksum is validated before
+result reporting.</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDI2Of5.LengthMax">
+            <summary>Maximum number of characters in the decoded string.</summary>
+            <value>Default value is 40.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 80.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDI2Of5.LengthMin">
+            <summary>Minimum number of characters in the decoded string.</summary>
+            <value>Default value is 6.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 80.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDI2Of5.Enabled">
+            <summary>If True, attempt to find and process I2Of5 symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDI2Of5.Finalize">
+            <summary>
+Finalize this CogIDI2Of5.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDI2Of5.Dispose">
+            <summary>
+Destruct this CogIDI2Of5.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDI2Of5.#ctor(Cognex.VisionPro.ID.CogIDI2Of5)">
+            <summary>
+Construct a deep copy of the supplied CogIDI2Of5 object.
+</summary>
+            <param name="Other">
+The CogIDI2Of5 object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDI2Of5.#ctor">
+            <summary>
+Construct a default CogIDI2Of5 object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDI2Of5.SfTransmitCheckChar">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by TransmitCheckChar may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDI2Of5.SfHasCheckChar">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by HasCheckChar may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDI2Of5.SfLengthMax">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMax may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDI2Of5.SfLengthMin">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMin may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDI2Of5.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDI2Of5">
+            <summary>
+Class containing the Interleaved 2 Of 5 parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCodabar.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDCodabar object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCodabar.TransmitStartStop">
+            <summary>Get or set whether the operator should include the start/stop character in the output.
+</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCodabar.TransmitCheckChar">
+            <summary>If True, include the embedded checksum character in the output. Requires HasCheckChar be set to True.
+</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCodabar.HasCheckChar">
+            <summary>whether the decoded string contains a check character.
+If true, the checksum is validated before
+result reporting. When checksum needs to be validated, the
+position and calculation conform to
+ANSI/AIM-BC3-2000: Uniform Symbology Specification Codabar.</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCodabar.LengthMax">
+            <summary>Maximum number of characters in the decoded string.</summary>
+            <value>Default value is 40.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 80.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCodabar.LengthMin">
+            <summary>Minimum number of characters in the decoded string.</summary>
+            <value>Default value is 3.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 80.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCodabar.Enabled">
+            <summary>If True, attempt to find and process Codabar symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCodabar.Finalize">
+            <summary>
+Finalize this CogIDCodabar.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCodabar.Dispose">
+            <summary>
+Destruct this CogIDCodabar.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCodabar.#ctor(Cognex.VisionPro.ID.CogIDCodabar)">
+            <summary>
+Construct a deep copy of the supplied CogIDCodabar object.
+</summary>
+            <param name="Other">
+The CogIDCodabar object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCodabar.#ctor">
+            <summary>
+Construct a default CogIDCodabar object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCodabar.SfTransmitStartStop">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by TransmitStartStop may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCodabar.SfTransmitCheckChar">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by TransmitCheckChar may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCodabar.SfHasCheckChar">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by HasCheckChar may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCodabar.SfLengthMax">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMax may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCodabar.SfLengthMin">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMin may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCodabar.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDCodabar">
+            <summary>
+Class containing the codabar parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPharmacode.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDPharmacode object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPharmacode.VerticalDirection">
+            <summary>Vertical direction of the pharmacode symbol.
+</summary>
+            <remarks>Sets or gets the vertical direction of the symbole to decode. 
+</remarks>
+            <value> Default value is TopToBottom.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.ID.CogIDVerticalDirectionConstants" /></exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPharmacode.HorizontalDirection">
+            <summary>Horizontal direction of the pharmacode symbol.
+</summary>
+            <remarks>Sets or gets the horizontal direction of the symbole to decode. 
+</remarks>
+            <value> Default value is LeftToRight.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.ID.CogIDHorizontalDirectionConstants" /></exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPharmacode.Orientation">
+            <summary>Orientation of the pharmacode symbol.
+</summary>
+            <remarks>Sets or gets the orientation of the symbole to decode. 
+</remarks>
+            <value> Default value is Horizontal.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.ID.CogIDOrientationConstants" /></exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPharmacode.LengthMax">
+            <summary>Maximum number of characters in the decoded string.</summary>
+            <value>Default value is 6.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 6.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPharmacode.LengthMin">
+            <summary>Minimum number of characters in the decoded string.</summary>
+            <value>Default value is 3.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 6.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDPharmacode.Enabled">
+            <summary>If True, attempt to find and process Pharmacode symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPharmacode.Finalize">
+            <summary>
+Finalize this CogIDPharmacode.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPharmacode.Dispose">
+            <summary>
+Destruct this CogIDPharmacode.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPharmacode.#ctor(Cognex.VisionPro.ID.CogIDPharmacode)">
+            <summary>
+Construct a deep copy of the supplied CogIDPharmacode object.
+</summary>
+            <param name="Other">
+The CogIDPharmacode object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDPharmacode.#ctor">
+            <summary>
+Construct a default CogIDPharmacode object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPharmacode.SfVerticalDirection">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by  VerticalDirection may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPharmacode.SfHorizontalDirection">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by  HorizontalDirection may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPharmacode.SfOrientation">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by Orientation may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPharmacode.SfLengthMax">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMax may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPharmacode.SfLengthMin">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMin may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPharmacode.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDPharmacode">
+            <summary>
+Class containing the Pharmacode parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode128.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDCode128 object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCode128.LengthMax">
+            <summary>Maximum number of characters in the decoded string.</summary>
+            <value>Default value is 40.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 80.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCode128.LengthMin">
+            <summary>Minimum number of characters in the decoded string.</summary>
+            <value>Default value is 3.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 80.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCode128.Enabled">
+            <summary>If True, attempt to find and process Code128 symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode128.Finalize">
+            <summary>
+Finalize this CogIDCode128.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode128.Dispose">
+            <summary>
+Destruct this CogIDCode128.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode128.#ctor(Cognex.VisionPro.ID.CogIDCode128)">
+            <summary>
+Construct a deep copy of the supplied CogIDCode128 object.
+</summary>
+            <param name="Other">
+The CogIDCode128 object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode128.#ctor">
+            <summary>
+Construct a default CogIDCode128 object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCode128.SfLengthMax">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMax may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCode128.SfLengthMin">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMin may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCode128.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDCode128">
+            <summary>
+Class containing the code 128 parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode93.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDCode93 object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCode93.LengthMax">
+            <summary>Maximum number of characters in the decoded string.</summary>
+            <value>Default value is 40.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 80.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCode93.LengthMin">
+            <summary>Minimum number of characters in the decoded string.</summary>
+            <value>Default value is 3.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 80.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCode93.Enabled">
+            <summary>If True, attempt to find and process Code93 symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode93.Finalize">
+            <summary>
+Finalize this CogIDCode93.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode93.Dispose">
+            <summary>
+Destruct this CogIDCode93.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode93.#ctor(Cognex.VisionPro.ID.CogIDCode93)">
+            <summary>
+Construct a deep copy of the supplied CogIDCode93 object.
+</summary>
+            <param name="Other">
+The CogIDCode93 object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode93.#ctor">
+            <summary>
+Construct a default CogIDCode93 object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCode93.SfLengthMax">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMax may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCode93.SfLengthMin">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMin may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCode93.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDCode93">
+            <summary>
+Class containing the Code 93 parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode39.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDCode39 object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCode39.FullASCIIMode">
+            <summary>If True, interpret the decoded string as full ASCII. This allows all ASCII characters, such as lower case letters, to be used.
+</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCode39.TransmitCheckChar">
+            <summary>If True, include the embedded checksum character in the output. Requires HasCheckChar be set to True.
+</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCode39.HasCheckChar">
+            <summary>Whether the decoded string contains a check character.
+If true, the checksum is validated before
+result reporting.</summary>
+            <value>Default value is false.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCode39.LengthMax">
+            <summary>Maximum number of characters in the decoded string.</summary>
+            <value>Default value is 40.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 80.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCode39.LengthMin">
+            <summary>Minimum number of characters in the decoded string.</summary>
+            <value>Default value is 3.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The new value is &lt; 1 or &gt; 80.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDCode39.Enabled">
+            <summary>If True, attempt to find and process Code39 symbol(s).</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode39.Finalize">
+            <summary>
+Finalize this CogIDCode39.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode39.Dispose">
+            <summary>
+Destruct this CogIDCode39.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode39.#ctor(Cognex.VisionPro.ID.CogIDCode39)">
+            <summary>
+Construct a deep copy of the supplied CogIDCode39 object.
+</summary>
+            <param name="Other">
+The CogIDCode39 object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDCode39.#ctor">
+            <summary>
+Construct a default CogIDCode39 object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCode39.SfFullASCIIMode">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by FullASCIIMode may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCode39.SfTransmitCheckChar">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by TransmitCheckChar may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCode39.SfHasCheckChar">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by HasCheckChar may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCode39.SfLengthMax">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMax may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCode39.SfLengthMin">
+            <summary>This bit will be set in the EventArgs of a Changed event
+every time the value returned by LengthMin may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCode39.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDCode39">
+            <summary>
+Class containing the Code 39 parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDTrainedData.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDTrainedData object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDTrainedData.QRCodeTrainedData">
+            <summary>Gets the QR Code trained params.
+</summary>
+            <value>Default value is null.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDTrainedData.DataMatrixTrainedData">
+            <summary>Gets the data matrix trained params.
+</summary>
+            <value>Default value is null.</value>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDTrainedData.Finalize">
+            <summary>
+Finalize this CogIDTrainedData.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDTrainedData.Dispose">
+            <summary>
+Destruct this CogIDTrainedData.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDTrainedData.#ctor(Cognex.VisionPro.ID.CogIDTrainedData)">
+            <summary>
+Constructs a new instance of this class as a deep copy
+of the given instance.
+</summary>
+            <param name="other">
+The CogCogIDTrainedData object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDTrainedData.#ctor">
+            <summary>
+Constructs a new instance of this class.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDTrainedData">
+            <summary>
+The trained data.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDQRCodeTrainedData.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDQRCodeTrainedData object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDQRCodeTrainedData.Result">
+            <summary>The result of the trained symbol.
+</summary>
+            <value> Default value is null.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDQRCodeTrainedData.Mirrored">
+            <summary>The mirrored state of the trained symbol.
+</summary>
+            <value> Default value is Unknown.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDQRCodeTrainedData.Polarity">
+            <summary>Gets the polarity of the trained symbol.
+</summary>
+            <value> Default value is Either.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDQRCodeTrainedData.QRModel">
+            <summary>Gets the model type of the trained symbol.
+</summary>
+            <value> Default value is Model2.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDQRCodeTrainedData.GridSize">
+            <summary>Gets the grid size.
+</summary>
+            <value>Default value is 21. </value>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDQRCodeTrainedData.Finalize">
+            <summary>
+Finalize this CogIDQRCodeTrainedData.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDQRCodeTrainedData.Dispose">
+            <summary>
+Destruct this CogIDQRCodeTrainedData.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDQRCodeTrainedData.#ctor(Cognex.VisionPro.ID.CogIDQRCodeTrainedData)">
+            <summary>
+Constructs a new instance of this class as a deep copy
+of the given instance.
+</summary>
+            <param name="other">
+The CogCogIDQRCodeTrainedData object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDQRCodeTrainedData.#ctor">
+            <summary>
+Constructs a new instance of this class.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDQRCodeTrainedData">
+            <summary>
+The trained data for QRCode.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDDataMatrixTrainedData object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData.AIMCompliant">
+            <summary>
+AimCompliant is True: ECC0-140 symbols is odd number of rows and columns.
+AimCompliant is False: ECC0-140 symbols can be odd or even number of rows and columns.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData.Result">
+            <summary>The result of the trained symbol.
+</summary>
+            <value> Default value is null.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData.Mirrored">
+            <summary>The mirrored state of the trained symbol.
+</summary>
+            <value> Default value is Unknown.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData.Polarity">
+            <summary>Gets the polarity of the trained symbol.
+</summary>
+            <value> Default value is Either.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData.ECCLevel">
+            <summary>Gets the Data Matrix version specified by the ECC Level.
+</summary>
+            <value> Default value is Level200.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData.Columns">
+            <summary>Gets the number of columns in the symbol grid for the Data Matrix symbology.
+</summary>
+            <value>Default value is 0.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData.Rows">
+            <summary>Gets the number of rows in the symbol grid for the Data Matrix symbology.
+</summary>
+            <value>Default value is 0.</value>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData.Finalize">
+            <summary>
+Finalize this CogIDDataMatrixTrainedData.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData.Dispose">
+            <summary>
+Destruct this CogIDDataMatrixTrainedData.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData.#ctor(Cognex.VisionPro.ID.CogIDDataMatrixTrainedData)">
+            <summary>
+Constructs a new instance of this class as a deep copy
+of the given instance.
+</summary>
+            <param name="other">
+The CogCogIDDataMatrixTrainedData object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData.#ctor">
+            <summary>
+Constructs a new instance of this class.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDDataMatrixTrainedData">
+            <summary>
+The trained data for DataMatrix.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDEANUCCComposite.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDEANUCCComposite object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDEANUCCComposite.DataTransmissionType">
+            <summary>Data Transmission type: LinearAnd2D or LinearOnly.
+</summary>
+            <remarks>Sets or gets the data Transmission. 
+The data transmission controls how the results are reported. If LinearAnd2D is specified and the 2D portion is not decoded
+then no result will be reported. If LinearOnly is specified then only the Linear result will be reported.
+</remarks>
+            <value> Default value is LinearAnd2D.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+            <exception cref="T:System.ArgumentException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.ID.CogIDDataTransmissionConstants" /></exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDEANUCCComposite.Enabled">
+            <summary>If True, attempt to find and process the 2D component of the DataBar symbol 
+or the 2D Component of Code128 symbol. Note that the DataBar or Code128 with a 2D component will not be 
+successfully decoded without having EANUCCComposite enabled.</summary>
+            <value>Default value is true.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>
+Fires when the value of this property changes.
+</para>
+            </event>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDEANUCCComposite.Finalize">
+            <summary>
+Finalize this CogIDEANUCCComposite.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDEANUCCComposite.Dispose">
+            <summary>
+Destruct this CogIDEANUCCComposite.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDEANUCCComposite.#ctor(Cognex.VisionPro.ID.CogIDEANUCCComposite)">
+            <summary>
+Construct a deep copy of the supplied CogIDEANUCCComposite object.
+</summary>
+            <param name="Other">
+The CogIDEANUCCComposite object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDEANUCCComposite.#ctor">
+            <summary>
+Construct a default CogIDEANUCCComposite object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDEANUCCComposite.SfDataTransmissionType">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Type may have changed.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDEANUCCComposite.SfEnabled">
+            <summary>This bit will be set in the EventArgs of a Changed event 
+every time the value returned by Enabled may have changed.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDEANUCCComposite">
+            <summary>
+Class containing the EANUCCComposite parameters.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResults.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDResults object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResults.Status">
+            <summary>
+Status when AllowPartialResult is set to true.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResults.Finalize">
+            <summary>
+Finalize this CogIDResults.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResults.Dispose">
+            <summary>
+Destruct this CogIDResults.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResults.#ctor(Cognex.VisionPro.ID.CogIDResults)">
+            <summary>
+Constructs a new instance of this class as a deep copy
+of the given instance.
+</summary>
+            <param name="other">
+The CogCogIDResults object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResults.#ctor">
+            <summary>
+Constructs a new instance of this class.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDResults">
+            <summary>
+The result of running the ID tool.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResult.CreateResultGraphics(Cognex.VisionPro.ID.CogIDResultGraphicConstants)">
+            <summary>
+Creates a composite result graphic containing child graphics specified by the 
+GraphicOptions which is a bitwise combination of CogIDResultGraphicConstants.
+</summary>
+            <param name="GraphicOptions">
+A CogIDResultGraphicConstants constant.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResult.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDResult object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResult.DecodedData">
+            <summary>Gets the decoded result data. </summary>
+            <value>The decoded data for this result.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResult.PixelPerModule">
+            <summary>
+The size of the module in the symbol.
+</summary>
+            <value> Default value is -1 (not measured).</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResult.BoundsPolygon">
+            <summary>
+Create a CogPolygon with four vertices describing the bounds of the found symbol. In the selected space of the input image.
+</summary>
+            <value> Default an empty polygon.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResult.CenterY">
+            <summary>
+The Y coordinate of the geometric center of the found symbol in the selected space of the input image.
+</summary>
+            <value> Default value is 0.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResult.CenterX">
+            <summary>
+The X coordinate of the geometric center of the found symbol in the selected space of the input image.
+</summary>
+            <value> Default value is 0.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResult.ID">
+            <summary>
+A unique ID used to identify this symbol result. This ID also corresponds to the index of this result in the CogIDResults to which this result belongs.
+</summary>
+            <value> Default is -1.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResult.Angle">
+            <summary>
+The angular orientation of the found symbol in the selected space of the input image. Units are radians.
+</summary>
+            <value> Default value is 0. </value>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResult.Finalize">
+            <summary>
+Finalize this CogIDResult.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResult.Dispose">
+            <summary>
+Destruct this CogIDResult.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResult.#ctor(Cognex.VisionPro.ID.CogIDResult)">
+            <summary>
+Constructs a new instance of this class as a deep copy
+of the given instance.
+</summary>
+            <param name="other">
+The CogCogIDResult object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResult.#ctor">
+            <summary>
+Constructs a new instance of this class.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDResult">
+            <summary>
+Class containing the found and decoded results for a single symbol
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResultDecoded.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogIDResultDecoded object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResultDecoded.IdentifierModifier">
+            <summary>ISO/IEC 15424:2000 symbol identifier modifier character. Useful in uniquely identifying the symbology.
+</summary>
+            <value> Default value is ASCII character 0 (48). </value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResultDecoded.IdentifierCode">
+            <summary>ISO/IEC 15424:2000 symbol identifier code character. A = Code 39, C = Code 128, E = UPC/EAN, I = Interleaved 2 of 5, G = Code 93, e = RSS, X = other bar codes.
+</summary>
+            <value>Default value is ASCII character I (73) for I2Of5.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResultDecoded.RawByteArray">
+            <summary> The decoded data as a raw array of bytes. No localization is performed.
+</summary>
+            <value> Default value is null.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResultDecoded.SymbologySubtype">
+            <summary> The actual type of this symbol. Valid for UPC/EAN, DataBar and 4-State.Always use with Symbology together to determine the actual type of the decoded symbol. 
+A Value 0 indicates that the symbology doesn't have different types.
+</summary>
+            <value> Default value is 0.</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResultDecoded.Symbology">
+            <summary> The type of this symbol. May be Interleaved 2 of 5, Code 39, Code 93, Code128, UPC/EAN, 4-State, POSTNET, PLANET, DataBar, Composite
+DataMatrix, QR code or EAN/UCC Composite.
+</summary>
+            <value> Default value is I2Of5. </value>
+        </member>
+        <member name="P:Cognex.VisionPro.ID.CogIDResultDecoded.DecodedString">
+            <summary> The decoded data as a Unicode string.
+</summary>
+            <value> Default value is an empty string.</value>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResultDecoded.Finalize">
+            <summary>
+Finalize this CogIDResultDecoded.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResultDecoded.Dispose">
+            <summary>
+Destruct this CogIDResultDecoded.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResultDecoded.#ctor(Cognex.VisionPro.ID.CogIDResultDecoded)">
+            <summary>
+Constructs a new instance of this class as a deep copy
+of the given instance.
+</summary>
+            <param name="other">
+The CogCogIDResultDecoded object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ID.CogIDResultDecoded.#ctor">
+            <summary>
+Constructs a new instance of this class.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDResultDecoded">
+            <summary>
+The result of decoding a symbol.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogIDImageTooBigForMaxException">
+            <summary>The exception that is thrown when the input image 
+is too big to be run in ProcessingMode Max.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogIDInvalidCodePageException">
+            <summary>The exception that is thrown when an invalid code 
+page is specified.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDPostnetTypeConstants">
+            <summary>Enumeration of Postnet symbology types.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPostnetTypeConstants.Cepnet">
+            <summary>Decode Brazilian postal code.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPostnetTypeConstants.Postnet">
+            <summary>Decode US postal code.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDVerticalDirectionConstants">
+            <summary>Enumeration of 2D Symbol vertical direction.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDVerticalDirectionConstants.BottomToTop">
+            <summary>Decode a symbol from bottom to top.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDVerticalDirectionConstants.TopToBottom">
+            <summary>Decode a symbol from top to bottom.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDHorizontalDirectionConstants">
+            <summary>Enumeration of 2D Symbol horizontal direction.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDHorizontalDirectionConstants.RightToLeft">
+            <summary>Decode a symbol that is right to left.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDHorizontalDirectionConstants.LeftToRight">
+            <summary>Decode a symbol from left to right.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDOrientationConstants">
+            <summary>Enumeration of 2D Symbol orientation.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDOrientationConstants.Any">
+            <summary>Decode a symbol in either directions.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDOrientationConstants.Vertical">
+            <summary>Decode a symbol that is vertical.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDOrientationConstants.Horizontal">
+            <summary>Decode a symbol that is horizontal.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDResultQRCodeModelConstants">
+            <summary>Enumeration used for result processing only. </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDResultQRCodeModelConstants.Micro">
+            <summary>The symbol found is MicroQR (reduced 
+size) version.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDResultQRCodeModelConstants.Model2">
+            <summary>The symbol found is an enhanced 
+QR Code version.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDResultQRCodeModelConstants.Model1">
+            <summary>The symbol found is the original 
+QR Code version.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDQRCodeModelConstants">
+            <summary>Enumeration of 2D Symbol QR Code Models. These Models 
+designate the versions of QR Code symbols that can be decoded.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDQRCodeModelConstants.All">
+            <summary> All: Model 1, Model 2 and Micro. </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDQRCodeModelConstants.Micro">
+            <summary>Specifies that symbols will be of the MicroQR (reduced 
+size) version.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDQRCodeModelConstants.Model2">
+            <summary>Specifies that symbols will be of the enhanced 
+QR Code version.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDQRCodeModelConstants.Model1">
+            <summary>Specifies that symbols will be of the original 
+QR Code version.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDDataMatrixECCLevelConstants">
+            <summary>Enumeration of 2D Symbol Data Matrix ECC levels. The ECC (
+Error Checking and Correction) Level specifies the version of the Data 
+Matrix symbol to be decoded.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataMatrixECCLevelConstants.Level200">
+            <summary>Specifies ECC-200 encoded symbols. These symbols have an 
+even number of data marks on each side and can be square or 
+rectangular.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataMatrixECCLevelConstants.Level140">
+            <summary>Specifies ECC-140 encoded symbols. These symbols are 
+square and have an odd number of data marks on each side.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataMatrixECCLevelConstants.Level120">
+            <summary>Specifies ECC-120 encoded symbols. These symbols are 
+square and have an odd number of data marks on each side.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataMatrixECCLevelConstants.Level100">
+            <summary>Specifies ECC-100 encoded symbols. These symbols are 
+square and have an odd number of data marks on each side.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataMatrixECCLevelConstants.Level80">
+            <summary>Specifies ECC-080 encoded symbols. These symbols are 
+square and have an odd number of data marks on each side.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataMatrixECCLevelConstants.Level50">
+            <summary>Specifies ECC-050 encoded symbols. These symbols are 
+square and have an odd number of data marks on each side.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataMatrixECCLevelConstants.Level0">
+            <summary>Specifies ECC-000 encoded symbols. These symbols are 
+square and have an odd number of data marks on each side.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDLastRunRecordDiagConstants">
+            <summary>Enumeration of Diagnostic data that can be included in the 
+tool's LastRunRecord.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDLastRunRecordDiagConstants.All">
+            <summary>Include all of the diagnostic data in the LastRunRecord.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDLastRunRecordDiagConstants.Region">
+            <summary>Generate a record containing the Region.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDLastRunRecordDiagConstants.InputImageDeepCopy">
+            <summary>Include a deep copy of the input image in the 
+LastRunRecord.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDLastRunRecordDiagConstants.InputImageByReference">
+            <summary>Include a reference to the input image in the 
+LastRunRecord.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDLastRunRecordDiagConstants.None">
+            <summary>Do not include any of the diagnostic data in 
+the LastRunRecord.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDLastRunRecordConstants">
+            <summary>Enumeration of Non-Diagnostic data that can be included in 
+the tool's LastRunRecord.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDLastRunRecordConstants.All">
+            <summary>Include all of the non-diagnostic data in the 
+LastRunRecord.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDLastRunRecordConstants.ResultsCenters">
+            <summary>Include in the composite result graphics of the 
+LastRunRecord, graphics representing the center of each found symbol.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDLastRunRecordConstants.ResultsBounds">
+            <summary>Include in the composite result graphics of the 
+LastRunRecord, a graphic representing the bounding four-sided polygon 
+of each found symbol.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDLastRunRecordConstants.None">
+            <summary>Do not include any of the non-diagnostic data in the 
+LastRunRecord.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDCurrentRecordConstants">
+            <summary>Enumeration of data that can be included in the tool's 
+CurrentRecord.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCurrentRecordConstants.All">
+            <summary>Include all possible records in the CurrentRecord.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCurrentRecordConstants.Region">
+            <summary>Include the region to be processed in the CurrentRecord.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCurrentRecordConstants.InputImage">
+            <summary>Include the input image in the CurrentRecord.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCurrentRecordConstants.None">
+            <summary>Do not include any records in the CurrentRecord.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDResultGraphicConstants">
+            <summary>Constants used to specify desired result graphics.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDResultGraphicConstants.All">
+            <summary>Draw all result graphics.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDResultGraphicConstants.Center">
+            <summary>Draw the center of the found symbol.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDResultGraphicConstants.Bounds">
+            <summary>Draw the bounding four-sided polygon of the found symbol.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDResultGraphicConstants.TipText">
+            <summary>Turn on tip text for result graphics.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDResultGraphicConstants.None">
+            <summary>Draw no result graphics.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDProcessingModeConstants">
+            <summary>Enumeration of CogID processing modes.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDProcessingModeConstants.IDQuick">
+            <summary>Provided high speed decoding of symbols that are well formed and appear in high contrast.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDProcessingModeConstants.IDMax">
+            <summary>Uses advanced image processing and image analysis techniques to assure the highest yield on DPM code 
+produced by laser, dot peen, ECE and ink jet technology.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDCodePageConstants">
+            <summary>Enumeration of CogID code pages. The code page 
+designates which character set should be used to construct 
+decoded symbol strings.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCodePageConstants.SimplifiedChinese">
+            <summary>Construct decoded strings using the Simplified 
+Chinese character set.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCodePageConstants.Korean">
+            <summary>Construct decoded strings using the Korean 
+character set.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCodePageConstants.Japanese">
+            <summary>Construct decoded strings using the Japanese 
+character set.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDCodePageConstants.ANSILatin1">
+            <summary>Construct decoded strings using the ANSI (Latin 1) 
+character set. This is the typical code page setting for ASCII 
+encoded symbols.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDMirroredConstants">
+            <summary>Enumeration of mirrored options.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDMirroredConstants.Unknown">
+            <summary>Automatically determine if symbol is mirrored.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDMirroredConstants.True">
+            <summary>Symbol is mirrored.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDMirroredConstants.False">
+            <summary>Symbol is not mirrored.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDPolarityConstants">
+            <summary>Enumeration of polarities.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPolarityConstants.Either">
+            <summary>Automatically determine symbol polarity.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPolarityConstants.LightOnDark">
+            <summary>Light symbol, dark background.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPolarityConstants.DarkOnLight">
+            <summary>Dark symbol, light background.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDPDFTypeConstants">
+            <summary>Enumeration of PDF symbology types.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPDFTypeConstants.All">
+            <summary>All.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPDFTypeConstants.MicroPDF417">
+            <summary>MicroPDF417 symbology subtype.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDPDFTypeConstants.PDF417">
+            <summary>PDF417 symbology subtype.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDResultDataBarTypeConstants">
+            <summary>Enumeration used for result processing only. The GS1DataBar2DComponent can be returned or'ed with the other types</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDResultDataBarTypeConstants.GS1DataBar2DComponent">
+            <summary>The 2D component when EAN.UCC is enabled .</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDResultDataBarTypeConstants.GS1DataBarExpanded">
+            <summary>14-digit DataBar Expanded.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDResultDataBarTypeConstants.GS1DataBarLimited">
+            <summary>14-Digit DataBar Limited.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDResultDataBarTypeConstants.GS1DataBar">
+            <summary>14-digit DataBar.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDDataBarTypeConstants">
+            <summary>Enumeration of DataBar types.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataBarTypeConstants.All">
+            <summary>All.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataBarTypeConstants.GS1DataBarExpanded">
+            <summary>14-digit DataBar Expanded.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataBarTypeConstants.GS1DataBarLimited">
+            <summary>14-Digit DataBar Limited.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataBarTypeConstants.GS1DataBar">
+            <summary>14-digit DataBar.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDFourStateTypeConstants">
+            <summary>Enumeration of the 4-State symbology types.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDFourStateTypeConstants.IntelligentMailBarcode">
+            <summary>4-State symbology type Intelligent mail.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDFourStateTypeConstants.JapanPost">
+            <summary>4-State symbology type Japan Post.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDFourStateTypeConstants.UPU">
+            <summary>4-State symbology type UPU.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDFourStateTypeConstants.AustraliaPost">
+            <summary>4-State symbology type Australian Post.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDDataTransmissionConstants">
+            <summary>Enumeration of data transmission types .</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataTransmissionConstants.LinearOnly">
+            <summary>Transmit linear only result.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDDataTransmissionConstants.LinearAnd2D">
+            <summary>Transmit linear and 2D as one result. If either is not found, then the symbol is not decoded and no results will be returned.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDUpcEanTypeConstants">
+            <summary>Enumeration of symbology UPC/EAN.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDUpcEanTypeConstants.UPCA">
+            <summary>The UPC/EAN symbology type UPCA.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDUpcEanTypeConstants.UPCE">
+            <summary>The UPC/EAN symbology type UPCE.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDUpcEanTypeConstants.EAN8">
+            <summary>The UPC/EAN symbology type EAN8.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDUpcEanTypeConstants.EAN13">
+            <summary>The UPC/EAN symbology type EAN13.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDUpcEanTypeConstants.AddOn5">
+            <summary>The UPC/EAN symbology type Add On 5.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDUpcEanTypeConstants.AddOn2">
+            <summary>The UPC/EAN symbology type Add On 2.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDSymbologyConstants">
+            <summary>Enumeration of ID symbologies.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.EANUCCComposite">
+            <summary>The EAN UCC symbology.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.QRCode">
+            <summary>The QR Code symbology.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.DataMatrix">
+            <summary>The Data Matrix symbology.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.PDF417">
+            <summary>The PDF417 symbology.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.Pharmacode">
+            <summary>The Pharmacode symbology.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.Codabar">
+            <summary>The Codabar symbology.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.Code93">
+            <summary>The Code93 symbology.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.DataBar">
+            <summary>The DataBar symbologies.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.Planet">
+            <summary>The PLANET symbology.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.Postnet">
+            <summary>The POSTNET symbology.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.FourState">
+            <summary>The 4-State symbologies.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.UpcEan">
+            <summary>The UPC/EAN linear symbologies.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.Code128">
+            <summary>The Code 128 linear symbology.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.Code39">
+            <summary>The Code 39 linear symbology.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDSymbologyConstants.I2Of5">
+            <summary>The Interleaved 2 of 5 linear symbology.</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ID.CogIDTimeoutConstants">
+            <summary>Enumeration of Timeout status.
+When AllowPartialResults is enabled, the results could be either partial
+or full depending on the Timeout value. 
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDTimeoutConstants.Timeout">
+            <summary>When AllowPartialResults is set to true and a
+timeout occurs, partial results will be returned if available.</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ID.CogIDTimeoutConstants.Okay">
+            <summary>
+Okay is returned when AllowPartialResults is set to true and all
+results are returned within the timeout value. 
+</summary>
+        </member>
+    </members>
+</doc>

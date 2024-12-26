@@ -1,0 +1,1810 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "Cognex.VisionPro.ColorExtractor"
+    </assembly>
+    <members>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogColorExtractorTool object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.Results">
+            <summary>
+Gets the results from the last call to the Run method.
+A new instance of CogColorExtractorResults is created for each
+run of the tool.
+</summary>
+            <value>
+The results object. This will be null if the last call to Run() failed.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.RunParams">
+            <summary>
+Gets or sets the run parameters for this CogColorExtractorTool.
+</summary>
+            <value>
+The run parameters.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.Pattern">
+            <summary>
+Gets or sets the CogColorExtractorPattern operator used by this tool.
+</summary>
+            <value>
+The operator.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.Region">
+            <summary>
+Gets or sets the optional region that specifies a portion of the
+input image to be used during color extraction. The
+<see cref="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.RegionMode" />
+property specifies exactly how this region will be applied to the
+InputImage.
+</summary>
+            <value>
+The region. May be null.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.InputImage">
+            <summary>
+Gets or sets the input RGB color image that is to be segmented.
+</summary>
+            <value>
+The RGB color image to be segmented.
+</value>
+            <exception cref="T:System.ArgumentException">
+If the supplied input image is not in RGB color space.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.LastRunRecordDiagEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+CogColorExtractorLastRunRecordDiagConstants.
+</summary>
+            <value>
+A bitwise combination of CogColorExtractorLastRunRecordDiagConstants.
+Options include None, InputImageDeepCopy, InputImageByReference,
+InputImageMask, and All.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.LastRunRecordEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+CogColorExtractorLastRunRecordConstants.
+</summary>
+            <value>
+A bitwise combination of CogColorExtractorLastRunRecordConstants.
+Options include None, OverallGreyscaleImage, OverallColorImage,
+GroupGreyscaleImage, GroupColorImage, and All.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.CurrentRecordEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+CogColorExtractorCurrentRecordConstants.
+</summary>
+            <value>
+A bitwise combination of CogColorExtractorCurrentRecordConstants.
+Options include None, InputImage, Region, InputImageMask, and All.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.Finalize">
+            <summary>
+Finalize this CogColorExtractorTool object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.Dispose">
+            <summary>
+Destruct this CogColorExtractorTool object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.#ctor(Cognex.VisionPro.ColorExtractor.CogColorExtractorTool)">
+            <summary>
+Construct a deep copy of the supplied CogColorExtractorTool object.
+</summary>
+            <param name="Other">
+The CogColorExtractorTool object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.#ctor">
+            <summary>
+Construct a default CogColorExtractorTool object. This
+will initially have a CogColorExtractorPattern whose
+color model contains a single empty color group.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.SfResults">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Results may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.SfRegion">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Region may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.SfInputImage">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by InputImage may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.SfRunParams">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by RunParams may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.SfPattern">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Pattern may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.SfCurrentRecordEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by CurrentRecordEnable may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.SfLastRunRecordDiagEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by LastRunRecordDiagEnable may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.SfLastRunRecordEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by LastRunRecordEnable may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool">
+            <summary>
+This class provides tool level access to the
+<see cref="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern" />
+operator. This class encapsulates all of the classes needed to perform
+CogColorExtractor color image segmentation.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern.Execute(Cognex.VisionPro.CogImage24PlanarColor,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams)">
+            <summary>
+Perform segmentation on the supplied color image.
+</summary>
+            <returns>
+The results of this segmentation operation. This results object
+will always have a non-null OverallResult field and non-null
+GroupResults for every defined color group.
+</returns>
+            <param name="image">
+The RGB color image to be segmented.
+</param>
+            <param name="region">
+An optional region. May be null. If supplied, this region is used to
+limit the amount of processing performed on the input image. This is
+done in conjunction with the RegionMode property, which may be either
+PixelAlignedBoundingBox or PixelAlignedBoundingBoxAdjustMask. If no
+inputRegion is supplied, the entire input image is processed.
+</param>
+            <param name="runParams">
+The run time parameters that control the image segmentation operation.
+</param>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoInputImageException">
+If the supplied input image argument is null.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied input image is not in RGB color space.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoRunParamsException">
+If the supplied run params argument is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException">
+If licensing for this operator cannot be confirmed.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException">
+If this operator is not already trained and the RunParams AutoTrain
+property is set to false.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern.Train">
+            <summary>
+Train this pattern. Only enabled colors within enabled
+color groups are incorporated in the trained pattern.
+</summary>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException">
+If licensing for this operator cannot be confirmed.
+</exception>
+            <exception cref="T:System.InvalidOperationException">
+If there are no active colors in this pattern. There
+must be at least one enabled color group holding at least one
+enabled color for training to proceed.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the Trained property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern.Trained">
+            <summary>
+Gets the Trained flag for this pattern.
+</summary>
+            <value>
+Whether or not this pattern is trained.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern.ColorModel">
+            <summary>
+Gets or sets the color model.
+</summary>
+            <value>
+The color model.
+</value>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied color model argument is null.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogColorExtractorPattern object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern.OnDeserialization(System.Object)">
+            <summary>
+Perform post-deserialization setup.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern.Finalize">
+            <summary>
+Finalize this CogColorExtractorPattern object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern.Dispose">
+            <summary>
+Destruct this CogColorExtractorPattern object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern.#ctor(Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern)">
+            <summary>
+Construct a deep copy of the supplied CogColorExtractorPattern object.
+</summary>
+            <param name="Other">
+The CogColorExtractorPattern object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern.#ctor">
+            <summary>
+Construct a default CogColorExtractorPattern object. This
+will initially have a CogColorExtractorColorModel containing
+zero color groups.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern.SfColorModel">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by ColorModel may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern.SfTrained">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Trained may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern">
+            <summary>
+This class performs segmentation of an input color image based upon
+the previously trained color model.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.GroupColorImagesEnabled">
+            <summary>
+Gets or sets the per-color-group color image enable flag. If true,
+compute a color image for each enabled color group.
+</summary>
+            <value>
+The per-color-group color image enable flag. If true,
+compute a color image for each enabled color group.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.GroupGreyscaleImagesEnabled">
+            <summary>
+Gets or sets the per-color-group greyscale image enable flag. If true,
+compute a greyscale image for each enabled color group.
+</summary>
+            <value>
+The per-color-group greyscale image enable flag. If true,
+compute a greyscale image for each enabled color group.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.GroupPixelCountsEnabled">
+            <summary>
+Gets or sets the per-color-group pixel count enable flag. If true,
+compute a count of matched pixels for each enabled color group.
+</summary>
+            <value>
+The per-color-group pixel count enable flag. If true,
+compute a count of matched pixels for each enabled color group.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.OverallColorImageEnabled">
+            <summary>
+Gets or sets the overall color image enable flag. If true,
+</summary>
+            <value>
+The overall color image enable flag. If true,
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.OverallGreyscaleImageEnabled">
+            <summary>
+Gets or sets the overall greyscale image enable flag. If true,
+generate an overall greyscale image as output.
+</summary>
+            <value>
+The overall greyscale image enable flag. If true,
+generate an overall greyscale image as output.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.OverallPixelCountEnabled">
+            <summary>
+Gets or sets the overall pixel count enable flag. If true, compute
+an overall count of matched pixels.
+</summary>
+            <value>
+The overall pixel count enable flag. If true, compute
+an overall count of matched pixels.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SoftnessThreshold">
+            <summary>
+Gets or sets the softness threshold. In counting the number
+of matched pixels, only those with a greyscale image value
+greater than or equal to this threshold are counted.
+</summary>
+            <value>
+The softness threshold. In counting the number
+of matched pixels, only those with a greyscale image value
+greater than or equal to this threshold are counted. Must be in
+the range one through 255 inclusive. Default value is 255.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied argument is less than one or greater than 255.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.InputImageMaskOffsetY">
+            <summary>
+Gets or sets the InputImageMask Y offset value in pixels.
+</summary>
+            <value>
+The InputImageMask Y offset value in pixels. The X and Y offset values
+measure the offset from the upper-left corner of the run-time input
+image to th upper-left corner of the InputImageMask in pixels.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.InputImageMaskOffsetX">
+            <summary>
+Gets or sets the InputImageMask X offset value in pixels.
+</summary>
+            <value>
+The InputImageMask X offset value in pixels. The X and Y offset values
+measure the offset from the upper-left corner of the run-time input
+image to th upper-left corner of the InputImageMask in pixels.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.InputImageMask">
+            <summary>
+Gets or sets the optional input image mask.
+</summary>
+            <value>
+The optional input image mask. May be null. If not null, mask pixels
+must be 255 to indicate "care" and 0 to indicate "don't care." Input
+image pixels that correspond to an InputImageMask pixel with a
+don't care values result in a "no-match" output pixel.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.RegionMode">
+            <summary>
+Gets or sets the region mode. This controls how the optional run time
+region is applied to the input image.
+</summary>
+            <value>
+The region mode. May be either PixelAlignedBoundingBox or
+PixelAlignedBoundingBoxAdjustMask. Default is PixelAlignedBoundingBox.
+</value>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is not either PixelAlignedBoundingBox or
+PixelAlignedBoundignBoxAdjustMask.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.AutoTrain">
+            <summary>
+Gets or sets the auto train flag. If true, calling Execute on
+a CogColorExtractorPattern object whose Trained property is
+false will not result in an exception. Instead, the operator
+will automatically train and then execute.
+</summary>
+            <value>
+The auto train flag. If true, calling Execute
+on a CogColorExtractorPattern object whose Trained property
+is false will not result in an exception. Instead, the operator
+will automatically train and then execute. This facilitates
+viewing the effect of train time changes via Electric Mode
+in an edit control.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogColorExtractorRunParams object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.Finalize">
+            <summary>
+Finalize this CogColorExtractorRunParams.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.Dispose">
+            <summary>
+Destruct this CogColorExtractorRunParams.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.#ctor(Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams)">
+            <summary>
+Construct a deep copy of the supplied CogColorExtractorRunParams object.
+</summary>
+            <param name="Other">
+The CogColorExtractor object to be copied.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.#ctor">
+            <summary>
+Construct a default CogColorExtractorRunParams object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SfGroupColorImagesEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by GroupColorImagesEnabled may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SfGroupGreyscaleImagesEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by GroupGreyscaleImagesEnabled may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SfGroupPixelCountsEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by GroupPixelCountsEnabled may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SfOverallColorImageEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by OverallColorImageEnabled may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SfOverallGreyscaleImageEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by OverallGreyscaleImageEnabled may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SfOverallPixelCountEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by OverallPixelCountEnabled may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SfSoftnessThreshold">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by SoftnessThreshold may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SfInputImageMaskOffsetY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by InputImageMaskOffsetY may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SfInputImageMaskOffsetX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by InputImageMaskOffsetX may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SfInputImageMask">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by InputImageMask may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SfRegionMode">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by RegionMode may have cahnged.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams.SfAutoTrain">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by AutoTrain may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorRunParams">
+            <summary>
+This class holds the run time parameters used by the Execute method of
+<see cref="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorPattern" /></summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorResults.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogColorExtractorResults
+object.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorResults.GroupResults">
+            <summary>
+Gets the collection of group results.
+</summary>
+            <value>
+The collection of group results. This collection will
+have as many elements as there are defined color groups.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorResults.OverallResult">
+            <summary>
+Gets the overall results.
+</summary>
+            <value>
+The overall results.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorResults.Finalize">
+            <summary>
+Finalize this CogColorExtractorResults
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorResults.Dispose">
+            <summary>
+Destruct this CogColorExtractorResults
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorResults.#ctor(Cognex.VisionPro.ColorExtractor.CogColorExtractorResults)">
+            <summary>
+Construct a deep copy of the supplied
+CogColorExtractorResults object.
+</summary>
+            <param name="Other">
+The CogColorExtractorResults object to be copied.
+May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorResults">
+            <summary>
+This class represents the top level results returned by the
+CogColorExtractorPattern operator. This class is intended to
+be read only, and to only be constructed by the CogColorExtractorPattern
+object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogColorExtractorGroupResultCollection
+object.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.IsReadOnly">
+            <summary>
+Gets a boolean indicating whether or not this collection is read only.
+</summary>
+            <value>
+Whether or not this collection is read only.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.IsFixedSize">
+            <summary>
+Gets a boolean indicating whether or not this collection is fixed size.
+</summary>
+            <value>
+Whether or not this collection is fixed size.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.IndexOf(Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResult)">
+            <summary>
+Get the index of the supplied group result. If the group result cannot be
+found, -1 is returned.
+</summary>
+            <param name="value">
+The group result whose index is desired.
+</param>
+            <returns>
+The index of the supplied group result if found, otherwise -1.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.Contains(Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResult)">
+            <summary>
+Determines whether this group result collection contains a specific
+group result instance.
+</summary>
+            <param name="value">
+The CogColorExtractorGroupResult to locate in this group
+result collection.
+</param>
+            <returns>
+Whether or not the group result collectin contains the supplied
+group result.
+</returns>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.Item(System.Int32)">
+            <summary>
+Gets the CogColorExtractorGroupResult at the specified position
+within this collection.
+</summary>
+            <param name="index">
+The zero-based index that specifies the position of interest in
+this collectin.
+</param>
+            <value>
+The CogColorExtractorGroupResult at the specified position within
+this collection.
+</value>
+            <exception cref="T:System.IndexOutOfRangeException">
+If the supplied index parameter is not valid.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.CopyTo(System.Array,System.Int32)">
+            <summary>
+Copy the group results in this collection into the supplied array,
+starting at the specified destination index. This is a shallow
+copy.
+</summary>
+            <param name="array">
+The array that will hold the copied group result objects.
+</param>
+            <param name="index">
+The zero-based index into the destination array at which copying begins.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the array argument is null.
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index argument is less than zero.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the destination array is not of rank 1.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the destination array's lower bound is not 0.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the length of the destination array is less than the number
+of group results in this collection.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the element type of the destination array is not
+CogColorExtractorGroupResult.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.SyncRoot">
+            <summary>
+Gets a SyncRoot for this object.
+</summary>
+            <returns>
+A SyncRoot for this object.
+</returns>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.IsSynchronized">
+            <summary>
+Gets a boolean indicating whether or not this collection is
+synchronized.
+</summary>
+            <value>
+Whether or not this collection is synchronized.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.Count">
+            <summary>
+Gets the number of group results in this collection.
+</summary>
+            <value>
+The number of group results in this collection.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.GetEnumerator">
+            <summary>
+Gets an enumerator for this collection.
+</summary>
+            <returns>
+An enumerator for this collection.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.Finalize">
+            <summary>
+Finalize this CogColorExtractorGroupResultCollection.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.Dispose">
+            <summary>
+Destruct this CogColorExtractorGroupResultCollection.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection.#ctor(Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection)">
+            <summary>
+Construct a deep copy of the supplied
+CogColorExtractorGroupResultCollection object.
+</summary>
+            <param name="Other">
+The CogColorExtractorGroupResultCollection object to be copied.
+May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResultCollection">
+            <summary>
+This class holds an ordered list of CogColorExtractorGroupResult
+objects - one for each defined color group. This class is meant
+to be read only, and to be created only by the CogColorExtractorPattern
+object, not by the user.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResult.GroupName">
+            <summary>
+Gets the name of the color group to which this result corresponds.
+</summary>
+            <value>
+The name of the color group to which this result cooresponds.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResult.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogColorExtractorGroupResult object.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResult.Finalize">
+            <summary>
+Finalize this CogColorExtractorGroupResult.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResult.Dispose">
+            <summary>
+Destruct this CogColorExtractorGroupResult.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResult.#ctor(Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResult)">
+            <summary>
+Construct a deep copy of the supplied CogColorExtractorGroupResult
+object.
+</summary>
+            <param name="Other">
+The CogColorExtractorGroupResult object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorGroupResult">
+            <summary>
+This class holds a single CogColorExtractor group result. It consists
+of a group name plus some combination of a pixel count, a greyscale image,
+and a color image. If no pixel count was requested, then
+PixelCountValid will be false. If no greyscale image was
+requested, then GreyscaleImage will be null. And if no color image
+was requested, then ColorImage will be null. As a result object, this
+class is meant to be created only by the CogColorExtractorPattern
+object, and not by the user.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorResult.ColorImage">
+            <summary>
+Gets the color output image for this result.
+</summary>
+            <value>
+The color output image for this result. If no color
+image was requested, this will be null.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorResult.GreyscaleImage">
+            <summary>
+Gets the greyscale output image for this result.
+</summary>
+            <value>
+The greyscale output image for this result. If no greyscale
+image was requested, this will be null.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorResult.PixelCount">
+            <summary>
+Gets the number of matched pixels found in the input image. This
+value is only meaningful if PixelCountValid is true.
+</summary>
+            <value>
+The number of matched pixels found in the input image. This
+value is only meaningful if PixelCountValid is true.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorResult.PixelCountValid">
+            <summary>
+Gets a boolean indicating whether or not the pixel count is valid.
+</summary>
+            <value>
+Whether or not the pixel count is valid.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorResult.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogColorExtractorResult object.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorResult.Finalize">
+            <summary>
+Finalize this CogColorExtractorResult.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorResult.Dispose">
+            <summary>
+Destruct this CogColorExtractorResult.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorResult.#ctor(Cognex.VisionPro.ColorExtractor.CogColorExtractorResult)">
+            <summary>
+Construct a deep copy of the supplied CogColorExtractorResult object.
+</summary>
+            <param name="Other">
+The CogColorExtractorResult object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorResult">
+            <summary>
+This class holds a single CogColorExtractor result. It consists of
+some combination of a pixel count, a greyscale image, and a
+color image. If no pixel count result was requested, then
+PixelCountValid will be false. If no greyscale image was
+requested, then GreyscaleImage will be null. And if no color image
+was requested, then ColorImage will be null. As a result object, this
+class is meant to be created only by the CogColorExtractorPattern
+object, and not by the user.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel.Remove(Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup)">
+            <summary>
+Removes the specified color group from this color model.
+</summary>
+            <param name="value">
+The color group to remove from this color model.
+</param>
+            <event cref="E:Cognex.VisionPro.ICogCollectionEvents.RemovingItem">
+Occurs before the value is removed.
+</event>
+            <event cref="E:Cognex.VisionPro.ICogCollectionEvents.RemovedItem">
+Occurs after the value is removed.
+</event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires because this method changes the Count property.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel.IndexOf(Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup)">
+            <summary>
+Get the index of the supplied color group. If the color group cannot be
+found, -1 is returned.
+</summary>
+            <param name="value">
+The color group whose index is desired.
+</param>
+            <returns>
+The index of the supplied color group if found, otherwise -1.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel.Contains(Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup)">
+            <summary>
+Determines whether this color model contains a specific color
+group instance.
+</summary>
+            <param name="value">
+The CogColorExtractorColorGroup to locate in this color model.
+</param>
+            <returns>
+Whether or not the color model contains the supplied color group.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel.Insert(System.Int32,Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup)">
+            <summary>
+Insert the given color group at the specified index.
+</summary>
+            <param name="value">
+The color group to add to this collection.
+</param>
+            <param name="index">
+The position at which to insert the color group.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied index is not a valid index into this color model.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogCollectionEvents.InsertingItem">
+Occurs before the value is inserted.
+</event>
+            <event cref="E:Cognex.VisionPro.ICogCollectionEvents.InsertedItem">
+Occurs after the value is inserted.
+</event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires because this method changes the Count and Item properties.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel.Add(Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup)">
+            <summary>
+Append the supplied color group to the end of the collection.
+</summary>
+            <param name="value">
+The color group to add to this collection.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogCollectionEvents.InsertingItem">
+Occurs before the value is inserted.
+</event>
+            <event cref="E:Cognex.VisionPro.ICogCollectionEvents.InsertedItem">
+Occurs after the value is inserted.
+</event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires because this method changes the Count and Item properties.
+</event>
+            <returns>
+The index of the newly added color.
+</returns>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel.Item(System.Int32)">
+            <summary>
+Gets or sets the CogColorExtractorColorGroup at the specified position
+within this collection.
+</summary>
+            <param name="Index">
+The zero-based index that specifies the position of interest in
+this collection.
+</param>
+            <value>
+The CogColorExtractorColorGroup at the specified position within
+this collection.
+</value>
+            <exception cref="T:System.IndexOutOfRangeException">
+If the supplied index parameter is not valid.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel.Clone">
+            <summary>
+Create a duplicate of this CogColorExtractorColorModel object.
+</summary>
+            <returns>
+A newly created duplicate of this CogColorExtractorModel object.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogColorExtractorColorModel object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel.Finalize">
+
+Finalize this CogColorExtractorColorModel object.
+
+</member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel.Dispose">
+
+Destruct this CogColorExtractorColorModel object.
+
+</member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel.#ctor(Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel)">
+            <summary>
+Construct a deep copy of the supplied CogColorExtractorColorModel object.
+</summary>
+            <param name="Other">
+The CogColorExtractorColorModel object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel.#ctor">
+            <summary>
+Construct a default CogColorExtractorColorModel object. This object
+will initially contain zero CogColorExtractorColorGroup objects.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorModel">
+            <summary>
+This class holds zero or more CogColorExtractorColorGroup objects.
+Note that the ordering of objects within this collection does not
+affect processing.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.Remove(Cognex.VisionPro.ColorExtractor.CogColorExtractorColor)">
+            <summary>
+Removes the specified color from this color group.
+</summary>
+            <param name="value">
+The color to remove from this color group.
+</param>
+            <event cref="E:Cognex.VisionPro.ICogCollectionEvents.RemovingItem">
+Occurs before the value is removed.
+</event>
+            <event cref="E:Cognex.VisionPro.ICogCollectionEvents.RemovedItem">
+Occurs after the value is removed.
+</event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires because this method changes the Count property.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.IndexOf(Cognex.VisionPro.ColorExtractor.CogColorExtractorColor)">
+            <summary>
+Get the index of the supplied color. If the color cannot be
+found, -1 is returned.
+</summary>
+            <param name="value">
+The color whose index is desired.
+</param>
+            <returns>
+The index of the supplied color if found, otherwise -1.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.Contains(Cognex.VisionPro.ColorExtractor.CogColorExtractorColor)">
+            <summary>
+Determines whether this color group contains a specific color instance.
+</summary>
+            <param name="value">
+The CogColorExtractorColor to locate in this color group.
+</param>
+            <returns>
+Whether or not the color group contains the supplied color.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.Insert(System.Int32,Cognex.VisionPro.ColorExtractor.CogColorExtractorColor)">
+            <summary>
+Insert the given color at the specified index.
+</summary>
+            <param name="value">
+The color to add to this collection.
+</param>
+            <param name="index">
+The position at which to insert the color.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied index is not a valid index into this color group.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogCollectionEvents.InsertingItem">
+Occurs before the value is inserted.
+</event>
+            <event cref="E:Cognex.VisionPro.ICogCollectionEvents.InsertedItem">
+Occurs after the value is inserted.
+</event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires because this method changes the Count and Item properties.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.Add(Cognex.VisionPro.ColorExtractor.CogColorExtractorColor)">
+            <summary>
+Append the supplied color to the end of the collection.
+</summary>
+            <param name="value">
+The color to add to this collection.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogCollectionEvents.InsertingItem">
+Occurs before the value is inserted.
+</event>
+            <event cref="E:Cognex.VisionPro.ICogCollectionEvents.InsertedItem">
+Occurs after the value is inserted.
+</event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires because this method changes the Count and Item properties.
+</event>
+            <returns>
+The index of the newly added color.
+</returns>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.Item(System.Int32)">
+            <summary>
+Gets or sets the CogColorExtractorColor at the specified position
+within this collection.
+</summary>
+            <param name="Index">
+The zero-based index that specifies the position of interest in
+this collection.
+</param>
+            <value>
+The CogColorExtractorColor at the specified position within
+this collection.
+</value>
+            <exception cref="T:System.IndexOutOfRangeException">
+If the supplied index parameter is not valid.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.CombineColorsSequentially">
+            <summary>
+Gets or sets the combine colors sequentially flag for this color group.
+</summary>
+            <value>
+The combine colors sequentially flag. If true, combine colors
+in this group in the order in which they are listed. If false, then
+combine all additive colors first, combine all subtractive colors
+second, and combine these two combinations last.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.Enabled">
+            <summary>
+Gets or sets the enabled flag for this color group.
+</summary>
+            <value>
+Whether or not this color group should be considered part of the
+containing color model.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.Name">
+            <summary>
+Gets or sets the user supplied name of this color group.
+</summary>
+            <value>
+The user supplied name of this color group. May be an empty string,
+but may not be null.
+</value>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied value is null.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.Clone">
+            <summary>
+Create a duplicate of this CogColorExtractorColorGroup object.
+</summary>
+            <returns>
+A newly created duplicate of this CogColorExtractorColorGroup object.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogColorExtractorColorGroup object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.Finalize">
+            <summary>
+Finalize this CogColorExtractorColorGroup object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.Dispose">
+            <summary>
+Destruct this CogColorExtractorColorGroup object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.#ctor(Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup)">
+            <summary>
+Construct a deep copy of the supplied CogColorExtractorColorGroup object.
+</summary>
+            <param name="Other">
+The CogColorExtractorColorGroup object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.#ctor">
+            <summary>
+Construct a default CogColorExtractorColorGroup object. This
+object will initially contain zero CogColorExtractorColor objects.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.SfCombineColorsSequentially">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by CombineColorsSequentially may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.SfEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Enabled may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup.SfName">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Name may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorColorGroup">
+            <summary>
+This class holds a collection of zero or more CogColorExtractorColor
+objects. This class has an identifying Name field. This class may
+be enabled or disabled within the context of a containing
+CogColorExtractorColorModel.
+</summary>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.Mask">
+            <summary>
+Gets the mask image that was generated from the region used
+to define this color.
+</summary>
+            <value>
+The mask image that was generated from the region used
+to define this color. If no region was supplied, or if the
+supplied region was rectangular, this property will
+be null.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.Region">
+            <summary>
+Gets the cached copy of the region used to define this color.
+</summary>
+            <value>
+The cached copy of the region used to define this color. If no
+region was supplied when this color was constructed, this
+value will be null. This is intended to be a read-only
+value - do not modify this region.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.Image">
+            <summary>
+Gets the cached copy of the source color pixels that fell within the
+pixel aligned bounding box of the supplied region (or of
+the whole image if no region was provided).
+</summary>
+            <value>
+The cached copy of the source color pixels that fell within the
+pixel aligned bounding box of the supplied region (or of the whole
+image if no region was provided). This intended to be a read-only
+value - do not modify this image.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.MinimumPixelCount">
+            <summary>
+Gets or sets the minimum pixel count. Any RGB color value with fewer than
+this many pixels will not be incorporated in this color definition.
+</summary>
+            <value>
+The minimum pixel count. Any RGB color value with fewer than this
+many pixels will not be incorporated in this color definition. Must
+be in the range of one to one hundred inclusive. Default is ten.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied value is less than one or greater than one hundred.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.Dilation">
+            <summary>
+Gets or sets the number of "dilation steps" to be incorporated in
+this color definition.
+</summary>
+            <value>
+The number of dilation steps to be incorporated in this color
+definition. Must be in the range zero (no dilation) to ten inclusive.
+Default is zero. A non-zero value causes individual color components
+from the defining pixels to be joined if the are sufficiently close
+in RGB space.
+</value>
+            <exception cref="T:System.ArgumentException">
+If the supplied value is less than zero or greater than ten.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.Softness">
+            <summary>
+Gets or sets the number of "softness steps" to be incorporated in
+this color definition.
+</summary>
+            <value>
+The number of softness steps to be incoporated in this color definition.
+Must be in the range zero (no softness) to 19 inclusive. Default is zero.
+A non-zero value allows an input color pixel to be judged a partial
+match to this color.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied value is less than zero or greater than 19.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.HighlightLineLimit">
+            <summary>
+Gets or sets the highlight line limit as a fraction of color
+magnitude.
+</summary>
+            <value>
+The highlight line limit as a fraction of color magnitude. Must
+be in the range one to ten inclusive. Default value is 1.8.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied value is less than one or greater than ten.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.HighlightLineEnabled">
+            <summary>
+Gets or sets whether the highlight volume should be part of this
+color definition.
+</summary>
+            <value>
+Whether the highlight volume should be part of this color definition.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.MatteLineLimitHigh">
+            <summary>
+Gets or sets the matte line high limit as a fraction of color
+magnitude.
+</summary>
+            <value>
+The matte line high limit as a fraction of color magnitude. Must be
+in the range one to ten inclusive. Default value is 1.5.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied value is less than one or greater than ten.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.MatteLineLimitLow">
+            <summary>
+Gets or sets the matte line low limit as a fraction of color
+magnitude.
+</summary>
+            <value>
+The matte line low limit as a fraction of color magnitude. Must be
+in the range zero to one inclusive. Default value is 0.5.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied value is less than zero or greater than one.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.MatteLineEnabled">
+            <summary>
+Gets or sets whether the matte volume should be part of this
+color definition.
+</summary>
+            <value>
+Whether the matte volume should be part of this color definition.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.CombineMethod">
+            <summary>
+Gets or sets how this color should be combined with other
+colors in the containing color group.
+</summary>
+            <value>
+The combine method. May be either Add or Subtract.
+</value>
+            <exception cref="T:System.ArgumentException">
+If the supplied value is not a member of the enumeration.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.Enabled">
+            <summary>
+Gets or sets whether this color should be considered part
+of the containing color group.
+</summary>
+            <value>
+The enabled flag for this color.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.Name">
+            <summary>
+Gets or sets the name of this color.
+</summary>
+            <value>
+The user defined name of this color. May be an empty string, but
+may not be null.
+</value>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied argument is null.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogColorExtractorColor object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.Finalize">
+            <summary>
+Finalize this CogColorExtractorColor.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.Dispose">
+            <summary>
+Destruct this CogColorExtractorColor.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.#ctor(Cognex.VisionPro.ColorExtractor.CogColorExtractorColor)">
+            <summary>
+Construct a deep copy of the supplied CogColorExtractorColor object.
+</summary>
+            <param name="Other">
+The CogColorExtractor object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.#ctor(Cognex.VisionPro.CogImage24PlanarColor,Cognex.VisionPro.ICogRegion)">
+            <summary>
+Construct a CogColorExtractorColor from the supplied RGB
+color image and, optionally, the suppplied region.
+</summary>
+            <param name="image">
+The RGB color image from which this color will be defined.
+</param>
+            <param name="region">
+An optional region the specifies the color pixels of interest. Pixels
+outside of this region are ignored. May be null.
+</param>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.SfMinimumPixelCount">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by MinimumPixelCount may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.SfDilation">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Dilation may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.SfSoftness">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Softness may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.SfHighlightLineLimit">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by HighlightLineLimit may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.SfHighlightLineEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by HighlightLineEnabled may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.SfMatteLineLimitHigh">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by MatteLineLimitHigh may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.SfMatteLineLimitLow">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by MatteLineLimitLow may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.SfMatteLineEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by MatteLineEnabled may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.SfCombineMethod">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by CombineMethod may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.SfEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Enabled may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor.SfName">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Name may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorColor">
+            <summary>
+This class represents a single user definded color for use by
+the CogColorExtractorPattern.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordDiagConstants">
+            <summary>
+Enumeration of diagnostic data that can be provided in the
+Tool's LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordDiagConstants.All">
+            <summary>
+Include all of the diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordDiagConstants.InputImageMask">
+            <summary>
+Include a copy of the input image mask in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordDiagConstants.Region">
+            <summary>
+Include a copy of the region in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordDiagConstants.InputImageDeepCopy">
+            <summary>
+Include a deep copy of the input image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordDiagConstants.InputImageByReference">
+            <summary>
+Include a reference to the input image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordDiagConstants.None">
+            <summary>
+Do not include any of the diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordConstants">
+            <summary>
+Enumeration of non-diagnostic data that can be provided in
+the Tool's LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordConstants.All">
+            <summary>
+Include all of the non-diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordConstants.GroupColorImages">
+            <summary>
+Include in the LastRunRecord references to any group color images
+that are computed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordConstants.GroupGreyscaleImages">
+            <summary>
+Include in the LastRunRecord references to any group greyscale images
+that are computed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordConstants.OverallColorImage">
+            <summary>
+If one is computed, include a reference to the overall
+color image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordConstants.OverallGreyscaleImage">
+            <summary>
+If one is computed, include a reference to the overall
+gresycale image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorLastRunRecordConstants.None">
+            <summary>
+Do not include any of the non-diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorCurrentRecordConstants">
+            <summary>
+Enumeration of data that can be provided in the Tool's
+CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorCurrentRecordConstants.All">
+            <summary>
+Include all possible records in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorCurrentRecordConstants.InputImageMask">
+            <summary>
+Include a graphic representing the input image mask in
+the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorCurrentRecordConstants.Region">
+            <summary>
+Include the (interactive) region to be used for color
+extraction in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorCurrentRecordConstants.InputImage">
+            <summary>
+Include the input image in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorCurrentRecordConstants.None">
+            <summary>
+Do not include any records in the CurrentRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.ColorExtractor.CogColorExtractorCombineMethodConstants">
+            <summary>
+Constants used to specify how to combine a
+color with the other colors in a color group.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorCombineMethodConstants.Subtract">
+            <summary>
+Subtract this color from the others in the color group.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.ColorExtractor.CogColorExtractorCombineMethodConstants.Add">
+            <summary>
+Add this color to the others in the color group.
+</summary>
+        </member>
+    </members>
+</doc>

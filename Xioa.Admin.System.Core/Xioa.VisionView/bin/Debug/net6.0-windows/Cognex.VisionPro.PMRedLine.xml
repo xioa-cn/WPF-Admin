@@ -1,0 +1,2940 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "Cognex.VisionPro.PMRedLine"
+    </assembly>
+    <members>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.Results">
+            <summary>
+Gets the results from the last run of the RedLine tool.
+</summary>
+            <value> The results from the last run of the tool.
+Default value is null.</value>
+            <remarks>
+The returned results will be null if the last call to
+<see cref="M:Cognex.VisionPro.Implementation.CogToolBase.Run" />
+failed.  If it succeeded, but no pattern instances were found,
+the returned results will be non-null but will have a
+<see cref="P:Cognex.VisionPro.Implementation.CogReadOnlyCollection`1.Count" />
+of zero.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.RunParams">
+            <summary>
+Gets or sets the parameters to be used when this PMRedLine tool is run.
+</summary>
+            <value> The parameters to use at runtime.  Default
+value is a default constructed
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" />
+object.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfRunParams" /></item><item><see cref="F:Cognex.VisionPro.Implementation.CogToolBase.SfCreateCurrentRecord" /></item></list></event>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.Pattern">
+            <summary>
+Gets or sets the pattern to be used when this PMRedLine tool is run.
+The tool will search for instances of this pattern in the runtime
+input image.
+</summary>
+            <value> The pattern to use at runtime.  Default
+value is a default constructed
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern" />
+object.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfPattern" /></item><item><see cref="F:Cognex.VisionPro.Implementation.CogToolBase.SfCreateCurrentRecord" /></item></list></event>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SearchRegion">
+            <summary>
+Gets or sets the search region.  Only the portion of the input image
+that lies within this region will be searched by PMRedLine.  If the
+supplied region object is null, the entire input image will be searched.
+</summary>
+            <value>The search region.  Default value is null.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfSearchRegion" /></item><item><see cref="F:Cognex.VisionPro.Implementation.CogToolBase.SfCreateCurrentRecord" /></item></list></event>
+            <remarks>
+The
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SearchRegionMode" />
+in the 
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" />
+class specifies exactly how the search region will be applied to the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.InputImage" />.
+<para>
+  You can restrict what portions of the input image are searched by
+  PMRedLine.  There are two restriction methods you can use:
+  <list type="bullet"><item> You can exclude one contiguous area of the image using the
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SearchRegion" />.
+    </item><item> You can exclude multiple non-contiguous areas using the
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SearchImageMask" />
+    of the 
+    <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" /> class.
+    </item></list>
+  You can use none, either, or both of these restriction methods.
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.InputImage">
+            <summary>
+Gets or sets the input image that will be searched for instances of
+your PMRedLine pattern.  Only the portions of the image within the
+search region will be searched.
+</summary>
+            <value>The input image.  Default value is null.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfSearchRegion" /></item><item><see cref="F:Cognex.VisionPro.Implementation.CogToolBase.SfCreateCurrentRecord" /></item></list></event>
+            <remarks>
+                <para>
+  You can restrict what portions of the input image are searched by
+  PMRedLine.  There are two restriction methods you can use:
+  <list type="bullet"><item> You can exclude one contiguous area of the image using the
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SearchRegion" />.
+    </item><item> You can exclude multiple non-contiguous areas using the
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SearchImageMask" />
+    of the 
+    <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" /> class.
+    </item></list>
+  You can use none, either, or both of these restriction methods.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.LastRunRecordDiagEnable">
+            <summary>
+Enable the creation of graphical tool records by bitwise ORing the
+desired values from
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordDiagConstants" />.
+</summary>
+            <value>A bitwise combination of the values from
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordDiagConstants" />.
+Default value is InputImageByReference + SearchRegion.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfLastRunRecordEnable" /></item></list></event>
+            <remarks>
+                <para>
+  A VisionPro tool record is a data structure that contains graphical
+  information about the state of the tool.  You can obtain two different
+  records from the tool: the Current Record, which describes the current
+  state of the tool, and the LastRun Record, which describes the state of the
+  tool immediately after the last call to the tool's Run function.
+</para>
+                <para>
+  The current record is obtained by calling the <see cref="M:Cognex.VisionPro.Implementation.CogToolBase.CreateCurrentRecord" />
+  method of the tool.  The last run record is obtained by calling the <see cref="M:Cognex.VisionPro.Implementation.CogToolBase.CreateLastRunRecord" />
+  method.
+</para>
+                <para>
+  You can specify the content of the current record using the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.CurrentRecordEnable" />
+  property.  You can specify the content of the last run record using the
+  <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.LastRunRecordEnable" />
+  and <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.LastRunRecordDiagEnable" />
+  properties.  Graphical information requested via the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.LastRunRecordDiagEnable" />
+  property is only created when the tool is run, and may cause the tool to run
+  more slowly.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.LastRunRecordEnable">
+            <summary>
+Enable the creation of graphical tool records by bitwise ORing the
+desired values from
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordConstants" />.
+</summary>
+            <value>A bitwise combination of the values from
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordConstants" />.
+Default value is ResultsMatchRegion + ResultsOrigin.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfLastRunRecordEnable" /></item><item><see cref="F:Cognex.VisionPro.Implementation.CogToolBase.SfCreateLastRunRecord" /></item></list></event>
+            <remarks>
+                <para>
+  A VisionPro tool record is a data structure that contains graphical
+  information about the state of the tool.  You can obtain two different
+  records from the tool: the Current Record, which describes the current
+  state of the tool, and the LastRun Record, which describes the state of the
+  tool immediately after the last call to the tool's Run function.
+</para>
+                <para>
+  The current record is obtained by calling the <see cref="M:Cognex.VisionPro.Implementation.CogToolBase.CreateCurrentRecord" />
+  method of the tool.  The last run record is obtained by calling the <see cref="M:Cognex.VisionPro.Implementation.CogToolBase.CreateLastRunRecord" />
+  method.
+</para>
+                <para>
+  You can specify the content of the current record using the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.CurrentRecordEnable" />
+  property.  You can specify the content of the last run record using the
+  <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.LastRunRecordEnable" />
+  and <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.LastRunRecordDiagEnable" />
+  properties.  Graphical information requested via the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.LastRunRecordDiagEnable" />
+  property is only created when the tool is run, and may cause the tool to run
+  more slowly.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.CurrentRecordEnable">
+            <summary>
+Enable the creation of graphical tool records by bitwise ORing the
+desired values from
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants" />.
+</summary>
+            <value>A bitwise combination of the values from
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants" />.
+Default value is InputImage + SearchRegion + SearchImageMask +
+TrainImage + TrainRegion + TrainImageMask + PatternOrigin +
+PatternFeatures.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfCurrentRecordEnable" /></item><item><see cref="F:Cognex.VisionPro.Implementation.CogToolBase.SfCreateCurrentRecord" /></item></list></event>
+            <remarks>
+                <para>
+  A VisionPro tool record is a data structure that contains graphical
+  information about the state of the tool.  You can obtain two different
+  records from the tool: the Current Record, which describes the current
+  state of the tool, and the LastRun Record, which describes the state of the
+  tool immediately after the last call to the tool's Run function.
+</para>
+                <para>
+  The current record is obtained by calling the <see cref="M:Cognex.VisionPro.Implementation.CogToolBase.CreateCurrentRecord" />
+  method of the tool.  The last run record is obtained by calling the <see cref="M:Cognex.VisionPro.Implementation.CogToolBase.CreateLastRunRecord" />
+  method.
+</para>
+                <para>
+  You can specify the content of the current record using the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.CurrentRecordEnable" />
+  property.  You can specify the content of the last run record using the
+  <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.LastRunRecordEnable" />
+  and <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.LastRunRecordDiagEnable" />
+  properties.  Graphical information requested via the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.LastRunRecordDiagEnable" />
+  property is only created when the tool is run, and may cause the tool to run
+  more slowly.
+</para>
+            </remarks>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogPMRedLineTool object.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.Clone">
+            <summary>
+Returns a deep copy of this CogPMRedLineTool object.
+</summary>
+            <returns>
+A new CogPMRedLineTool instance that is a deep copy.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.Dispose">
+            <summary>
+Releases all resources used by this CogPMRedLineTool object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.#ctor(Cognex.VisionPro.PMRedLine.CogPMRedLineTool)">
+            <summary>
+Constructs a deep copy of the supplied CogPMRedLineTool object.
+</summary>
+            <param name="other">
+The object to copy.  Must not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="other" /> is null.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+                <paramref name="other" /> has been disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.#ctor">
+            <summary>
+Constructs a default CogPMRedLineRunTool object.  This new tool 
+contains a default pattern object and a default set of run params.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfResults">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Results may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfSearchRegion">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by SearchRegion may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfInputImage">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by InputImage may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfRunParams">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by RunParams may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfPattern">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Pattern may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfCurrentRecordEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by CurrentRecordEnable may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfLastRunRecordDiagEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by LastRunRecordDiagEnable may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SfLastRunRecordEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by LastRunRecordEnable may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLineTool">
+            <summary>
+Class that represents the top-level PMRedLine tool.  With this tool
+you can search your input image for instances of a 
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern" />.
+This class encapsulates all of the objects needed to perform a PMRedLine
+search.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.CreateTrainedGraphics(Cognex.VisionPro.CogColorConstants)">
+            <summary>
+Gets a collection of graphics that can be used to display the
+trained pattern features.
+</summary>
+            <returns>
+A <see cref="T:Cognex.VisionPro.CogGraphicCollection" /> with the
+requested graphics.
+</returns>
+            <param name="color">
+A <see cref="T:Cognex.VisionPro.CogColorConstants" /> that
+specifies the color of the feature graphics.
+</param>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException">
+This pattern operator is not trained.
+</exception>
+            <remarks>
+Gets a <see cref="T:Cognex.VisionPro.CogGraphicCollection" /> object
+that contains a list of the feature boundary points trained for this
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern" />.
+</remarks>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Precompute(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams)">
+            <summary>
+Precompute internal data for the pattern.  Cognex internal use only.
+</summary>
+            <param name="inputImage">
+A typical input image.
+Must be of type <see cref="T:Cognex.VisionPro.CogImage8Grey" />.
+</param>
+            <param name="region">
+An optional region of interest.
+</param>
+            <param name="runParams">
+The parameters that specify how to run this PMRedLine search.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="inputImage" /> is null.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="runParams" /> is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException">
+                <paramref name="inputImage" /> has no allocated pixels.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+                <paramref name="inputImage" /> is not a
+<see cref="T:Cognex.VisionPro.CogImage8Grey" />.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException">
+This pattern operator is not trained.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Execute(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams)">
+            <summary>
+Searchs the given <paramref name="inputImage" /> for instances of this
+pattern.  The search is performed using the supplied
+<paramref name="runParams" /> within the given <paramref name="region" />.
+</summary>
+            <returns>
+The PMRedLine results that were found.  Results are sorted in order of
+decreasing score.
+</returns>
+            <param name="inputImage">
+The image to be searched.
+Must be of type <see cref="T:Cognex.VisionPro.CogImage8Grey" />.
+</param>
+            <param name="region">
+An optional region of interest.  If you do not specify a region,
+the entire image is searched.
+</param>
+            <param name="runParams">
+The parameters that specify how to run this PMRedLine search.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="inputImage" /> is null.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="runParams" /> is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException">
+Licensing for this operation cannot be confirmed.  See
+<see cref="z:96cca39e-2aa6-4cb3-aabb-92960c4cfa63">Understanding
+VisionPro Security</see> for more information.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException">
+                <paramref name="inputImage" /> has no allocated pixels.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+                <paramref name="inputImage" /> is not a
+<see cref="T:Cognex.VisionPro.CogImage8Grey" />.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException">
+This pattern operator is not trained.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException">
+                <paramref name="region" />
+falls completely outside of the <paramref name="inputImage" />.
+Or has an invalid 
+<see cref="P:Cognex.VisionPro.ICogShape.SelectedSpaceName" />.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogTimeoutExpiredException">
+The pattern search took longer than the enabled
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.Timeout" />
+value.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Untrain">
+            <summary>
+Untrains this PMRedLine pattern.
+</summary>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method changes the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Trained" />
+state of the pattern.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Train">
+            <summary>
+Trains this PMRedLine pattern.  If the pattern is already trained then
+it will be untrained and retrained.
+</summary>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method changes the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Trained" />
+state of the pattern.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method trains the pattern successfully and also 
+computes new granularity limits.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitCoarse" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitFine" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException">
+Licensing for this operation cannot be confirmed.  See
+<see cref="z:96cca39e-2aa6-4cb3-aabb-92960c4cfa63">Understanding
+VisionPro Security</see> for more information.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoTrainImageException">
+The
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImage" />
+is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException">
+The
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImage" />
+has no allocated pixels.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+The
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImage" />
+you supplied is not a <see cref="T:Cognex.VisionPro.CogImage8Grey" />.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException">
+The
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainRegion" />
+falls completely outside of the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImage" />.
+Or has an invalid 
+<see cref="P:Cognex.VisionPro.ICogShape.SelectedSpaceName" />.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogTimeoutExpiredException">
+The pattern training took longer than the enabled
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainTimeout" />
+value.
+</exception>
+            <remarks>
+A PMRedLine pattern must be trained before it can be used to search for
+pattern instances.  The trained pattern holds information needed for
+fast searching at runtime.  For example, it holds the location of the
+pattern features that are to be found in the runtime input image.
+<para>
+  Once your pattern is trained you can search for instances of the pattern in
+  a runtime input image.  You can do this in one of two ways:
+  <list type="number"><item> You can call the <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Execute(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams)" />
+    method of this class, or
+    </item><item>
+    You can call the <see cref="M:Cognex.VisionPro.ICogTool.Run" /> method of
+    a <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineTool" /> class that
+    contains this pattern object.
+    </item></list></para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Origin">
+            <summary>
+Gets or sets a six degree of freedom (DOF) origin for the pattern.  This
+linear transform maps points from "Pattern Space" to the selected space
+of the train image.
+</summary>
+            <value> The <see cref="T:Cognex.VisionPro.CogTransform2DLinear" />
+containing the pose of the origin on the training image.
+Default value is an identity transform.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfOrigin" /></item></list></event>
+            <exception cref="T:System.ArgumentNullException">
+The supplied value is null.
+</exception>
+            <remarks>
+The position of the pattern origin is reported by the
+<see cref="P:Cognex.VisionPro.CogTransform2DLinear.TranslationX" /> and
+<see cref="P:Cognex.VisionPro.CogTransform2DLinear.TranslationY" />
+properties of the transform.
+<para>The angle of the pattern origin is reported by the
+<see cref="P:Cognex.VisionPro.CogTransform2DLinear.Rotation" />
+property of the transform.</para><para>The scale of the pattern origin is reported by the
+<see cref="P:Cognex.VisionPro.CogTransform2DLinear.Scaling" />
+property of the transform.</para><para>The transform maps points from "Pattern Space" (i.e. the
+coordinate space defined by this pattern Origin) to the selected space
+of the train image.  For example, mapping the point (0, 0) through the
+transform returns the position of the pattern origin in the selected
+space of the train image.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainTimeoutEnabled">
+            <summary>
+Gets or sets whether to enable the train timeout.
+</summary>
+            <value> "True" if the train timeout is enabled.  "False" otherwise.
+Default value is "false".</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainTimeoutEnabled" /></item></list></event>
+            <remarks>
+If the train timeout is enabled the training of PMRedLine will be
+halted shortly after the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainTimeout" />
+period expires.  If the timeout is disabled the value of the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainTimeout" />
+property is ignored.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainTimeout">
+            <summary>
+Gets or sets the maximum execution time (in msec) allowed when a
+PMRedLine tool is trained.  This value only applies if
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainTimeoutEnabled" />
+is set to "true".
+</summary>
+            <value>The maximum training time allowed (in milliseconds).
+Default value is 5000.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainTimeout" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than zero.
+</exception>
+            <remarks>
+If the timeout is enabled and training exceeds the timeout period, the
+<see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Train" />
+method will throw a
+<see cref="T:Cognex.VisionPro.Exceptions.CogTimeoutExpiredException" />.
+This exception will occur shortly after the timeout period elapses.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Trained">
+            <summary>
+Gets whether this pattern is currently trained.
+</summary>
+            <value> "True" if the pattern is trained.  "False" otherwise.
+Default value is "false".</value>
+            <remarks>
+                <para>
+  Once your pattern is trained you can search for instances of the pattern in
+  a runtime input image.  You can do this in one of two ways:
+  <list type="number"><item> You can call the <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Execute(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams)" />
+    method of this class, or
+    </item><item>
+    You can call the <see cref="M:Cognex.VisionPro.ICogTool.Run" /> method of
+    a <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineTool" /> class that
+    contains this pattern object.
+    </item></list></para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImageMaskOffsetY">
+            <summary>
+Gets or sets the Y offset (in pixels) for the train image mask.
+</summary>
+            <value> The Y offset for the train image mask.  Measured in pixels.
+Default value is zero.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainImageMaskOffsetY" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <remarks>
+                <para>
+  The train image mask is aligned to the train image using the X and Y
+  offset values.  These values measure the offset from the upper-left corner
+  of the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImage" /> to the
+  upper-left corner of the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImageMask" />
+  in the pixel coordinates of the train image.
+</para>
+                <para>
+  If you change this value on a trained pattern object, the pattern will
+  become untrained.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImageMaskOffsetX">
+            <summary>
+Gets or sets the X offset (in pixels) for the train image mask.
+</summary>
+            <value> The X offset for the train image mask.  Measured in pixels.
+Default value is zero.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainImageMaskOffsetX" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <remarks>
+                <para>
+  The train image mask is aligned to the train image using the X and Y
+  offset values.  These values measure the offset from the upper-left corner
+  of the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImage" /> to the
+  upper-left corner of the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImageMask" />
+  in the pixel coordinates of the train image.
+</para>
+                <para>
+  If you change this value on a trained pattern object, the pattern will
+  become untrained.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImageMask">
+            <summary>
+Gets or sets the mask to be used when training a CogPMRedLine pattern.
+The mask allows you to identify areas of the train image as "Care" or
+"Don't Care".
+</summary>
+            <value> The mask for the train image.  Default value is null.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainImageMask" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <remarks>
+The train mask is a <see cref="T:Cognex.VisionPro.CogImage8Grey" />
+whose pixels must contain a either a value of zero ("Don't Care") or a
+value of 255 ("Care").  The mask is aligned to the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImage" />
+as specified by the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImageMaskOffsetX" />
+and
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImageMaskOffsetY" />
+values.
+<para>The train mask prevents parts of the train image from being
+trained by PMRedLine.  Any pixel in the train image that aligns with a
+"Don't Care" mask pixel will be ignored by PMRedLine.  Any pixel in the
+input image that aligns with a "Care" mask pixel (or no mask pixel at
+all) will be used by PMRedLine during training.</para><para>
+  If you change this value on a trained pattern object, the pattern will
+  become untrained.
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainRegionMode">
+            <summary>
+Gets or sets the train region mode.  This mode specifies how the
+train region is applied to the train image.
+</summary>
+            <value> The train region mode.  Default value is
+<see cref="F:Cognex.VisionPro.CogRegionModeConstants.PixelAlignedBoundingBoxAdjustMask" />.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainRegionMode" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is not
+<see cref="F:Cognex.VisionPro.CogRegionModeConstants.PixelAlignedBoundingBox" />
+or
+<see cref="F:Cognex.VisionPro.CogRegionModeConstants.PixelAlignedBoundingBoxAdjustMask" />.
+</exception>
+            <remarks>
+                <para>
+  If you change this value on a trained pattern object, the pattern will
+  become untrained.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainRegion">
+            <summary>
+Gets or sets the train region.  Only the portion of the train image
+that lies within this region will be trained by PMRedLine.  If the
+supplied region object is null, the entire train image will be trained.
+</summary>
+            <value>The train region.  Default value is a 
+<see cref="T:Cognex.VisionPro.CogRectangleAffine" /> that is interactive
+and has all graphical DOFs enabled.  The rectangle is centered at
+(0,0) with a width of 100 and a height of 50.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainRegion" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <remarks>
+The
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainRegionMode" />
+specifies exactly how the train region will be applied to the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImage" />.
+<para>
+  If you change this value on a trained pattern object, the pattern will
+  become untrained.
+</para><para>
+  You can restrict what portions of the training image are trained by
+  PMRedLine.  There are two restriction methods you can use:
+  <list type="bullet"><item> You can exclude one contiguous area of the image using the
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainRegion" />.
+    </item><item> You can exclude multiple non-contiguous areas using the
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImageMask" />.
+    </item></list>
+  You can use none, either, or both of these restriction methods.
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImage">
+            <summary>
+Gets or sets the image that will be used to train this PMRedLine
+pattern.  Pattern features will be found and trained only from portions
+of the image within the train region.
+</summary>
+            <value>The train image.  Default value is null.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainImage" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <remarks>
+                <para>
+  If you change this value on a trained pattern object, the pattern will
+  become untrained.
+</para>
+                <para>
+  You can restrict what portions of the training image are trained by
+  PMRedLine.  There are two restriction methods you can use:
+  <list type="bullet"><item> You can exclude one contiguous area of the image using the
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainRegion" />.
+    </item><item> You can exclude multiple non-contiguous areas using the
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImageMask" />.
+    </item></list>
+  You can use none, either, or both of these restriction methods.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.FeatureThreshold">
+            <summary>
+Gets or sets the feature threshold.  This value controls how many
+features are included in the trained pattern.  Raising the threshold
+reduces the number of trained features.
+</summary>
+            <value> The feature threshold.  Default value is 0.2.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfFeatureThreshold" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than zero, or greater than or equal to one.
+</exception>
+            <remarks>
+Raising this threshold trains fewer features: the strongest existing
+features are retained and the weakest existing image features are
+discarded.  Lowering the threshold trains more features: all of the
+existing features are retained and the next-strongest image features
+are included.
+<para>Only adjust this parameter after you have looked at
+your trained pattern and confirmed that you need more (or fewer) image
+features.  Large values (0.7 or higher) may produce too few features
+for accurate pattern finding.  Large values may also eliminate so many
+features that it is impossible to even train a pattern.</para><para>
+  If you change this value on a trained pattern object, the pattern will
+  become untrained.
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GrainLimitFineAutoSelect">
+            <summary>
+Gets or sets whether to automatically recompute the fine granularity
+limit during pattern training.  If "true", the limit computed during
+training will overwrite the existing 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GrainLimitFine" />.
+Otherwise, it will remain unchanged.
+</summary>
+            <value> "True" if the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GrainLimitFine" />
+is to be recomputed during training.  "False" otherwise.  Default value
+is "true".</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitFineAutoSelect" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <remarks>
+                <para>
+  PMRedLine employs a multi-resolution search strategy: the tool will
+  subsample your input image multiple times as it searches for instances of
+  your pattern.  The maximum amount of subsampling is specified by the coarse
+  granularity limit.  The minimum amount is specified by the fine granularity
+  limit.  Neither limit can be less than one.
+</para>
+                <para> The fine granularity limit must be less than or equal to
+the coarse granularity limit.  The fine value computed during training
+will never be larger than the coarse granularity limit.</para>
+                <para>
+  If you change this value on a trained pattern object, the pattern will
+  become untrained.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GrainLimitCoarseAutoSelect">
+            <summary>
+Gets or sets whether to automatically recompute the coarse granularity
+limit during pattern training.  If "true", the limit computed during
+training will overwrite the existing 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GrainLimitCoarse" />.
+Otherwise, it will remain unchanged.
+</summary>
+            <value> "True" if the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GrainLimitCoarse" />
+is to be recomputed during training.  "False" otherwise.  Default value
+is "true".</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitCoarseAutoSelect" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <remarks>
+                <para>
+  PMRedLine employs a multi-resolution search strategy: the tool will
+  subsample your input image multiple times as it searches for instances of
+  your pattern.  The maximum amount of subsampling is specified by the coarse
+  granularity limit.  The minimum amount is specified by the fine granularity
+  limit.  Neither limit can be less than one.
+</para>
+                <para> The coarse granularity limit must be greater than or equal to
+the fine granularity limit.  The coarse value computed during training
+will never be smaller than the fine granularity limit.</para>
+                <para>
+  If you change this value on a trained pattern object, the pattern will
+  become untrained.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GrainLimitFine">
+            <summary>
+Gets or sets the fine granularity limit.  This is the minimum amount
+of subsampling that will be applied to the input image when PMRedLine
+searchs for instances of your pattern.  If
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GrainLimitFineAutoSelect" />
+is "true" this granularity limit will be recomputed automatically when
+the pattern is trained, overwriting the previous value.
+</summary>
+            <value> The fine granularity limit.  Default value is one.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitFine" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes and the coarse granularity limit is also
+changed.  The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitFine" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitCoarse" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than one.
+</exception>
+            <remarks>
+                <para>
+  PMRedLine employs a multi-resolution search strategy: the tool will
+  subsample your input image multiple times as it searches for instances of
+  your pattern.  The maximum amount of subsampling is specified by the coarse
+  granularity limit.  The minimum amount is specified by the fine granularity
+  limit.  Neither limit can be less than one.
+</para>
+                <para> The fine granularity limit must be less than or equal to
+the coarse granularity limit.  Setting it to a value larger than the
+coarse granularity limit also sets the coarse limit to the new value.
+</para>
+                <para> If
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GrainLimitFineAutoSelect" />
+is "true" the fine granularity limit will be recomputed, and
+overwritten, whenever the pattern is trained.  The computed value
+will never be larger than the coarse granularity limit.</para>
+                <para>
+  If you change this value on a trained pattern object, the pattern will
+  become untrained.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GrainLimitCoarse">
+            <summary>
+Gets or sets the coarse granularity limit.  This is the maximum amount
+of subsampling that will be applied to the input image when PMRedLine
+searchs for instances of your pattern.  If
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GrainLimitCoarseAutoSelect" />
+is "true" this granularity limit will be recomputed automatically when
+the pattern is trained, overwriting the previous value.
+</summary>
+            <value> The coarse granularity limit.  Default value is two.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitCoarse" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes and the fine granularity limit is also
+changed.  The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitCoarse" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitFine" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than one.
+</exception>
+            <remarks>
+                <para>
+  PMRedLine employs a multi-resolution search strategy: the tool will
+  subsample your input image multiple times as it searches for instances of
+  your pattern.  The maximum amount of subsampling is specified by the coarse
+  granularity limit.  The minimum amount is specified by the fine granularity
+  limit.  Neither limit can be less than one.
+</para>
+                <para> The coarse granularity limit must be greater than or equal to
+the fine granularity limit.  Setting it to a value smaller than the
+fine granularity limit also sets the fine limit to the new value.
+</para>
+                <para> If
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GrainLimitCoarseAutoSelect" />
+is "true" the coarse granularity limit will be recomputed, and
+overwritten, whenever the pattern is trained.  The computed value
+will never be smaller than the fine granularity limit.</para>
+                <para>
+  If you change this value on a trained pattern object, the pattern will
+  become untrained.
+</para>
+            </remarks>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Populates the provided SerializationInfo with the data needed to
+serialize the object.
+</summary>
+            <param name="info">The SerializationInfo to which serialization
+data must be added.</param>
+            <param name="ctxt">The StreamingContext that indicates the intent
+of the current serialization operation.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogPMRedLinePattern object.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Finalize">
+            <summary>
+Releases all unmanaged resources used by this
+CogPMRedLinePattern object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Dispose">
+            <summary>
+Releases all resources used by this CogPMRedLinePattern object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.#ctor(Cognex.VisionPro.PMRedLine.CogPMRedLinePattern)">
+            <summary>
+Constructs a deep copy of the supplied CogPMRedLinePattern object.
+</summary>
+            <param name="other">
+The object to copy.  Must not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="other" /> is null.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+                <paramref name="other" /> has been disposed.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+The
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainImage" />
+of <paramref name="other" /> is an image type other than
+<see cref="T:Cognex.VisionPro.CogImage8Grey" />.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.#ctor">
+            <summary>
+Constructs a default CogPMRedLinePattern object.  You must train this
+object before you can use it to search for pattern instances.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfCreateTrainedGraphics">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by CreateTrainedGraphics may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfOrigin">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Origin may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainTimeoutEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainTimeoutEnabled may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainTimeout">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainTimeout may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfFeatureThreshold">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by FeatureThreshold may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitFineAutoSelect">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by GrainLimitFineAutoSelect may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitCoarseAutoSelect">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by GrainLimitCoarseAutoSelect may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitFine">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by GrainLimitFine may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfGrainLimitCoarse">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by GrainLimitCoarse may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrained">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Trained may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainImageMaskOffsetY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainImageMaskOffsetY may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainImageMaskOffsetX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainImageMaskOffsetX may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainImageMask">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainImageMask may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainRegionMode">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainRegionMode may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainRegion">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainRegion may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.SfTrainImage">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainImage may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern">
+            <summary>
+Class that represents a PMRedLine pattern.  You can use the methods of
+this class to train a new pattern and to search for instances of the
+trained pattern in a runtime image.  You can also search for pattern
+instances using the tool class,
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineTool" />.
+</summary>
+            <remarks>
+A PMRedLine pattern must be trained (using the 
+<see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Train" />
+method) before it can be used to search for pattern instances.  The
+trained pattern holds information needed for fast searching at runtime.
+For example, it holds the location of the pattern features that are to be
+found in the runtime input image.
+<para> The pattern object also holds parameters that control the training
+process.  If you change any of these parameters on a trained pattern
+object, the pattern will automatically untrain itself.  This ensures
+that the features of a trained pattern are in sync with the parameters
+that created them.</para><para>The only properties that do not untrain the pattern when changed are:
+<list type="bullet"><item><see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Origin" /></item><item><see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainTimeout" /></item><item><see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.TrainTimeoutEnabled" /></item></list></para><para>
+  Once your pattern is trained you can search for instances of the pattern in
+  a runtime input image.  You can do this in one of two ways:
+  <list type="number"><item> You can call the <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Execute(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams)" />
+    method of this class, or
+    </item><item>
+    You can call the <see cref="M:Cognex.VisionPro.ICogTool.Run" /> method of
+    a <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineTool" /> class that
+    contains this pattern object.
+    </item></list></para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ZoneScale">
+            <summary>
+Gets the zone configuration for the scale degree of freedom. 
+</summary>
+            <value> The zone configuration for the scale DOF.  Default
+value is a default constructed
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale" />
+object.</value>
+            <remarks>
+PMRedLine can locate patterns that have changed in scale from the
+trained pattern.  You can modify the values in the returned object
+to control the range of scales at which patterns may be found.
+<para>
+  The zone scale class is always an integral part of the <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" /> class.  When a
+  RunParams instance is constructed it automatically creates an instance of
+  the zone scale class and holds it for the entire lifetime of the RunParams
+  object.  You can modify the properties of the zone scale class, but can
+  never create, destroy, serialize, or replace it.
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ZoneAngle">
+            <summary>
+Gets the zone configuration for the angle degree of freedom. 
+</summary>
+            <value> The zone configuration for the angle DOF.  Default
+value is a default constructed
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle" />
+object.</value>
+            <remarks>
+PMRedLine can locate patterns that have changed in angle from the
+trained pattern.  You can modify the values in the returned object
+to control the range of angles at which patterns may be found.
+<para>
+  The zone angle class is always an integral part of the <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" /> class.  When a
+  RunParams instance is constructed it automatically creates an instance of
+  the zone angle class and holds it for the entire lifetime of the RunParams
+  object.  You can modify the properties of the zone angle class, but can
+  never create, destroy, serialize, or replace it.
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.XYOverlap">
+            <summary>
+Gets or sets the area overlap threshold.
+</summary>
+            <value>The area overlap threshold.  Default value is 0.8.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfXYOverlap" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than zero or greater than one.
+</exception>
+            <remarks>
+Two result candidates are said to overlap in area if the fraction of
+their area that overlaps is greater than the given XYOverlap threshold.
+The valid range of the threshold is from zero to one.
+<para>PMRedLine discards the weaker pattern instance when two pattern
+instances overlap for all degrees of freedom (DOF) as well as area.
+See the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Overlap" />
+property of the angle DOF zone, and the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Overlap" />
+property of the scale DOF zone for more information.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SearchImageMaskOffsetY">
+            <summary>
+Gets or sets the Y offset (in pixels) for the search image mask.
+</summary>
+            <value> The Y offset for the search image mask.  Measured in pixels.
+Default value is zero.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfSearchImageMaskOffsetY" /></item></list></event>
+            <remarks>
+                <para>
+  The search image mask is aligned to the input image using the X and Y
+  offset values.  These values measure the offset from the upper-left corner
+  of the runtime <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.InputImage" /> to the
+  upper-left corner of the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SearchImageMask" />
+  in the pixel coordinates of the input image.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SearchImageMaskOffsetX">
+            <summary>
+Gets or sets the X offset (in pixels) for the search image mask.
+</summary>
+            <value> The X offset for the search image mask.  Measured in pixels.
+Default value is zero.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfSearchImageMaskOffsetX" /></item></list></event>
+            <remarks>
+                <para>
+  The search image mask is aligned to the input image using the X and Y
+  offset values.  These values measure the offset from the upper-left corner
+  of the runtime <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.InputImage" /> to the
+  upper-left corner of the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SearchImageMask" />
+  in the pixel coordinates of the input image.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SearchImageMask">
+            <summary>
+Gets or sets the mask to be used when running CogPMRedLine.  The mask
+allows you to identify areas of the runtime input image as "Care" or
+"Don't Care".
+</summary>
+            <value> The mask for the search image.  Default value is null.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfSearchImageMask" /></item></list></event>
+            <remarks>
+The search mask is a <see cref="T:Cognex.VisionPro.CogImage8Grey" />
+whose pixels must contain a either a value of zero ("Don't Care") or a
+value of 255 ("Care").  The mask is aligned to the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.InputImage" />
+as specified by the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SearchImageMaskOffsetX" />
+and
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SearchImageMaskOffsetY" />
+values.
+<para>The search mask prevents parts of the input image from being
+searched by PMRedLine at runtime.  Any pixel in the input image that
+aligns with a "Don't Care" mask pixel will be ignored by PMRedLine.
+Any pixel in the input image that aligns with a "Care" mask pixel
+(or no mask pixel at all) will be processed by PMRedLine.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.TimeoutEnabled">
+            <summary>
+Gets or sets whether to enable the runtime timeout.
+</summary>
+            <value> "True" if the runtime timeout is enabled.  "False" otherwise.
+Default value is "false".</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfTimeoutEnabled" /></item></list></event>
+            <remarks>
+If the runtime timeout is enabled the execution of PMRedLine will be
+halted shortly after the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.Timeout" />
+period expires.  If the timeout is disabled the value of the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.Timeout" />
+property is ignored.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.Timeout">
+            <summary>
+Gets or sets the maximum execution time (in msec) allowed when a
+PMRedLine tool is run.  This value only applies if
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.TimeoutEnabled" />
+is set to "true".
+</summary>
+            <value>The maximum execution time allowed (in milliseconds).
+Default value is 5000.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfTimeout" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than zero.
+</exception>
+            <remarks>
+If the timeout is enabled and PMRedLine exceeds the timeout period, the
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern" /> class
+will throw a
+<see cref="T:Cognex.VisionPro.Exceptions.CogTimeoutExpiredException" />.
+This exception will occur shortly after the
+timeout period elapses.  The exception will appear in the 
+<see cref="P:Cognex.VisionPro.Implementation.CogToolBase.RunStatus" />
+of the
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineTool" />.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SearchRegionMode">
+            <summary>
+Gets or sets the search region mode.  This mode specifies how the
+search region is applied to the input image.
+</summary>
+            <value> The search region mode.  Default value is
+<see cref="F:Cognex.VisionPro.CogRegionModeConstants.PixelAlignedBoundingBoxAdjustMask" />.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfSearchRegionMode" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is not
+<see cref="F:Cognex.VisionPro.CogRegionModeConstants.PixelAlignedBoundingBox" />
+or
+<see cref="F:Cognex.VisionPro.CogRegionModeConstants.PixelAlignedBoundingBoxAdjustMask" />.
+</exception>
+            <remarks>
+The 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.SearchRegion" />
+and the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.InputImage" />
+are both properties of the
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineTool" /> class.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.CoarseAcceptThresholdFractionEnabled">
+            <summary>
+Gets or sets whether to enable the coarse accept threshold fraction.
+</summary>
+            <value> "True" if PMRedLine is to use the value of the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.CoarseAcceptThresholdFraction" />.
+"False" otherwise.  Default value is "false".</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfCoarseAcceptThresholdFractionEnabled" /></item></list></event>
+            <remarks>
+For most applications this parameter should be set to "false".
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.CoarseAcceptThresholdFraction">
+            <summary>
+Gets or sets the fraction of the accept threshold that should be used
+to evaluate candidate scores during the coarse phase of PMRedLine.
+</summary>
+            <value> The fraction of the accept threshold.  Must be between
+zero and one.  Default value is 0.66.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfCoarseAcceptThresholdFraction" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than zero or greater than one.
+</exception>
+            <remarks>
+PMRedLine first finds candidate patterns at coarse granularity.
+High-scoring coarse results are then refined at fine granularity.  A
+coarse result is considered "high-scoring" if its score exceeds an
+internally-computed coarse accept threshold.
+<para>By default PMRedLine determines the coarse accept threshold
+automatically.  In exceptional cases you may need to override the
+automatic computation.  You can override the automatic computation
+by setting
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.CoarseAcceptThresholdFractionEnabled" />
+to "true".  The coarse accept threshold will then be computed by
+multiplying together the coarse accept threshold fraction, specified
+by this value, and the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.AcceptThreshold" />.
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ContrastFractionThreshold">
+            <summary>
+Gets or sets the threshold for the contrast fraction of a result.  Only
+instances of the pattern that have a contrast fraction greater than or
+equal to this threshold are accepted.  Valid range is from zero to one.
+</summary>
+            <value> The threshold for the contrast fraction.
+Default value is zero.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfContrastFractionThreshold" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than zero or greater than one.
+</exception>
+            <remarks>
+                <para>
+  The contrast fraction is a number between zero and one.  It is computed by
+  dividing the average contrast of the matching image features by the average
+  contrast of the trained pattern features.  If this ratio exceeds one it
+  is reported as exactly one.
+</para>
+                <para>
+  You can discard results with very low contrast (relative to the pattern) by
+  setting the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ContrastFractionThreshold" />.
+  You should supply a non-zero value that is lower than the lowest contrast
+  fraction you ever expect to receive from a true instance of your pattern.
+</para>
+                <para>
+  There are several parameters that affect how PMRedLine reports results.  If
+  the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+  property of <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" />
+  is "false", every returned result will have its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" /> property
+  set to "true", and a result will be returned only if all of the following
+  conditions are met:
+  <list type="bullet"><item> Its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score" /> is greater
+    than or equal to <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.AcceptThreshold" />.
+    </item><item> Its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.ContrastFraction" />
+    is greater than or equal to <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ContrastFractionThreshold" />.
+    </item><item> Its angle (as reported by the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Rotation" /> property of the
+    <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" />) was
+    either:
+    <list type="bullet"><item> obtained using an angle zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />,
+      or
+      </item><item> obtained using an angle zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />,
+      and has a value between the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Low" /> and
+      <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.High" />
+      angles that you specified.
+      </item></list></item><item> Its scale (as reported by the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Scaling" /> property of the
+    <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" />) was
+    either:
+    <list type="bullet"><item> obtained using a scale zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />,
+      or
+      </item><item> obtained using a scale zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />,
+      and has a value between the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Low" /> and
+      <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.High" />
+      scales that you specified.
+      </item></list></item><item> Its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score" /> makes it
+    one of the top-scoring results.  Only the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind" />
+    top-scoring results (that meet all of the other conditions) will be
+    returned.
+    </item></list></para>
+                <para>
+  If, however, <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+  is "true", additional pattern instances may be reported as results.  You
+  can use the value of <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" /> to
+  determine why the additional result was excluded initially.
+</para>
+                <para>
+  If <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" />
+  is "true" the additional result was excluded solely because the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind" />
+  was set too low.  This could happen, for example, if your input image
+  contains five instances of the pattern but you set <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind" /> to
+  only find three.  In this case you might get two additional results that
+  meet all of the acceptance conditions listed above, but were excluded from
+  the results solely because they were not among the three highest-scoring
+  instances.
+</para>
+                <para>
+  If <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" />
+  is "false" the additional result was excluded because it has one or more of
+  the following:
+  <list type="bullet"><item> A <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score" /> less than
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.AcceptThreshold" />.
+    </item><item> A <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.ContrastFraction" />
+    less than <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ContrastFractionThreshold" />.
+    </item><item> An angle that is outside of the angle range you specified using
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Low" /> and
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.High" /> (if
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+    is set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />).
+    </item><item> A scale that is outside of the scale range you specified using
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Low" /> and
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.High" /> (if
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+    is set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />).
+    </item></list></para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ScoreUsingClutter">
+            <summary>
+Gets or sets whether PMRedLine should reduce the score of results that
+contain extraneous features at the found image location.  Extraneous
+features are known as clutter.  They appear in the runtime image at
+locations which should be empty.
+</summary>
+            <value> "True" if you want PMRedLine to reduce the score of results
+that exhibit clutter.  "False" otherwise.
+Default value is "false".</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfScoreUsingClutter" /></item></list></event>
+            <remarks>
+A pattern's score is reduced as the amount of clutter increases, but
+the score will never go negative.
+<para>
+  A clutter measurement is computed, and reported in each result, only if <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ScoreUsingClutter" />
+  is set to "true".  Otherwise, each result reports a clutter value of -1.
+</para><para>
+  The clutter value is a ratio.  It is computed by dividing the number of
+  clutter features at the found location by the number of features in the
+  trained pattern.  This ratio can be larger than one.
+</para><para>
+  Clutter features are extra features that appear in the runtime image at
+  locations which should be empty.  The corresponding area of the train image
+  is called "empty" when: it lies within the train region, it contains no
+  features, and it is not masked as "Don't Care".
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults">
+            <summary>
+Gets or sets whether PMRedLine should return only the results that you
+asked for or whether it should also return results that are similar to
+the ones you asked for.
+</summary>
+            <value> "True" if you want PMRedLine to return any additional results
+that it finds.  "False" otherwise.  Default value is "false".</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfReturnAllResults" /></item></list></event>
+            <remarks>
+If PMRedLine fails to return all of the results that you expect it may
+be useful to set this property to "true".  This allows PMRedLine to
+return addtional results that are similar to the ones you asked for.
+Additional results will not always be present, but if they are present
+you can inspect them to see if PMRedLine is finding your desired result
+and then excluding it from the final set of results because it fails to
+meet one of the acceptance conditions.  You can then adjust the
+relevant acceptance condition so that desired result is returned.
+<para>
+  There are several parameters that affect how PMRedLine reports results.  If
+  the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+  property of <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" />
+  is "false", every returned result will have its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" /> property
+  set to "true", and a result will be returned only if all of the following
+  conditions are met:
+  <list type="bullet"><item> Its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score" /> is greater
+    than or equal to <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.AcceptThreshold" />.
+    </item><item> Its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.ContrastFraction" />
+    is greater than or equal to <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ContrastFractionThreshold" />.
+    </item><item> Its angle (as reported by the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Rotation" /> property of the
+    <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" />) was
+    either:
+    <list type="bullet"><item> obtained using an angle zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />,
+      or
+      </item><item> obtained using an angle zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />,
+      and has a value between the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Low" /> and
+      <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.High" />
+      angles that you specified.
+      </item></list></item><item> Its scale (as reported by the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Scaling" /> property of the
+    <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" />) was
+    either:
+    <list type="bullet"><item> obtained using a scale zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />,
+      or
+      </item><item> obtained using a scale zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />,
+      and has a value between the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Low" /> and
+      <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.High" />
+      scales that you specified.
+      </item></list></item><item> Its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score" /> makes it
+    one of the top-scoring results.  Only the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind" />
+    top-scoring results (that meet all of the other conditions) will be
+    returned.
+    </item></list></para><para>
+  If, however, <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+  is "true", additional pattern instances may be reported as results.  You
+  can use the value of <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" /> to
+  determine why the additional result was excluded initially.
+</para><para>
+  If <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" />
+  is "true" the additional result was excluded solely because the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind" />
+  was set too low.  This could happen, for example, if your input image
+  contains five instances of the pattern but you set <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind" /> to
+  only find three.  In this case you might get two additional results that
+  meet all of the acceptance conditions listed above, but were excluded from
+  the results solely because they were not among the three highest-scoring
+  instances.
+</para><para>
+  If <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" />
+  is "false" the additional result was excluded because it has one or more of
+  the following:
+  <list type="bullet"><item> A <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score" /> less than
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.AcceptThreshold" />.
+    </item><item> A <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.ContrastFraction" />
+    less than <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ContrastFractionThreshold" />.
+    </item><item> An angle that is outside of the angle range you specified using
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Low" /> and
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.High" /> (if
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+    is set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />).
+    </item><item> A scale that is outside of the scale range you specified using
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Low" /> and
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.High" /> (if
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+    is set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />).
+    </item></list></para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.AccuracyMode">
+            <summary>
+Gets or sets the desired level of accuracy for result poses.  PMRedLine
+may run faster if your application can tolerate lower accuracy.
+</summary>
+            <value>The desired accuracy.  Default value is
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineAccuracyModeConstants.Standard" />.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfAccuracyMode" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineAccuracyModeConstants" />.
+</exception>
+            <remarks>
+The accuracy of a result pose (including its position, rotation, and
+scale) is highly dependent upon the quality of the trained pattern and
+the contents of the runtime image.  For most applications the 
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineAccuracyModeConstants.Standard" />
+accuracy mode gives a good tradeoff between accuracy and speed.
+<para>If you desire more accuracy and are willing to sacrifice some speed you can use the 
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineAccuracyModeConstants.Accurate" />
+mode.  If you desire more speed and are willing to sacrifice some accuracy you can use the 
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineAccuracyModeConstants.Fast" />
+mode.  Fast mode is especially useful if you are searching for multiple
+pattern instances and only want to know how many were found.
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.IgnorePolarity">
+            <summary>
+Gets or sets whether to ignore the polarity of edge features when
+searching for patterns.  If "true", the polarity of the pattern features
+is ignored.  If "false", only patterns whose polarity matches the trained
+pattern will be found.
+</summary>
+            <value> "True" if polarity is to be ignored.  "False" otherwise.
+Default value is "false".</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfIgnorePolarity" /></item></list></event>
+            <remarks>
+The polarity of a feature indicates whether the edge describes a
+light-to-dark transition in the image or a dark-to-light transition.
+<para>You should ignore polarity if instances of your pattern may have
+edge features whose polarity is the opposite of the trained ones.  In
+this case your pattern should receive approximately the same score
+regardless of whether some, all, or none of the features have opposite
+polarity.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind">
+            <summary>
+Gets or sets the number of results to search for.  
+</summary>
+            <value> The number of results to search for.  Default value is 1.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfNumberToFind" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than one.
+</exception>
+            <remarks>
+You should set this value to the maximum number of pattern instances
+that you ever expect to find in your input image.
+<para>If the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+property of
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" />
+is "false", the number of results returned by PMRedLine will always
+be less than or equal to the value you specify.  If
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+is "true", you may get additional results.
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.AcceptThreshold">
+            <summary>
+Gets or sets the acceptance threshold for the score of a result. 
+Only instances of the pattern that receive scores greater than or equal
+to this threshold are accepted.  Valid range is from zero to one.
+</summary>
+            <value> The acceptance threshold.  Default value is 0.5.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfAcceptThreshold" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than zero or greater than one.
+</exception>
+            <remarks>
+You should supply an acceptance threshold that is lower than the lowest
+score you ever expect to receive from a true instance of your pattern.
+<para>
+  There are several parameters that affect how PMRedLine reports results.  If
+  the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+  property of <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" />
+  is "false", every returned result will have its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" /> property
+  set to "true", and a result will be returned only if all of the following
+  conditions are met:
+  <list type="bullet"><item> Its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score" /> is greater
+    than or equal to <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.AcceptThreshold" />.
+    </item><item> Its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.ContrastFraction" />
+    is greater than or equal to <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ContrastFractionThreshold" />.
+    </item><item> Its angle (as reported by the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Rotation" /> property of the
+    <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" />) was
+    either:
+    <list type="bullet"><item> obtained using an angle zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />,
+      or
+      </item><item> obtained using an angle zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />,
+      and has a value between the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Low" /> and
+      <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.High" />
+      angles that you specified.
+      </item></list></item><item> Its scale (as reported by the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Scaling" /> property of the
+    <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" />) was
+    either:
+    <list type="bullet"><item> obtained using a scale zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />,
+      or
+      </item><item> obtained using a scale zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />,
+      and has a value between the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Low" /> and
+      <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.High" />
+      scales that you specified.
+      </item></list></item><item> Its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score" /> makes it
+    one of the top-scoring results.  Only the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind" />
+    top-scoring results (that meet all of the other conditions) will be
+    returned.
+    </item></list></para><para>
+  If, however, <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+  is "true", additional pattern instances may be reported as results.  You
+  can use the value of <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" /> to
+  determine why the additional result was excluded initially.
+</para><para>
+  If <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" />
+  is "true" the additional result was excluded solely because the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind" />
+  was set too low.  This could happen, for example, if your input image
+  contains five instances of the pattern but you set <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind" /> to
+  only find three.  In this case you might get two additional results that
+  meet all of the acceptance conditions listed above, but were excluded from
+  the results solely because they were not among the three highest-scoring
+  instances.
+</para><para>
+  If <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" />
+  is "false" the additional result was excluded because it has one or more of
+  the following:
+  <list type="bullet"><item> A <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score" /> less than
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.AcceptThreshold" />.
+    </item><item> A <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.ContrastFraction" />
+    less than <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ContrastFractionThreshold" />.
+    </item><item> An angle that is outside of the angle range you specified using
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Low" /> and
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.High" /> (if
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+    is set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />).
+    </item><item> A scale that is outside of the scale range you specified using
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Low" /> and
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.High" /> (if
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+    is set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />).
+    </item></list></para></remarks>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Populates the provided SerializationInfo with the data needed to
+serialize the object.
+</summary>
+            <param name="info">The SerializationInfo to which serialization
+data must be added.</param>
+            <param name="ctxt">The StreamingContext that indicates the intent
+of the current serialization operation.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogPMRedLineRunParams object.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.Finalize">
+            <summary>
+Releases all unmanaged resources used by this
+CogPMRedLineRunParams object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.Dispose">
+            <summary>
+Releases all resources used by this CogPMRedLineRunParams object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.#ctor(Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams)">
+            <summary>
+Constructs a deep copy of the supplied CogPMRedLineRunParams object.
+</summary>
+            <param name="other">
+The object to copy.  Must not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="other" /> is null.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+                <paramref name="other" /> has been disposed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.#ctor">
+            <summary>
+Constructs a default CogPMRedLineRunParams object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfSearchImageMaskOffsetY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by SearchImageMaskOffsetY may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfSearchImageMaskOffsetX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by SearchImageMaskOffsetX may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfSearchImageMask">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by SearchImageMask may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfXYOverlap">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by XYOverlap may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfTimeoutEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by TimeoutEnabled may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfTimeout">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by Timeout may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfSearchRegionMode">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by SearchRegionMode may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfReturnAllResults">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by ReturnAllResults may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfCoarseAcceptThresholdFractionEnabled">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by CoarseAcceptThresholdFractionEnabled may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfCoarseAcceptThresholdFraction">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by CoarseAcceptThresholdFraction may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfContrastFractionThreshold">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by ContrastFractionThreshold may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfScoreUsingClutter">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by ScoreUsingClutter may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfAccuracyMode">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by AccuracyMode may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfIgnorePolarity">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by IgnorePolarity may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfNumberToFind">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by NumberToFind may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.SfAcceptThreshold">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time the
+value returned by AcceptThreshold may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams">
+            <summary>
+Class that holds the PMRedLine run parameters.  These parameters 
+control how PMRedLine locates patterns in the runtime image.
+</summary>
+            <remarks>
+This class must be provided as an argument to the
+<see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Execute(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams)" />
+method of the 
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern" /> class.
+The Execute() method is called automatically every time you call the 
+<see cref="M:Cognex.VisionPro.ICogTool.Run" /> method of
+the <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineTool" /> class,
+causing the tool to search the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.InputImage" />
+for instances of the pattern.
+</remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Overlap">
+            <summary>
+Gets or sets the overlap threshold for the scale degree of freedom zone.
+</summary>
+            <value> The scale overlap threshold.  Default value is 1.4.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfOverlap" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than one.
+</exception>
+            <remarks>
+Two result candidates are said to overlap in the scale degree of
+freedom if the ratio of their scales is less than or equal to the given
+Overlap threshold.  To compute the ratio PMRedLine always divides the
+larger scale by the smaller one, yielding a value that is greater than
+or equal to one.  For example, given a result with scale of 1.25 and a
+result with a scale of 2.5, the ratio would be 2.0.  These two results
+would only overlap in the scale degree of freedom if the Overlap
+value was set to 2.0 or higher.
+<para>PMRedLine discards the weaker pattern instance
+when two pattern instances overlap for all degrees of freedom (DOF) as
+well as area.  See the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Overlap" />
+property of the angle DOF zone, and the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.XYOverlap" />
+property of the 
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" />
+class for more information.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.High">
+            <summary>
+Gets or sets the high limit for the scale degree of freedom zone.
+</summary>
+            <value> The high limit of the scale range.  Default value is 1.2.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfHigh" /></item></list></event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes and the low limit is also changed.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfHigh" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfLow" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than or equal to zero.
+</exception>
+            <remarks>
+The high limit is only used if the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+property is set to 
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />.
+In this case PMRedLine will find pattern instances whose result scale
+lies between the low and high limit values.
+<para>
+  The result scale can be accessed using the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Scaling" /> property of the <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by the <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" /> method of
+  the <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineResult" /> class.
+</para><para> Setting the high limit to a value smaller than the low
+limit also sets the low limit to the new value.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Low">
+            <summary>
+Gets or sets the low limit for the scale degree of freedom zone.
+</summary>
+            <value> The low limit of the scale range.  Default value is 0.8.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfLow" /></item></list></event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes and the high limit is also changed.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfLow" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfHigh" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than or equal to zero.
+</exception>
+            <remarks>
+The low limit is only used if the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+property is set to 
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />.
+In this case PMRedLine will find pattern instances whose result scale
+lies between the low and high limit values.
+<para>
+  The result scale can be accessed using the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Scaling" /> property of the <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by the <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" /> method of
+  the <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineResult" /> class.
+</para><para> Setting the low limit to a value larger than the high
+limit also sets the high limit to the new value.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Nominal">
+            <summary>
+Gets or sets the nominal scale for the scale degree of freedom zone.
+</summary>
+            <value> The nominal scale.  Default value is one.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfNominal" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than or equal to zero.
+</exception>
+            <remarks>
+The nominal scale is only used if the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+property is set to 
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />.
+In this case PMRedLine will only look for pattern instances at the
+nominal scale that you specify; it will not search at any other scale.
+If the pattern, at the nominal scale, is a high-scoring match to the
+runtime image features it may be returned as a result.  The reported
+scale of the result will be exactly the nominal value.
+<para>
+  The result scale can be accessed using the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Scaling" /> property of the <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by the <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" /> method of
+  the <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineResult" /> class.
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration">
+            <summary>
+Gets or sets the configuration of the scale degree of freedom zone.
+This enumeration specifies whether PMRedLine will search for the
+pattern at a single nominal scale or within a range of scales.
+</summary>
+            <value> The configuration of the scale degree of freedom zone.
+Default value is
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfConfiguration" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants" />.
+</exception>
+            <remarks>
+If you specify the
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />
+enumeration value, PMRedLine will only look for pattern instances at
+exactly the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Nominal" />
+scale that you specify.  If you specify the
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />
+enumeration value, PMRedLine will look for pattern instances over a
+range of scale values.  It will iteratively refine its scale estimate
+until it finds the scale value that best matches the runtime image
+features.
+<para>Using the nominal scale value is very different from
+specifying a tight range of scale values.  In the
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />
+case the pattern is
+tried at exactly one scale, and scored at that scale.  In the
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />
+case more than one scale is tried and the algorithm iterates to find
+the best scale.  The initial range of scales is given by you (using
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Low" />
+and 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.High" />),
+but PMRedLine might discover that the best scale is outside of your
+initial range, leading to a result that is not accepted.</para><para>For example, if you ask PMRedLine to find a pattern instance at a
+nominal scale of 1.0 it might find a runtime instance whose true scale
+is 1.01.  This happens when the pattern at the nominal scale is "close
+enough" to the runtime features to receive a high score.  The reported
+scale will be exactly 1.0.</para><para>If, however, you ask PMRedLine to find a pattern instance within
+a range of scales between 0.999 and 1.001, that same runtime instance
+would not be reported with a scale of 1.0.  By default, it won't be
+reported at all.  PMRedLine will iterate to the true scale (of 1.01)
+and then determine that it falls outside of your desired scale range.
+The runtime instance will be eliminated unless
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+ is set to "true".</para></remarks>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.#ctor(Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams)">
+            <summary>
+Constructs a default CogPMRedLineZoneScale object, attached to the given
+CogPMRedLineRunParams object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfOverlap">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by Overlap may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfHigh">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by High may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfLow">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by Low may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfNominal">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by Nominal may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.SfConfiguration">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by Configuration may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale">
+            <summary>
+Class that holds scale Degree Of Freedom (DOF) information.  PMRedLine
+can locate patterns that have changed in scale from the trained pattern.
+This class specifies the scale(s) at which patterns may be located.
+</summary>
+            <remarks> 
+This class lets you specify whether to use a nominal value for the
+scale degree of freedom or a range of values, via the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+property.  If you choose to use a nominal value, the results returned
+by the PMRedLine tool will have exactly the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Nominal" />
+scale you specify.  If you choose to use a range of values, the results
+returned by the tool will have a scale between the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Low" />
+and <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.High" />
+scales that you specify.
+<para> All scales are specified relative to the size of the trained
+PMRedLine pattern.  For example a scale of 0.8 will be assigned to a
+result whose size is 80% of the trained size.  A scale of 1.2 will be
+assigned to a result whose size is 120% of the trained size.
+A scale of zero (or lower) is illegal.</para><para>
+  The zone scale class is always an integral part of the <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" /> class.  When a
+  RunParams instance is constructed it automatically creates an instance of
+  the zone scale class and holds it for the entire lifetime of the RunParams
+  object.  You can modify the properties of the zone scale class, but can
+  never create, destroy, serialize, or replace it.
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Overlap">
+            <summary>
+Gets or sets the overlap threshold (in radians) for the angle degree of 
+freedom zone.
+</summary>
+            <value> The angle overlap threshold (in radians).
+Default value is 2 * pi.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfOverlap" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is less than zero.
+</exception>
+            <remarks>
+Two result candidates are said to overlap in the angle degree of
+freedom if the absolute difference between their angles is less than
+or equal to the given Overlap threshold.
+<para>PMRedLine discards the weaker pattern instance when two pattern
+instances overlap for all degrees of freedom (DOF) as well as area.
+See the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Overlap" />
+property of the scale DOF zone, and the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.XYOverlap" />
+property of the 
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" />
+class for more information.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.High">
+            <summary>
+Gets or sets the high limit (in radians) for the angle degree of 
+freedom zone.
+</summary>
+            <value> The high limit of the angle range (in radians).
+Default value is +pi/4. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfHigh" /></item></list></event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes and the low limit is also changed.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfHigh" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfLow" /></item></list></event>
+            <remarks>
+The high limit is only used if the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+property is set to 
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />.
+In this case PMRedLine will find pattern instances whose result angle
+lies between the low and high limit values.
+<para>
+  The result angle is measured from the selected space of the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.InputImage" /> to the
+  coordinate space of the pattern (as defined by the pattern <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Origin" />).  It can
+  be accessed using the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Rotation" /> property of the
+  <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by the <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" /> method of
+  the <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineResult" /> class.
+</para><para>You can specify any value for the high angle limit.  Setting the
+high limit to a value smaller than the low limit also sets the low
+limit to the new value.</para><para>The tool always returns angle
+results in the range -pi to +pi.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Low">
+            <summary>
+Gets or sets the low limit (in radians) for the angle degree of 
+freedom zone.
+</summary>
+            <value> The low limit of the angle range (in radians).
+Default value is -pi/4. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfLow" /></item></list></event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes and the high limit is also changed.
+The following state flags may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfLow" /></item><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfHigh" /></item></list></event>
+            <remarks>
+The low limit is only used if the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+property is set to 
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />.
+In this case PMRedLine will find pattern instances whose result angle
+lies between the low and high limit values.
+<para>
+  The result angle is measured from the selected space of the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.InputImage" /> to the
+  coordinate space of the pattern (as defined by the pattern <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Origin" />).  It can
+  be accessed using the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Rotation" /> property of the
+  <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by the <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" /> method of
+  the <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineResult" /> class.
+</para><para>You can specify any value for the low angle limit.  Setting the
+low limit to a value larger than the high limit also sets the high
+limit to the new value.</para><para>The tool always returns angle
+results in the range -pi to +pi.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Nominal">
+            <summary>
+Gets or sets the nominal angle (in radians) for the angle degree of 
+freedom zone.
+</summary>
+            <value> The nominal angle (in radians).  Default value is zero. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfNominal" /></item></list></event>
+            <remarks>
+The nominal angle is only used if the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+property is set to 
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />.
+In this case PMRedLine will only look for pattern instances at the
+nominal angle that you specify; it will not search at any other angle.
+If the pattern, at the nominal angle, is a high-scoring match to the
+runtime image features it may be returned as a result.  The reported
+angle of the result will be exactly the nominal value.
+<para>
+  The result angle is measured from the selected space of the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.InputImage" /> to the
+  coordinate space of the pattern (as defined by the pattern <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Origin" />).  It can
+  be accessed using the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Rotation" /> property of the
+  <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by the <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" /> method of
+  the <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineResult" /> class.
+</para><para>You can specify any value for the nominal angle.  The
+tool always returns angle results in the range -pi to +pi.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration">
+            <summary>
+Gets or sets the configuration of the angle degree of freedom zone.
+This enumeration specifies whether PMRedLine will search for the
+pattern at a single nominal angle or within a range of angles.
+</summary>
+            <value> The configuration of the angle degree of freedom zone.
+Default value is
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+The following state flag may be affected:
+<list type="bullet"><item><see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfConfiguration" /></item></list></event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+The supplied value is not a member of
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants" />.
+</exception>
+            <remarks>
+If you specify the
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />
+enumeration value, PMRedLine will only look for pattern instances at
+exactly the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Nominal" />
+angle that you specify.  If you specify the
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />
+enumeration value, PMRedLine will look for pattern instances over a
+range of angle values.  It will iteratively refine its angle estimate
+until it finds the angle value that best matches the runtime image
+features.
+<para>Using the nominal angle value is very different from
+specifying a tight range of angle values.  In the
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />
+case the pattern is
+tried at exactly one angle, and scored at that angle.  In the
+<see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />
+case more than one angle is tried and the algorithm iterates to find
+the best angle.  The initial range of angles is given by you (using
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Low" />
+and 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.High" />),
+but PMRedLine might discover that the best angle is outside of your
+initial range, leading to a result that is not accepted.</para><para>For example, if you ask PMRedLine to find a pattern instance at a
+nominal angle of 0.1 radians it might find a runtime instance whose
+true angle is 0.101 radians.  This happens when the pattern at the
+nominal angle is "close enough" to the runtime features to receive a
+high score.  The reported angle will be exactly 0.1 radians.</para><para>If, however, you ask PMRedLine to find a pattern instance within
+a range of angles between 0.0999 radians and 0.1001 radians, that same
+runtime instance would not be reported with a angle of 0.101.  By
+default, it won't be reported at all.  PMRedLine will iterate to the
+true angle (of 0.101) and then determine that it falls outside of your
+desired angle range.  The runtime instance will be eliminated unless
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+ is set to "true".</para></remarks>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.#ctor(Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams)">
+            <summary>
+Constructs a default CogPMRedLineZoneAngle object, attached to the given
+CogPMRedLineRunParams object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfOverlap">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by Overlap may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfHigh">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by High may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfLow">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by Low may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfNominal">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by Nominal may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.SfConfiguration">
+            <summary>
+This bit will be set in the EventArgs of a Changed event
+every time the value returned by Configuration may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle">
+            <summary>
+Class that holds angle Degree Of Freedom (DOF) information.  PMRedLine
+can locate patterns that have changed in angle from the trained pattern.
+This class specifies the angle(s) at which patterns may be located.
+</summary>
+            <remarks> 
+This class lets you specify whether to use a nominal value for the
+angle degree of freedom or a range of values, via the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+property.  If you choose to use a nominal value, the results returned
+by the PMRedLine tool will have exactly the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Nominal" />
+angle you specify.  If you choose to use a range of values, the results
+returned by the tool will have an angle between the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Low" />
+and <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.High" />
+angles that you specify.
+<para> All angles are specified in radians.</para><para>
+  The zone angle class is always an integral part of the <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" /> class.  When a
+  RunParams instance is constructed it automatically creates an instance of
+  the zone angle class and holds it for the entire lifetime of the RunParams
+  object.  You can modify the properties of the zone angle class, but can
+  never create, destroy, serialize, or replace it.
+</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResults.AcceptedCount">
+            <summary>
+Gets the number of results in this collection that have their 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" />
+property set to "true".
+</summary>
+            <remarks>
+The number of accepted results may be less than the total number of
+results if the 
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+property of
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" />
+was "true" when PMRedLine ran.  Otherwise, it will be equal to the 
+total number of results.
+</remarks>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResults.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Populates the provided SerializationInfo with the data needed to
+serialize the object.
+</summary>
+            <param name="info">The SerializationInfo to which serialization
+data must be added.</param>
+            <param name="ctxt">The StreamingContext that indicates the intent
+of the current serialization operation.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResults.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogPMRedLineResults object.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResults.Finalize">
+            <summary>
+Releases all unmanaged resources used by this
+CogPMRedLineResults object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResults.Dispose">
+            <summary>
+Releases all resources used by this CogPMRedLineResults object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResults.#ctor(Cognex.VisionPro.PMRedLine.CogPMRedLineResults)">
+            <summary>
+Constructs a deep copy of the supplied CogPMRedLineResults object.
+</summary>
+            <param name="other">
+The object to copy.  Must not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="other" /> is null.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+                <paramref name="other" /> has been disposed.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLineResults">
+            <summary>
+Class that holds a collection of PMRedLine search results.  An instance
+of this class is created by every run of PMRedLine.  Results are stored
+in order of decreasing score.
+</summary>
+            <remarks>
+An instance of this class is returned by the
+<see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Execute(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams)" />
+method of the 
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern" /> class.
+The Execute() method is called automatically every time you call the 
+<see cref="M:Cognex.VisionPro.ICogTool.Run" /> method of
+the <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineTool" /> class,
+causing the tool to search the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineTool.InputImage" />
+for instances of the pattern.
+</remarks>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.CreateResultGraphics(Cognex.VisionPro.PMRedLine.CogPMRedLineResultGraphicConstants)">
+            <summary>
+Creates a composite result graphic containing child graphics specified 
+by the <paramref name="flags" /> argument.
+</summary>
+            <param name="flags">
+The graphics options you desire.  Supply a value by ORing together one
+or more of the values defined in
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineResultGraphicConstants" />.
+</param>
+            <returns>
+A CogCompositeShape that contains the requested graphics.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose">
+            <summary>
+Gets the linear transform that describes the pose (position, rotation,
+and scale) of this result.  This transform maps points from "Pattern
+Space" to the selected space of the runtime input image.
+</summary>
+            <returns>
+The <see cref="T:Cognex.VisionPro.CogTransform2DLinear" />
+containing the pose.
+</returns>
+            <remarks>
+The position of the found pattern is reported by the
+<see cref="P:Cognex.VisionPro.CogTransform2DLinear.TranslationX" /> and
+<see cref="P:Cognex.VisionPro.CogTransform2DLinear.TranslationY" />
+properties of the returned transform.
+<para>The angle of the found pattern is reported by the
+<see cref="P:Cognex.VisionPro.CogTransform2DLinear.Rotation" />
+property of the returned transform.</para><para>The scale of the found pattern is reported by the
+<see cref="P:Cognex.VisionPro.CogTransform2DLinear.Scaling" />
+property of the returned transform.</para><para>The returned transform maps points from "Pattern Space" (i.e. the
+coordinate space of the pattern, as defined by the pattern
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLinePattern.Origin" />)
+to the selected space of the runtime input image.  For example, mapping
+the point (0, 0) through the transform returns the origin of the
+trained pattern in the selected space of the runtime input image.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.ContrastFraction">
+            <summary>
+Gets the contrast fraction of this result.
+</summary>
+            <value>The contrast fraction of this result.</value>
+            <remarks>
+                <para>
+  The contrast fraction is a number between zero and one.  It is computed by
+  dividing the average contrast of the matching image features by the average
+  contrast of the trained pattern features.  If this ratio exceeds one it
+  is reported as exactly one.
+</para>
+                <para>
+  You can discard results with very low contrast (relative to the pattern) by
+  setting the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ContrastFractionThreshold" />.
+  You should supply a non-zero value that is lower than the lowest contrast
+  fraction you ever expect to receive from a true instance of your pattern.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Coverage">
+            <summary>
+Gets the coverage value of this result.
+</summary>
+            <value>The coverage value of this result.</value>
+            <remarks>
+The coverage value is the fraction (from zero to one) of features in
+the trained pattern that are found in this result.
+<para>For example, if you trained a pattern that was a complete circle,
+but only found half a circle at runtime, your result would have a
+coverage value of approximately 0.5.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Clutter">
+            <summary>
+Gets the clutter value of this result.
+</summary>
+            <value>The clutter value of this result.</value>
+            <remarks>
+                <para>
+  A clutter measurement is computed, and reported in each result, only if <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ScoreUsingClutter" />
+  is set to "true".  Otherwise, each result reports a clutter value of -1.
+</para>
+                <para>
+  The clutter value is a ratio.  It is computed by dividing the number of
+  clutter features at the found location by the number of features in the
+  trained pattern.  This ratio can be larger than one.
+</para>
+                <para>
+  Clutter features are extra features that appear in the runtime image at
+  locations which should be empty.  The corresponding area of the train image
+  is called "empty" when: it lies within the train region, it contains no
+  features, and it is not masked as "Don't Care".
+</para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score">
+            <summary>
+Gets the score of this result.  The score is a value between zero and
+one.  Higher values indicate a closer match between the trained pattern
+and the pattern in the search image.
+</summary>
+            <value>The score of this result.</value>
+            <remarks>
+The computed score is affected by the coverage value of the result and
+optionally by its clutter value.  The score increases as the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Coverage" />
+value goes up.  If the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ScoreUsingClutter" />
+property in the 
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" />
+class is set to "true", then the score will decrease as the
+<see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Clutter" />
+value goes up.
+<para>The results in a 
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineResults" />
+collection are sorted in order of decreasing score.</para></remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted">
+            <summary>
+Gets whether this result meets all of the acceptance conditions.
+</summary>
+            <value> "True" if all of the acceptance conditions are met.
+"False" otherwise.</value>
+            <remarks>
+                <para>
+  There are several parameters that affect how PMRedLine reports results.  If
+  the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+  property of <see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams" />
+  is "false", every returned result will have its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" /> property
+  set to "true", and a result will be returned only if all of the following
+  conditions are met:
+  <list type="bullet"><item> Its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score" /> is greater
+    than or equal to <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.AcceptThreshold" />.
+    </item><item> Its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.ContrastFraction" />
+    is greater than or equal to <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ContrastFractionThreshold" />.
+    </item><item> Its angle (as reported by the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Rotation" /> property of the
+    <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" />) was
+    either:
+    <list type="bullet"><item> obtained using an angle zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />,
+      or
+      </item><item> obtained using an angle zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />,
+      and has a value between the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Low" /> and
+      <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.High" />
+      angles that you specified.
+      </item></list></item><item> Its scale (as reported by the <see cref="P:Cognex.VisionPro.CogTransform2DLinear.Scaling" /> property of the
+    <see cref="T:Cognex.VisionPro.CogTransform2DLinear" /> returned by <see cref="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.GetPose" />) was
+    either:
+    <list type="bullet"><item> obtained using a scale zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal" />,
+      or
+      </item><item> obtained using a scale zone whose <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+      was set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />,
+      and has a value between the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Low" /> and
+      <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.High" />
+      scales that you specified.
+      </item></list></item><item> Its <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score" /> makes it
+    one of the top-scoring results.  Only the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind" />
+    top-scoring results (that meet all of the other conditions) will be
+    returned.
+    </item></list></para>
+                <para>
+  If, however, <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ReturnAllResults" />
+  is "true", additional pattern instances may be reported as results.  You
+  can use the value of <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" /> to
+  determine why the additional result was excluded initially.
+</para>
+                <para>
+  If <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" />
+  is "true" the additional result was excluded solely because the <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind" />
+  was set too low.  This could happen, for example, if your input image
+  contains five instances of the pattern but you set <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.NumberToFind" /> to
+  only find three.  In this case you might get two additional results that
+  meet all of the acceptance conditions listed above, but were excluded from
+  the results solely because they were not among the three highest-scoring
+  instances.
+</para>
+                <para>
+  If <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Accepted" />
+  is "false" the additional result was excluded because it has one or more of
+  the following:
+  <list type="bullet"><item> A <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.Score" /> less than
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.AcceptThreshold" />.
+    </item><item> A <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.ContrastFraction" />
+    less than <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineRunParams.ContrastFractionThreshold" />.
+    </item><item> An angle that is outside of the angle range you specified using
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Low" /> and
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.High" /> (if
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneAngle.Configuration" />
+    is set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />).
+    </item><item> A scale that is outside of the scale range you specified using
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Low" /> and
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.High" /> (if
+    <see cref="P:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneScale.Configuration" />
+    is set to <see cref="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh" />).
+    </item></list></para>
+            </remarks>
+        </member>
+        <member name="P:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.ID">
+            <summary>
+Gets a unique ID used to identify this result. This ID also corresponds
+to the index of this result in the CogPMRedLineResults to which 
+this result belongs.
+</summary>
+            <value>
+A unique ID used to identify this result.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.PMRedLine.CogPMRedLineResult.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogPMRedLineResult object.
+</summary>
+            <param name="info">
+The standard SerializationInfo argument.
+</param>
+            <param name="ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLineResult">
+            <summary>
+Class that holds a single PMRedLine result.  Each result corresponds to a
+found instance of the pattern.
+</summary>
+            <remarks>
+An instance of this class is returned by the
+<see cref="P:Cognex.VisionPro.Implementation.CogReadOnlyCollection`1.Item(System.Int32)" />
+property of the 
+<see cref="T:Cognex.VisionPro.PMRedLine.CogPMRedLineResults" /> class.
+</remarks>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants">
+            <summary>
+Enumeration of configuration methods for a PMRedLine DOF zone.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.LowHigh">
+            <summary>
+Configure a DOF zone so that PMRedLine finds pattern instances that
+lie between the low and high values of the zone.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineZoneConstants.Nominal">
+            <summary>
+Configure a DOF zone so that PMRedLine finds pattern instances at the
+nominal value of the zone.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLineAccuracyModeConstants">
+            <summary>
+Enumeration of accuracy modes available to CogPMRedLineRunParams.  The
+accuracy mode controls the tradeoff between speed and accuracy.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineAccuracyModeConstants.Accurate">
+            <summary>
+More time is spent on accuracy.  This mode can be useful if
+you desire more accuracy and are willing to sacrifice some speed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineAccuracyModeConstants.Standard">
+            <summary>
+This mode good gives a good tradeoff between accuracy and speed for
+most applications.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineAccuracyModeConstants.Fast">
+            <summary>
+Less time is spent on accuracy.  This mode is especially useful
+when you are searching for multiple pattern instances and only want
+to know how many were found.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordDiagConstants">
+            <summary>
+Enumeration of diagnostic data that can be provided in the
+Tool's LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordDiagConstants.All">
+            <summary>
+Include all of the diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordDiagConstants.SearchImageMask">
+            <summary>
+Include a graphic representing the search image mask in the 
+LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordDiagConstants.SearchRegion">
+            <summary>
+Include a copy of the search region in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordDiagConstants.InputImageDeepCopy">
+            <summary>
+Include a deep copy of the input image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordDiagConstants.InputImageByReference">
+            <summary>
+Include a reference to the input image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordDiagConstants.None">
+            <summary>
+Do not include any diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordConstants">
+            <summary>
+Enumeration of non-diagnostic data that can be provided in
+the Tool's LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordConstants.All">
+            <summary>
+Include all of the non-diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordConstants.ResultsMatchInfo">
+            <summary>
+Include the match info of each result in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordConstants.ResultsCoordinateAxes">
+            <summary>
+Include the coordinate axes of each result in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordConstants.ResultsOrigin">
+            <summary>
+Include the origin of each result in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordConstants.ResultsMatchRegion">
+            <summary>
+Include the match region of each result in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineLastRunRecordConstants.None">
+            <summary>
+Do not include any non-diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants">
+            <summary>
+Enumeration of data that can be provided in the Tool's
+CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants.All">
+            <summary>
+Include all possible records in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants.PatternFeatures">
+            <summary>
+Include a graphic representing the trained pattern features
+in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants.PatternOrigin">
+            <summary>
+Include an interactive pattern origin in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants.TrainImageMask">
+            <summary>
+Include a graphic representing the train image mask in the
+CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants.TrainRegion">
+            <summary>
+Include the (interactive) train region in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants.TrainImage">
+            <summary>
+Include the entire train image in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants.SearchImageMask">
+            <summary>
+Include a graphic representing the search image mask in the 
+CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants.SearchRegion">
+            <summary>
+Include the (interactive) search region in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants.InputImage">
+            <summary>
+Include the input image in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineCurrentRecordConstants.None">
+            <summary>
+Do not include any records in the CurrentRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.PMRedLine.CogPMRedLineResultGraphicConstants">
+            <summary>
+Enumeration of data used for creating result graphics.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineResultGraphicConstants.All">
+            <summary>
+Draw all result graphics.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineResultGraphicConstants.MatchInfo">
+            <summary>
+Draw the match info result graphics.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineResultGraphicConstants.TipText">
+            <summary>
+Turn on tip text for result graphics.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineResultGraphicConstants.CoordinateAxes">
+            <summary>
+Draw the pattern origin coordinate axes.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineResultGraphicConstants.Origin">
+            <summary>
+Draw a cross at the result's location.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineResultGraphicConstants.MatchRegion">
+            <summary>
+Draw the match region for this result.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.PMRedLine.CogPMRedLineResultGraphicConstants.None">
+            <summary>
+Draw no result graphics.
+</summary>
+        </member>
+    </members>
+</doc>

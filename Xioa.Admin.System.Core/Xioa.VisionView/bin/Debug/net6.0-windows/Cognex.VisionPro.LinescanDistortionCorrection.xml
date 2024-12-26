@@ -1,0 +1,691 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "Cognex.VisionPro.LinescanDistortionCorrection"
+    </assembly>
+    <members>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.OutputImage">
+            <summary>
+Gets the linescan distortion corrected output image.
+</summary>
+            <value>
+The linescan distortion corrected output image.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.Region">
+            <summary>
+Gets or sets the optional region whose pixel aligned bounding
+box specifies a portion of the input image to be used during
+linescan distortion correction.
+</summary>
+            <value>
+The region. May be null.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.InputImage">
+            <summary>
+Gets or sets the input image that is to be linescan
+distortion corrected.
+</summary>
+            <value>
+The image to be linescan distortion corrected.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.Operator">
+            <summary>
+Gets or sets the CogLinescanDistortionCorrection operator used by
+this tool.
+</summary>
+            <value>
+The operator.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.LastRunRecordDiagEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+CogLinescanDistortionCorrectionLastRunRecordDiagConstants.
+</summary>
+            <value>
+A bitwise combination of
+CogLinescanDistortionCorrectionLastRunRecordDiagConstants.
+Options include None, InputImageByReference, InputImageDeepCopy,
+Region, TrainImageDeepCopy, TrainRegion, TrainXSpan, and All.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.LastRunRecordEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+CogLinescanDistortionCorrectionLastRunRecordConstants.
+</summary>
+            <value>
+A bitwise combination of
+CogLinescanDistortionCorrectionLastRunRecordConstants.
+Options include None, OutputImage, and All.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.CurrentRecordEnable">
+            <summary>
+Enable creation of records by bitwise ORing the appropriate
+CogLinescanDistortionCorrectionCurrentRecordConstants.
+</summary>
+            <value>
+A bitwise combination of
+CogLinescanDistortionCorrectionCurrentRecordConstants. Options include
+None, TrainImage, TrainRegion, InputImage, Region, and
+All.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.Finalize">
+            <summary>
+Finalize this CogLinescanDistortionCorrectionTool object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.Dispose">
+            <summary>
+Destruct this CogLinescanDistortionCorrectionTool object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.#ctor(Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool)">
+            <summary />
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.#ctor">
+            <summary />
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.SfOutputImage">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by OutputImage may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.SfRegion">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Region may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.SfInputImage">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by InputImage may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.SfOperator">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Operator may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.SfCurrentRecordEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by CurrentRecordEnable may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.SfLastRunRecordDiagEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by LastRunRecordDiagEnable may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.SfLastRunRecordEnable">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by LastRunRecordEnable may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool">
+            <summary>
+This class provides tool level access to the
+<see cref="T:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection" />
+operator. This class encapsulates all of the classes needed to perform
+linescan distortion correction.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.Execute(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion)">
+            <summary>
+Process the supplied input image to produce a linescan
+distortion corrected output image.
+</summary>
+            <returns>
+A linescan distortion corrected image.
+</returns>
+            <param name="InputImage">
+The image to be processed. Must be of type CogImage8Grey.
+</param>
+            <param name="Region">
+An optional region of interest. If provided, the pixel aligned
+bounding box of this region specifies which input pixels should
+be used.
+</param>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+If InputImage is not CogImage8Grey.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException">
+If Trained is false.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+If InputImage is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.Train">
+            <summary>
+Train this operator. If this operator is already trained
+then no work is done. When training in Positions mode it
+is a requirement that the internal list of train positions
+be in ascending or increasing order.
+</summary>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoTrainImageException">
+If TrainMode is Image and TrainImage is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionTooFewTrainPositionsException">
+If TrainMode is Positions and there are fewer than 4 train positions
+defined.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionTrainPositionsNotInIncreasingOrderException">
+If TrainMode is Positions and the defined train positions are not
+in increasing order.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionTrainPositionOutsideXSpanException">
+If TrainMode is Positions and any of the defined train positions
+fall outside of the train X span.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionTrainImageHasTooFewFeaturesException">
+If TrainMode is Image and the TrainImage has too few features.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionTrainImageNotStripedException">
+If TrainMode is Image and the TrainImage does not appear to have the
+required vertical stripes.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+If TrainMode is Image and the TrainImage is not CogImage8Grey.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method causes the Trained property to
+become true.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.ClearTrainPositions">
+            <summary>
+Remove all train positions from this operator.
+</summary>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method removes one or more train positions.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.DeleteTrainPosition(System.Int32)">
+            <summary>
+Delete the train position at the specified index. Deleting
+a train position will cause the operator to untrain.
+</summary>
+            <param name="Index">
+The zero-based index of the no longer desired train position value.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If Index is less than 0 or Index is greater than or equal to
+NumTrainPositions.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method deletes an existing train position.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.AddTrainPosition(System.Int32,System.Double)">
+            <summary>
+Add the specified train position. If an Index is supplied then
+the new position is inserted at that location. If no Index is
+supplied, or if an Index with the special value -1 is supplied,
+then the new train position is appended to the end of the internal
+list of train positions. Adding a train position will cause
+the operator to untrain. When training in Positions
+mode it is a requirement that the internal list of train positions
+be in ascending or increasing order.
+</summary>
+            <param name="Index">
+The optional zero-based index of the desired train position value.
+An Index of -1 means add to the end of the list. An Index equal
+to NumTrainPositions means add to the end of the list.
+</param>
+            <param name="Position">
+The pixel space X coordinate value for the new position.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If Index is less than -1 or Index is greater than NumTrainPositions.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method adds a new train position.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.SetTrainPosition(System.Int32,System.Double)">
+            <summary>
+Set the specified train position value. Changing a train position
+value will cause the operator to untrain. When training in Positions
+mode it is a requirement that the internal list of train positions
+be in ascending or increasing order.
+</summary>
+            <param name="Index">
+The zero-based index of the desired train position value.
+</param>
+            <param name="Position">
+The new pixel space X coordinate value for the position at this index.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If Index is less than zero or Index is greater than or
+equal to NumTrainPositions.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this method changes the existing train position value.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.GetTrainPosition(System.Int32)">
+            <summary>
+Get the specified train position value.
+</summary>
+            <returns>
+The desired train position in pixel space X coordinates.
+</returns>
+            <param name="Index">
+The zero-based index of the desired train position value.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If Index is less than zero or Index is greater than or
+equal to NumTrainPositions.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.NumTrainPositions">
+            <summary>
+Gets the number of train positions.
+</summary>
+            <value>
+The currently defined number of train positions.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.TrainXSpanSize">
+            <summary>
+Gets or sets the X span size.
+</summary>
+            <value>
+The size, in pixels, of the train X span. When TrainMode is
+Image, this value is computed and updated by the Train method.
+When TrainMode is Positions, this value is used as an input
+by the Train method. Changing this value causes the operator
+to untrain, regardless of TrainMode.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied argument is not greater than zero.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.TrainXSpanOrigin">
+            <summary>
+Gets or sets the TrainXSpanOrigin.
+</summary>
+            <value>
+The origin, in pixels, of the train X span. When TrainMode is
+Image, this value is computed and updated by the Train method.
+When TrainMode is Positions, this value is used as an input
+by the Train method. Changing this value causes the
+operator to untrain, regardless of TrainMode.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.TrainRegion">
+            <summary>
+Gets or sets the train region.
+</summary>
+            <value>
+An optional region that defines the subset of the TrainImage
+to be used during training when TrainMode is Image. This region
+is used to define a pixel aligned bounding box within the
+TrainImage. This property is ignored if TrainMode is not Image.
+Changing this value, or a geometrical (not graphical) attribute
+of this region, causes the operator to untrain, regardless of
+TrainMode.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.TrainImage">
+            <summary>
+Gets or sets the train image.
+</summary>
+            <value>
+The image used to train this operator when TrainMode is Image. This
+property is ignored if TrainMode is not Image. Changing this
+value causes the operator to untrain, regardless of TrainMode.
+</value>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.TrainMode">
+            <summary>
+Gets or sets the train mode.
+</summary>
+            <value>
+The train mode. May be either Image or Positions. Default is Image.
+Changing this value causes the operator to untrain.
+</value>
+            <exception cref="T:System.ArgumentException">
+If the supplied argument is not either Image or Positions.
+</exception>
+            <event cref="T:Cognex.VisionPro.ICogChangedEvent">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.Trained">
+            <summary>
+Gets the Trained flag for this operator.
+</summary>
+            <value>
+Whether or not this operator is trained.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serializer for CogLinescanDistortionCorrection object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+Serialization constructor for CogLinescanDistortionCorrection object.
+</summary>
+            <param name="Info">
+The standard SerializationInfo argument.
+</param>
+            <param name="Ctxt">
+The standard StreamingContext argument.
+</param>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.OnDeserialization(System.Object)">
+            <summary>
+Perform post-deserialization setup.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.Finalize">
+            <summary>
+Finalize this CogLinescanDistortionCorrection object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.Dispose">
+            <summary>
+Destruct this CogLinescanDistortionCorrection object.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.#ctor(Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection)">
+            <summary>
+Construct a deep copy of the supplied CogLinescanDistortionCorrection
+</summary>
+            <param name="Other">
+The CogLinescanDistortionCorrection object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.#ctor">
+            <summary>
+Construct a default CogLinescanDistortionCorrection object. This
+will initially have no train positions.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.SfGetTrainPosition">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by GetTrainPosition may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.SfTrained">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Trained may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.SfTrainXSpanSize">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainXSpanSize may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.SfTrainXSpanOrigin">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainXSpanOrigin may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.SfNumTrainPositions">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by NumTrainPositions may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.SfTrainRegion">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainRegion may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.SfTrainImage">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainImage may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection.SfTrainMode">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by TrainMode may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrection">
+            <summary />
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionInputImageDoesNotContainXSpanException">
+            <summary>
+The exception that is thrown when the input image does not
+contain the train X span.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionTrainImageNotStripedException">
+            <summary>
+The exception that is thrown when the train image does
+not appear to have the required vertical stripes.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionTrainImageHasTooFewFeaturesException">
+            <summary>
+The exception that is thrown when the train
+image has too few featuers.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionExtrapolatedPositionsDoNotFillXSpanException">
+            <summary>
+The exception that is thrown when the X span is not filled by
+extrapolated positions.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionTooFewTrainPositionsException">
+            <summary>
+The exception that is thrown during training when there
+are fewer than 4 defined train positions.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionTrainPositionOutsideXSpanException">
+            <summary>
+The exception that is thrown during training when a train position
+falls outside the train X span.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionTrainPositionsNotInIncreasingOrderException">
+            <summary>
+The exception that is thrown during training when TrainMode is
+Positions and the defined train positions are not in increasing order.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordDiagConstants">
+            <summary>
+Enumeration of diagnostic data that can be provided in the
+Tool's LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordDiagConstants.All">
+            <summary>
+Include all of the diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordDiagConstants.TrainPositions">
+            <summary>
+Include the train positions graphic in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordDiagConstants.TrainXSpan">
+            <summary>
+Include the train X span graphic in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordDiagConstants.TrainRegion">
+            <summary>
+Include a copy of the train region in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordDiagConstants.TrainImageDeepCopy">
+            <summary>
+Include a deep copy of the train image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordDiagConstants.Region">
+            <summary>
+Include a copy of the region in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordDiagConstants.InputImageDeepCopy">
+            <summary>
+Include a deep copy of the input image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordDiagConstants.InputImageByReference">
+            <summary>
+Include a reference to the input image in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordDiagConstants.None">
+            <summary>
+Do not include any of the diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordConstants">
+            <summary>
+Enumeration of non-diagnostic data that can be provided in
+the Tool's LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordConstants.All">
+            <summary>
+Include all of the non-diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordConstants.OutputImage">
+            <summary>
+Include a reference to the output image
+in the LastRunRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionLastRunRecordConstants.None">
+            <summary>
+Do not include any of the non-diagnostic data in the LastRunRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionCurrentRecordConstants">
+            <summary>
+Enumeration of data that can be provided in the Tool's
+CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionCurrentRecordConstants.All">
+            <summary>
+Include all possible records in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionCurrentRecordConstants.TrainPositions">
+            <summary>
+Include the train positions graphic in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionCurrentRecordConstants.TrainXSpan">
+            <summary>
+Include the train X span graphic in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionCurrentRecordConstants.Region">
+            <summary>
+Include the (interactive) region to be processed at
+run time in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionCurrentRecordConstants.InputImage">
+            <summary>
+Include the input image in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionCurrentRecordConstants.TrainRegion">
+            <summary>
+Include the train region in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionCurrentRecordConstants.TrainImage">
+            <summary>
+Include the train image in the CurrentRecord.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionCurrentRecordConstants.None">
+            <summary>
+Do not include any records in the CurrentRecord.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTrainModeConstants">
+            <summary>
+Constants used to specify how to train a
+CogLinescanDistortionCorrection object.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTrainModeConstants.Positions">
+            <summary>
+Use TrainXSpanOrigin, TrainXSpanSize, and the train positions described
+by NumTrainPositions and the GetTrainPosition method as the basis
+for training.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTrainModeConstants.Image">
+            <summary>
+Use TrainImage, and optionally TrainRegion, as the basis for training.
+</summary>
+        </member>
+    </members>
+</doc>

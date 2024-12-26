@@ -1,0 +1,3105 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "Cognex.VisionPro.SearchMax"
+    </assembly>
+    <members>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxTool.Results">
+            <summary>
+Gets the results from the last invocation of the Run method. 
+A new instance of CogSearchMaxResults is created for each running.
+Previous results will be released prior to the new search.
+</summary>
+            <value>
+The results. 
+</value>
+            <remarks>
+The returned object is Nothing (NULL) if the last invocation of Run 
+failed. If Run succeeded, but no pattern instances were found, 
+the returned object will be valid but will have a Count of 0.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxTool.Pattern">
+            <summary>
+Gets or sets the SearchMaxPattern object.
+</summary>
+            <value> The operator. Default value is a default-constructed 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxPattern" />.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfPattern </item>
+                    <item> SfCreateCurrentRecord </item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxTool.RunParams">
+            <summary>
+Gets or sets the run parameters for this SearchMax tool.
+</summary>
+            <value>
+The run parameters. Default value is a default constructed
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams" />.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfRunParams </item>
+                    <item> SfCreateCurrentRecord </item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxTool.SearchRegion">
+            <summary>
+Gets or sets the region which specifies a portion on the 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxTool.InputImage" />
+that will be used to perform SearchMax. If it is empty, 
+SearchMax is performed on the entire InputImage. The 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.SearchRegionMode" />
+property specifies exactly how this region will be applied to  the
+InputImage.
+</summary>
+            <value>
+The region.  Default value is NULL.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfSearchRegion </item>
+                    <item> SfCreateCurrentRecord </item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxTool.InputImage">
+            <summary>
+Gets or sets the input image used to perform search. The SearchRegion
+is applied to this InputImage in order to define the region that 
+will be used locate SearchMax pattern(s).
+</summary>
+            <value>
+The input image. Default value is NULL.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfInputImage </item>
+                    <item> SfCreateCurrentRecord </item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxTool.LastRunRecordDiagEnable">
+            <summary>
+Enable creation of records by bitwise ORing the 
+appropriate CogSearchMaxLastRunRecordDiagConstants.
+</summary>
+            <value> This read/write property is a bitwise combination of 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordDiagConstants" />.
+Default value is InputImageByReference.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfLastRunRecordDiagEnable </item>
+                    <item> SfCreateLastRunRecord </item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxTool.LastRunRecordEnable">
+            <summary>
+Enable creation of records by bitwise ORing the 
+appropriate CogSearchMaxLastRunRecordConstants.
+</summary>
+            <value> This read/write property is a bitwise combination of 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordConstants" />
+Default value is ResultsMatchRegion + ResultsOrigin.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfLastRunRecordEnable </item>
+                    <item> SfCreateLastRunRecord </item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxTool.CurrentRecordEnable">
+            <summary>
+Enable creation of records by bitwise ORing the 
+appropriate CogSearchMaxCurrentRecordConstants.
+</summary>
+            <value> This read/write property is a bitwise combination of 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants" />. 
+Default value is InputImage + SearchRegion + SearchImageMask +
+TrainImage + TrainImageMask + TrainRegion + PatternOrigin.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfCurrentRecordEnable </item>
+                    <item> SfCreateCurrentRecord </item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxTool.#ctor(Cognex.VisionPro.SearchMax.CogSearchMaxTool)">
+            <summary>
+Construct a deep copy of the supplied CogSearchMaxTool object.
+</summary>
+            <param name="other">
+The CogSearchMaxTool object to be copied. May not be NULL.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+Thrown if <paramref name="other" /> is NULL.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxTool.#ctor">
+            <summary>
+Construct a default CogSearchMaxTool object.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxTool">
+            <summary>
+This class provides tool level access to the 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxPattern" /> operator. 
+This class encapsulates all of the 
+classes required to perform SearchMax search.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.GetTrainedPatternImageMask">
+            <summary>
+Gets the actual mask image used to train the current pattern. 
+</summary>
+            <return> The actual mask image.  
+</return>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException">
+Thrown if this operator is not trained.
+</exception>
+            <exception cref="T:System.InvalidOperationException">
+Thrown if TrainedImage is NULL.
+</exception>
+            <remarks>
+This mask is the combination of the TrainImageMask and any mask 
+that may be required by TrainRegionMode. This mask is the same size 
+as the image returned by GetTrainedPatternImage.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.GetTrainedPatternImage">
+            <summary>
+Gets the image used to train the SearchMax pattern.
+This is the smallest possible sub-image of TrainImage that contains 
+the TrainRegion. 
+</summary>
+            <return> The smallest possible sub-image of the TrainImage that contains
+the TrainRegion.
+</return>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException">
+Thrown if this operator is not trained.
+</exception>
+            <exception cref="T:System.InvalidOperationException">
+Thrown if TrainedImage is NULL.
+</exception>
+            <remark>
+Actual features within the sub-image that are trained depends on the 
+TrainRegionMode and TrainImageMask.
+</remark>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.Execute(Cognex.VisionPro.ICogImage,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.SearchMax.CogSearchMaxRunParams)">
+            <summary>
+Performs search upon the specified image with 
+the specified run parameters.
+</summary>
+            <return>
+The results of the search.
+</return>
+            <param name="image"> 
+The image in which to search. May not be NULL.
+</param>
+            <param name="searchRegion">
+The optional search region. If you do not specify a search region, 
+the entire image is searched.
+</param>
+            <param name="runParams">
+The run parameters that specify how to perform this search. 
+May not be NULL.
+</param>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+Thrown if <paramref name="image" /> is NULL.
+</exception>
+            <exception cref="T:System.ArgumentNullException">
+Thrown if <paramref name="runParams" /> is NULL.
+</exception>
+            <exception cref="T:System.InvalidOperationException">
+Thrown if <paramref name="image" /> is a 8-bit greyscale image, but the pattern 
+was trained using a 24-bit color image.
+</exception>
+            <exception cref="T:System.InvalidOperationException">
+Thrown if <paramref name="image" /> is a 24-bit color image, but the pattern 
+was trained using a 8-bit grey image.
+</exception>
+            <exception cref="T:System.InvalidOperationException">
+Thrown if <paramref name="image" /> is a 24-bit color image, but its color 
+space is not RGB.
+</exception>
+            <exception cref="T:System.InvalidOperationException">
+Thrown if an internal error occurs during running.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSearchMaxTrainedTemplatesMissingRuntimeDOFsException">
+Thrown if the pattern was trained using TrainMode CreateDOFTemplates and the
+trained templates do not allow the tool to search the full range of runtime DOFs
+enabled in the runparams zones.
+The traintime templates must incorporate all possible poses in the runtime search.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSearchMaxImproperMaskException">
+Thrown if the SearchImageMask is not allocated or contains pixels that have values 
+other than 0 and 255.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException">
+Thrown if <paramref name="image" /> is not allocated.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException">
+Thrown if <paramref name="searchRegion" /> falls completely outside of 
+<paramref name="image" />.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException">
+Thrown if this operator is not already trained.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException">
+Thrown if licensing for this operator cannot be confirmed.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogTimeoutExpiredException">
+Thrown if the pattern location took longer than the value 
+specified by Timeout.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.Train">
+            <summary>
+Trains the pattern.
+</summary>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para> Fires when the pattern object is modified.</para>
+                <para> The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage  </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                    <item> SfGrainLimitCoarse   </item>
+                    <item> SfGrainLimitFine    </item>
+                </list>
+            </event>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException">
+Thrown if licensing for this operator cannot be confirmed.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNoTrainImageException">
+Thrown if there is no training image.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageNoPixelsException">
+Thrown if <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImage" />
+is not allocated.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+Thrown if <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImage" />
+is not of type CogImage8Grey or CogImage24PlanarColor.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorInvalidRegionException">
+Thrown if <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainRegion" />
+falls completely outside of 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImage" />.
+</exception>
+            <exception cref="T:System.InvalidOperationException">
+Thrown if an internal error occurs during training.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogTimeoutExpiredException">
+Thrown if the pattern train took longer than the value 
+specified by TrainTimeout.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSearchMaxImproperMaskException">
+Thrown if the <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImageMask" /> 
+is not allocated or contains pixels that have values other than 0 and 255.
+</exception>
+            <exception cref="T:System.NotSupportedException">
+SearchMax does not support non-linear transforms.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSearchMaxRegionContainsNoFeaturesException">
+Thrown if the <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainRegion" /></exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSearchMaxImageTooSmallException">
+Thrown if the <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImage" /></exception>
+            <remarks>
+Trains this CogSearchMaxPattern. If the pattern is already trained 
+then it will be untrained and retrained.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.Untrain">
+            <summary>
+Discards any trained data.
+</summary>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para> Fires when pattern object is modified.</para>
+                <para> The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.ZoneSkew">
+            <summary>
+Gets or sets the zone configuration for the Skew degree of 
+freedom for training pattern templates. Units are in Radians.
+This property is ignored if <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainMode" /> is EvaluateDOFsAtRuntime.
+</summary>
+            <value> The zone configuration for the Skew degree of freedom.
+Default value is a CogSearchMaxZoneAngle with a Nominal of 0 and 
+Overlap of pi/6.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfZoneAngle </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown when you attempt to set this to NULL.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+An <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle" /> 
+object describing the Skew degree of freedom. 
+<para> Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained. </para><para> Note    This CogSearchMaxPattern will sink changed events for 
+the CogSearchMaxZoneAngle that you supply. Whenever the 
+CogSearchMaxZoneAngle changes, this CogSearchMaxPattern will become 
+untrained. </para></remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.ZoneAngle">
+            <summary>
+Gets or sets the zone configuration for the angle degree of 
+freedom for training pattern templates. Units are in Radians.
+This property is ignored if <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainMode" /> is EvaluateDOFsAtRuntime.
+</summary>
+            <value> The zone configuration for the angle degree of freedom.
+Default value is a default constructed 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle" />.  
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfZoneAngle </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown when you attempt to set this to NULL.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+An <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle" /> 
+object describing the angle degree of freedom. 
+<para> Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained. </para><para> Note    This CogSearchMaxPattern will sink changed events for 
+the CogSearchMaxZoneAngle that you supply. Whenever the 
+CogSearchMaxZoneAngle changes, this CogSearchMaxPattern will become 
+untrained. </para></remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.ZoneScale">
+            <summary>
+Gets or sets the zone configuration for the uniform scale degree of 
+freedom used when training pattern templates.
+This property is ignored if <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainMode" /> is EvaluateDOFsAtRuntime. 
+</summary>
+            <value> The zone configuration for the uniform scale degree of freedom.
+Default value is a default constructed 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale" />.    
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfZoneScale </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown when you attempt to set this to NULL.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+                <para>An <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale" />
+object describing the uniform scale degree
+of freedom. Uniform scale is a scale change where the x-scale equals 
+the y-scale. </para>
+                <para> Any value you specify for the uniform scale degree of freedom is 
+multiplied by the values specified for ZoneScaleX and ZoneScaleY to 
+produce the overall search space (if you specify a zone) or nominal value 
+(if you specify a nominal value).</para>
+                <para> Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained. </para>
+                <para> Note    This CogSearchMaxPattern will sink changed events for 
+the CogSearchMaxZoneScale that you supply. Whenever the 
+CogSearchMaxZoneScale changes, this CogSearchMaxPattern will become 
+untrained. </para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.ZoneScaleY">
+            <summary>
+Gets or sets the zone configuration for the Y scale degree of freedom
+used for training pattern templates.
+This property is ignored if <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainMode" /> is EvaluateDOFsAtRuntime.
+</summary>
+            <value> The zone configuration for the Y scale degree of freedom.
+Default value is a default constructed 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale" />.  
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfZoneScaleY </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown when you attempt to set this to NULL.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+                <para>An <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale" />
+object describing the Y scale degree of freedom. </para>
+                <para>Specify a value for ZoneScale to specify the uniform scale degree of 
+freedom.</para>
+                <para> Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained. </para>
+                <para> Note    This CogSearchMaxPattern will sink changed events for 
+the CogSearchMaxZoneScale that you supply. Whenever the 
+CogSearchMaxZoneScale changes, this CogSearchMaxPattern will become 
+untrained. </para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.ZoneScaleX">
+            <summary>
+Gets or sets the zone configuration for the X scale degree of freedom 
+used for training pattern templates.
+This property is ignored if <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainMode" /> is EvaluateDOFsAtRuntime.
+</summary>
+            <value> The zone configuration for the X scale degree of freedom.
+Default value is a default constructed 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale" />.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfZoneScaleX </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown when you attempt to set this to NULL.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+                <para>An <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale" />
+object describing the X scale degree of freedom. </para>
+                <para>Specify a value for ZoneScale to specify the uniform scale degree of 
+freedom.</para>
+                <para> Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained. </para>
+                <para> Note    This CogSearchMaxPattern will sink changed events for 
+the CogSearchMaxZoneScale that you supply. Whenever the 
+CogSearchMaxZoneScale changes, this CogSearchMaxPattern will become 
+untrained. </para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.Origin">
+            <summary>
+Gets or sets a 6 DOF origin for the pattern. This transform maps 
+from "Pattern Space" to the selected space of 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImage" /></summary>
+            <value>
+A 6 DOF generalized pattern origin. Default value is the identity 
+transform shifted to be at the center of the default TrainRegion.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfOrigin </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown when you attempt to set this to NULL.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+                <para> Note   Changing this property 
+causes this CogSearchMaxPattern to become untrained.
+</para>
+                <para> Note    This CogSearchMaxPattern will sink changed events for 
+the generalized origin that you supply. If the origin changes, and 
+the train mode is CreateDOFTemplates, the CogSearchMaxPattern will
+become untrained. </para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.GranularityMode">
+            <summary>
+Gets or sets the granularity mode which specifies the   
+method used to generate the coarse model at a given
+granularity or resolution.
+</summary>
+            <value>
+The granularity mode which is a member of <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxGranularityModeConstants" />.
+Default is Robust.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para> Fires when this property changes.</para>
+                <para> The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfGranularityMode </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+Thrown if you attempt to set this to a value other than 
+Robust or Fast.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.CompressionQuality">
+            <summary>
+Gets or sets the CompressionQuality which specifies 
+how much the lossy compression algorithm will compress
+the trained image model.
+This value is ignored if compression mode is not lossy.
+</summary>
+            <value>
+A value greater than 0.0 and less than or equal to 1.0.  Default is 0.95.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para> Fires when this property changes.</para>
+                <para> The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfCompressionQuality</item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+Thrown if set to &gt; 1.0 or &lt;= 0.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+                <para>Note   This is an advanced parameter and should be left as the default.</para>
+                <para>Note   Values less than approximately 0.5 are probably too extreme for
+most applications and are likely to miss instances of the model in runtime images.</para>
+                <para>Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained.</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.CompressionMode">
+            <summary>
+Gets or sets the compression mode which specifies how the 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxPattern" />  
+is trained and run.
+</summary>
+            <value>
+The compressionMode which is a member of <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxCompressionModeConstants" />.
+Default is None.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para> Fires when this property changes.</para>
+                <para> The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfCompressionMode </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+Thrown if you attempt to set this to a value other than 
+None, Lossy, or Lossless.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainTimeout">
+            <summary>
+Gets or sets the maximum execution time (msec) allowed to train  
+SearchMax. If SearchMax has not finished training by the end of the timeout 
+period, it will stop soon thereafter and return E_Cog_TimeoutExpired. 
+This value only applies if TrainTimeoutEnabled is true.
+</summary>
+            <value>
+The maximum train time (msec). Default value is 5000.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when  this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfTrainTimeout </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 0.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.CvlCompatibilityMode">
+            <summary>
+Cognex internal use only.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainTimeoutEnabled">
+            <summary>
+Gets or sets whether to enable a train timeout. If true then the execution
+time of the SearchMax train operation is limited by the TrainTimeout. 
+If false, then timeout is disabled and the TrainTimeout property is ignored.
+</summary>
+            <value>
+True if TrainTimeout is enabled; otherwise, false. Default value is false.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when  this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfTrainTimeoutEnabled </item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainMode">
+            <summary>
+Gets or sets the train mode which specifies how the 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxPattern" />  
+is trained.
+</summary>
+            <value>
+The train mode which is a member of <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxTrainModeConstants" />.
+Default is EvaluateDOFsAtRuntime.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para> Fires when this property changes.</para>
+                <para> The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfTrainMode </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+Thrown if you attempt to set this to a value other than 
+EvaluateDOFsAtRuntime or CreateDOFTemplates.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainRegionMode">
+            <summary>
+Gets or sets the region mode which specifies how the 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainRegion" />  
+is applied to the 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImage" />.
+</summary>
+            <value>
+The region mode which may be either PixelAlignedBoundingBox or 
+PixelAlignedBoundingBoxAdjustMask. Default values is
+PixelAlignedBoundingBoxAdjustMask.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para> Fires when this property changes.</para>
+                <para> The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfTrainRegionMode </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+Thrown if you attempt to set this to a value other than 
+PixelAlignedBounding or PixelAlignedBoundingBoxAdjustMask.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainRegion">
+            <summary>
+Gets or sets the region of interest indicating portion of the
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImage" /> 
+that will be used to train the pattern. A NULL 
+TrainRegion indicates that the entire TrainImage will be used to train the
+CogSearchMaxPattern.
+</summary>
+            <value>
+The region of interest indicating portion of the TrainImage. 
+The default value is a default contstucted CogRectangleAffine that 
+has been made interactive and has all DOFs enabled.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para> Fires when this property changes.</para>
+                <para> The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfTrainRegion </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+                <para> Note   Changing this property causes this CogSearchMaxPattern to
+become untrained. </para>
+                <para> Note    This CogSearchMaxPattern will sink changed events for 
+the region that you supply. Whenever the region changes, this 
+CogSearchMaxPattern will become untrained. </para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImageMaskOffsetY">
+            <summary>
+Gets or sets the Y offset value in pixels. The X and Y offset values 
+measure the offset from the upper-left corner of the 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImage" />
+to the upper-left corner of the 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImageMask" />
+in image coordinates of the TrainImage. 
+</summary>
+            <value>
+The Y offset value for the TrainImageMask. Default value is 0.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfTrainImageMaskOffsetY </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+                <para> Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained. </para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImageMaskOffsetX">
+            <summary>
+Gets or sets the X offset value in pixels. The X and Y offset values 
+measure the offset from the upper-left corner of the 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImage" />
+to the upper-left corner of the 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImageMask" />
+in image coordinates of the TrainImage. 
+</summary>
+            <value>
+The X offset value for the TrainImageMask. Default value is 0.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfTrainImageMaskOffsetX </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+                <para> Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained. </para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImageMask">
+            <summary>
+Gets or sets the mask that is used when training the CogSearchMaxPattern.
+The mask allows the user to identify areas of the 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImage" />
+as "Care" (0) or "Don't Care" (255). The mask is aligned to the TrainImage 
+using the 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImageMaskOffsetX" />
+and 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImageMaskOffsetY" />
+values.
+</summary>
+            <value>
+The mask for the TrainImage. Default value is NULL.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfTrainImageMask </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <exception cref="T:System.InvalidOperationException">
+Thrown when you attempt to set this to an image with pixel values not
+0 or 255.
+</exception>
+            <remarks>
+                <para> A mask is a CogImage8Grey that excludes specified parts of
+the run-time image. Areas within pixels in the TrainImage 
+that correspond to pixels in the mask image that have a value of
+0 ("don't care pixels") are ignored; mask pixels with values 255 are 
+care pixels (areas within TrainImage pixels that correspond to care pixels
+are considered). </para>
+                <para> Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained. </para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImage">
+            <summary>
+Gets or sets the train image used to train SearchMax. The 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainRegion" />
+and
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImageMask" />
+are applied to this TrainImage in order to define the region and care
+pixels that will be used to train the pattern. The 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainRegionMode" />
+property specifies how TrainRegion will be applied to this image.
+</summary>
+            <value>
+The train image. Default value is NULL.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para> Fires when this property changes.</para>
+                <para> The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfTrainImage </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentException">
+Thrown if <paramref name="newVal" /> is a color image, but its color
+space is not RGB.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+                <para>
+This property is stored as a reference to the supplied image. If you 
+change the value of this property, this CogSearchMaxPattern becomes 
+untrained, but if you change the pixels in the CogImage8Grey that this 
+property refers to, it is not untrained. </para>
+                <para> Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained. </para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.GrainLimitFine">
+            <summary>
+Gets or sets the fine granularity limit. User can manually set the grain
+limits, but if GrainLimitAutoSelect is true, they will be overwritten by
+the automatically generated granularity limits. Coarse must be 
+greater than or equal to fine. Setting fine 
+greater than coarse will also set coarse to the new value.
+</summary>
+            <value>
+The fine granularity limit. Valid range is 1.0 to 25.5 inclusive, 
+and default value is 1.0.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para> Fires when this property changes.</para>
+                <para> The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfGrainLimitFine </item>
+                    <item> SfGrainLimitCoarse </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+Thrown when you attempt to set this to a value less than 1.0 or 
+greater than 25.5.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+                <para> The coarse and fine granularity limits represent the largest 
+and smallest feature sizes that SearchMax uses to locate patterns in 
+a run-time image. SearchMax uses a range of granularity values 
+within the range you specify.</para>
+                <para> GrainLimitCoarse must be greater than or equal to GrainLimitFine. 
+Setting GrainLimitFine greater than GrainLimitCoarse sets 
+GrainLimitCoarse to the new GrainLimitFine value. </para>
+                <para> Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained. </para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.GrainLimitCoarse">
+            <summary>
+Gets or sets the coarse granularity limit. User can manually set the grain
+limits, but if GrainLimitAutoSelect is true, they will be overwritten by
+the automatically generated granularity limits. Coarse must be 
+greater than or equal to fine. Setting coarse 
+less than fine will also set fine to the new value.
+</summary>
+            <value>
+The coarse granularity limit. Valid range is 1.0 to 25.5 inclusive, 
+and default value is 4.0.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para> Fires when this property changes.</para>
+                <para> The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfGrainLimitCoarse </item>
+                    <item> SfGrainLimitFine </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+Thrown when you attempt to set this to a value less than 1.0 or 
+greater than 25.5.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+                <para> The coarse and fine granularity limits represent the largest 
+and smallest feature sizes that SearchMax uses to locate patterns in 
+a run-time image. SearchMax uses a range of granularity values 
+within the range you specify.</para>
+                <para> GrainLimitCoarse must be greater than or equal to GrainLimitFine.
+Setting GrainLimitCoarse less than GrainLimitFine sets 
+GrainLimitFine to the new GrainLimitCoarse value. </para>
+                <para> Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained. </para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.GrainLimitAutoSelect">
+            <summary>
+Gets or sets whether CogSearchMaxPattern will automatically generate grain
+limits during training. If false then the values stored in the pattern 
+prior to training will be used.
+</summary>
+            <value>
+True if SearchMaxPattern will automatically generate grain 
+limits during training; false if the values stored in the pattern 
+prior to training will be used. Default value is true.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para> Fires when this property changes.</para>
+                <para> The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfGrainLimitAutoSelect </item>
+                    <item> SfTrained </item>
+                    <item> SfGetTrainedPatternImage </item>
+                    <item> SfGetTrainedPatternImageMask  </item>
+                </list>
+            </event>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <remarks>
+                <para>
+The granularity limits control the size of features detected by SearchMax.
+For more information, see 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.GrainLimitCoarse" />
+and <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.GrainLimitFine" />.
+</para>
+                <para> Note   Changing this property causes this CogSearchMaxPattern to 
+become untrained.
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.Trained">
+            <summary>
+Gets whether this pattern has been trained.
+</summary>
+            <value>
+True if the pattern has been trained; otherwise, false.
+</value>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if this CogSearchMaxPattern object has already been disposed.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.#ctor(Cognex.VisionPro.SearchMax.CogSearchMaxPattern)">
+            <summary> 
+Constructs a deep copy of the supplied CogSearchMaxPattern object.
+</summary>
+            <param name="other"> 
+The CogSearchMaxPattern object to be copied. May not be NULL.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+Thrown if <paramref name="other" /> is NULL.
+</exception>
+            <exception cref="T:System.ObjectDisposedException">
+Thrown if <paramref name="other" /> CogSearchMaxPattern object has already been
+disposed.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.#ctor">
+            <summary> 
+Constructs a default CogSearchMaxPattern object.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxPattern">
+            <summary>
+This class is the workhorse of the
+<see cref="N:Cognex.VisionPro.SearchMax" /> assembly; 
+it performs the actual SearchMax search. 
+This class contains the training parameters and trained state information.
+You can use this class to perform a search, or you can use the tool,
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxTool" />.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxResults.Item(System.Int32)">
+            <summary>
+Gets the CogSearchMaxResult at the specific 
+index in the CogSearchMaxResults.
+</summary>
+            <param name="index">
+The zero-based index to specify a location in 
+the CogSearchMaxResults.
+</param>
+            <exception cref="T:System.IndexOutOfRangeException">
+Thrown if <paramref name="index" /> is not a valid index in the 
+CogSearchMaxResults.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxResults.Contains(Cognex.VisionPro.SearchMax.CogSearchMaxResult)">
+            <summary>
+Determines whether the CogSearchMaxResults 
+contains a specific CogSearchMaxResult.
+</summary>
+            <param name="value">
+The CogSearchMaxResult to locate in the CogSearchMaxResults.
+</param>
+            <returns>
+True if the CogSearchMaxResults contains <paramref name="value" />; 
+otherwise, false.
+</returns>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxResults.IndexOf(Cognex.VisionPro.SearchMax.CogSearchMaxResult)">
+            <summary>
+Determines the index of a specific 
+CogSearchMaxResult in the CogSearchMaxResults.
+</summary>
+            <param name="value">
+The CogSearchMaxResult to locate in the CogSearchMaxResults.
+</param>
+            <returns>
+Zero-based index of value if found in the 
+CogSearchMaxResults; otherwise -1.
+</returns>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxResults.#ctor(Cognex.VisionPro.SearchMax.CogSearchMaxResults)">
+            <summary>
+Constructs a deep copy of the supplied 
+CogSearchMaxResults object.
+</summary>
+            <param name="other">
+The CogSearchMaxResults object to 
+be copied. May not be NULL.
+</param>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown if <paramref name="other" /> is NULL.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxResults">
+            <summary>
+This class holds a collection of the results for a
+SearchMax search. An instance of this class 
+will be created and filled with individual results in order of 
+decreasing score.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxResult.CreateResultGraphics(Cognex.VisionPro.SearchMax.CogSearchMaxResultGraphicConstants)">
+            <summary>
+Creates a composite result graphic containing child graphics specified 
+by the <paramref name="GraphicOptions" /> which is a bitwise combination of
+CogSearchMaxResultGraphicConstants.
+<param name="GraphicOptions">
+The graphics options. Supply a value formed by ORing together one or 
+more of the values defined in CogSearchMaxResultGraphicConstants.
+</param></summary>
+            <returns>
+The CogCompositeShape which contains the requested graphics.
+</returns>
+            <remarks>
+                <para>
+Graphics drawn in red indicate poor matches, and graphics drawn
+in green indicate good matches.</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxResult.ID">
+            <summary>
+Gets a unique ID used to identify this result. This ID also corresponds
+to the index of this result in the CogSearchMaxResults to which 
+this result belongs.
+</summary>
+            <value>
+A unique ID used to identify this result.
+</value>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxResult.GetPose">
+            <summary>
+Gets the transform from "Pattern Space" to the selected space of the
+run-time input image. This transform can be used to find any point 
+relative to the pattern in the selected space of the run-time input 
+image.
+</summary>
+            <returns>
+The transform containing the pose.
+</returns>
+            <remarks>
+Mapping the point (0, 0) through the returned CogTransform2DLinear 
+returns the origin of the trained pattern in the run-time input 
+image's selected space. 
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxResult.Accepted">
+            <summary>
+Gets whether the result's Score was greater than or equal to 
+the accept threshold.
+</summary>
+            <value> True if the result's Score was greater than or equal to the
+specified <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.AcceptThreshold" />
+in the CogSearchMaxRunParams; otherwise, false.
+</value>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxResult.RelativeBrightness">
+            <summary>
+Gets the relative brightness for this result. Relative brightness 
+is the ratio of the mean of the pixels in the located  pattern to the 
+mean of the care pixels in the trained pattern.
+</summary>
+            <value> Relative brightness for this result. </value>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxResult.Contrast">
+            <summary>
+Gets the contrast for this result. Contrast is the ratio of
+the standard deviation of the pixels in the located pattern to the 
+standard deviation of the care pixels in the trained pattern.
+</summary>
+            <value> Contrast for this result. </value>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxResult.Score">
+            <summary>
+Gets the score for this result. The score is between 0.0 and 1.0 with
+higher values indicating a closer match between the trained pattern and
+the pattern in the search image.
+</summary>
+            <value> Score for this result. </value>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxResult.#ctor(Cognex.VisionPro.SearchMax.CogSearchMaxResult)">
+            <summary>
+Constructs a deep copy of the supplied CogSearchMaxResult object.
+</summary>
+            <param name="other">
+The CogSearchMaxResult object to be copied. May not be NULL.
+</param>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown if <paramref name="other" /> is NULL.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxResult">
+            <summary>
+This class holds one result item of the results. 
+Each result corresponds to a found instance of the pattern.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.RunAlgorithm">
+            <summary>
+Gets or sets the run algorithm that is used to search for the pattern.
+</summary>
+            <remarks>
+Note that HighAccuracy mode is not supported when the pattern is
+compressed (that is, when CompressionMode is not None). Also note
+that HighAccuracy mode is not supported when run time
+image masking is involved, such as when SearchImageMask is not
+null).
+</remarks>
+            <value> 
+The run algorithm must be a member of
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxRunAlgorithmConstants" />.
+The default is Standard.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfRunAlgorithm</item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.CompressionEnabledForScore">
+            <summary>
+Gets or sets the use Compression Enabled For Score property.  If false,
+SearchMax will use the uncompressed models to calculate final scores
+of found results even if it was trained and run using the Compression.  See <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxCompressionModeConstants" /> 
+for details.
+</summary>
+            <value> Default is false.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfCompressionEnabledForScore </item>
+                </list>
+            </event>
+            <remarks>
+Setting this property to false will cause SearchMax to evaluate
+all care pixels in the image and pattern when computing a final result
+score.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ZoneSkew">
+            <summary>
+Gets or sets the runtime zone configuration for the skew degree of 
+freedom. Units are in Radians.
+</summary>
+            <value> The zone configuration for the skew degree of freedom. The default
+value is a nominal of 0 with and an Overlap of pi/6.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfZoneSkew </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown when you attempt to set this to NULL.
+</exception>
+            <remarks>
+                <para>
+An <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle" /> 
+object describing the skew degree of freedom. 
+</para>
+                <para>Note   The searched DOFs are relative to the StartPose if one exists.
+</para>
+                <para> Note   This value is replaced by the pattern's zone DOFs if ZoneUsePattern
+is true.
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ZoneAngle">
+            <summary>
+Gets or sets the runtime zone configuration for the angle degree of 
+freedom. Units are in Radians.
+</summary>
+            <value> The zone configuration for the angle degree of freedom. Default
+value is a default constructed CogSearchMaxZoneAngle. 
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfZoneAngle </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown when you attempt to set this to NULL.
+</exception>
+            <remarks>
+                <para>
+An <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle" /> 
+object describing the angle degree of freedom. 
+</para>
+                <para>Note   The searched DOFs are relative to the StartPose if one exists.
+</para>
+                <para> Note   This value is replaced by the pattern's zone DOFs if ZoneUsePattern
+is true.
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ZoneScale">
+            <summary>
+Gets or sets the runtime zone configuration for the uniform scale degree of 
+freedom. 
+</summary>
+            <value> The zone configuration for the uniform scale degree of freedom.
+Default value is a default constructed CogSearchMaxZoneScale. 
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfZoneScale </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown when you attempt to set this to NULL.
+</exception>
+            <remarks>
+                <para>An <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale" />
+object describing the uniform scale degree
+of freedom. Uniform scale is a scale change where the x-scale equals 
+the y-scale. </para>
+                <para> Any value you specify for the uniform scale degree of freedom is 
+multiplied by the values specified for ZoneScaleX and ZoneScaleY to 
+produce the overall search space (if you specify a zone) or nominal value 
+(if you specify a nominal value).</para>
+                <para>Note   The searched DOFs are relative to the StartPose if one exists.
+</para>
+                <para> Note   This value is replaced by the pattern's zone DOFs if ZoneUsePattern
+is true.
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ZoneScaleY">
+            <summary>
+Gets or sets the zone configuration for the Y scale degree of freedom 
+only.
+</summary>
+            <value> The zone configuration for the Y scale degree of freedom. Default
+value is a default constructed CogSearchMaxZoneScale. 
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfZoneScaleY </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown when you attempt to set this to NULL.
+</exception>
+            <remarks>
+                <para>An <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale" />
+object describing the Y scale degree of freedom. </para>
+                <para>Specify a value for ZoneScale to specify the uniform scale degree of 
+freedom.</para>
+                <para>Note   The searched DOFs are relative to the StartPose if one exists.
+</para>
+                <para> Note   This value is ignored and replaced by the pattern's zone DOFs
+if ZoneUsePattern is true.
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ZoneScaleX">
+            <summary>
+Gets or sets the zone configuration for the X scale degree of freedom 
+only.
+</summary>
+            <value> The zone configuration for the X scale degree of freedom. Default
+value is a default constructed CogSearchMaxZoneScale. 
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfZoneScaleX </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown when you attempt to set this to NULL.
+</exception>
+            <remarks>
+                <para>An <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale" />
+object describing the X scale degree of freedom. </para>
+                <para>Specify a value for ZoneScale to specify the uniform scale degree of 
+freedom.</para>
+                <para>Note   The searched DOFs are relative to the StartPose if one exists.
+</para>
+                <para> Note   This value is ignored and replaced by the pattern's zone 
+DOFs if ZoneUsePattern is true.
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.OriginBoundary">
+            <summary>
+Gets or sets the origin boundary.  The origin boundary will limit 
+the parts of the image where the pattern may be found such that the
+found pattern's origin must be within the origin boundary.  This value
+is ignored unless <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.RunMode" /> is set to
+SearchImageWithOriginBoundary.
+</summary>
+            <value>
+Default is nothing or null.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfOriginBoundary </item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.StartPoseTranslationUncertaintyY">
+            <summary>
+Gets or sets the amount of + or - Y translation to search about the start pose.
+This value is ignored if <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.RunMode" />
+is not set to SearchImageWithStartPose.
+</summary>
+            <value>
+Gets or sets the amount of + or - Y translation to search about the start pose.
+Default is 0.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfStartPoseTranslationUncertaintyY </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when set to a negative value.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.StartPoseTranslationUncertaintyX">
+            <summary>
+Gets or sets the amount of + or - X translation to search about the start pose.
+This value is ignored if <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.RunMode" />
+is not set to SearchImageWithStartPose.
+</summary>
+            <value>
+Gets or sets the amount of + or - X translation to search about the start pose.
+Default is 0.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfStartPoseTranslationUncertaintyX </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when set to a negative value.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.StartPose">
+            <summary>
+Gets or sets the start pose. The start pose specifies the expected location of
+the pattern origin relative to the input image's selected coordinate space.
+This property is for advanced users.
+</summary>
+            <value>
+The start pose used locate patterns. Default value is an identity transform.
+</value>
+            <exception cref="T:System.ArgumentException"> 
+Thrown when you attempt to set this to a singular transformation.
+</exception>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown when you attempt to set this to null.
+</exception>
+            <remarks>
+                <para>
+This property is for advanced users only.
+</para>
+                <para>
+The StartPose is used to specify the expected location of
+the pattern origin within the input image's selected coordinate space.
+This is where SearchMax will begin searching for the pattern.
+</para>
+                <para>
+This means that the run parameter DOFs are applied relative to this StartPose
+property. This makes the start pose a convenient way of 
+varying the runtime DOFs.  To illustrate, if the run parameters specify an angle range of 
+(-pi/2, +pi/2) degrees, then with an identity start pose the actual search 
+range will still be (-pi/2, +pi/2) degrees.  But if the start pose has 
+a pi/2 degree angle, then the actual search range is effectively (0, pi).
+</para>
+                <para>
+In addition, <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.StartPoseTranslationUncertaintyX" />
+and <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.StartPoseTranslationUncertaintyY" />
+can be used to limit or expand the range of translation in which the origin 
+can be found.  This can be useful in situations where the feature of interest's origin
+is limited to a small range, but the scale may vary.
+</para>
+                <para>
+Note, however, that the train time DOFs are applied relative to the train client 
+coordinates (selected space of the train image) and pattern Origin, 
+not the StartPose.
+</para>
+                <para>
+Also note that the result pose is reported relative to the run client 
+coordinates (selected space of the run image), not the StartPose.
+</para>
+                <para>
+Rephrased a slightly different way, the "effective" run-time DOFs are made up by combining the DOFs in run
+parameters with the StartPose. Similarly, the effective train-time DOFs are the 
+made up by combining the DOFs in the train parameters with the pattern’s Origin.  
+This means that the start pose and the pattern origin must be considered when 
+judging whether the train-time DOF ranges include that of the run-time DOF ranges. 
+</para>
+                <para>
+Note   If the <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainMode" />
+is set to CreateDOFTemplates the tool also requires that the run-time DOF ranges based on 
+the pixel space of the run-time image should be included in the train-time 
+DOF range based on the pixel space of the train-time image.  
+This means that if the selected space of the train image or run image is not 
+the pixel space and are not the same, it might happen that the DOF ranges 
+defined in the selected space of the run-time image are included inside 
+the DOF ranges defined in the selected space of the train-time image, 
+but run-time DOFs are outside the train-time DOF ranges in pixel space.
+SearchMax cannot run under these circumstances because it has not trained
+the appropriate template pixels to perform the search.
+This happens mainly when a fixture tool is used before 
+SearchMax tool (selected space of the run image is from the fixture tool).
+When this happen SearchMax will throw an exception with error message to indicate 
+that it was not trained for the DOF range in pixel space. 
+When this happens users must either train a wider range
+of DOFs than they intend to use at runtime or set
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxPattern" /> to 
+EvaluateDOFsAtRuntime if the runtime client coordinates will vary from
+the training client coordinates.
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.SearchImageMaskOffsetY">
+            <summary>
+Gets or sets the Y offset value in pixels. The X and Y offset values 
+measure the offset from the upper-left corner of the run-time 
+input image to the upper-left corner of the SearchImageMask 
+in image coordinates of the input image. 
+</summary>
+            <value>
+The Y offset value for the search image mask. Default value is 0.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfSearchImageMaskOffsetY </item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.SearchImageMaskOffsetX">
+            <summary>
+Gets or sets the X offset value in pixels. The X and Y offset values 
+measure the offset from the upper-left corner of the run-time 
+input image to the upper-left corner of the SearchImageMask 
+in image coordinates of the input image. 
+</summary>
+            <value>
+The X offset value for the search image mask. Default value is 0.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfSearchImageMaskOffsetX </item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.SearchImageMask">
+            <summary>
+Gets or sets the mask that is used when running the CogSearchMax. 
+The mask allows the user to identify areas of the run-time image as "Care"
+or "Don't Care". The mask is aligned to the run-time input image 
+using the SearchImageMaskOffsetX and SearchImageMaskOffsetY values.
+</summary>
+            <value>
+The mask for the search image. Default value is NULL.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfSearchImageMask </item>
+                </list>
+            </event>
+            <exception cref="T:System.InvalidOperationException">
+Thrown when you attempt to set this to an image with pixel values not
+0 or 255.
+</exception>
+            <remark>
+A mask CogImage8Grey that you use to exclude specified parts of 
+the run-time image. Areas within pixels in the run-time image 
+that correspond to pixels in the mask image that have a value of
+0 ("don't care pixels") are ignored; mask pixels with values 255 are 
+care pixels (areas within image pixels that correspond to care pixels
+are considered). 
+</remark>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.SearchRegionMode">
+            <summary> 
+Gets or sets the region mode which specifies how the region 
+is applied to the input image.  
+</summary>
+            <value>
+The region mode which may be either PixelAlignedBoundingBox or 
+PixelAlignedBoundingBoxAdjustMask.  The default is
+PixelAlignedBoundingBoxAdjustMask.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfSearchRegionMode </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value other than 
+PixelAlignedBounding or PixelAlignedBoundingBoxAdjustMask.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.RunMode">
+            <summary>
+Gets or sets the run mode that is used to search for the pattern.
+</summary>
+            <value> 
+The run mode must be a member of <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxRunModeConstants" />.
+The default is SearchImage.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfRunMode</item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ZoneUsePattern">
+            <summary>
+Gets or sets whether to use zone information of DOFs from 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxPattern" />. 
+If true, zone information of DOFs specified 
+in CogSearchMaxPattern will be used;
+otherwise, zone information specified in this CogSearchMaxRunParams 
+will be used. 
+</summary>
+            <value> 
+True if using zone information of DOFs specified in 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxPattern" />
+is enabled; otherwise, false. Default value is False.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfZoneUsePattern </item>
+                </list>
+            </event>
+            <remarks>
+If true, zone information of DOFs specified 
+in CogSearchMaxPattern will be used, and zone information specified in
+this CogSearchMaxRunParams will be ignored. 
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.XYOverlap">
+            <summary>
+Gets or sets the area overlap threshold. Result candidates overlap 
+in area if the percentage of area overlap 
+is greater than XYOverlap. SearchMax discards the weaker pattern 
+instance when two pattern instances overlap for all DOFs as well as 
+area. Valid range is from 0 to 1.0.  
+</summary>
+            <value>
+The area overlap threshold. Default value is 0.8.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfXYOverlap </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 0
+ or greater than 1.0. 
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.Timeout">
+            <summary>
+Gets or sets the maximum execution time (msec) allowed to run a 
+SearchMax. If SearchMax has not finished by the end of the timeout 
+period, it will stop soon thereafter and return E_Cog_TimeoutExpired. 
+This value only applies if TimeoutEnabled is true.
+</summary>
+            <value>
+The maximum execution time (msec). Default value is 5000.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when  this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfTimeout </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 0.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.TimeoutEnabled">
+            <summary>
+Gets or sets whether to enable timeout. If true then the Timeout property
+limits the execution time of SearchMax. If false then timeout is 
+disabled and the Timeout property is ignored.
+</summary>
+            <value>
+True if timeout is enabled; otherwise, false. Default value is false.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfTimeoutEnabled </item>
+                </list>
+            </event>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.MaximumNumberToFind">
+            <summary>
+Gets or sets the Maximum number of results to look for. In some cases, 
+SearchMax may return fewer results than requested.
+</summary>
+            <value>
+The Maximum number of results to look for. Default value is 1.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when  this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfMaximumNumberToFind </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 1.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.IgnorePolarity">
+            <summary>
+Gets or sets whether to ignore polarity. If true, pattern 
+polarity is ignored. If false, only patterns with polarity matching 
+the trained pattern will be found.
+</summary>
+            <value> 
+True if ignoring polarity is enabled; otherwise, false. 
+Default value is false;
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when  this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfIgnorePolarity </item>
+                </list>
+            </event>
+            <remarks>
+This property is used mainly for searching in grey scale images. 
+For color images, it also can be used to search color negative 
+patterns from the trained color pattern.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.RelativeBrightnessEnabled">
+            <summary>
+Gets or sets whether to enable relative brightness. If true then 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.RelativeBrightnessRangeLow" />
+and
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.RelativeBrightnessRangeHigh" />
+properties will be used to search only the patterns within the defined 
+relative brightness range.
+If false then RelativeBrightnessRangeLow and 
+RelativeBrightnessRangeHigh properties are ignored during SearchMax search.
+</summary>
+            <value>
+True if relative brightness is enabled; otherwise, false. 
+Default value is false.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when  this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfRelativeBrightnessEnabled </item>
+                </list>
+            </event>
+            <remarks>
+Relative brightness is the ratio of
+the mean of the corresponding care pixels in the located  pattern to the
+mean of the care pixels in the trained pattern.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.RelativeBrightnessRangeHigh">
+            <summary>
+Gets or sets the highest acceptable relative brightness for a located
+pattern. Relative brightness is the ratio of
+the mean of the corresponding care pixels in the located  pattern to the 
+mean of the care pixels in the trained pattern.
+</summary>
+            <value> 
+The highest acceptable contrast. Default value is 100. 
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfRelativeBrightnessRangeHigh </item>
+                </list>
+            </event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when both the RelativeBrightnessRangeHigh and  
+the RelativeBrightnessRangeLow are changed.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfRelativeBrightnessRangeHigh </item>
+                    <item> SfRelativeBrightnessRangeLow </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 0.
+</exception>
+            <remarks>
+                <para>
+The RelativeBrightnessRangeHigh must be greater than or equal to the 
+RelativeBrightnessRangeLow. If this property is set to a value less
+than the RelativeBrightnessRangeLow, the RelativeBrightnessRangeLow
+is set to the new value.
+</para>
+                <para>
+If <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.RelativeBrightnessEnabled" />
+is false, then this property RelativeBrightnessRangeHigh is ignored in 
+SearchMax search.
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.RelativeBrightnessRangeLow">
+            <summary>
+Gets or sets the lowest acceptable relative brightness for a located
+pattern. Relative brightness is the ratio of
+the mean of the corresponding care pixels in the located pattern to the 
+mean of the care pixels in the trained pattern.
+</summary>
+            <value> 
+The lowest acceptable contrast. Default value is 0. 
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfRelativeBrightnessRangeLow </item>
+                </list>
+            </event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when both the RelativeBrightnessRangeLow and  
+the RelativeBrightnessRangeHigh are changed.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfRelativeBrightnessRangeLow </item>
+                    <item> SfRelativeBrightnessRangeHigh </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 0.
+</exception>
+            <remarks>
+                <para>
+The RelativeBrightnessRangeHigh must be greater than or equal to the 
+RelativeBrightnessRangeLow. If this property is set to a value greater
+than the RelativeBrightnessRangeHigh, the RelativeBrightnessRangeHigh
+is set to the new value.
+</para>
+                <para>
+If <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.RelativeBrightnessEnabled" />
+is false, then this property RelativeBrightnessRangeLow is ignored in 
+SearchMax search.
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ContrastEnabled">
+            <summary>
+Gets or sets whether to enable contrast. If true then 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ContrastRangeLow" />
+and
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ContrastRangeHigh" />
+properties will be used to search only the patterns within the defined 
+contrast range.
+If false then ContrastRangeLow and ContrastRangeHigh properties are 
+ignored during SearchMax search.
+</summary>
+            <value>
+True if contrast is enabled; otherwise, false. Default value is false.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when  this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfContrastEnabled </item>
+                </list>
+            </event>
+            <remarks>
+Contrast is the ratio of the standard deviation of the
+corresponding care pixels in the located pattern to the standard 
+deviation of the care pixels in the trained pattern.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ContrastRangeHigh">
+            <summary>
+Gets or sets the highest acceptable contrast for a located pattern.
+Contrast is the ratio of the standard deviation of the 
+corresponding care pixels in the located pattern to the standard 
+deviation of the care pixels in the trained pattern.
+</summary>
+            <value> 
+The highest acceptable contrast. Default value is 100. 
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfContrastRangeHigh </item>
+                </list>
+            </event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when both the ContrastRangeHigh and  
+the ContrastRangeLow are changed.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfContrastRangeHigh </item>
+                    <item> SfContrastRangeLow </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 0.
+</exception>
+            <remarks>
+                <para>
+The ContrastRangeHigh must be greater than or equal to the 
+ContrastRangeLow. If this property is set to a value less than the 
+ContrastRangeLow, the ContrastRangeLow is set to the new value. 
+</para>
+                <para>
+If <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ContrastEnabled" />
+is false, then this property ContrastRangeHigh is ignored in 
+SearchMax search.
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ContrastRangeLow">
+            <summary>
+Gets or sets the lowest acceptable contrast for a located pattern.
+Contrast is the ratio of the standard deviation of the corresponding 
+care pixels in the located pattern to the standard deviation of the 
+care pixels in the trained pattern.
+</summary>
+            <value> The lowest acceptable contrast. Default value is 0. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfContrastRangeLow </item>
+                </list>
+            </event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when both the ContrastRangeLow and  
+the ContrastRangeHigh are changed.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfContrastRangeLow </item>
+                    <item> SfContrastRangeHigh </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 0.
+</exception>
+            <remarks>
+                <para>
+The ContrastRangeHigh must be greater than or equal to the 
+ContrastRangeLow. If this property is set to a value greater than the
+ContrastRangeHigh, the ContrastRangeHigh is set to the new value. 
+</para>
+                <para>
+If <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ContrastEnabled" />
+is false, then this property ContrastRangeLow is ignored in 
+SearchMax search.
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.ConfusionThreshold">
+            <summary>
+Gets or sets the confusion threshold on the score of a result which 
+is a hint regarding how confusing the search image is likely to be. 
+A high value slows the search but ensures that wrong features are 
+not found. A low value speeds up the search for non-confusing scenes. 
+Must be &gt;= AcceptThreshold. Valid range is from 0 to 1.
+</summary>
+            <value> The confusion threshold. Default value is 1.0. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfConfusionThreshold </item>
+                </list>
+            </event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when both the acceptance threshold and the confusion 
+threshold are changed.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfAcceptThreshold </item>
+                    <item> SfConfusionThreshold </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 0 or 
+greater than 1.0.
+</exception>
+            <remarks>
+                <para>The confusion threshold is the highest score that something 
+other than a valid pattern instance will receive. You specify a 
+confusion threshold to indicate how confusing you expect the search 
+image to be; the higher a value you specify, the more careful the
+the AcceptThreshold (which is the score above which all valid 
+pattern instances lie). 
+</para>
+                <para> The ConfusionThreshold must be greater than or equal to the 
+AcceptThreshold. If this property is set to a value less than the 
+AcceptThreshold, the AcceptThreshold is set to the new value. 
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.AcceptThreshold">
+            <summary>
+Gets or sets the acceptance threshold on the score of a result. 
+Only instances of the pattern that receive scores greater 
+than or equal to this threshold are accepted. Valid range is from 0 to 1.
+</summary>
+            <value> The acceptance threshold. Default value is 0.5. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfAcceptThreshold </item>
+                </list>
+            </event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when both the acceptance threshold and the confusion 
+threshold are changed.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfAcceptThreshold </item>
+                    <item> SfConfusionThreshold </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 0 or 
+greater than 1.0.
+</exception>
+            <remarks>
+                <para>You should supply an acceptance threshold value such that no actual
+instance of a pattern will receive a score less than the threshold. 
+SearchMax assumes that any location in the search image which receives
+a value less than this threshold is not an actual instance of the pattern.
+</para>
+                <para> The ConfusionThreshold must be greater than or equal to the 
+AcceptThreshold. If this property is set to a value greater than 
+ConfusionThreshold, the ConfusionThreshold is set to the new value. 
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.#ctor(Cognex.VisionPro.SearchMax.CogSearchMaxRunParams)">
+            <summary> 
+Construct a deep copy of the supplied CogSearchMaxRunParams object.
+</summary>
+            <param name="other">
+The CogSearchMaxRunParams object to be copied. May not be NULL.
+</param>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown if <paramref name="other" /> is NULL.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.#ctor">
+            <summary> 
+Construct a default CogSearchMaxRunParams object.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams">
+            <summary> 
+This class encapsulates the run time parameters used by 
+Execute method of 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxPattern" /></summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale.Clone">
+            <summary>
+Returns a deep copy of this class instance. 
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale.Configuration">
+            <summary>
+Gets or sets the configuration of scale degree of freedom zone 
+which specifies whether SearchMax will use either the low/high limits 
+for the expected range of values or just the nominal value.    
+</summary>
+            <value> The configuration of scale degree of freedom zone. 
+Default value is CogSearchMaxZoneConstants.Nominal.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfConfiguration </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value other than 
+CogSearchMaxZoneConstants.Nominal or 
+CogSearchMaxZoneConstants.LowHigh.
+</exception>
+            <remarks>
+                <para>Specify CogSearchMaxZoneConstants.Nominal to specify a nominal
+value. Specify CogSearchMaxZoneConstants.LowHigh to specify a range of
+values for the degree of freedom, and Nominal value is ignored. </para>
+                <para> If you specify a nominal value, the results returned by the tool
+will have exactly the scale value you specify. If you specify a low and
+high limit, the results returned by the tool will be within 
+(or slightly outside of) the range of scales that you specify.</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale.Overlap">
+            <summary>
+Gets or sets the overlap threshold for scale 
+degree of freedom zone. 
+</summary>
+            <value> The scale overlap threshold. Default value is 1.4.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfOverlap </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 1.0.
+</exception>
+            <remarks>
+                <para>Result candidates overlap for the scale degree of freedom if the
+ratio of the results' scale values is less than or equal to the 
+Overlap value you specify. SearchMax discards the weaker pattern 
+instance when two pattern instances overlap for all degrees of 
+freedom as well as area.</para>
+                <para>The scale overlap threshold is expressed as the ratio of the 
+scale of the instance with a larger scale to the scale of the instance 
+with the smaller scale. Therefore, the overlap threshold must be 
+greater than or equal to one. 
+instances had scales of 1.25 and 2.50, they would not meet the overlap 
+threshold because the ratio of 2.5 to 1.25 (2.0) is greater than the 
+threshold value (1.2).</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale.Nominal">
+            <summary>
+Gets or sets the nominal value for scale degree of 
+freedom zone.
+</summary>
+            <value> The nominal value. Default value is 1.0. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfNominal </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 
+or equal to 0.
+</exception>
+            <remarks>
+                <para>The nominal value is only used if Configuration is 
+CogSearchMaxZoneConstants::Nominal. In this case SearchMax only finds 
+pattern instances that are close to the Nominal value specified and 
+the results will always be reported at exactly the nominal value.</para>
+                <para>The nominal scale is the scale from the SelectedSpaceName of the 
+InputImage to "Pattern Space". This is equivalent to the scale 
+component of the CogTransform2DLinear returned by GetPose method
+of <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxResult" />.  
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale.Low">
+            <summary>
+Gets or sets low limit for scale degree of 
+freedom zone. 
+</summary>
+            <value> Low limit for scale DOF zone. Default value is 0.8. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfLow </item>
+                </list>
+            </event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when the value of this property changes and High was 
+changed as well.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfLow </item>
+                    <item> SfHigh </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than
+or equal to 0.
+</exception>
+            <remarks>
+                <para> Low limit is only used if Configuration is 
+CogSearchMaxZoneConstants.LowHigh.
+In this case, SearchMax will use the low and high limits for the 
+expected range of values. Low must be less than or equal to High. 
+Setting Low to a value larger than High also sets High to the new value. 
+</para>
+                <para> The scale limit is measured from the SelectedSpaceName of the 
+InputImage to the "pattern space". This is equivalent to the scale 
+component of the CogTransform2DLinear returned by GetPose method
+of <see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxResult" />. 
+</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale.High">
+            <summary>
+Gets or sets high limit for scale degree of 
+freedom zone. 
+</summary>
+            <value> High limit for scale DOF zone. Default value is 1.2. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfHigh </item>
+                </list>
+            </event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when the value of this property changes and Low was 
+changed as well.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfHigh </item>
+                    <item> SfLow </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 
+or equal to 0.
+</exception>
+            <remarks>
+                <para> High limit is only used if Configuration is 
+CogSearchMaxZoneConstants.LowHigh.
+In this case, SearchMax will use the low and high limits for the 
+expected range of values. Low must be less than or equal to High. 
+Setting High to a value less than Low also sets Low to the new value. 
+</para>
+                <para> This scale limit is measured from the SelectedSpaceName of the 
+InputImage to "Pattern Space". This is equivalent to the scale component
+of the CogTransform2DLinear returned by GetPose method of 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxResult" />.</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale.#ctor(Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale)">
+            <summary>    
+Construct a deep copy of the supplied CogSearchMaxZoneScale object.
+</summary>
+            <param name="other">
+The CogSearchMaxZoneAngle object to be copied. May not be NULL.
+</param>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown if <paramref name="other" /> is NULL.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale.#ctor">
+            <summary>
+Construct a default CogSearchMaxZoneScale object.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneScale">
+            <summary>
+Class which holds scale Degree Of Freedom (DOF) information.
+SearchMax can locate patterns that have changed in scale from the
+trained pattern. This class specifies the scale(s) at which patterns
+may be located.
+</summary>
+            <remarks>
+This class lets you specify either a nominal value for a
+scale zone or a range of values for the scale degree of freedom using <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle.Configuration" />.
+If you specify a nominal value, the
+results returned by the tool will have exactly the scale value you
+specify. If you specify a low and high limit, the results returned
+by the tool will be within (or slightly outside of) the range of
+specified scales.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle.Clone">
+            <summary>
+Returns a deep copy of this class instance. 
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle.Configuration">
+            <summary>
+Gets or sets the configuration of angle degree of freedom zone 
+which specifies whether SearchMax will use either the low/high limits 
+for the expected range of values or just the nominal value.    
+</summary>
+            <value> The configuration of angle degree of freedom zone. 
+Default value is CogSearchMaxZoneConstants.Nominal.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfConfiguration </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value other than 
+CogSearchMaxZoneConstants.Nominal or 
+CogSearchMaxZoneConstants.LowHigh.
+</exception>
+            <remarks>
+Specify CogSearchMaxZoneConstants.Nominal to specify a nominal value. 
+values for the degree of freedom, and Nominal value is ignored. 
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle.Overlap">
+            <summary>
+Gets or sets the overlap value (in radians) for angle 
+degree of freedom zone. 
+</summary>
+            <value> The overlap value. Default value is 2pi.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfOverlap </item>
+                </list>
+            </event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> 
+Thrown when you attempt to set this to a value less than 0.
+</exception>
+            <remarks>
+Result candidates overlap for the angle degree of freedom if the 
+absolute difference between the two results' angles is less than 
+or equal to the Overlap value you specify. SearchMax discards the 
+weaker pattern instance when two pattern instances overlap for all 
+degrees of freedom (DOF) as well as area.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle.Nominal">
+            <summary>
+Gets or sets the nominal value (in radians) for angle degree of 
+freedom zone.
+</summary>
+            <value> The nominal value. Default value is 0.0. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfNominal </item>
+                </list>
+            </event>
+            <remarks>
+                <para>The nominal value is only used if Configuration is 
+CogSearchMaxZoneConstants::Nominal. In this case SearchMax only finds 
+pattern instances that are close to the Nominal value specified and 
+the results will always be reported at exactly the nominal value.</para>
+                <para>The nominal angle is the angle from the selected space of the 
+InputImage to the located pattern space. This rotation angle is the 
+Rotation component of the CogTransform2DLinear returned by the GetPose 
+method of 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxResult" />.</para>
+                <para> You can specify any value for the nominal angle. The tool always 
+returns angle results in the range -pi to +pi.</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle.Low">
+            <summary>
+Gets or sets low limit (in radians) for angle degree of 
+freedom zone. 
+</summary>
+            <value> Low limit for angle DOF zone. Default value is -pi/4. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfLow </item>
+                </list>
+            </event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when the value of this property changes and High was 
+changed as well.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfLow </item>
+                    <item> SfHigh </item>
+                </list>
+            </event>
+            <remarks>
+                <para> Low limit is only used if Configuration is 
+CogSearchMaxZoneConstants.LowHigh.
+In this case, SearchMax will use the low and high limits for the 
+expected range of values. Low must be less than or equal to High. 
+Setting Low to a value larger than High also sets High to the new value.
+</para>
+                <para> The angle limit is measured from the SelectedSpaceName of the 
+InputImage to "Pattern Space". This rotation angle is the 
+Rotation component of the CogTransform2DLinear returned by the GetPose
+method of 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxResult" />.</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="P:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle.High">
+            <summary>
+Gets or sets high limit (in radians) for angle degree of 
+freedom zone. 
+</summary>
+            <value> High limit for angle DOF zone. Default value is pi/4. </value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when this property changes.</para>
+                <para>The following state flag may be affected:</para>
+                <list type="bullet">
+                    <item> SfHigh </item>
+                </list>
+            </event>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+                <para>Fires when the value of this property changes and Low was 
+changed as well.</para>
+                <para>The following state flags may be affected:</para>
+                <list type="bullet">
+                    <item> SfHigh </item>
+                    <item> SfLow </item>
+                </list>
+            </event>
+            <remarks>
+                <para> High limit is only used if Configuration is 
+CogSearchMaxZoneConstants.LowHigh.
+In this case, SearchMax will use the low and high limits for the 
+expected range of values. Low must be less than or equal to High. 
+Setting High to a value less than Low also sets Low to the new value. 
+</para>
+                <para> The angle limit is measured from the SelectedSpaceName of the 
+InputImage to "Pattern Space". This rotation angle is the 
+Rotation component of the CogTransform2DLinear returned by the GetPose
+method of 
+<see cref="T:Cognex.VisionPro.SearchMax.CogSearchMaxResult" />.</para>
+            </remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle.#ctor(Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle)">
+            <summary>
+Construct a deep copy of the supplied CogSearchMaxZoneAngle object.
+</summary>
+            <param name="other">
+The CogSearchMaxZoneAngle object to be copied. May not be NULL.
+</param>
+            <exception cref="T:System.ArgumentNullException"> 
+Thrown if <paramref name="other" /> is NULL.
+</exception>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="M:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle.#ctor">
+            <summary>
+Construct a default CogSearchMaxZoneAngle object.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle">
+            <summary>
+Class which holds angle Degree Of Freedom (DOF) information.
+SearchMax can locate patterns that have changed in angle from the
+trained pattern. This class specifies the angle(s) at which patterns
+may be located.
+</summary>
+            <remarks>
+This class lets you specify either a nominal value for the
+angle or a range of values for the angle degree of freedom using <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxZoneAngle.Configuration" />.
+If you specify a nominal value, the results returned by the tool will
+have exactly the angle value you specify. If you specify a low and high 
+limit, the results returned by the tool will be within (or slightly 
+outside of) the range of angles that you specify.
+</remarks>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogSearchMaxTrainedTemplatesMissingRuntimeDOFsException">
+            <summary>
+Thrown if the pattern was trained using TrainMode CreateDOFTemplates and the
+trained templates do not allow the tool to search the full range of runtime DOFs
+enabled in the runparams zones.
+The traintime templates must incorporate all possible poses in the runtime search.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogSearchMaxImageTooSmallException">
+            <summary>
+Thrown if the <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainImage" /> 
+is too small to train.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogSearchMaxImproperMaskException">
+            <summary>
+Thrown if a SearchMax ImageMask is not allocated or contains pixels that have values 
+other than 0 and 255.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogSearchMaxRegionContainsNoFeaturesException">
+            <summary>
+Thrown if the <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxPattern.TrainRegion" /> 
+contains no trainable features at the current grainularity settings.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxRunAlgorithmConstants">
+            <summary>
+Enumeration of RunAlgorithms available to CogSearchMaxPattern. 
+The RunAlgorithm affects the overall accuracy of the result.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxRunAlgorithmConstants.HighAccuracy">
+            <summary>
+High accuracy search.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxRunAlgorithmConstants.Standard">
+            <summary>
+Standard search.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxCVLCompatibilityModeConstants">
+            <summary>
+Cognex Internal Use Only
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCVLCompatibilityModeConstants.UseSkewDOFAsShear">
+            <summary>
+Cognex Internal Use Only
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCVLCompatibilityModeConstants.Off">
+            <summary>
+Cognex Internal Use Only
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxRunModeConstants">
+            <summary>
+Enumeration of run modes available to CogSearchMaxRunParams.
+The run mode dictates how Search Max decides which parts of the 
+image will be searched for the pattern.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxRunModeConstants.SearchImageWithStartPose">
+            <summary>
+Similar to SearchImage with the additional constraint that
+the pattern may only be found in parts of the image defined
+by the <see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.StartPose" />,
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.StartPoseTranslationUncertaintyX" />, and
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.StartPoseTranslationUncertaintyY" />
+parameters.   
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxRunModeConstants.SearchImageWithOriginBoundary">
+            <summary>
+Similar to SearchImage with the additional constraint that
+the pattern may only be found in parts of the image where
+the pattern's origin is contained within the 
+<see cref="P:Cognex.VisionPro.SearchMax.CogSearchMaxRunParams.OriginBoundary" />.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxRunModeConstants.SearchImage">
+            <summary>
+The pattern may be found in parts of the image wherein the
+pattern is completely contained within the search region.
+If no search region is supplied the pattern may be found anywhere
+in the image.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxGranularityModeConstants">
+            <summary>
+Enumeration of GranularityModes available to CogSearchMaxPattern,
+The Granularity mode is the method used to generate the coarse 
+model at a given granularity or resolution.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxGranularityModeConstants.Fast">
+            <summary>
+Fast mode uses a method that allows faster execution at runtime but
+is not appropriate for all models; if used on an inappropriate model,
+such as one consisting primarily of very fine features, it may not
+locate all instances of the model in some runtime images.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxGranularityModeConstants.Robust">
+            <summary>
+Robust mode uses a robust method that is
+appropriate for all models and does the best job of always finding
+all instances of a model.   
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxCompressionModeConstants">
+            <summary>
+Enumeration of Compression Modes available to CogSearchMaxPattern
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCompressionModeConstants.Lossless">
+            <summary>
+Lossless compression.  Advanced technique; the trained image model is
+represented by an image that has been compressed in a lossless 
+fashion.  SearchMax may potentially execute faster when using
+compressed image models. 
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCompressionModeConstants.Lossy">
+            <summary>
+Lossy compression.  Advanced technique; the trained image model is
+represented by an image that has been compressed in a lossy 
+fashion.  SearchMax may potentially execute faster when using
+compressed image models.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCompressionModeConstants.None">
+            <summary>
+No compression.  Traditional technique; the trained image model
+is represented by an uncompressed copy of the image.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxTrainModeConstants">
+            <summary>
+Enumeration of train modes available to CogSearchMaxPattern
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxTrainModeConstants.CreateDOFTemplates">
+            <summary>
+Indicates that the pattern will create template
+information based on its train time degrees of freedom.
+(ZoneAngle, ZoneScale, etc.) when training.  This mode
+will result in faster runtimes, however, in this mode
+the tool will fail if the runtime degree of freedom range
+requires a template that was not generated at train time.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxTrainModeConstants.EvaluateDOFsAtRuntime">
+            <summary>
+Indicates that when trained, the pattern will ignore the train time
+degrees of freedom (ZoneAngle, ZoneScale, etc.).
+This mode will result in slower runtimes of the tool.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordDiagConstants">
+            <summary>
+Enumeration of Diagnostic data that can be included in the 
+tool's LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordDiagConstants.All">
+            <summary>
+Include all of the diagnostic data in the LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordDiagConstants.SearchRegion">
+            <summary>
+Include the search region in the LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordDiagConstants.SearchImageMask">
+            <summary>
+Include a graphic representing the search image mask in the 
+LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordDiagConstants.InputImageDeepCopy">
+            <summary>
+Include a deep copy of the input image in the LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordDiagConstants.InputImageByReference">
+            <summary>
+Include a reference to the input image in the LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordDiagConstants.None">
+            <summary>
+Do not include any of the diagnostic data in the LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordConstants">
+            <summary>
+Enumeration of Non-Diagnostic data that can be included in 
+the tool's LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordConstants.All">
+            <summary>
+Include all of the non-diagnostic data in the LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordConstants.ResultsOrigin">
+            <summary>
+Include the origin of each result in the LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordConstants.ResultsMatchRegion">
+            <summary>
+Include the match region of each result in the LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordConstants.ResultsCoordinateAxes">
+            <summary>
+Include the coordinate axes of each result in the LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxLastRunRecordConstants.None">
+            <summary>
+Do not include any of the non-diagnostic data in the 
+LastRunRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants">
+            <summary>
+Enumeration of data that can be included in the tool's CurrentRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants.All">
+            <summary>
+Include all possible records in the CurrentRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants.StartPose">
+            <summary>
+Include an interactive start pose in the current record
+graphic.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants.SearchOriginBoundary">
+            <summary>
+Include in the current record, an interactive rectangle graphic 
+which bounds the area in which the pattern origin can be found.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants.PatternOrigin">
+            <summary>
+Include an interactive pattern origin in the CurrentRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants.TrainRegion">
+            <summary>
+Include the (interactive) train region in the CurrentRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants.TrainImageMask">
+            <summary>
+Include a graphic representing the train image mask in the CurrentRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants.TrainImage">
+            <summary>
+Include the entire train image in the CurrentRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants.SearchImageMask">
+            <summary>
+Include a graphic representing the search image mask in the 
+CurrentRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants.SearchRegion">
+            <summary>
+Include the search region in the CurrentRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants.InputImage">
+            <summary>
+Include the input image in the CurrentRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxCurrentRecordConstants.None">
+            <summary>
+Do not include any records in the CurrentRecord.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxResultGraphicConstants">
+            <summary>
+Enumeration of data used for creating result graphics.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxResultGraphicConstants.All">
+            <summary>
+Draw all result graphics.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxResultGraphicConstants.CoordinateAxes">
+            <summary>
+Draw the pattern origin coordinate axes.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxResultGraphicConstants.MatchRegion">
+            <summary>
+Draw the match region for this result.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxResultGraphicConstants.TipText">
+            <summary>
+Turn on tip text for result graphics.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxResultGraphicConstants.BoundingBox">
+            <summary>
+Draw a bounding box around the result representing the matched region.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxResultGraphicConstants.Origin">
+            <summary>
+Draw a cross at the result's location.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxResultGraphicConstants.None">
+            <summary>
+Draw no result graphics.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="T:Cognex.VisionPro.SearchMax.CogSearchMaxZoneConstants">
+            <summary>
+Enumeration of configuration methods for a SearchMax DOF zone.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxZoneConstants.Nominal">
+            <summary>
+Configure a DOF zone so that SearchMax only finds pattern instances that 
+are close to the nominal value.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+        <member name="F:Cognex.VisionPro.SearchMax.CogSearchMaxZoneConstants.LowHigh">
+            <summary>
+Configure a DOF zone so that SearchMax will use the low/high limits 
+for the expected range of values.
+</summary>
+            <!-- path resulted in empty nodelist -->
+        </member>
+    </members>
+</doc>

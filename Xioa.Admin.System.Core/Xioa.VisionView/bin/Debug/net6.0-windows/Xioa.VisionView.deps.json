@@ -1,0 +1,1173 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Xioa.VisionView/1.0.0": {
+        "dependencies": {
+          "Cognex.VisionPro.AutoSelect": "59.2.0.0",
+          "Cognex.VisionPro.Barcode.Controls": "59.2.0.0",
+          "Cognex.VisionPro.Barcode": "59.2.0.0",
+          "Cognex.VisionPro.Blob.Controls": "59.2.0.0",
+          "Cognex.VisionPro.Blob": "59.2.0.0",
+          "Cognex.VisionPro.CalibFix.Controls": "59.2.0.0",
+          "Cognex.VisionPro.CalibFix": "59.2.0.0",
+          "Cognex.VisionPro.CalibFixPlus": "59.2.0.0",
+          "Cognex.VisionPro.Caliper.Controls": "59.2.0.0",
+          "Cognex.VisionPro.Caliper": "59.2.0.0",
+          "Cognex.VisionPro.CNLSearch.Controls": "59.2.0.0",
+          "Cognex.VisionPro.CNLSearch": "59.2.0.0",
+          "Cognex.VisionPro.ColorExtractor.Controls": "59.2.0.0",
+          "Cognex.VisionPro.ColorExtractor": "59.2.0.0",
+          "Cognex.VisionPro.ColorMatch.Controls": "59.2.0.0",
+          "Cognex.VisionPro.ColorMatch": "59.2.0.0",
+          "Cognex.VisionPro.ColorSegmenter.Controls": "59.2.0.0",
+          "Cognex.VisionPro.ColorSegmenter": "59.2.0.0",
+          "Cognex.VisionPro.Comm.Controls": "59.2.0.0",
+          "Cognex.VisionPro.Comm": "59.2.0.0",
+          "Cognex.VisionPro.CompositeColorMatch.Controls": "59.2.0.0",
+          "Cognex.VisionPro.CompositeColorMatch": "59.2.0.0",
+          "Cognex.VisionPro.Controls": "59.2.0.0",
+          "Cognex.VisionPro.Core": "59.2.0.0",
+          "Cognex.VisionPro.CorePlus": "59.2.0.0",
+          "Cognex.VisionPro.Database": "59.2.0.0",
+          "Cognex.VisionPro.Dimensioning.Controls": "59.2.0.0",
+          "Cognex.VisionPro.Dimensioning": "59.2.0.0",
+          "Cognex.VisionPro.Display.Controls": "59.2.0.0",
+          "Cognex.VisionPro": "59.2.0.0",
+          "Cognex.VisionPro.FG1394DCAM": "59.2.0.0",
+          "Cognex.VisionPro.FG8100": "59.2.0.0",
+          "Cognex.VisionPro.FG8100L": "59.2.0.0",
+          "Cognex.VisionPro.FG8120": "59.2.0.0",
+          "Cognex.VisionPro.FG8500L": "59.2.0.0",
+          "Cognex.VisionPro.FG8501": "59.2.0.0",
+          "Cognex.VisionPro.FG8504": "59.2.0.0",
+          "Cognex.VisionPro.FG8600": "59.2.0.0",
+          "Cognex.VisionPro.FGGigE": "59.2.0.0",
+          "Cognex.VisionPro.ID.Controls": "59.2.0.0",
+          "Cognex.VisionPro.ID": "59.2.0.0",
+          "Cognex.VisionPro.ImageFile.Controls": "59.2.0.0",
+          "Cognex.VisionPro.ImageFile": "59.2.0.0",
+          "Cognex.VisionPro.ImageProcessing.Controls": "59.2.0.0",
+          "Cognex.VisionPro.ImageProcessing": "59.2.0.0",
+          "Cognex.VisionPro.ImagingDevice": "59.2.0.0",
+          "Cognex.VisionPro.Inspection.Controls": "59.2.0.0",
+          "Cognex.VisionPro.Inspection": "59.2.0.0",
+          "Cognex.VisionPro.Interop.Core": "59.2.0.0",
+          "Cognex.VisionPro.LinescanDistortionCorrection.Controls": "59.2.0.0",
+          "Cognex.VisionPro.LinescanDistortionCorrection": "59.2.0.0",
+          "Cognex.VisionPro.MultiLineFinder.Controls": "59.2.0.0",
+          "Cognex.VisionPro.MultiLineFinder": "59.2.0.0",
+          "Cognex.VisionPro.OC": "59.2.0.0",
+          "Cognex.VisionPro.OCRMax.Controls": "59.2.0.0",
+          "Cognex.VisionPro.OCRMax": "59.2.0.0",
+          "Cognex.VisionPro.OCVMax.Controls": "59.2.0.0",
+          "Cognex.VisionPro.OCVMax": "59.2.0.0",
+          "Cognex.VisionPro.PatInspect.Controls": "59.2.0.0",
+          "Cognex.VisionPro.PatInspect": "59.2.0.0",
+          "Cognex.VisionPro.PixelMap.Controls": "59.2.0.0",
+          "Cognex.VisionPro.PixelMap": "59.2.0.0",
+          "Cognex.VisionPro.PMAlign.Controls": "59.2.0.0",
+          "Cognex.VisionPro.PMAlign": "59.2.0.0",
+          "Cognex.VisionPro.PMRedLine.Controls": "59.2.0.0",
+          "Cognex.VisionPro.PMRedLine": "59.2.0.0",
+          "Cognex.VisionPro.QuickBuild.Controls": "59.2.0.0",
+          "Cognex.VisionPro.QuickBuild.Core": "59.2.0.0",
+          "Cognex.VisionPro.QuickBuild.IO": "59.2.0.0",
+          "Cognex.VisionPro.ResultsAnalysis.Controls": "59.2.0.0",
+          "Cognex.VisionPro.ResultsAnalysis": "59.2.0.0",
+          "Cognex.VisionPro.SearchMax.Controls": "59.2.0.0",
+          "Cognex.VisionPro.SearchMax": "59.2.0.0",
+          "Cognex.VisionPro.ToolGroup.Controls": "59.2.0.0",
+          "Cognex.VisionPro.ToolGroup": "59.2.0.0",
+          "Cognex.VisionPro.TwoDSymbol.Controls": "59.2.0.0",
+          "Cognex.VisionPro.TwoDSymbol": "59.2.0.0",
+          "Cognex.VisionPro3D.Controls": "59.2.0.0",
+          "Cognex.VisionPro3D.Core": "59.2.0.0",
+          "Cognex.VisionPro3D.Display.Controls": "59.2.0.0",
+          "Cognex.VisionPro3D": "59.2.0.0",
+          "Cognex.VisionPro3D.Graphic": "59.2.0.0"
+        },
+        "runtime": {
+          "Xioa.VisionView.dll": {}
+        }
+      },
+      "Cognex.VisionPro.AutoSelect/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.AutoSelect.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Barcode.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Barcode.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Barcode/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Barcode.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Blob.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Blob.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Blob/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Blob.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.CalibFix.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.CalibFix.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.CalibFix/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.CalibFix.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.CalibFixPlus/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.CalibFixPlus.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Caliper.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Caliper.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Caliper/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Caliper.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.CNLSearch.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.CNLSearch.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.CNLSearch/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.CNLSearch.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ColorExtractor.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ColorExtractor.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ColorExtractor/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ColorExtractor.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ColorMatch.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ColorMatch.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ColorMatch/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ColorMatch.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ColorSegmenter.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ColorSegmenter.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ColorSegmenter/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ColorSegmenter.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Comm.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Comm.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Comm/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Comm.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.CompositeColorMatch.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.CompositeColorMatch.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.CompositeColorMatch/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.CompositeColorMatch.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Core/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Core.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.CorePlus/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.CorePlus.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Database/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Database.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Dimensioning.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Dimensioning.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Dimensioning/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Dimensioning.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Display.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Display.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.FG1394DCAM/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.FG1394DCAM.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.FG8100/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.FG8100.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.FG8100L/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.FG8100L.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.FG8120/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.FG8120.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.FG8500L/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.FG8500L.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.FG8501/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.FG8501.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.FG8504/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.FG8504.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.FG8600/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.FG8600.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.FGGigE/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.FGGigE.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ID.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ID.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ID/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ID.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ImageFile.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ImageFile.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ImageFile/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ImageFile.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ImageProcessing.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ImageProcessing.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ImageProcessing/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ImageProcessing.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ImagingDevice/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ImagingDevice.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Inspection.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Inspection.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Inspection/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Inspection.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.Interop.Core/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.Interop.Core.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.LinescanDistortionCorrection.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.LinescanDistortionCorrection.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.LinescanDistortionCorrection/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.LinescanDistortionCorrection.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.MultiLineFinder.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.MultiLineFinder.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.MultiLineFinder/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.MultiLineFinder.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.OC/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.OC.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.OCRMax.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.OCRMax.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.OCRMax/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.OCRMax.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.OCVMax.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.OCVMax.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.OCVMax/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.OCVMax.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.PatInspect.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.PatInspect.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.PatInspect/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.PatInspect.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.PixelMap.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.PixelMap.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.PixelMap/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.PixelMap.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.PMAlign.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.PMAlign.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.PMAlign/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.PMAlign.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.PMRedLine.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.PMRedLine.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.PMRedLine/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.PMRedLine.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.QuickBuild.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.QuickBuild.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.QuickBuild.Core/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.QuickBuild.Core.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.QuickBuild.IO/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.QuickBuild.IO.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ResultsAnalysis.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ResultsAnalysis.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ResultsAnalysis/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ResultsAnalysis.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.SearchMax.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.SearchMax.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.SearchMax/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.SearchMax.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ToolGroup.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ToolGroup.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.ToolGroup/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.ToolGroup.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.TwoDSymbol.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.TwoDSymbol.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro.TwoDSymbol/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro.TwoDSymbol.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro3D.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro3D.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro3D.Core/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro3D.Core.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro3D.Display.Controls/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro3D.Display.Controls.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro3D/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro3D.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "59.2.0.0"
+          }
+        }
+      },
+      "Cognex.VisionPro3D.Graphic/59.2.0.0": {
+        "runtime": {
+          "Cognex.VisionPro3D.Graphic.dll": {
+            "assemblyVersion": "59.2.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Xioa.VisionView/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.AutoSelect/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Barcode.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Barcode/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Blob.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Blob/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.CalibFix.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.CalibFix/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.CalibFixPlus/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Caliper.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Caliper/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.CNLSearch.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.CNLSearch/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ColorExtractor.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ColorExtractor/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ColorMatch.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ColorMatch/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ColorSegmenter.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ColorSegmenter/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Comm.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Comm/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.CompositeColorMatch.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.CompositeColorMatch/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Core/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.CorePlus/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Database/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Dimensioning.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Dimensioning/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Display.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.FG1394DCAM/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.FG8100/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.FG8100L/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.FG8120/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.FG8500L/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.FG8501/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.FG8504/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.FG8600/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.FGGigE/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ID.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ID/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ImageFile.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ImageFile/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ImageProcessing.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ImageProcessing/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ImagingDevice/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Inspection.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Inspection/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.Interop.Core/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.LinescanDistortionCorrection.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.LinescanDistortionCorrection/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.MultiLineFinder.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.MultiLineFinder/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.OC/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.OCRMax.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.OCRMax/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.OCVMax.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.OCVMax/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.PatInspect.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.PatInspect/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.PixelMap.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.PixelMap/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.PMAlign.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.PMAlign/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.PMRedLine.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.PMRedLine/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.QuickBuild.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.QuickBuild.Core/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.QuickBuild.IO/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ResultsAnalysis.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ResultsAnalysis/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.SearchMax.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.SearchMax/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ToolGroup.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.ToolGroup/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.TwoDSymbol.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro.TwoDSymbol/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro3D.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro3D.Core/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro3D.Display.Controls/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro3D/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cognex.VisionPro3D.Graphic/59.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

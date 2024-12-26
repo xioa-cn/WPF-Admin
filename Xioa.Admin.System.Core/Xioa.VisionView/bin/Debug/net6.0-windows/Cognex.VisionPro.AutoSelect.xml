@@ -1,0 +1,865 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "Cognex.VisionPro.AutoSelect"
+    </assembly>
+    <members>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelect.GetDiagImages(Cognex.VisionPro.CogImage8Grey,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.CogImage8Grey@,Cognex.VisionPro.CogImage8Grey@)">
+            <summary>
+Produce the actual image and mask that would be processed
+if the Execute method were called with the supplied input
+image and region. This method is provided as a diagnostic
+aid to help the user visualize the actual image and mask
+that will be used at run time.
+</summary>
+            <param name="inputImage">
+The image to be evaluated.
+</param>
+            <param name="inputRegion">
+An optional region. May be null. If supplied, this region is used to
+limit the amount of processing performed on the input image. This is
+done in conjunction with the RegionMode property, which may be either
+PixelAlignedBoundingBox or PixelAlignedBoundingBoxAdjustMask. If no
+inputRegion is supplied, the entire input image is processed.
+</param>
+            <param name="diagImage">
+The actual image that would be processed. This image reflects
+the impact of the supplied region, if any, as well as the current
+region mode.
+</param>
+            <param name="diagMask">
+The actual mask that would be used during processing. This mask
+image reflects the region if one was supplied, the region mode,
+and the input image mask if one was supplied. If no mask would
+be used during processing then this parameter is set to null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied input image argument is null.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelect.Execute(Cognex.VisionPro.CogImage8Grey,Cognex.VisionPro.ICogRegion)">
+            <summary>
+Perform auto selection on the supplied input 
+image.
+</summary>
+            <returns>
+The results of this auto selection process.
+</returns>
+            <param name="inputImage">
+The image to be evaluated.
+</param>
+            <param name="inputRegion">
+An optional region. May be null. If supplied, this region is used to
+limit the amount of processing performed on the input image. This is
+done in conjunction with the RegionMode property, which may be either
+PixelAlignedBoundingBox or PixelAlignedBoundingBoxAdjustMask. If no
+inputRegion is supplied, the entire input image is processed.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the supplied input image argument is null.
+</exception>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogSecurityViolationException">
+If licensing for this operator cannot be confirmed.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelect.QueryPointClear">
+            <summary>
+Remove all defined query points from this CogAutoSelect's internal
+list.
+</summary>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the defined query points changes.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelect.QueryPointSetY(System.Int32,System.Double)">
+            <summary>
+Set the Y coordinate of the query point at the supplied index. This
+value is in the selected space of the input image.
+</summary>
+            <param name="index">
+The zero based index of the query point under consideration.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied query point index is less than zero or
+greater than or equal to the current number of defined
+query points.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the specified point Y coordinate is changed.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelect.QueryPointSetX(System.Int32,System.Double)">
+            <summary>
+Set the X coordinate of the query point at the supplied index. This
+value is in the selected space of the input image.
+</summary>
+            <param name="index">
+The zero based index of the query point under consideration.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied query point index is less than zero or
+greater than or equal to the current number of defined
+query points.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the specified point X coordinate is changed.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelect.QueryPointGetY(System.Int32)">
+            <summary>
+Get the Y coordinate of the query point at the supplied index. This
+value is in the selected space of the input image.
+</summary>
+            <param name="index">
+The zero based index of the query point under consideration.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied query point index is less than zero or
+greater than or equal to the current number of defined
+query points.
+</exception>
+            <returns>
+The Y coordinate of the specified query point, in the selected space
+of the input image.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelect.QueryPointGetX(System.Int32)">
+            <summary>
+Get the X coordinate of the query point at the supplied index. This
+value is in the selected space of the input image.
+</summary>
+            <param name="index">
+The zero based index of the query point under consideration.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied query point index is less than zero or
+greater than or equal to the current number of defined
+query points.
+</exception>
+            <returns>
+The X coordinate of the specified query point, in the selected space
+of the input image.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelect.QueryPointRemoveAt(System.Int32)">
+            <summary>
+Remove from this CogAutoSelect's internal list the query point at the
+specified index.
+</summary>
+            <param name="index">
+The zero based index of the query point to be removed.
+</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied query point index is less than zero or
+greater than or equal to the current number of defined
+query points.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when the specified point is removed from the CogAutoSelect
+object's internal list of query points.
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelect.QueryPointAdd(System.Double,System.Double)">
+            <summary>
+Add the specified query point to the internal list of query
+points. These X,Y coordinates are in the selected space of the input
+image.
+</summary>
+            <param name="newX">
+The X coordinate of the new query point, in the selected space of the
+input image.
+</param>
+            <param name="newY">
+The Y coordinate of the new query point, in the selected space of the
+input image.
+</param>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this point is added to the CogAutoSelect
+object's internal list of query points.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.QueryPointCount">
+            <summary>
+Get the number of currently defined query points.
+</summary>
+            <value>
+The number of currently defined query points.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.CNLSearchRunParams">
+            <summary>
+Get or sets the CogCNLSearchRunParams to be used during the auto
+selection process.
+</summary>
+            <value>
+Handle to the CogCNLSearchRunParams object
+that will be used during the auto selection process.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.PMAlignRunParams">
+            <summary>
+Get or sets the CogPMAlignRunParams to be used during the auto
+selection process.
+</summary>
+            <value>
+Handle to the CogPMAlignRunParams object that will
+be used during the auto selection process.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.InputImageMaskOffsetY">
+            <summary>
+Gets or sets the input image mask Y offset in pixels. This offset is
+the vertical distance in pixels from the upper left corner of the
+input image to the upper left corner of the InputImageMask.
+</summary>
+            <value>
+The input image mask Y offset in pixels.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.InputImageMaskOffsetX">
+            <summary>
+Gets or sets the input image mask X offset in pixels. This offset is
+the horizontal distance in pixels from the upper left corner of the
+input image to the upper left corner of the InputImageMask.
+</summary>
+            <value>
+The input image mask X offset in pixels.
+</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.InputImageMask">
+            <summary>
+Gets or sets the input image mask to be used during the auto selection
+process. Only the three most significant bits of each mask image
+pixel are used:
+<list type="bullet"><item><b>Bit 7 (MSB): Care bit.</b> One (1) means "Care", as in
+"use this feature in the model", while zero (0) means
+"do not use this feature in the model".
+</item><item><b>Bit 6: Don't Score bit.</b> One (1) means "Don't Score", as in
+"don't compute clutter score", while zero means "Score", as in
+"do compute clutter score".
+</item><item><b>Bit 5: Position bit.</b> One (1) means
+<i>discard any model that includes this pixel</i>,
+while zero (0) means the opposite.
+</item></list></summary>
+            <value>
+Handle to the CogImage8Grey object that will
+be used as the input image mask during the auto selection process.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.ModelMask">
+            <summary>
+Gets or sets the model mask to be used during the auto selection
+process. The size of this mask must match the run time values of
+ModelSizeX and ModelSizeY.
+</summary>
+            <value>
+Handle to the CogImage8Grey object that will
+be used as the model mask during the auto selection process.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.XYOverlap">
+            <summary>
+Gets or sets the XY overlap required to consider two instances to be
+the same result. Overlap is (approximately) the ratio of overlap area
+to total area of the pattern, in the range of 0.0 (no overlap) to 1.0
+(full overlap) inclusive.  Note that this parameter has a large effect
+upon execution time - low values (below 0.5) may cause a significant
+slowdown.
+</summary>
+            <value>
+The XY overlap required to consider two instances
+to be the same result, in the range from 0.0 (no overlap) to
+1.0 (full overlap) inclusive.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied XY overlap is less than zero or greater than one.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.MaxNumResults">
+            <summary>
+Gets or sets the maximum number of results.
+</summary>
+            <value>
+The maximum number of results. May not be negative.
+This property is ignored when RunMode is Query.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied maximum number of results is negative.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.ScoringUniquenessWeight">
+            <summary>
+Gets or sets the uniqueness scoring weight.
+</summary>
+            <value>
+The uniqueness scoring weight. May not be negative.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied uniqueness scoring weight is negative.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.ScoringSymmetryWeight">
+            <summary>
+Gets or sets the symmetry scoring weight.
+</summary>
+            <value>
+The symmetry scoring weight. May not be negative.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied symmetry scoring weight is negative.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.ScoringOrthogonalityWeight">
+            <summary>
+Gets or sets the orthogonality scoring weight.
+</summary>
+            <value>
+The orthogonality scoring weight. May not be negative.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied orthogonality scoring weight is negative.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.ScoringCombineMethod">
+            <summary>
+Gets or sets the scoring combine method. Legal values include
+GeometricMean and ArithmeticMean.
+</summary>
+            <value>
+The scoring combine method. Legal values include
+GeometricMean and ArithmeticMean.
+</value>
+            <exception cref="T:System.ArgumentException">
+If the supplied scoring combine method is not a valid member of the
+enumeration.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.SamplingInterval">
+            <summary>
+Gets or sets the sampling interval in pixels. Increasing the sampling
+interval causes CogAutoSelect to run faster but produce lower quality
+results.
+</summary>
+            <value>
+The sampling interval, in pixels.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied sampling interval is less than or equal to zero.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.ModelSizeY">
+            <summary>
+Gets or sets the desired image model Y dimension in pixels.
+</summary>
+            <value>
+The desired image model Y dimension in pixels.
+This value must be greater than zero.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied model size Y dimension is less than or equal to zero.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.ModelSizeX">
+            <summary>
+Gets or sets the desired image model X dimension in pixels.
+</summary>
+            <value>
+The desired image model X dimension in pixels.
+This value must be greater than zero.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied model size X dimension is less than or equal to zero.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.RegionMode">
+            <summary>
+Gets or sets the region mode. Legal values
+include PixelAlignedBoundingBox and PixelAlignedBoundingBoxAdjustMask.
+</summary>
+            <value>
+The region mode. Legal values include
+PixelAlignedBoundingBox and PixelAlignedBoundingBoxAdjustMask.
+</value>
+            <exception cref="T:System.ArgumentException">
+If the supplied region mode is not a valid member of the enumeration.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.RunMode">
+            <summary>
+Gets or sets the run mode. Legal values include Search (process the
+entire input image) and Query (only consider specified locations).
+</summary>
+            <value>
+The run mode. Legal values include Search (process the entire input
+image) and Query (only consider specified locations).
+</value>
+            <exception cref="T:System.ArgumentException">
+If the supplied run mode is not a valid member of the enumeration.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes.
+</event>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelect.Target">
+            <summary>
+Gets or sets the target tool type. Legal values include PMAlign and
+CNLSearch.
+</summary>
+            <value>
+The target tool type. May be either PMAlign or CNLSearch.
+</value>
+            <exception cref="T:System.ArgumentException">
+If the supplied target tool type is not a valid member of the
+enumeration.
+</exception>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
+Fires when this property changes
+</event>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelect.#ctor(Cognex.VisionPro.AutoSelect.CogAutoSelect)">
+            <summary>
+Construct a deep copy of the supplied CogAutoSelect object.
+</summary>
+            <param name="Other">
+The CogAutoSelect object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfQueryPointGetY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by QueryPointGetY may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfQueryPointGetX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by QueryPointGetX may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfQueryPointCount">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by QueryPointCount may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfCNLSearchRunParams">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by CNLSearchRunParams may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfPMAlignRunParams">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by PMAlignRunParams may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfInputImageMaskOffsetY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by InputImageMaskOffsetY may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfInputImageMaskOffsetX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by InputImageMaskOffsetX may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfInputImageMask">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by InputImageMask may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfModelMask">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by ModelMask may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfXYOverlap">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by XYOverlap may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfMaxNumResults">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by MaxNumResults may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfScoringUniquenessWeight">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by ScoringUniquenessWeight may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfScoringSymmetryWeight">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by ScoringSymmetryWeight may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfScoringOrthogonalityWeight">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by ScoringOrthogonalityWeight may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfScoringCombineMethod">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by ScoringCombineMethod may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfSamplingInterval">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by SamplingInterval may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfModelSizeY">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by ModelSizeY may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfModelSizeX">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by ModelSizeX may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfRegionMode">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by RegionMode may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfRunMode">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by RunMode may have changed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelect.SfTarget">
+            <summary>
+This bit will be set in the EventArgs of a Changed event every time
+the value returned by Target may have changed.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.AutoSelect.CogAutoSelect">
+            <summary>
+This class automatically selects an image model for either CogPMAlign
+or CogCNLSearch based upon the supplied input image.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelectResults.GetEnumerator">
+            <summary>
+Gets an enumerator for this CogAutoSelectResults object.
+</summary>
+            <returns>
+An enumerator for this CogAutoSelectResults object.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelectResults.CopyTo(System.Array,System.Int32)">
+            <summary>
+Copies the elements of this CogAutoSelectResults object to the
+supplied array, starting at the specified array index. This is a deep
+copy.
+</summary>
+            <exception cref="T:System.ArgumentNullException">
+If the array argument is null.
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index argument is less than zero.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied array is not one dimensional.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied array's lower bound is not zero.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the supplied array has fewer elements than there are results.
+</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the index argument is such that the results will not fit in the
+specified portion of the supplied array.
+</exception>
+            <exception cref="T:System.ArgumentException">
+If the type of the elements of the supplied array is not
+CogAutoSelectResult.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelectResults.SyncRoot">
+            <summary>
+Gets an object that can be used to synchronize access to this
+CogAutoSelectResults object.
+</summary>
+            <value>
+An object that can be used to synchronize access to this
+CogAutoSelectResults object.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelectResults.IsSynchronized">
+            <summary>
+Gets a value indicating whether access to this CogAutoSelectResults
+object is thread safe. Always false.
+</summary>
+            <value>
+Whether access to this CogAutoSelectResults object is thread
+safe. Always false.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelectResults.IsReadOnly">
+            <summary>
+Gets a value indicating whether this CogAutoSelectResults object is
+read only. Always true.
+</summary>
+            <value>
+Whether this CogAutoSelectResults object is read only. Always
+true.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelectResults.IsFixedSize">
+            <summary>
+Gets a value indicating whether this CogAutoSelectResults object is of
+a fixed size. Always true.
+</summary>
+            <value>
+Whether this CogAutoSelectResults object is of a fixed size. Always
+true.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelectResults.Count">
+            <summary>
+Gets the number of individual auto select results in this object.
+</summary>
+            <value>
+The number of individual auto select results in this object.
+</value>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelectResults.IndexOf(System.Object)">
+            <summary>
+Determines the index of the supplied CogAutoSelectResult object in
+this CogAutoSelectResults object. Will be -1 if not found.
+</summary>
+            <returns>
+The index of the supplied CogAutoSelectResult object in this
+CogAutoSelectResults object, or -1 if not found.
+</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelectResults.Contains(System.Object)">
+            <summary>
+Determines whether the supplied CogAutoSelectResult object is
+contained by this CogAutoSelectResults object.
+</summary>
+            <returns>
+True if the supplied CogAutoSelectResult is contained by this
+CogAutoSelectResults object, false otherwise.
+</returns>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelectResults.Item(System.Int32)">
+            <summary>
+Gets the CogAutoSelectResult specified by the supplied index.
+</summary>
+            <value>
+The CogAutoSelectResult specified by the supplied index.
+</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+If the supplied query point index is less than zero or greater than or
+equal to the number of results.
+</exception>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelectResults.#ctor(Cognex.VisionPro.AutoSelect.CogAutoSelectResults)">
+            <summary>
+Construct a deep copy of the supplied CogAutoSelectResults object.
+</summary>
+            <param name="Other">
+The CogAutoSelectResults object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="T:Cognex.VisionPro.AutoSelect.CogAutoSelectResults">
+            <summary>
+This class holds a list of CogAutoSelectResult objects.  This list is
+the output of CogAutoSelect's Execute() method.
+</summary>
+        </member>
+        <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelectResult.#ctor(Cognex.VisionPro.AutoSelect.CogAutoSelectResult)">
+            <summary>
+Construct a deep copy of the supplied CogAutoSelectResult object.
+</summary>
+            <param name="Other">
+The CogAutoSelectResult object to be copied. May not be null.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+If the input argument is null.
+</exception>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelectResult.ScoreCombined">
+            <summary>
+Gets the overall score for this result in the range of 0.0 to 1.0
+inclusive. This score is the combination of orthogonality, symmetry,
+and uniqueness based on the combination method and scoring weights
+specified at run time.
+</summary>
+            <value>
+The overall score for this result in the range of 0.0 to 1.0
+inclusive.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelectResult.ScoreUniqueness">
+            <summary>
+Gets the normalized uniqueness score for this result, in the range of
+0.0 to 1.0 inclusive.
+</summary>
+            <value>
+The normalized uniqueness socre for this result, in the range of 0.0
+to 1.0. inclusive.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelectResult.ScoreSymmetry">
+            <summary>
+Gets the normalized symmetry score for this result, in the range of
+0.0 to 1.0 inclusive.
+</summary>
+            <value>
+The normalized symmetry score for this result, in the range of 0.0 to
+1.0 inclusive.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelectResult.ScoreOrthogonality">
+            <summary>
+Gets the normalized orthogonality score for this result, in the range
+of 0.0 to 1.0 inclusive.
+</summary>
+            <value>
+The normalized orthogonality score for this result, in the range of
+0.0 to 1.0 inclusive.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelectResult.LocationY">
+            <summary>
+Gets the Y coordinate, in the selected space of the input image, of
+this result.
+</summary>
+            <value>
+The Y coordinate, in the selected space of the iput image, of this
+result.
+</value>
+        </member>
+        <member name="P:Cognex.VisionPro.AutoSelect.CogAutoSelectResult.LocationX">
+            <summary>
+Gets the X coordinate, in the selected space of the input image, of
+this result.
+</summary>
+            <value>
+The X coordinate, in the selected space of the input image, of this
+result.
+</value>
+        </member>
+        <member name="T:Cognex.VisionPro.AutoSelect.CogAutoSelectResult">
+            <summary>
+This class holds a single CogAutoSelect result.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.AutoSelect.CogAutoSelectScoringCombineMethodConstants">
+            <summary>
+Constants for specifying how the orthogonality, 
+symmetry, and uniqueness scores are combined for
+a single result.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelectScoringCombineMethodConstants.ArithmeticMean">
+            <summary>
+Compute combined score as arithmetic mean of 
+orthogonality, symmetry, and uniqueness scores.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelectScoringCombineMethodConstants.GeometricMean">
+            <summary>
+Compute combined score as geometric mean of 
+orthogonality, symmetry, and uniqueness scores.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.AutoSelect.CogAutoSelectRunModeConstants">
+            <summary>
+Constants used to specify how auto selection is to 
+be performed.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelectRunModeConstants.Query">
+            <summary>
+Only consider specified query points for possible models.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelectRunModeConstants.Search">
+            <summary>
+Search the image for possible models.
+</summary>
+        </member>
+        <member name="T:Cognex.VisionPro.AutoSelect.CogAutoSelectTargetConstants">
+            <summary>
+Constants used to identify the target tool type.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelectTargetConstants.CNLSearch">
+            <summary>
+Automatically select a model for use by CogCNLSearch.
+</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.AutoSelect.CogAutoSelectTargetConstants.PMAlign">
+            <summary>
+Automatically select a model for use by CogPMAlign.
+</summary>
+        </member>
+    </members>
+</doc>
