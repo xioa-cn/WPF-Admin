@@ -65,17 +65,15 @@ builder.Services.AddAuthentication(options =>
         options.Events = new JwtBearerEvents {
             OnTokenValidated = context =>
             {
-                var tokenType = context.Principal.FindFirst(TokenType.Token_Type)?.Value;
-                if (tokenType == TokenType.Refresh)
-                {
-                    // 获取请求的路由
-                    var requestedPath = context.HttpContext.Request.Path;
+                var tokenType = context.Principal?.FindFirst(TokenType.Token_Type)?.Value;
+                if (tokenType != TokenType.Refresh) return Task.CompletedTask;
+                // 获取请求的路由
+                var requestedPath = context.HttpContext.Request.Path;
 
-                    // 检查请求的路由是否为刷新令牌的路由
-                    if (requestedPath != RefreshTokenApi.Router) // 假设刷新令牌的端点是 /api/refresh-token
-                    {
-                        context.Fail("Refresh token used in the wrong context.");
-                    }
+                // 检查请求的路由是否为刷新令牌的路由
+                if (requestedPath != RefreshTokenApi.Router)
+                {
+                    context.Fail("Refresh token used in the wrong context.");
                 }
 
                 return Task.CompletedTask;
