@@ -5,6 +5,10 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace DataAcquisition.Core.Views.InfiniteScrolling;
 
+/// <summary>
+/// @author Xioa
+/// @date  2024-12-26 09:08:47
+/// </summary>
 public class InfiniteScrollingViewModel : ObservableObject {
     public InfiniteScrollingViewModel() {
         Items = new ObservableCollection<string>();
