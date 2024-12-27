@@ -17,6 +17,7 @@ using Xioa.Admin.Core.Views.VisionView;
 using Xioa.Admin.Core.Views.WeldingMonitor;
 using Xioa.Admin.Core.Views.XioaIcon;
 using Xioa.Admin.Core.Views.VsuaButton;
+using Xioa.Admin.Core.Views.XUserControls.ControlsPage;
 
 namespace Xioa.Admin.Core.Views.MainView;
 
@@ -91,6 +92,18 @@ public partial class MainViewModel : ObservableObject {
                     }
                 }
             },
+
+            new TreeItemModel() {
+                Content = "组件",
+                Icon = IconPaths.CustomComponent,
+                Children = {
+                    new TreeItemModel() {
+                        Content = "登录组件",
+                        Page = new UseQQComboBox(),
+                    }
+                }
+            },
+
 
             new TreeItemModel() {
                 Content = "系统工具",

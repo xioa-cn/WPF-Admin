@@ -20,6 +20,9 @@
                     Source="pack://application:,,,/Xioa.Admin.Core;component/Views/MainView/Themes/BaseTheme.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
 
+                <ResourceDictionary
+                    Source="pack://application:,,,/Xioa.Admin.Core;component/Views/XUserControls/Themes/XUserControlsThemes.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
             <converter:ConvertToDoubleConverter x:Key="ConvertToDouble" Increment="10" />
             <converter:WidthToVisibilityConverter x:Key="WidthToVisibilityConverter" />

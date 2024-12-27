@@ -1,0 +1,43 @@
+﻿<Page x:Class="Xioa.Admin.Core.Views.XUserControls.ControlsPage.UseQQComboBox"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Xioa.Admin.Core.Views.XUserControls.ControlsPage"
+      xmlns:viewModel="clr-namespace:Xioa.Admin.Core.Views.XUserControls.ViewModel"
+      xmlns:qqComboBox="clr-namespace:Xioa.Admin.Core.Views.XUserControls.Components.QQComboBox"
+      mc:Ignorable="d"
+      Title="UseQQComboBox" Height="450" Width="800">
+    <Page.DataContext>
+        <viewModel:QQComboBoxViewModel />
+    </Page.DataContext>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid
+                Margin="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" FontSize="20">Value:</TextBlock>
+                <TextBlock
+                    Grid.Column="1"
+                    FontSize="20"
+                    Text="{Binding InputText}" />
+            </Grid>
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <qqComboBox:QQComboBox
+                    Width="200"
+                    DeleteCommand="{Binding DeleteCommand}"
+                    InputText="{Binding InputText, Mode=TwoWay}"
+                    ItemsSource="{Binding Items}" />
+                <Button Margin="10" Command="{Binding LoginCommand}">Login</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
