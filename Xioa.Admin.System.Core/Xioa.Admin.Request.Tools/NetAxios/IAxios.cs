@@ -3,9 +3,12 @@
 namespace Xioa.Admin.Request.Tools.NetAxios;
 
 public interface IAxios {
-    
-    public  HttpClient _httpClient { get; }
-    
+    #region 请求Client
+
+    public HttpClient _httpClient { get; }
+
+    #endregion
+
     #region GET请求
 
     Task<T?> GetAsync<T>(string url, object? parameters = null, CancellationToken cancellationToken = default);
