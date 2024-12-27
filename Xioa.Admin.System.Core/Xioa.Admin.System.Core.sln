@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xioa.Admin.Service.Web.Api"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWebService", "TestWebService\TestWebService.csproj", "{EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xioa.Admin.Request.Tools", "Xioa.Admin.Request.Tools\Xioa.Admin.Request.Tools.csproj", "{AC864B4E-A46E-465A-B3D3-A697476772D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC864B4E-A46E-465A-B3D3-A697476772D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC864B4E-A46E-465A-B3D3-A697476772D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC864B4E-A46E-465A-B3D3-A697476772D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC864B4E-A46E-465A-B3D3-A697476772D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{A99E3529-2B24-46C1-BF17-14ADFAB9FC33} = {4CACC8CF-5655-43A1-B46B-07DB98CF0150}
 		{D33668E1-6646-4BCD-BEC2-764BF773B13D} = {1CE07582-FF87-493D-9E88-65E46BCF00BD}
 		{EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0} = {1CE07582-FF87-493D-9E88-65E46BCF00BD}
+		{AC864B4E-A46E-465A-B3D3-A697476772D8} = {4CACC8CF-5655-43A1-B46B-07DB98CF0150}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C2DB9D8-89BC-48AD-A093-C9D2E65BA466}

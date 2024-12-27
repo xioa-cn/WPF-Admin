@@ -21,4 +21,8 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Xioa.Admin.Request.Tools\Xioa.Admin.Request.Tools.csproj" />
+    </ItemGroup>
+
 </Project>

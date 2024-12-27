@@ -10,15 +10,13 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Xioa.Admin.lib")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Xioa.Admin.Request.Tools")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+506a00ab4bb70df4454e7fb4befa92353b7b037c")]
-[assembly: System.Reflection.AssemblyProductAttribute("Xioa.Admin.lib")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Xioa.Admin.lib")]
+[assembly: System.Reflection.AssemblyProductAttribute("Xioa.Admin.Request.Tools")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Xioa.Admin.Request.Tools")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
-[assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
-[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
 
