@@ -1,18 +1,18 @@
-﻿using System.Diagnostics;
-using System.Net.Sockets;
-using Xioa.Admin.Request.Tools.Helper;
+﻿using System.Net.Sockets;
+using Xioa.Admin.Request.Tools.Model;
 using Xioa.Admin.Request.Tools.NetAxios;
 
 namespace TestWebService;
 
-public class NAxiosFile
+public class NAxiosFilesProgress
 {
     [Fact]
-    public async Task TestMethod1()
+    public async Task UploadProgressTest()
     {
         NAxios axios = new NAxios(new NAxiosConfig
         {
             BaseUrl = "http://localhost:7078/api/",
+            Timeout = 30000,
             RetryCount = 3, // 最多重试3次
             Headers =
             {
@@ -38,35 +38,34 @@ public class NAxiosFile
                 return res;
             }
         }, false);
-        var filePath = "E:\\Test\\116.png";
-        using var fileStream = File.OpenRead(filePath);
-        var fileName = Path.GetFileName(filePath);
-
-        try
+        var progress = new Progress<double>(percentage => { Console.WriteLine($"上传进度: {percentage:F2}"); });
+         var fileStream = "E:\\Test\\116.png";
+         var fileStream1 = "E:\\Test\\117.png";
+        List<FileUploadContent> fileUploadContents = new List<FileUploadContent>()
         {
-            // 单文件上传
-
-            var result = await axios.UploadAsync<object>(
-                "/File/upload",
-                fileStream,
-                fileName,
-                formData: new Dictionary<string, string>
-                {
-                    { "description", "测试文件" }
-                },
-                apiFileName:"file"
-            );
-           
-
-            Console.WriteLine("Upload completed successfully!");
-        }
-        catch (OperationCanceledException)
-        {
-            Console.WriteLine("Upload was cancelled");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Upload failed: {ex.Message}");
-        }
+            new FileUploadContent
+            {
+                FileStream =File.OpenRead( fileStream),
+                FileName = "1.zip",
+               
+            },
+            new FileUploadContent
+            {
+                FileStream = File.OpenRead( fileStream1),
+                FileName = "2.zip",
+               
+            },
+        };
+       
+        var result = await axios.UploadWithProgressAsync<object>(
+            "/File/upload/multiple",
+            fileUploadContents,
+            progress,
+            formData: new Dictionary<string, string>()
+            {
+                { "description", "测试文件" }
+            },
+            apiFileName: "files"
+        );
     }
 }

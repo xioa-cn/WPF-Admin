@@ -12,7 +12,7 @@ public class NAxiosTest {
         // 创建实例
         IAxios axios = new NAxios(new NAxiosConfig
         {
-            BaseUrl = "https://localhost:7078/api/",
+            BaseUrl = "http://localhost:7078/api/",
             RetryCount = 3,  // 最多重试3次
             RetryDelay = 1000,  // 每次重试间隔1秒
             RetryCondition = (exception, retryCount) =>
@@ -77,7 +77,11 @@ public class NAxiosTest {
 
         try
         {
-            var response = await axios.GetAsync("/LoggerTest/TestLogger");
+            var response = await axios.PostAsync<TestAxios>("/Authentication/token",
+                new
+                {
+                    UserName="1",Password="1"
+                });
             
         }
         catch (Exception ex)

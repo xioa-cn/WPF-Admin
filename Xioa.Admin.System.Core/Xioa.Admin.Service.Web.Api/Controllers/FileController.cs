@@ -8,15 +8,23 @@ namespace Xioa.Admin.Service.Web.Api.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
+[DisableRequestSizeLimit]
+[RequestFormLimits(MultipartBodyLengthLimit = 104857600)] // 100MB
 public class FileController : ControllerBase
 {
     private readonly ILogger<FileController> _logger;
     private readonly IConfiguration _configuration;
-    
+
     // 允许的文件类型
-    private readonly string[] _allowedExtensions = { ".jpg", ".jpeg", ".png", ".pdf", ".doc", ".docx", ".xls", ".xlsx" };
-    // 最大文件大小 (10MB)
-    private const int MaxFileSize = 10 * 1024 * 1024;
+    private readonly string[] _allowedExtensions =
+    {
+        ".jpg", ".jpeg", ".png", ".pdf",
+        ".doc", ".docx", ".xls", ".xlsx",
+        ".zip", ".rar", ".7z" 
+    };
+
+    // 最大文件大小 (1GB)
+    private const int MaxFileSize = 10 * 1024 * 1024;  
 
     public FileController(ILogger<FileController> logger, IConfiguration configuration)
     {
@@ -32,20 +40,73 @@ public class FileController : ControllerBase
     /// <returns>上传结果</returns>
     [HttpPost("upload")]
     public async Task<IActionResult> UploadFile(
-        [Required] IFormFile files,
+        [Required] IFormFile file,
         string? description = null)
     {
         try
         {
             // 验证文件
-            var validationResult = ValidateFile(files);
+            var validationResult = ValidateFile(file);
             if (validationResult != null)
             {
                 return validationResult;
             }
 
             // 生成文件名
-            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(files.FileName)}";
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+
+            // 获取上传路径
+            var uploadPath = _configuration["FileStorage:UploadPath"]
+                             ?? Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+
+            // 确保目录存在
+            Directory.CreateDirectory(uploadPath);
+
+            // 完整文件路径
+            var filePath = Path.Combine(uploadPath, fileName);
+
+            // 保存文件
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            // 返回结果
+            return Ok(new
+            {
+                fileName = fileName,
+                originalName = file.FileName,
+                size = file.Length,
+                path = filePath,
+                description
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "File upload failed");
+            return StatusCode(500, "File upload failed");
+        }
+    }
+
+    /// <summary>
+    /// 多文件上传 - 单个文件请求
+    /// </summary>
+    [HttpPost("upload/multiple/single")]
+    public async Task<IActionResult> UploadSingleFileInMultiple(
+        [Required] IFormFile formFiles,  // 注意参数名要匹配
+        string? description = null)
+    {
+        try
+        {
+            // 验证文件
+            var validationResult = ValidateFile(formFiles);
+            if (validationResult != null)
+            {
+                return validationResult;
+            }
+
+            // 生成文件名
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(formFiles.FileName)}";
             
             // 获取上传路径
             var uploadPath = _configuration["FileStorage:UploadPath"] 
@@ -60,15 +121,15 @@ public class FileController : ControllerBase
             // 保存文件
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                await files.CopyToAsync(stream);
+                await formFiles.CopyToAsync(stream);
             }
 
             // 返回结果
             return Ok(new
             {
                 fileName = fileName,
-                originalName = files.FileName,
-                size = files.Length,
+                originalName = formFiles.FileName,
+                size = formFiles.Length,
                 path = filePath,
                 description
             });
@@ -103,14 +164,14 @@ public class FileController : ControllerBase
 
                 // 生成文件名
                 var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
-                
+
                 // 获取上传路径
-                var uploadPath = _configuration["FileStorage:UploadPath"] 
-                    ?? Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
-                
+                var uploadPath = _configuration["FileStorage:UploadPath"]
+                                 ?? Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+
                 // 确保目录存在
                 Directory.CreateDirectory(uploadPath);
-                
+
                 // 完整文件路径
                 var filePath = Path.Combine(uploadPath, fileName);
 
@@ -153,8 +214,8 @@ public class FileController : ControllerBase
         {
             // 获取临时目录
             var tempPath = Path.Combine(
-                _configuration["FileStorage:TempPath"] 
-                    ?? Path.Combine(Directory.GetCurrentDirectory(), "Temp"),
+                _configuration["FileStorage:TempPath"]
+                ?? Path.Combine(Directory.GetCurrentDirectory(), "Temp"),
                 fileId);
 
             // 确保目录存在
@@ -172,8 +233,8 @@ public class FileController : ControllerBase
             {
                 // 合并文件
                 var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
-                var uploadPath = _configuration["FileStorage:UploadPath"] 
-                    ?? Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+                var uploadPath = _configuration["FileStorage:UploadPath"]
+                                 ?? Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
                 Directory.CreateDirectory(uploadPath);
                 var finalPath = Path.Combine(uploadPath, fileName);
 
@@ -226,7 +287,7 @@ public class FileController : ControllerBase
     private async Task MergeChunksAsync(string tempPath, string targetPath, int totalChunks)
     {
         using var targetStream = new FileStream(targetPath, FileMode.Create);
-        
+
         for (int i = 1; i <= totalChunks; i++)
         {
             var chunkPath = Path.Combine(tempPath, $"chunk_{i}");

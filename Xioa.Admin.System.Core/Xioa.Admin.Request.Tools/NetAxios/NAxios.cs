@@ -3,21 +3,31 @@ using System.Text.Json;
 
 namespace Xioa.Admin.Request.Tools.NetAxios;
 
-public partial class NAxios : IAxios {
-    private static readonly JsonSerializerOptions JsonOptions = new() {
+public partial class NAxios : IAxios
+{
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
         PropertyNameCaseInsensitive = true, // 不区分大小写
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase, // 驼峰命名
         WriteIndented = false // 不需要缩进，减少数据大小
     };
 
-    private readonly HttpClient _httpClient;
+    public  HttpClient _httpClient { get; }
     private readonly NAxiosConfig _config;
     private readonly List<Func<HttpRequestMessage, Task<HttpRequestMessage>>> _requestInterceptors = new();
     private readonly List<Func<HttpResponseMessage, Task<HttpResponseMessage>>> _responseInterceptors = new();
 
-    public NAxios(NAxiosConfig? config = null) {
+    public NAxios(NAxiosConfig? config = null, bool ignoreSslErrors = false)
+    {
+        var handler = new HttpClientHandler();
+        if (ignoreSslErrors)
+        {
+            handler.ServerCertificateCustomValidationCallback =
+                (sender, cert, chain, sslPolicyErrors) => true;
+        }
+
         _config = config ?? new NAxiosConfig();
-        _httpClient = new HttpClient();
+        _httpClient = new HttpClient(handler);
 
         if (!string.IsNullOrEmpty(_config.BaseUrl))
         {
@@ -40,7 +50,8 @@ public partial class NAxios : IAxios {
     /// </summary>
     /// <param name="url">相对或绝对URL</param>
     /// <returns>完整的URL</returns>
-    public string BuildUrl(string url) {
+    public string BuildUrl(string url)
+    {
         if (Uri.TryCreate(url, UriKind.Absolute, out _))
         {
             return url;
@@ -63,7 +74,8 @@ public partial class NAxios : IAxios {
     /// <param name="url">原始URL</param>
     /// <param name="parameters">查询参数对象</param>
     /// <returns>带有查询参数的完整URL</returns>
-    private static string AppendQueryParameters(string url, object? parameters) {
+    private static string AppendQueryParameters(string url, object? parameters)
+    {
         if (parameters == null) return url;
 
         var queryString = string.Join("&", parameters.GetType()
@@ -79,7 +91,8 @@ public partial class NAxios : IAxios {
     /// </summary>
     /// <param name="data">要序列化的数据对象</param>
     /// <returns>JSON格式的StringContent</returns>
-    private static StringContent CreateJsonContent(object? data) {
+    private static StringContent CreateJsonContent(object? data)
+    {
         var json = data == null ? "{}" : JsonSerializer.Serialize(data, JsonOptions);
         return new StringContent(json, Encoding.UTF8, "application/json");
     }
@@ -90,7 +103,8 @@ public partial class NAxios : IAxios {
     /// <typeparam name="T">目标类型</typeparam>
     /// <param name="response">HTTP响应消息</param>
     /// <returns>反序列化后的对象</returns>
-    public static async Task<T?> DeserializeResponseAsync<T>(HttpResponseMessage response) {
+    public static async Task<T?> DeserializeResponseAsync<T>(HttpResponseMessage response)
+    {
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
         return JsonSerializer.Deserialize<T>(content, JsonOptions);
@@ -101,7 +115,8 @@ public partial class NAxios : IAxios {
     /// </summary>
     /// <param name="request">原始请求</param>
     /// <returns>处理后的请求</returns>
-    private async Task<HttpRequestMessage> ApplyRequestInterceptors(HttpRequestMessage request) {
+    private async Task<HttpRequestMessage> ApplyRequestInterceptors(HttpRequestMessage request)
+    {
         var currentRequest = request;
         foreach (var interceptor in _requestInterceptors)
         {
@@ -116,7 +131,8 @@ public partial class NAxios : IAxios {
     /// </summary>
     /// <param name="response">原始响应</param>
     /// <returns>处理后的响应</returns>
-    private async Task<HttpResponseMessage> ApplyResponseInterceptors(HttpResponseMessage response) {
+    private async Task<HttpResponseMessage> ApplyResponseInterceptors(HttpResponseMessage response)
+    {
         var currentResponse = response;
         foreach (var interceptor in _responseInterceptors)
         {
@@ -132,7 +148,8 @@ public partial class NAxios : IAxios {
     /// <param name="request">要发送的请求</param>
     /// <param name="cancellationToken"></param>
     /// <returns>HTTP响应消息</returns>
-    public async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken = default)
+    public async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request,
+        CancellationToken cancellationToken = default)
     {
         var retryCount = 0;
         while (true)
@@ -144,12 +161,12 @@ public partial class NAxios : IAxios {
 
                 var clonedRequest = await CloneRequestAsync(request);
                 var interceptedRequest = await ApplyRequestInterceptors(clonedRequest);
-                
+
                 // 发送请求时传入取消令牌
                 var response = await _httpClient.SendAsync(interceptedRequest, cancellationToken);
                 return await ApplyResponseInterceptors(response);
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
                 // 请求被取消，直接抛出异常
                 throw;
@@ -157,7 +174,7 @@ public partial class NAxios : IAxios {
             catch (Exception ex)
             {
                 retryCount++;
-                
+
                 if (!ShouldRetry(ex, retryCount))
                 {
                     throw;
@@ -168,19 +185,19 @@ public partial class NAxios : IAxios {
         }
     }
 
-   
-
     #endregion
 
     #region IAxios 实现
 
-    public async Task<T?> GetAsync<T>(string url, object? parameters = null, CancellationToken cancellationToken = default)
+    public async Task<T?> GetAsync<T>(string url, object? parameters = null,
+        CancellationToken cancellationToken = default)
     {
         var response = await GetAsync(url, parameters, cancellationToken);
         return await DeserializeResponseAsync<T>(response);
     }
 
-    public async Task<HttpResponseMessage> GetAsync(string url, object? parameters = null, CancellationToken cancellationToken = default)
+    public async Task<HttpResponseMessage> GetAsync(string url, object? parameters = null,
+        CancellationToken cancellationToken = default)
     {
         var finalUrl = BuildUrl(AppendQueryParameters(url, parameters));
         var request = new HttpRequestMessage(HttpMethod.Get, finalUrl);
@@ -193,7 +210,8 @@ public partial class NAxios : IAxios {
         return await DeserializeResponseAsync<T>(response);
     }
 
-    public async Task<HttpResponseMessage> PostAsync(string url, object? data = null, CancellationToken cancellationToken = default)
+    public async Task<HttpResponseMessage> PostAsync(string url, object? data = null,
+        CancellationToken cancellationToken = default)
     {
         var finalUrl = BuildUrl(url);
         var request = new HttpRequestMessage(HttpMethod.Post, finalUrl)
@@ -209,7 +227,8 @@ public partial class NAxios : IAxios {
         return await DeserializeResponseAsync<T>(response);
     }
 
-    public async Task<HttpResponseMessage> PutAsync(string url, object? data = null, CancellationToken cancellationToken = default)
+    public async Task<HttpResponseMessage> PutAsync(string url, object? data = null,
+        CancellationToken cancellationToken = default)
     {
         var finalUrl = BuildUrl(url);
         var request = new HttpRequestMessage(HttpMethod.Put, finalUrl)
@@ -219,13 +238,15 @@ public partial class NAxios : IAxios {
         return await SendRequestAsync(request, cancellationToken);
     }
 
-    public async Task<T?> DeleteAsync<T>(string url, object? parameters = null, CancellationToken cancellationToken = default)
+    public async Task<T?> DeleteAsync<T>(string url, object? parameters = null,
+        CancellationToken cancellationToken = default)
     {
         var response = await DeleteAsync(url, parameters, cancellationToken);
         return await DeserializeResponseAsync<T>(response);
     }
 
-    public async Task<HttpResponseMessage> DeleteAsync(string url, object? parameters = null, CancellationToken cancellationToken = default)
+    public async Task<HttpResponseMessage> DeleteAsync(string url, object? parameters = null,
+        CancellationToken cancellationToken = default)
     {
         var finalUrl = BuildUrl(AppendQueryParameters(url, parameters));
         var request = new HttpRequestMessage(HttpMethod.Delete, finalUrl);
@@ -236,11 +257,13 @@ public partial class NAxios : IAxios {
 
     #region 拦截器
 
-    public void AddRequestInterceptor(Func<HttpRequestMessage, Task<HttpRequestMessage>> interceptor) {
+    public void AddRequestInterceptor(Func<HttpRequestMessage, Task<HttpRequestMessage>> interceptor)
+    {
         _requestInterceptors.Add(interceptor);
     }
 
-    public void AddResponseInterceptor(Func<HttpResponseMessage, Task<HttpResponseMessage>> interceptor) {
+    public void AddResponseInterceptor(Func<HttpResponseMessage, Task<HttpResponseMessage>> interceptor)
+    {
         _responseInterceptors.Add(interceptor);
     }
 

@@ -1,5 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.IdentityModel.Tokens;
 using Xioa.Admin.Service.Web.Api.Services;
 using Microsoft.OpenApi.Models;
@@ -16,14 +17,12 @@ var builder = WebApplication.CreateBuilder(args);
 // 初始化 NLog
 builder.Logging.ClearProviders();
 builder.Logging.AddNLog(LoggerConfig.LoggerFileName);
-builder.Logging.SetMinimumLevel(LogLevel.Information);  // 设置最低日志级别为Information
-// builder.Logging.AddFilter("Microsoft", LogLevel.Warning);    // Microsoft命名空间下的日志最低级别为Warning
-// builder.Logging.AddFilter("System", LogLevel.Warning);       // System命名空间下的日志最低级别为Warning
+builder.Logging.SetMinimumLevel(LogLevel.Information);
 
 // 添加控制器服务
 builder.Services.AddControllers();
 
-builder.Services.AddEndpointsApiExplorer(); //最小Api
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "Xioa-Admin", Version = "v1" });
@@ -34,7 +33,7 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Enter JWT Bearer token **_only_**",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.Http,
-        Scheme = "bearer", // 必须是小写
+        Scheme = "bearer",
         BearerFormat = "JWT",
         Reference = new OpenApiReference {
             Type = ReferenceType.SecurityScheme,
@@ -42,8 +41,6 @@ builder.Services.AddSwaggerGen(options =>
         }
     };
     options.AddSecurityDefinition("Bearer", securityScheme);
-
-    // 添加全局安全需求
     options.AddSecurityRequirement(new OpenApiSecurityRequirement {
         {
             securityScheme, new[] { "Bearer" }
@@ -51,7 +48,7 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// 添加 JWT 身份验证服务
+// JWT配置
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -77,21 +74,53 @@ builder.Services.AddAuthentication(options =>
             {
                 var tokenType = context.Principal?.FindFirst(TokenType.Token_Type)?.Value;
                 if (tokenType != TokenType.Refresh) return Task.CompletedTask;
-                // 获取请求的路由
                 var requestedPath = context.HttpContext.Request.Path;
-
-                // 检查请求的路由是否为刷新令牌的路由
                 if (requestedPath != RefreshTokenApi.Router)
                 {
                     context.Fail("Refresh token used in the wrong context.");
                 }
-
                 return Task.CompletedTask;
             }
         };
     });
-//Token 策略
-builder.Services.ConfigureTokenServices();
+
+// 配置 Kestrel
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    // 设置请求体大小限制为100MB
+    serverOptions.Limits.MaxRequestBodySize = 100 * 1024 * 1024;
+    serverOptions.Limits.MaxRequestBufferSize = 100 * 1024 * 1024;
+    
+    // 禁用请求速率限制
+    serverOptions.Limits.MinRequestBodyDataRate = null;
+    serverOptions.Limits.MinResponseDataRate = null;
+    
+    // 增加超时时间
+    serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(10);
+    serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(10);
+});
+
+// 配置 HTTP 请求管道
+builder.Services.Configure<FormOptions>(x =>
+{
+    x.ValueLengthLimit = int.MaxValue;
+    x.MultipartBodyLengthLimit = 100 * 1024 * 1024; // 100MB
+    x.MultipartHeadersLengthLimit = int.MaxValue;
+    x.BufferBodyLengthLimit = int.MaxValue;
+});
+
+// 配置 IIS 集成
+builder.Services.Configure<IISServerOptions>(options =>
+{
+    options.MaxRequestBodySize = 100 * 1024 * 1024; // 100MB
+    options.AllowSynchronousIO = true;
+});
+
+// 配置 HTTP 客户端
+builder.Services.AddHttpClient("DefaultClient", client =>
+{
+    client.Timeout = TimeSpan.FromMinutes(10);
+});
 
 builder.AddAllServices();
 
@@ -103,13 +132,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseMiddleware<ExceptionHandlingMiddleware>(); // 注册异常处理中间件
-app.UseMiddleware<LoggingMiddleware>(); // 注册接口日志中间件
 
-app.UseHttpsRedirection();
+// 移除HTTPS重定向
+// app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<LoggingMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors();
 
 app.MapControllers();
 

@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Net.Sockets;
-using Xioa.Admin.Request.Tools.Helper;
+using Xioa.Admin.Request.Tools.Model;
 using Xioa.Admin.Request.Tools.NetAxios;
 
 namespace TestWebService;
 
-public class NAxiosFile
+public class NAxiosFiles
 {
     [Fact]
     public async Task TestMethod1()
@@ -38,25 +38,42 @@ public class NAxiosFile
                 return res;
             }
         }, false);
+       
         var filePath = "E:\\Test\\116.png";
-        using var fileStream = File.OpenRead(filePath);
-        var fileName = Path.GetFileName(filePath);
+        IEnumerable<FileStream> fileStreams = new[]
+        {
+            File.OpenRead(filePath), File.OpenRead(filePath)
+        };
+        var file1 = new FileUploadContent
+        {
+            FileStream = File.OpenRead(filePath),
+            FileName = "116.png",
+        };
+        var file2 = new FileUploadContent
+        {
+            FileStream = File.OpenRead(filePath),
+            FileName = "116.png"
+        };
+        // 多文件上传
+        var files = new List<FileUploadContent>
+        {
+            file1, //file2
+        };
+
 
         try
         {
-            // 单文件上传
+            // 多文件上传
 
             var result = await axios.UploadAsync<object>(
-                "/File/upload",
-                fileStream,
-                fileName,
+                "/File/upload/multiple",
+                files,
                 formData: new Dictionary<string, string>
                 {
                     { "description", "测试文件" }
-                },
-                apiFileName:"file"
+                },apiFileName:"files"
             );
-           
+
 
             Console.WriteLine("Upload completed successfully!");
         }

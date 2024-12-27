@@ -3,6 +3,9 @@
 namespace Xioa.Admin.Request.Tools.NetAxios;
 
 public interface IAxios {
+    
+    public  HttpClient _httpClient { get; }
+    
     #region GET请求
 
     Task<T?> GetAsync<T>(string url, object? parameters = null, CancellationToken cancellationToken = default);
@@ -41,9 +44,9 @@ public interface IAxios {
     
     #region 文件上传
     Task<T?> UploadAsync<T>(string url, Stream fileStream, string fileName, string? contentType = null, 
-        Dictionary<string, string>? formData = null, CancellationToken cancellationToken = default);
+        Dictionary<string, string>? formData = null, CancellationToken cancellationToken = default,string apiFileName = "file");
     
     Task<T?> UploadAsync<T>(string url, IEnumerable<FileUploadContent> files, 
-        Dictionary<string, string>? formData = null, CancellationToken cancellationToken = default);
+        Dictionary<string, string>? formData = null, CancellationToken cancellationToken = default,string apiFileName = "file");
     #endregion
 }
