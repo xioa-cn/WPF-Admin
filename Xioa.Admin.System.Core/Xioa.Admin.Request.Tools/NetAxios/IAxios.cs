@@ -11,29 +11,29 @@ public interface IAxios {
 
     #region GET请求
 
-    Task<T?> GetAsync<T>(string url, object? parameters = null, CancellationToken cancellationToken = default);
-    Task<HttpResponseMessage> GetAsync(string url, object? parameters = null, CancellationToken cancellationToken = default);
+    Task<T?> GetAsync<T>(string url, object? parameters = null, Dictionary<string, string>? headers = null);
+    Task<HttpResponseMessage> GetAsync(string url, object? parameters = null, Dictionary<string, string>? headers = null, CancellationToken cancellationToken = default);
 
     #endregion
 
     #region POST请求
 
-    Task<T?> PostAsync<T>(string url, object? data = null, CancellationToken cancellationToken = default);
-    Task<HttpResponseMessage> PostAsync(string url, object? data = null, CancellationToken cancellationToken = default);
+    Task<T?> PostAsync<T>(string url, object? data = null, Dictionary<string, string>? headers = null);
+    Task<HttpResponseMessage> PostAsync(string url, object? data = null, Dictionary<string, string>? headers = null, CancellationToken cancellationToken = default);
 
     #endregion
 
     #region PUT请求
 
-    Task<T?> PutAsync<T>(string url, object? data = null, CancellationToken cancellationToken = default);
-    Task<HttpResponseMessage> PutAsync(string url, object? data = null, CancellationToken cancellationToken = default);
+    Task<T?> PutAsync<T>(string url, object? data = null, Dictionary<string, string>? headers = null);
+    Task<HttpResponseMessage> PutAsync(string url, object? data = null, Dictionary<string, string>? headers = null, CancellationToken cancellationToken = default);
 
     #endregion
 
     #region DELETE请求
 
-    Task<T?> DeleteAsync<T>(string url, object? parameters = null, CancellationToken cancellationToken = default);
-    Task<HttpResponseMessage> DeleteAsync(string url, object? parameters = null, CancellationToken cancellationToken = default);
+    Task<T?> DeleteAsync<T>(string url, Dictionary<string, string>? headers = null);
+    Task<HttpResponseMessage> DeleteAsync(string url, object? parameters = null, Dictionary<string, string>? headers = null, CancellationToken cancellationToken = default);
 
     #endregion
 

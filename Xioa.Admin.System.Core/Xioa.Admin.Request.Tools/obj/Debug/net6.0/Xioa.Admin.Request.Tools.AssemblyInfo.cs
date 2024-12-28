@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Xioa.Admin.Request.Tools")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a769263d0c6af8ba2452699eb964bea87eaa1422")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+12e1a965ca766e0f8d0a1554321370e07c116659")]
 [assembly: System.Reflection.AssemblyProductAttribute("Xioa.Admin.Request.Tools")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Xioa.Admin.Request.Tools")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

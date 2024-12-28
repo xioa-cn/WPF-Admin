@@ -9,6 +9,7 @@ using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using SkiaSharp;
 using Xioa.Admin.Core.Services.Logging;
+using Xioa.Admin.Core.Services.Tokens;
 
 namespace Xioa.Admin.Core
 {
@@ -27,7 +28,8 @@ namespace Xioa.Admin.Core
 
         protected override async void OnStartup(StartupEventArgs e)
         {
-            
+            ApplicationAxiosConfig.Initialized();
+
             if (e.Args.Length > 0)
             {
                 // 程序接受外部参数
@@ -73,7 +75,7 @@ namespace Xioa.Admin.Core
             Current.DispatcherUnhandledException += (s, args) =>
             {
                 Logger.LogError("Dispatcher Unhandled Exception", args.Exception);
-                args.Handled = true;
+                //args.Handled = true;
             };
             MainWindowShow.Loaded += (s, args) =>
             {

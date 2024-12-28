@@ -2,7 +2,8 @@
     x:Class="Xioa.Admin.Core.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converter="clr-namespace:Xioa.Admin.Core.Views.MainView.Converter">
+    xmlns:converter="clr-namespace:Xioa.Admin.Core.Views.MainView.Converter"
+    xmlns:converters="clr-namespace:Xioa.Admin.Core.Converters">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -31,6 +32,7 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converter:LoginAuthToEnabledConverter x:Key="RouterIsEnabledConverter" />
             <converter:LoginAuthToVisibilityConverter x:Key="RouterVisibilityConverter" />
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

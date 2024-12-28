@@ -5,6 +5,7 @@ using Xioa.Admin.Core.Views.MainView;
 using Xioa.Admin.Core.WindowManager;
 using Xioa.Admin.Model.Model.Login;
 using HandyControl.Controls;
+using Xioa.Admin.Core.Services.Tokens.Http;
 
 namespace Xioa.Admin.Core.Views.LoginView;
 
@@ -26,26 +27,37 @@ public partial class LoginViewModel : ObservableObject
     [RelayCommand]
     private async Task Login(System.Windows.Window window)
     {
-        //TODO 请求后台验证用户信息
+        window.IsEnabled = false;
 
-        MainViewModel.LoginUser = new LoginUser()
+        try
         {
-            UserName = this.UserName,
-            Password = this.Password,
-            LoginAuth = LoginAuth.Admin
-        };
+            await LoginRequestService.Login();
 
-        if (!App.MainWindowShow.IsVisible)
-        {
+            MainViewModel.LoginUser = new LoginUser()
+            {
+                UserName = this.UserName,
+                Password = this.Password,
+                LoginAuth = LoginAuth.Admin
+            };
 
-            window.SwitchWindow(App.MainWindowShow);
+            if (!App.MainWindowShow.IsVisible)
+            {
 
+                window.SwitchWindow(App.MainWindowShow);
+
+                Growl.Success($"Login Success!! {UserName}");
+                return;
+            }
+
+            window.Close();
             Growl.Success($"Login Success!! {UserName}");
-            return;
+            await Task.CompletedTask;
         }
+        catch (System.Exception ex)
+        {
+            MessageBox.Show(ex.Message);
 
-        window.Close();
-        Growl.Success($"Login Success!! {UserName}");
-        await Task.CompletedTask;
+        }
+        window.IsEnabled = true;
     }
 }

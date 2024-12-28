@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Text.Json;
+using System.Net.Http.Headers;
 
 namespace Xioa.Admin.Request.Tools.NetAxios;
 
@@ -12,7 +13,7 @@ public partial class NAxios : IAxios
         WriteIndented = false // 不需要缩进，减少数据大小
     };
 
-    public  HttpClient _httpClient { get; }
+    public HttpClient _httpClient { get; }
     private readonly NAxiosConfig _config;
     private readonly List<Func<HttpRequestMessage, Task<HttpRequestMessage>>> _requestInterceptors = new();
     private readonly List<Func<HttpResponseMessage, Task<HttpResponseMessage>>> _responseInterceptors = new();
@@ -94,7 +95,9 @@ public partial class NAxios : IAxios
     private static StringContent CreateJsonContent(object? data)
     {
         var json = data == null ? "{}" : JsonSerializer.Serialize(data, JsonOptions);
-        return new StringContent(json, Encoding.UTF8, "application/json");
+        var content = new StringContent(json, Encoding.UTF8);
+        content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        return content;
     }
 
     /// <summary>
@@ -185,71 +188,125 @@ public partial class NAxios : IAxios
         }
     }
 
+
     #endregion
 
     #region IAxios 实现
 
-    public async Task<T?> GetAsync<T>(string url, object? parameters = null,
-        CancellationToken cancellationToken = default)
+    public async Task<T?> GetAsync<T>(string url, object? parameters = null, Dictionary<string, string>? headers = null)
     {
-        var response = await GetAsync(url, parameters, cancellationToken);
+        var response = await GetAsync(url, parameters, headers);
         return await DeserializeResponseAsync<T>(response);
     }
 
     public async Task<HttpResponseMessage> GetAsync(string url, object? parameters = null,
-        CancellationToken cancellationToken = default)
+        Dictionary<string, string>? headers = null, CancellationToken cancellationToken = default)
     {
         var finalUrl = BuildUrl(AppendQueryParameters(url, parameters));
         var request = new HttpRequestMessage(HttpMethod.Get, finalUrl);
+
+        // 添加请求头
+        if (headers != null)
+        {
+            RequestAddHeader(request, headers);
+        }
+
         return await SendRequestAsync(request, cancellationToken);
     }
 
-    public async Task<T?> PostAsync<T>(string url, object? data = null, CancellationToken cancellationToken = default)
+    public async Task<T?> PostAsync<T>(string url, object? data = null, Dictionary<string, string>? headers = null)
     {
-        var response = await PostAsync(url, data, cancellationToken);
+        var response = await PostAsync(url, data, headers);
         return await DeserializeResponseAsync<T>(response);
     }
 
     public async Task<HttpResponseMessage> PostAsync(string url, object? data = null,
-        CancellationToken cancellationToken = default)
+        Dictionary<string, string>? headers = null, CancellationToken cancellationToken = default)
     {
         var finalUrl = BuildUrl(url);
+        var content = CreateJsonContent(data);
+
         var request = new HttpRequestMessage(HttpMethod.Post, finalUrl)
         {
-            Content = CreateJsonContent(data)
+            Content = content
         };
+
+        // 添加请求头
+        if (headers != null)
+        {
+            RequestAddHeader(request, headers);
+        }
+
         return await SendRequestAsync(request, cancellationToken);
     }
 
-    public async Task<T?> PutAsync<T>(string url, object? data = null, CancellationToken cancellationToken = default)
+    private static void RequestAddHeader(HttpRequestMessage requestMessage, Dictionary<string, string> headers)
     {
-        var response = await PutAsync(url, data, cancellationToken);
+        foreach (var header in headers)
+        {
+            switch (header.Key.ToLowerInvariant())
+            {
+                // 内容头 - 需要设置到 Content.Headers
+                case "content-type":
+                case "content-length":
+                case "content-language":
+                case "content-encoding":
+                case "content-range":
+                case "content-location":
+                case "content-md5":
+                    // 跳过内容头，因为已经在 CreateJsonContent 中设置
+                    continue;
+
+                // 请求头 - 设置到 Request.Headers
+                default:
+                    var result = requestMessage.Headers.TryAddWithoutValidation(header.Key, header.Value);
+                    break;
+            }
+        }
+    }
+
+    public async Task<T?> PutAsync<T>(string url, object? data = null, Dictionary<string, string>? headers = null)
+    {
+        var response = await PutAsync(url, data, headers);
         return await DeserializeResponseAsync<T>(response);
     }
 
     public async Task<HttpResponseMessage> PutAsync(string url, object? data = null,
-        CancellationToken cancellationToken = default)
+        Dictionary<string, string>? headers = null, CancellationToken cancellationToken = default)
     {
         var finalUrl = BuildUrl(url);
         var request = new HttpRequestMessage(HttpMethod.Put, finalUrl)
         {
             Content = CreateJsonContent(data)
         };
+
+        // 添加请求头
+        if (headers != null)
+        {
+            RequestAddHeader(request, headers);
+        }
+
         return await SendRequestAsync(request, cancellationToken);
     }
 
-    public async Task<T?> DeleteAsync<T>(string url, object? parameters = null,
-        CancellationToken cancellationToken = default)
+    public async Task<T?> DeleteAsync<T>(string url, Dictionary<string, string>? headers = null)
     {
-        var response = await DeleteAsync(url, parameters, cancellationToken);
+        var response = await DeleteAsync(url, null, headers);
         return await DeserializeResponseAsync<T>(response);
     }
 
     public async Task<HttpResponseMessage> DeleteAsync(string url, object? parameters = null,
-        CancellationToken cancellationToken = default)
+        Dictionary<string, string>? headers = null, CancellationToken cancellationToken = default)
     {
         var finalUrl = BuildUrl(AppendQueryParameters(url, parameters));
         var request = new HttpRequestMessage(HttpMethod.Delete, finalUrl);
+
+        // 添加请求头
+        if (headers != null)
+        {
+            RequestAddHeader(request, headers);
+        }
+
         return await SendRequestAsync(request, cancellationToken);
     }
 

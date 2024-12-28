@@ -18,6 +18,7 @@ using Xioa.Admin.Core.Views.WeldingMonitor;
 using Xioa.Admin.Core.Views.XioaIcon;
 using Xioa.Admin.Core.Views.VsuaButton;
 using Xioa.Admin.Core.Views.XUserControls.ControlsPage;
+using Xioa.Admin.Core.Views.RefreshTokens;
 
 namespace Xioa.Admin.Core.Views.MainView;
 
@@ -25,7 +26,8 @@ namespace Xioa.Admin.Core.Views.MainView;
 /// @author Xioa
 /// @date  2024年11月27日
 /// </summary>
-public partial class MainViewModel : ObservableObject {
+public partial class MainViewModel : ObservableObject
+{
     public static ObservableCollection<TreeItemModel> TreeItemModels { get; } =
         new ObservableCollection<TreeItemModel>() {
             new TreeItemModel() {
@@ -103,7 +105,19 @@ public partial class MainViewModel : ObservableObject {
                     }
                 }
             },
-
+            new TreeItemModel()
+            {
+                Content = "服务",
+                Icon= IconPaths.RefreshToken,
+                Children =
+                {
+                    new TreeItemModel()
+                    {
+                        Content = "Token刷新",
+                        Page =new RefreshTokenPage(),
+                    }
+                }
+            },
 
             new TreeItemModel() {
                 Content = "系统工具",
@@ -217,7 +231,8 @@ public partial class MainViewModel : ObservableObject {
 
     private static LoginUser? _loginUser = null;
 
-    public static LoginUser? LoginUser {
+    public static LoginUser? LoginUser
+    {
         get => _loginUser;
         set
         {
@@ -226,6 +241,7 @@ public partial class MainViewModel : ObservableObject {
         }
     }
 
-    private static void AuthChangeView() {
+    private static void AuthChangeView()
+    {
     }
 }
