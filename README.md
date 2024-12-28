@@ -9,7 +9,7 @@ Xioa-Admin 是一个基于 WPF .net Core C# 的中后台解决方案，目标是
 - ORM: EF Core
 - 日志：前台 Xioa.WPF.XLog（轻量级实现日志功能） 后台 Nlog
 - 请求：Xioa.NAxios （axios.js 功能 .net实现）
-- 身份验证：JWT
+- 身份验证：JWT （RefreshToken模式）
 - 图表: LiveCharts2.0
 - 数据库: SQLite
 - UI组件: Handycontrol
