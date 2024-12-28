@@ -31,27 +31,29 @@ public partial class LoginViewModel : ObservableObject
 
         try
         {
-            await LoginRequestService.Login();
+            var result = await LoginRequestService.Login();
 
-            MainViewModel.LoginUser = new LoginUser()
+            if (result)
             {
-                UserName = this.UserName,
-                Password = this.Password,
-                LoginAuth = LoginAuth.Admin
-            };
+                MainViewModel.LoginUser = new LoginUser()
+                {
+                    UserName = this.UserName,
+                    Password = this.Password,
+                    LoginAuth = LoginAuth.Admin
+                };
 
-            if (!App.MainWindowShow.IsVisible)
-            {
+                if (!App.MainWindowShow.IsVisible)
+                {
 
-                window.SwitchWindow(App.MainWindowShow);
+                    window.SwitchWindow(App.MainWindowShow);
 
+                    Growl.Success($"Login Success!! {UserName}");
+                    return;
+                }
+
+                window.Close();
                 Growl.Success($"Login Success!! {UserName}");
-                return;
             }
-
-            window.Close();
-            Growl.Success($"Login Success!! {UserName}");
-            await Task.CompletedTask;
         }
         catch (System.Exception ex)
         {

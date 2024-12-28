@@ -13,7 +13,7 @@ public static class LoginRequestService
         public string? RefreshToken { get; set; }
     }
 
-    public static async Task Login(string userName = "user", string password = "password")
+    public static async Task<bool> Login(string userName = "user", string password = "password")
     {
         try
         {
@@ -26,12 +26,15 @@ public static class LoginRequestService
             if (response != null)
             {
                 await Task.Run(() => RefreshTokenMethod(response));
+                return true;
             }
+            return false;
         }
         catch (Exception ex)
         {
             // 处理登录错误
             MessageBox.Show($"登录失败: {ex.Message}");
+            return false;
         }
     }
 
