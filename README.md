@@ -25,6 +25,8 @@ Xioa-Admin 是一个基于 WPF .net Core C# 的中后台解决方案，目标是
 ![页固钉](ProjectImg/页固钉.jpg)
 -页弹出与回溯
 ![页弹出与回溯](ProjectImg/页弹出与回溯.jpg)
+-甘特图
+![页弹出与回溯](ProjectImg/甘特图.png)
 
 ## 系统架构 🏗️
 
