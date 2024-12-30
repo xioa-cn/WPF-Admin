@@ -11,6 +11,12 @@
     <Compile Update="Views\ContentPage\WriteMLPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\GanttChart\Components\GanttChartControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\GanttChart\GanttChartPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\MainView\Components\BreadCrumbBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -89,6 +95,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ContentPage\WriteMLPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\GanttChart\Components\GanttChartControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\GanttChart\GanttChartPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainView\Components\BreadCrumbBar.xaml">

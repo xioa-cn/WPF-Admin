@@ -19,6 +19,7 @@ using Xioa.Admin.Core.Views.XioaIcon;
 using Xioa.Admin.Core.Views.VsuaButton;
 using Xioa.Admin.Core.Views.XUserControls.ControlsPage;
 using Xioa.Admin.Core.Views.RefreshTokens;
+using Xioa.Admin.Core.Views.GanttChart;
 
 namespace Xioa.Admin.Core.Views.MainView;
 
@@ -93,6 +94,19 @@ public partial class MainViewModel : ObservableObject
                         IsPersistence = false,
                     }
                 }
+            },
+            new TreeItemModel()
+            {
+                Content = "甘特图",
+                Icon = IconPaths.GanttChart,
+                Children =
+                {
+                    new TreeItemModel()   {
+                        Content ="甘特图",
+                        Page =new GanttChartPage(),
+                    }            
+                }
+
             },
 
             new TreeItemModel() {

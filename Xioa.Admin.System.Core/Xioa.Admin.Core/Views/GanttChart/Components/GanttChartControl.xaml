@@ -1,0 +1,114 @@
+﻿<UserControl
+    x:Class="Xioa.Admin.Core.Views.GanttChart.Components.GanttChartControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:convert="clr-namespace:Xioa.Admin.Core.Views.GanttChart.Convert"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Xioa.Admin.Core.Views.GanttChart.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <convert:MarginAddTenConvert x:Key="MarginConvert" />
+        <convert:TaskMensToStringConvert x:Key="TaskMesConvert" />
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  月份标题  -->
+            <Grid Background="#2D4B3D">
+                <ItemsControl ItemsSource="{Binding Months}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Width="100"
+                                Margin="0"
+                                Padding="0"
+                                BorderBrush="#3D5B4D"
+                                BorderThickness="0,0,1,0">
+                                <TextBlock
+                                    Padding="10"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    Foreground="White"
+                                    Text="{Binding Month}" />
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+
+            <!--  任务条  -->
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding Tasks}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="40">
+                            <Grid.ToolTip>
+                                <ToolTip>
+                                    <TextBlock Text="{Binding StatusDescription}" />
+                                </ToolTip>
+                            </Grid.ToolTip>
+
+                            <Border
+                                Width="{Binding Width}"
+                                Margin="{Binding Margin}"
+                                HorizontalAlignment="Left"
+                                Background="{Binding Color}"
+                                CornerRadius="4">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+
+
+                                    <!--  状态信息  -->
+                                    <StackPanel
+                                        Grid.Column="1"
+                                        Margin="0,0,10,0"
+                                        Orientation="Horizontal">
+                                        <TextBlock
+                                            VerticalAlignment="Center"
+                                            Foreground="White"
+                                            Text="{Binding StatusText}" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <!--  日期和进度信息  -->
+                            <StackPanel Margin="{Binding Margin, Converter={StaticResource MarginConvert}}" Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    Text="{Binding DateRange}" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    Text="{Binding Name}" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    Text="{Binding TaskMen, Converter={StaticResource TaskMesConvert}}" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    Text="{Binding Progress, StringFormat={}{0}%}" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

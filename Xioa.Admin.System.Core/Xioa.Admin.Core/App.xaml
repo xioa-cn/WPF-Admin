@@ -9,20 +9,14 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" /> -->
                 <ResourceDictionary Source="pack://application:,,,/Xioa.Admin.lib;component/Themes/Generic.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/Xioa.Admin.Core;component/Views/MainView/Themes/Style.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/Xioa.Admin.Core;component/Views/LoginView/Themes/Style.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/Xioa.Admin.Core;component/Views/CarouselView/Themes/Style.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/Xioa.Admin.Core;component/Views/DataVsualization/Themes/Style.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/Xioa.Admin.Core;component/Views/MainView/Themes/BaseTheme.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Xioa.Admin.Core;component/Views/MainView/Themes/Style.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Xioa.Admin.Core;component/Views/LoginView/Themes/Style.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Xioa.Admin.Core;component/Views/CarouselView/Themes/Style.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Xioa.Admin.Core;component/Views/DataVsualization/Themes/Style.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Xioa.Admin.Core;component/Views/MainView/Themes/BaseTheme.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
 
-                <ResourceDictionary
-                    Source="pack://application:,,,/Xioa.Admin.Core;component/Views/XUserControls/Themes/XUserControlsThemes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Xioa.Admin.Core;component/Views/XUserControls/Themes/XUserControlsThemes.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
             <converter:ConvertToDoubleConverter x:Key="ConvertToDouble" Increment="10" />
@@ -32,7 +26,7 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converter:LoginAuthToEnabledConverter x:Key="RouterIsEnabledConverter" />
             <converter:LoginAuthToVisibilityConverter x:Key="RouterVisibilityConverter" />
-            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
