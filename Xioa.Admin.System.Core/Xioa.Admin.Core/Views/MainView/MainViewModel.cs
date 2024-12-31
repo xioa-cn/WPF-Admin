@@ -9,6 +9,7 @@ using Xioa.Admin.Core.Views.DataSearch;
 using Xioa.Admin.Core.Views.DataSkip;
 using Xioa.Admin.Core.Views.DataVsualization;
 using Xioa.Admin.Core.Views.DialogView;
+using Xioa.Admin.Core.Views.DragPicture;
 using Xioa.Admin.Core.Views.LiveChartsTemplate;
 using Xioa.Admin.Model.Model.Login;
 using Xioa.Admin.Core.Views.ExcelView;
@@ -125,6 +126,10 @@ public partial class MainViewModel : ObservableObject {
                     new TreeItemModel() {
                         Content = "百分比宽高",
                         Page = new PercentSizePage(),
+                    },
+                    new TreeItemModel() {
+                        Content = "图片拖入",
+                        Page = new DragPicturePage()
                     }
                 }
             },

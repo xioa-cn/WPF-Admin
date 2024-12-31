@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="Xioa.Admin.Core.Views.DragPicture.DragPicturePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Xioa.Admin.Core.Views.DragPicture"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="DragPicturePage"
+    mc:Ignorable="d">
+    <Border
+        AllowDrop="True"
+        DragOver="Image_DragOver"
+        Drop="Image_Drop">
+        <Grid>
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="20">
+                请拖入图片
+            </TextBlock>
+            <Image
+                Name="displayImage"
+                AllowDrop="True"
+                Stretch="Uniform" />
+        </Grid>
+    </Border>
+</Page>
