@@ -20,6 +20,7 @@ using Xioa.Admin.Core.Views.VsuaButton;
 using Xioa.Admin.Core.Views.XUserControls.ControlsPage;
 using Xioa.Admin.Core.Views.RefreshTokens;
 using Xioa.Admin.Core.Views.GanttChart;
+using Xioa.Admin.Core.Views.TopicView.Views;
 
 namespace Xioa.Admin.Core.Views.MainView;
 
@@ -209,10 +210,20 @@ public partial class MainViewModel : ObservableObject
                         Children = {
                             new TreeItemModel() {
                                 Page = new TopicView.TopicView(),
-                                Content = "配色方案",
+                                Content = "主题方案",
                                 Icon = IconPaths.ColorPalette, LoginAuth = LoginAuth.Admin,
                             }
                         }
+                    },
+                    new TreeItemModel()
+                    {
+                        Content = "渐变配色",
+                        Page = new BlendentPage(),
+                    },
+                    new TreeItemModel()
+                    {
+                        Page = new ColorSystemPage(),
+                        Content = "配色系列"
                     }
                 }
             },

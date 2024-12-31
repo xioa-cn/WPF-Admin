@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.lib\\Xioa.Admin.lib.csproj": {}
+    "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.lib\\Xioa.Admin.lib.csproj": {}
   },
   "projects": {
-    "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.lib\\Xioa.Admin.lib.csproj": {
+    "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.lib\\Xioa.Admin.lib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.lib\\Xioa.Admin.lib.csproj",
+        "projectUniqueName": "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.lib\\Xioa.Admin.lib.csproj",
         "projectName": "Xioa.Admin.lib",
-        "projectPath": "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.lib\\Xioa.Admin.lib.csproj",
-        "packagesPath": "D:\\nuget",
-        "outputPath": "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.lib\\obj\\",
+        "projectPath": "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.lib\\Xioa.Admin.lib.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.lib\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\SDK\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\刘\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -35,7 +39,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net6.0-windows7.0": {
@@ -59,7 +69,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

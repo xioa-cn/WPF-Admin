@@ -26,6 +26,12 @@
     <Compile Update="Views\RefreshTokens\RefreshTokenPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\TopicView\Views\BlendentPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\TopicView\Views\ColorSystemPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\VsuaButton\Components\Button1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -110,6 +116,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\RefreshTokens\RefreshTokenPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\TopicView\Views\BlendentPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\TopicView\Views\ColorSystemPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\VsuaButton\Components\Button1.xaml">
