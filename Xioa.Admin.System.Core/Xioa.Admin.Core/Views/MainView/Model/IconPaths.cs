@@ -131,5 +131,33 @@ public static class IconPaths
     /// </summary>
     public const string GanttChart = 
         "M4 5h16v2H4zm0 6h4v2H4zm0 6h8v2H4zm6-6h10v2H10zm4 6h6v2h-6z";
+    
+    
+    
+    /// <summary>
+    /// 关于信息图标
+    /// </summary>
+    public const string About = 
+        "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z";
+
+    /// <summary>
+    /// 版本信息图标
+    /// </summary>
+    public const string Version = 
+        "M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z";
+
+    /// <summary>
+    /// 系统信息图标
+    /// </summary>
+    public const string SystemInfo = 
+        "M13 7h-2v2h2V7zm0 4h-2v6h2v-6zm4-9.99L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z";
+
+    /// <summary>
+    /// 许可证图标
+    /// </summary>
+    public const string License = 
+        "M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z";
+
+
 
 }

@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Xioa.Admin.Core.Views.ContentPage;
 using Xioa.Admin.Core.Views.MainView.Model;
 using System.Collections.ObjectModel;
+using Xioa.Admin.Core.Views.AboutShield;
 using Xioa.Admin.Core.Views.AntDiagram;
 using Xioa.Admin.Core.Views.BaiDuMap;
 using Xioa.Admin.Core.Views.DataSearch;
@@ -29,8 +30,7 @@ namespace Xioa.Admin.Core.Views.MainView;
 /// @author Xioa
 /// @date  2024年11月27日
 /// </summary>
-public partial class MainViewModel : ObservableObject
-{
+public partial class MainViewModel : ObservableObject {
     public static ObservableCollection<TreeItemModel> TreeItemModels { get; } =
         new ObservableCollection<TreeItemModel>() {
             new TreeItemModel() {
@@ -97,18 +97,15 @@ public partial class MainViewModel : ObservableObject
                     }
                 }
             },
-            new TreeItemModel()
-            {
+            new TreeItemModel() {
                 Content = "甘特图",
                 Icon = IconPaths.GanttChart,
-                Children =
-                {
-                    new TreeItemModel()   {
-                        Content ="甘特图",
-                        Page =new GanttChartPage(),
-                    }            
+                Children = {
+                    new TreeItemModel() {
+                        Content = "甘特图",
+                        Page = new GanttChartPage(),
+                    }
                 }
-
             },
 
             new TreeItemModel() {
@@ -121,16 +118,13 @@ public partial class MainViewModel : ObservableObject
                     }
                 }
             },
-            new TreeItemModel()
-            {
+            new TreeItemModel() {
                 Content = "服务",
-                Icon= IconPaths.RefreshToken,
-                Children =
-                {
-                    new TreeItemModel()
-                    {
+                Icon = IconPaths.RefreshToken,
+                Children = {
+                    new TreeItemModel() {
                         Content = "Token刷新",
-                        Page =new RefreshTokenPage(),
+                        Page = new RefreshTokenPage(),
                     }
                 }
             },
@@ -216,13 +210,11 @@ public partial class MainViewModel : ObservableObject
                             }
                         }
                     },
-                    new TreeItemModel()
-                    {
+                    new TreeItemModel() {
                         Content = "渐变配色",
                         Page = new BlendentPage(),
                     },
-                    new TreeItemModel()
-                    {
+                    new TreeItemModel() {
                         Page = new ColorSystemPage(),
                         Content = "配色系列"
                     },
@@ -255,14 +247,19 @@ public partial class MainViewModel : ObservableObject
                         Icon = IconPaths.VisionPro
                     }
                 }
+            },
+            
+            new TreeItemModel() {
+                Page = new AboutPage(),
+                Content = "关于X-A",
+                Icon = IconPaths.About
             }
         };
 
 
     private static LoginUser? _loginUser = null;
 
-    public static LoginUser? LoginUser
-    {
+    public static LoginUser? LoginUser {
         get => _loginUser;
         set
         {
@@ -271,7 +268,6 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    private static void AuthChangeView()
-    {
+    private static void AuthChangeView() {
     }
 }

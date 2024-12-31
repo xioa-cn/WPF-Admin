@@ -1,0 +1,211 @@
+﻿<Page
+    x:Class="Xioa.Admin.Core.Views.AboutShield.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:com="clr-namespace:Xioa.Admin.Core.Views.AboutShield.Components.Shield"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Xioa.Admin.Core.Views.AboutShield"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="AboutPage"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Xioa.Admin.Core;component/Views/AboutShield/Components/Shield/Shield.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Margin="20">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="30"
+                    TextWrapping="Wrap">
+                    欢迎使用Xioa.Admin.Core
+                </TextBlock>
+                <TextBlock
+                    Margin="30"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    TextWrapping="Wrap">
+                    Xioa-Admin 是一个基于 WPF .net Core C# 的中后台解决方案，目标是为开发中大型项目提供开箱即用的解决方案。包括二次封装组件、utils、动态菜单、权限校验、按钮级别权限控制等功能。项目会使用前端较新的技术栈，可以作为项目的启动模版，以帮助你快速搭建企业级中后台产品原型。也可以作为一个示例，用于学习 WPF .net Core C# 等主流技术。该项目会持续跟进最新技术，并将其应用在项目中
+                </TextBlock>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontSize="20"
+                    TextWrapping="Wrap">
+                    <Run Text="技术栈" />
+                </TextBlock>
+                <WrapPanel
+                    Margin="100,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="6.0"
+                        StatusBackground="#7E72F5"
+                        Subject="Dotnet"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="10.0"
+                        StatusBackground="#44CC11"
+                        Subject="C#"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="HandyControl"
+                        StatusBackground="#EF6B6B"
+                        Subject="UI"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="CommunityToolkit.Mvvm"
+                        StatusBackground="#D9480F"
+                        Subject="MVVM"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="Xioa.WPF.AttachedBehaviors"
+                        StatusBackground="#862E9C"
+                        Subject="Behaviors"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="EFCore"
+                        StatusBackground="#38D9A9"
+                        Subject="ORM"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="SQlite"
+                        StatusBackground="#FFD43B"
+                        Subject="DB"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="LiveCharts2.0"
+                        StatusBackground="#F06595"
+                        Subject="Chart"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="EPPlus"
+                        StatusBackground="#54CD72"
+                        Subject="Excel"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="Xioa.WPF.XLog"
+                        StatusBackground="#66B8D4"
+                        Subject="Log"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="Xioa.NAxios"
+                        StatusBackground="#A9E34B"
+                        Subject="Request"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="Asp.Net Core"
+                        StatusBackground="#D0BFFF"
+                        Subject="Api"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="JWT"
+                        StatusBackground="#DA77F2"
+                        Subject="Auth"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="NLog"
+                        StatusBackground="#FFC9C9"
+                        Subject="Logger"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="xunit"
+                        StatusBackground="#C92A2A"
+                        Subject="Test"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="RefreshToken"
+                        StatusBackground="#C2255C"
+                        Subject="Token"
+                        SubjectBackground="#555555" />
+                    <com:Shield
+                        Height="30"
+                        Margin="10"
+                        Status="ZXing.Net"
+                        StatusBackground="#FF922B"
+                        Subject="Code"
+                        SubjectBackground="#555555" />
+                </WrapPanel>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <TextBlock FontSize="20" TextWrapping="Wrap">
+                    <Run Text="Github :" />
+                    <Hyperlink NavigateUri="https://github.com/xioa-cn/WPF-Admin" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Run Text="Github上是最新的源代码，地址为：https://github.com/xioa-cn/WPF-Admin" />
+                    </Hyperlink>
+                </TextBlock>
+
+                <com:Shield
+                    Height="30"
+                    Margin="10"
+                    HorizontalAlignment="Center"
+                    Status="V1.0.0"
+                    StatusBackground="#0971B4"
+                    Subject="Verison"
+                    SubjectBackground="#555555">
+                    <com:Shield.Icon>
+                        <Path Stretch="Uniform" Stroke="#FFE183">
+                            <Path.Data>
+                                <Geometry>
+                                    M464.491986 419.473677c-0.229221-0.413416-0.462534-0.843204-0.694825-1.267876 0.772596-0.12689 1.545192-0.25071 2.321882-0.360204C430.724928 353.155249 309.073264 140.200112 309.073264 140.200112l-1.37737 2.070148c-0.164752-0.286526-0.25071-0.442068-0.25071-0.442068l-84.833107 127.295198 123.078153 213.007325C345.691253 482.130715 401.760247 428.421466 464.491986 419.473677L464.491986 419.473677zM678.308747 482.130715l123.079176-213.007325L716.553793 141.828192c0 0-121.651664 212.954113-157.048849 277.645484C622.240777 428.421466 678.308747 482.130715 678.308747 482.130715L678.308747 482.130715zM615.43886 261.876336l72.420403-127.295198L335.924819 134.581138l72.420403 127.295198L615.43886 261.876336zM512.159636 432.925037c-126.059044 0-228.246401 102.19145-228.246401 228.246401 0 126.055974 102.187357 228.246401 228.246401 228.246401 126.055974 0 228.246401-102.190427 228.246401-228.246401C740.406037 535.116487 638.21561 432.925037 512.159636 432.925037L512.159636 432.925037zM512.159636 837.492212c-97.381911 0-176.319751-78.942957-176.319751-176.320775 0-97.376795 78.93784-176.315658 176.319751-176.315658 97.377818 0 176.315658 78.938863 176.315658 176.315658C688.475294 758.549256 609.53643 837.492212 512.159636 837.492212L512.159636 837.492212zM511.342014 497.226528l-44.63764 95.741551-104.178711 17.508769 77.262688 72.040756-15.546068 104.489796 92.391247-51.222615 94.571912 47.071062-20.163225-103.69571 73.995271-75.394131-104.854093-12.871145L511.342014 497.226528zM511.342014 497.226528
+                                </Geometry>
+                            </Path.Data>
+                        </Path>
+                    </com:Shield.Icon>
+                </com:Shield>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

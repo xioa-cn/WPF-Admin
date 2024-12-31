@@ -6225,7 +6225,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "包 \"Newtonsoft.Json\" 9.0.1 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "message": "Package 'Newtonsoft.Json' 9.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
       "libraryId": "Newtonsoft.Json",
       "targetGraphs": [
         "net6.0"
@@ -6235,7 +6235,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "包 \"System.Net.Http\" 4.3.0 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-7jgj-8wvc-jh57",
+      "message": "Package 'System.Net.Http' 4.3.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-7jgj-8wvc-jh57",
       "libraryId": "System.Net.Http",
       "targetGraphs": [
         "net6.0"
@@ -6245,7 +6245,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "包 \"System.Text.RegularExpressions\" 4.3.0 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-cmhx-cq75-c4mj",
+      "message": "Package 'System.Text.RegularExpressions' 4.3.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-cmhx-cq75-c4mj",
       "libraryId": "System.Text.RegularExpressions",
       "targetGraphs": [
         "net6.0"
