@@ -22,6 +22,7 @@ using Xioa.Admin.Core.Views.XUserControls.ControlsPage;
 using Xioa.Admin.Core.Views.RefreshTokens;
 using Xioa.Admin.Core.Views.GanttChart;
 using Xioa.Admin.Core.Views.GetColorUtil;
+using Xioa.Admin.Core.Views.PercentSize;
 using Xioa.Admin.Core.Views.TopicView.Views;
 
 namespace Xioa.Admin.Core.Views.MainView;
@@ -115,6 +116,15 @@ public partial class MainViewModel : ObservableObject {
                     new TreeItemModel() {
                         Content = "登录组件",
                         Page = new UseQQComboBox(),
+                    },
+                    new TreeItemModel()
+                    {
+                        Content = "图形Border",
+                        Page = new ShapeBorder.ShapeBorderPage()
+                    },
+                    new TreeItemModel() {
+                        Content = "百分比宽高",
+                        Page = new PercentSizePage(),
                     }
                 }
             },

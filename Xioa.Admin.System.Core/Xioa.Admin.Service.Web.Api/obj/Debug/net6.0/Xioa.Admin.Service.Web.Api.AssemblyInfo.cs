@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Xioa.Admin.Service.Web.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+178ff70c1ec4f6eb31af0e5d4ad486e7b4fd210a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+983b9b7e036b8f46916477e4f1228e58b2decd5a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Xioa.Admin.Service.Web.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Xioa.Admin.Service.Web.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
