@@ -6,17 +6,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using System.Diagnostics;
-using HandyControl.Controls;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Threading.Tasks;
 
 namespace Xioa.Admin.Core.Views.GetColorUtil.Component;
 
-public partial class GetColors : UserControl
-{
+public partial class GetColors : UserControl {
     public ICommand CopyColorCommand { get; set; }
-    private DispatcherTimer timer;
+    private DispatcherTimer? _timer;
 
     [DllImport("user32.dll")]
     private static extern bool GetCursorPos(out POINT lpPoint);
@@ -31,21 +29,27 @@ public partial class GetColors : UserControl
     private static extern int ReleaseDC(IntPtr hwnd, IntPtr hdc);
 
     [StructLayout(LayoutKind.Sequential)]
-    private struct POINT
-    {
+    private struct POINT {
         public int X;
         public int Y;
     }
 
-    public GetColors()
-    {
+    public GetColors() {
         InitializeComponent();
-        InitializeTimer();
 
         this.Loaded += (s, e) =>
         {
             this.Focus();
             Keyboard.Focus(this);
+            InitializeTimer();
+        };
+
+        this.Unloaded += (s, e) =>
+        {
+            if(_timer is null ) return;
+            _timer.Stop();
+            _timer.Tick -= Timer_Tick;
+            _timer = null;
         };
 
         this.Focusable = true;
@@ -63,7 +67,7 @@ public partial class GetColors : UserControl
 
         this.LostFocus += GetColors_LostFocus;
         this.GotFocus += GetColors_GotFocus;
-        soueceColor.ItemsSource = colors;
+        soueceColor.ItemsSource = Colors;
         CopyColorCommand = new RelayCommand<string>(CopyColor);
 
         // 添加 CheckBox 状态改变事件处理
@@ -71,9 +75,8 @@ public partial class GetColors : UserControl
         GetForuse.Unchecked += GetForuse_UnCheckedChanged;
     }
 
-    private void GetForuse_UnCheckedChanged(object sender, RoutedEventArgs e)
-    {
-        if (JustNowGotFocus)
+    private void GetForuse_UnCheckedChanged(object sender, RoutedEventArgs e) {
+        if (_justNowGotFocus)
             Dispatcher.InvokeAsync(async () =>
             {
                 await Task.Delay(50);
@@ -81,14 +84,13 @@ public partial class GetColors : UserControl
             });
     }
 
-    private void GetForuse_CheckedChanged(object sender, RoutedEventArgs e)
-    {
-
+    private void GetForuse_CheckedChanged(object sender, RoutedEventArgs e) {
     }
-    private bool JustNowGotFocus = false;
-    private void GetColors_GotFocus(object sender, RoutedEventArgs e)
-    {
-        JustNowGotFocus = true;
+
+    private bool _justNowGotFocus = false;
+
+    private void GetColors_GotFocus(object sender, RoutedEventArgs e) {
+        _justNowGotFocus = true;
         var result = this.Focusable;
         Dispatcher.InvokeAsync(async () =>
         {
@@ -97,33 +99,28 @@ public partial class GetColors : UserControl
         });
     }
 
-    private void GetColors_LostFocus(object sender, RoutedEventArgs e)
-    {
-        JustNowGotFocus = false;
+    private void GetColors_LostFocus(object sender, RoutedEventArgs e) {
+        _justNowGotFocus = false;
         var result = this.Focusable;
         GetForuse.IsChecked = false;
     }
 
 
-
-    private void CopyColor(string? obj)
-    {
+    private void CopyColor(string? obj) {
         if (obj == null) return;
         Clipboard.SetText(obj);
     }
 
-    public ObservableCollection<string> colors { get; set; } = new ObservableCollection<string>();
+    public ObservableCollection<string> Colors { get; set; } = new ObservableCollection<string>();
 
-    private void InitializeTimer()
-    {
-        timer = new DispatcherTimer();
-        timer.Interval = TimeSpan.FromMilliseconds(50);
-        timer.Tick += Timer_Tick;
-        timer.Start();
+    private void InitializeTimer() {
+        _timer = new DispatcherTimer();
+        _timer.Interval = TimeSpan.FromMilliseconds(50);
+        _timer.Tick += Timer_Tick;
+        _timer.Start();
     }
 
-    private void Timer_Tick(object sender, EventArgs e)
-    {
+    private void Timer_Tick(object? sender, EventArgs e) {
         POINT point;
         GetCursorPos(out point);
 
@@ -142,23 +139,21 @@ public partial class GetColors : UserControl
         ColorCode.Text = hexColor;
     }
 
-    private void GetColors_KeyDown(object sender, KeyEventArgs e)
-    {       
+    private void GetColors_KeyDown(object sender, KeyEventArgs e) {
         Debug.WriteLine($"KeyDown triggered: {e.Key}, Modifiers: {Keyboard.Modifiers}, SystemKey: {e.SystemKey}");
 
         // 检查是否是 Alt+C
-        if ((e.Key == Key.System && e.SystemKey == Key.C) ||
+        if (e is { Key: Key.System, SystemKey: Key.C } ||
             (e.Key == Key.C && (Keyboard.Modifiers & ModifierKeys.Alt) == ModifierKeys.Alt))
         {
             Clipboard.SetText(ColorCode.Text);
-            colors.Insert(0, ColorCode.Text);
+            Colors.Insert(0, ColorCode.Text);
             e.Handled = true;
         }
     }
 
     // 添加获取焦点的公共方法
-    public void SetFocus()
-    {
+    public void SetFocus() {
         this.Focus();
         Keyboard.Focus(this);
     }
