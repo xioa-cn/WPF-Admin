@@ -1,0 +1,17 @@
+﻿<Page x:Class="Xioa.Admin.Core.Views.GetColorUtil.GetColorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Xioa.Admin.Core.Views.GetColorUtil"
+      xmlns:vm="clr-namespace:Xioa.Admin.Core.Views.GetColorUtil.ViewModel"
+      xmlns:component="clr-namespace:Xioa.Admin.Core.Views.GetColorUtil.Component"
+      mc:Ignorable="d"
+      >
+    <Page.DataContext>
+        <vm:GetColorsViewModel/>
+    </Page.DataContext>
+    <Grid>
+        <component:GetColors/>
+    </Grid>
+</Page>
