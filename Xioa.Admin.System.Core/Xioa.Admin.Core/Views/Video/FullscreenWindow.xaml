@@ -1,0 +1,60 @@
+<Window x:Class="Xioa.Admin.Core.Views.Video.FullscreenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FullscreenWindow" 
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowState="Maximized"
+        Background="Black"
+        Topmost="True"
+        ShowInTaskbar="False"
+        KeyDown="Window_KeyDown">
+    
+    <Grid x:Name="ContentGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <MediaElement x:Name="mediaPlayer" 
+                     Grid.Row="0"
+                     LoadedBehavior="Manual"
+                     UnloadedBehavior="Stop"
+                     MediaOpened="MediaPlayer_MediaOpened"
+                     MediaEnded="MediaPlayer_MediaEnded"
+                     MediaFailed="MediaPlayer_MediaFailed"
+                     BufferingStarted="MediaPlayer_BufferingStarted"
+                     BufferingEnded="MediaPlayer_BufferingEnded"
+                     MouseLeftButtonDown="MediaPlayer_MouseLeftButtonDown"
+                     Stretch="Uniform"/>
+
+        <Grid x:Name="loadingPanel" 
+              Grid.Row="0" Grid.RowSpan="2"
+              Background="#80000000" 
+              Visibility="Collapsed">
+            <StackPanel HorizontalAlignment="Center" 
+                       VerticalAlignment="Center">
+                <ProgressBar IsIndeterminate="True" 
+                            Width="100" 
+                            Height="2" 
+                            Margin="0,0,0,10"/>
+                <TextBlock Text="正在缓冲..." 
+                          Foreground="White" 
+                          HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center"
+                    Margin="5">
+            <!-- 复制原页面的控制按钮 -->
+            <Button x:Name="playButton" Content="播放" Width="60" Margin="5" Click="PlayButton_Click"/>
+            <Button x:Name="stopButton" Content="停止" Width="60" Margin="5" Click="StopButton_Click"/>
+            <Button x:Name="fullscreenButton" Content="⧉" Width="60" Margin="5" Click="FullscreenButton_Click"/>
+            <Slider x:Name="volumeSlider" Width="100" Margin="5" 
+                    Minimum="0" Maximum="1" Value="1"
+                    ValueChanged="VolumeSlider_ValueChanged"/>
+        </StackPanel>
+    </Grid>
+</Window> 

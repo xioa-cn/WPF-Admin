@@ -1,0 +1,130 @@
+﻿<Page x:Class="Xioa.Admin.Core.Views.Video.VideoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Xioa.Admin.Core.Views.Video"
+      mc:Ignorable="d"
+      Title="VideoPage" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 视频播放区域 -->
+        <Grid Grid.Row="0">
+            <MediaElement x:Name="mediaPlayer" 
+                          LoadedBehavior="Manual"
+                          UnloadedBehavior="Stop"
+                          MediaOpened="MediaPlayer_MediaOpened"
+                          MediaEnded="MediaPlayer_MediaEnded"
+                          MediaFailed="MediaPlayer_MediaFailed"
+                          BufferingStarted="MediaPlayer_BufferingStarted"
+                          BufferingEnded="MediaPlayer_BufferingEnded"
+                          MouseLeftButtonDown="MediaPlayer_MouseLeftButtonDown"/>
+            
+            <!-- Loading 遮罩层 -->
+            <Grid x:Name="loadingPanel" 
+                  Background="#80000000" 
+                  Visibility="Collapsed">
+                <StackPanel HorizontalAlignment="Center" 
+                            VerticalAlignment="Center">
+                    <ProgressBar IsIndeterminate="True" 
+                                Width="100" 
+                                Height="2" 
+                                Margin="0,0,0,10"/>
+                    <TextBlock Text="正在缓冲..." 
+                              Foreground="White" 
+                              HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!-- 控制面板 -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- 进度条 -->
+            <Slider x:Name="timelineSlider" 
+                    Grid.Row="0"
+                    Margin="5"
+                    ValueChanged="TimelineSlider_ValueChanged"/>
+
+            <!-- 控制按钮 -->
+            <StackPanel Grid.Row="1" 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        Margin="5">
+                <Button x:Name="openButton" 
+                        Content="打开文件" 
+                        Width="80"
+                        Margin="5"
+                        Click="OpenButton_Click"/>
+                
+                <!-- 后退5秒按钮 -->
+                <Button x:Name="rewindButton"
+                        Content="-5s"
+                        Width="60"
+                        Margin="5"
+                        Click="RewindButton_Click"/>
+                
+                <Button x:Name="playButton" 
+                        Content="播放" 
+                        Width="80"
+                        Margin="5"
+                        Click="PlayButton_Click"/>
+                
+                <Button x:Name="pauseButton" 
+                        Content="暂停" 
+                        Width="80"
+                        Margin="5"
+                        Click="PauseButton_Click"/>
+                
+                <Button x:Name="stopButton" 
+                        Content="停止" 
+                        Width="80"
+                        Margin="5"
+                        Click="StopButton_Click"/>
+                
+                <!-- 快进5秒按钮 -->
+                <Button x:Name="forwardButton"
+                        Content="+5s"
+                        Width="60"
+                        Margin="5"
+                        Click="ForwardButton_Click"/>
+
+                <!-- 音量控制 -->
+                <StackPanel Orientation="Horizontal" 
+                           Margin="20,0,0,0" 
+                           VerticalAlignment="Center">
+                    <TextBlock Text="音量:" 
+                             VerticalAlignment="Center"
+                             Margin="0,0,5,0"/>
+                    <Slider x:Name="volumeSlider" 
+                            Width="100"
+                            Minimum="0"
+                            Maximum="1"
+                            Value="0.5"
+                            ValueChanged="VolumeSlider_ValueChanged"/>
+                </StackPanel>
+
+                <!-- 播放时间显示 -->
+                <TextBlock x:Name="timeDisplay" 
+                         Margin="20,0,0,0"
+                         VerticalAlignment="Center"
+                         Text="00:00:00 / 00:00:00"/>
+
+                <!-- 全屏按钮 -->
+                <Button x:Name="fullscreenButton"
+                        Content="⛶"
+                        Width="60"
+                        Margin="5"
+                        Click="FullscreenButton_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

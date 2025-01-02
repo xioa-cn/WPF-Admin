@@ -25,6 +25,7 @@ using Xioa.Admin.Core.Views.GanttChart;
 using Xioa.Admin.Core.Views.GetColorUtil;
 using Xioa.Admin.Core.Views.PercentSize;
 using Xioa.Admin.Core.Views.TopicView.Views;
+using Xioa.Admin.Core.Views.Video;
 
 namespace Xioa.Admin.Core.Views.MainView;
 
@@ -118,8 +119,7 @@ public partial class MainViewModel : ObservableObject {
                         Content = "登录组件",
                         Page = new UseQQComboBox(),
                     },
-                    new TreeItemModel()
-                    {
+                    new TreeItemModel() {
                         Content = "图形Border",
                         Page = new ShapeBorder.ShapeBorderPage()
                     },
@@ -254,16 +254,20 @@ public partial class MainViewModel : ObservableObject {
 
             new TreeItemModel() {
                 Icon = IconPaths.Vision,
-                Content = "视觉集成",
+                Content = "控件集成",
                 Children = {
                     new TreeItemModel() {
                         Page = new VisionProView(),
                         Content = "VisionPro",
                         Icon = IconPaths.VisionPro
+                    },
+                    new TreeItemModel() {
+                        Content = "视频播放",
+                        Page = new VideoPage(),
                     }
                 }
             },
-            
+
             new TreeItemModel() {
                 Page = new AboutPage(),
                 Content = "关于X-A",
