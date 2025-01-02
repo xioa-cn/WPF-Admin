@@ -23,6 +23,7 @@ using Xioa.Admin.Core.Views.XUserControls.ControlsPage;
 using Xioa.Admin.Core.Views.RefreshTokens;
 using Xioa.Admin.Core.Views.GanttChart;
 using Xioa.Admin.Core.Views.GetColorUtil;
+using Xioa.Admin.Core.Views.NAudioPlayer;
 using Xioa.Admin.Core.Views.PercentSize;
 using Xioa.Admin.Core.Views.TopicView.Views;
 using Xioa.Admin.Core.Views.Video;
@@ -264,6 +265,10 @@ public partial class MainViewModel : ObservableObject {
                     new TreeItemModel() {
                         Content = "视频播放",
                         Page = new VideoPage(),
+                    },
+                    new TreeItemModel() {
+                        Content = "音频播放",
+                        Page = new NAudioPlayerPage(),
                     }
                 }
             },

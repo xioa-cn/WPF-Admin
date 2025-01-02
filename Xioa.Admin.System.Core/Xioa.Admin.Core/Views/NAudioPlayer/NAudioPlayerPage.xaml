@@ -1,0 +1,92 @@
+﻿<Page
+    x:Class="Xioa.Admin.Core.Views.NAudioPlayer.NAudioPlayerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Xioa.Admin.Core.Views.NAudioPlayer"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Xioa.Admin.Core.Views.NAudioPlayer.ViewModel"
+    Title="NAudioPlayerPage"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <vm:NAudioPlayerViewModel />
+    </Page.DataContext>
+    <StackPanel>
+
+        <Slider
+            x:Name="ProgressSlider"
+            Height="20"
+            Margin="10"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            Maximum="{Binding TotalTime}"
+            Value="{Binding CurrentPosition, Mode=TwoWay}" />
+        <StackPanel Orientation="Horizontal">
+            <TextBlock
+                Margin="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Text="{Binding CurrentTime}" />
+            <TextBlock Margin="10">/</TextBlock>
+            <TextBlock
+                Margin="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Text="{Binding TotalTimeString}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button
+                x:Name="PlayButton"
+                Width="75"
+                Margin="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="PlayButton_Click"
+                Content="播放" />
+            <Button
+                x:Name="StopButton"
+                Width="75"
+                Margin="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="StopButton_Click"
+                Content="停止" />
+        </StackPanel>
+        <Button
+            x:Name="LoadButton"
+            Width="100"
+            Margin="10"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="LoadButton_Click"
+            Content="选择文件" />
+
+        <CheckBox
+            x:Name="LoopToggleButton"
+            Width="100"
+            Margin="10"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="循环播放"
+            IsChecked="{Binding IsLooping, Mode=TwoWay}" />
+
+
+        <StackPanel Margin="10" Orientation="Horizontal">
+            <TextBox
+                Width="220"
+                Height="23"
+                Margin="10"
+                HorizontalAlignment="Left"
+                Text="{Binding MusicUrlPath}"
+                TextWrapping="Wrap" />
+            <Button
+                Width="75"
+                Margin="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Command="{Binding LoadMusicCommand}"
+                Content="Load URL" />
+        </StackPanel>
+
+    </StackPanel>
+</Page>
