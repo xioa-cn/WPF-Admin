@@ -100,8 +100,9 @@ public partial class NAudioPlayerViewModel : ObservableObject {
 
     [RelayCommand]
     private async Task LoadMusic() {
-        await
-            LoadFromUrl(MusicUrlPath);
+        //Load(MusicUrlPath);
+        //await
+        //    LoadFromUrl(MusicUrlPath);
     }
 
     public async Task LoadFromUrl(string url) {
@@ -114,7 +115,7 @@ public partial class NAudioPlayerViewModel : ObservableObject {
             using (var memoryStream = new MemoryStream())
             {
                 await networkStream.CopyToAsync(memoryStream);
-                memoryStream.Position = 0; // Reset position after copy
+                memoryStream.Position = 0;
 
                 if (audioStream != null)
                 {
@@ -130,7 +131,7 @@ public partial class NAudioPlayerViewModel : ObservableObject {
         catch (Exception ex)
         {
             Debug.WriteLine("Error loading audio from URL: " + ex.Message);
-            // Consider notifying the user through the UI
+            
         }
     }
 }
