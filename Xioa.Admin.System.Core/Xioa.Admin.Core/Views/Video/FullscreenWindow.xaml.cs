@@ -13,6 +13,7 @@ namespace Xioa.Admin.Core.Views.Video
         private DateTime lastClickTime = DateTime.MinValue;
         private const double DOUBLE_CLICK_TIME = 300;
         private const double SEEK_SECONDS = 5.0;
+        private bool isLooping = false;
 
         public  MediaElement mediaPlayerBase {
             get;
@@ -75,9 +76,19 @@ namespace Xioa.Admin.Core.Views.Video
 
         private void MediaPlayer_MediaEnded(object sender, RoutedEventArgs e)
         {
-            mediaPlayer.Stop();
-            isPlaying = false;
-            playButton.Content = "播放";
+            if (isLooping)
+            {
+                mediaPlayer.Position = TimeSpan.Zero;
+                mediaPlayer.Play();
+                isPlaying = true;
+                playButton.Content = "暂停";
+            }
+            else
+            {
+                mediaPlayer.Stop();
+                isPlaying = false;
+                playButton.Content = "播放";
+            }
         }
 
         private void MediaPlayer_MediaFailed(object sender, ExceptionRoutedEventArgs e)
@@ -116,6 +127,18 @@ namespace Xioa.Admin.Core.Views.Video
             {
                 lastClickTime = clickTime;
             }
+        }
+
+        public void SetLoopState(bool looping)
+        {
+            isLooping = looping;
+            loopButton.Opacity = isLooping ? 1.0 : 0.5;
+        }
+
+        private void LoopButton_Click(object sender, RoutedEventArgs e)
+        {
+            isLooping = !isLooping;
+            loopButton.Opacity = isLooping ? 1.0 : 0.5;
         }
     }
 } 

@@ -26,6 +26,7 @@ public partial class VideoPage : Page {
     private DateTime lastClickTime = DateTime.MinValue;
     private const double DOUBLE_CLICK_TIME = 300; // 双击时间阈值（毫秒）
     private TimeSpan? pendingPosition = null;  // 添加这个字段来存储待恢复的位置
+    private bool isLooping { get; set; } = false;  // 添加循环播放标志
 
     public VideoPage() {
         InitializeComponent();
@@ -160,10 +161,22 @@ public partial class VideoPage : Page {
     }
     
     private void MediaPlayer_MediaEnded(object sender, RoutedEventArgs e) {
-        mediaPlayer.Stop();
-        isPlaying = false;
-        playButton.Content = "播放";
-        timer.Stop();
+        if (isLooping)
+        {
+            // 循环播放时，重新开始播放
+            mediaPlayer.Position = TimeSpan.Zero;
+            mediaPlayer.Play();
+            isPlaying = true;
+            playButton.Content = "暂停";
+        }
+        else
+        {
+            // 非循环播放时，停止播放
+            mediaPlayer.Stop();
+            isPlaying = false;
+            playButton.Content = "播放";
+            timer.Stop();
+        }
     }
 
     private void TimelineSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
@@ -317,6 +330,10 @@ public partial class VideoPage : Page {
             // 同步音量滑块
             fullscreenWindow.volumeSlider.Value = currentVolume;
 
+            // 同步循环播放状态
+            fullscreenWindow.loopButton.Opacity = isLooping ? 1.0 : 0.5;
+            fullscreenWindow.SetLoopState(isLooping);
+
             // 更新状态
             isFullscreen = true;
             fullscreenButton.Content = "⧉";
@@ -409,5 +426,11 @@ public partial class VideoPage : Page {
             // 记录第一次点击时间
             lastClickTime = clickTime;
         }
+    }
+
+    private void LoopButton_Click(object sender, RoutedEventArgs e)
+    {
+        isLooping = !isLooping;
+        loopButton.Opacity = isLooping ? 1.0 : 0.5;  // 通过透明度显示状态
     }
 }

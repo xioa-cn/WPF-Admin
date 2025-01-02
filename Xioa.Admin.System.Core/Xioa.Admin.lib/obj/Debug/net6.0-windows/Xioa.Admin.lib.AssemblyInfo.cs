@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Xioa.Admin.lib")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d5734cbcc07918021426faf548925eec713142d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc450afb2d137e58cc4ad86ae9d27d88f28b4055")]
 [assembly: System.Reflection.AssemblyProductAttribute("Xioa.Admin.lib")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Xioa.Admin.lib")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
