@@ -25,6 +25,7 @@ using Xioa.Admin.Core.Views.GanttChart;
 using Xioa.Admin.Core.Views.GetColorUtil;
 using Xioa.Admin.Core.Views.NAudioPlayer;
 using Xioa.Admin.Core.Views.PercentSize;
+using Xioa.Admin.Core.Views.ScreenRecording;
 using Xioa.Admin.Core.Views.TopicView.Views;
 using Xioa.Admin.Core.Views.Video;
 
@@ -269,6 +270,10 @@ public partial class MainViewModel : ObservableObject {
                     new TreeItemModel() {
                         Content = "音频播放",
                         Page = new NAudioPlayerPage(),
+                    },
+                    new TreeItemModel() {
+                        Content = "屏幕录制",
+                        Page = new ScreenRecordingPage()
                     }
                 }
             },

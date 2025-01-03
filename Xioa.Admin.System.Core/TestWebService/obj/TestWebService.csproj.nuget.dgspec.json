@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\TestWebService\\TestWebService.csproj": {}
+    "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\TestWebService\\TestWebService.csproj": {}
   },
   "projects": {
-    "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\TestWebService\\TestWebService.csproj": {
+    "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\TestWebService\\TestWebService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\TestWebService\\TestWebService.csproj",
+        "projectUniqueName": "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\TestWebService\\TestWebService.csproj",
         "projectName": "TestWebService",
-        "projectPath": "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\TestWebService\\TestWebService.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\TestWebService\\obj\\",
+        "projectPath": "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\TestWebService\\TestWebService.csproj",
+        "packagesPath": "D:\\nuget",
+        "outputPath": "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\TestWebService\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "E:\\SDK\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\刘\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -33,8 +29,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.Request.Tools\\Xioa.Admin.Request.Tools.csproj": {
-                "projectPath": "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.Request.Tools\\Xioa.Admin.Request.Tools.csproj"
+              "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.Request.Tools\\Xioa.Admin.Request.Tools.csproj": {
+                "projectPath": "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.Request.Tools\\Xioa.Admin.Request.Tools.csproj"
               }
             }
           }
@@ -43,13 +39,7 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net6.0": {
@@ -92,25 +82,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.Request.Tools\\Xioa.Admin.Request.Tools.csproj": {
+    "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.Request.Tools\\Xioa.Admin.Request.Tools.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.Request.Tools\\Xioa.Admin.Request.Tools.csproj",
+        "projectUniqueName": "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.Request.Tools\\Xioa.Admin.Request.Tools.csproj",
         "projectName": "Xioa.Admin.Request.Tools",
-        "projectPath": "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.Request.Tools\\Xioa.Admin.Request.Tools.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "F:\\git\\github\\WPF-Xioa-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.Request.Tools\\obj\\",
+        "projectPath": "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.Request.Tools\\Xioa.Admin.Request.Tools.csproj",
+        "packagesPath": "D:\\nuget",
+        "outputPath": "E:\\git仓库\\github\\WPF-Admin\\Xioa.Admin.System.Core\\Xioa.Admin.Request.Tools\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "E:\\SDK\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\刘\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -131,13 +117,7 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net6.0": {
@@ -158,7 +138,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     }

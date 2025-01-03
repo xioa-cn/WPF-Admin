@@ -1,0 +1,44 @@
+<Window
+    x:Class="Xioa.Admin.Core.Views.ScreenRecording.Window.RecordingBorderWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="RecordingBorder"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False"
+    Topmost="True"
+    WindowStyle="None">
+
+    <Window.Resources>
+        <Storyboard x:Key="BorderAnimation" RepeatBehavior="Forever">
+            <DoubleAnimation
+                AutoReverse="True"
+                Storyboard.TargetName="BorderEffect"
+                Storyboard.TargetProperty="Opacity"
+                From="1"
+                To="0.3"
+                Duration="0:0:1" />
+        </Storyboard>
+    </Window.Resources>
+
+    <Border
+        x:Name="BorderEffect"
+        Background="Transparent"
+        BorderThickness="2">
+        <Border.BorderBrush>
+            <SolidColorBrush Opacity="0.7" Color="Red" />
+        </Border.BorderBrush>
+
+        <Grid>
+            <TextBlock
+                Margin="5"
+                Padding="5,2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                Foreground="Red"
+                Text="录制区域" />
+        </Grid>
+    </Border>
+</Window> 

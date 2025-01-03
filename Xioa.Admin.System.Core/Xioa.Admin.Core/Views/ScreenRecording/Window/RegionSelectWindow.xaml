@@ -1,0 +1,27 @@
+<Window x:Class="Xioa.Admin.Core.Views.ScreenRecording.Window.RegionSelectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="选择录制区域"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="#20000000"
+        WindowState="Maximized"
+        Topmost="True">
+    <Grid>
+        <Canvas x:Name="MainCanvas" 
+                Background="Transparent"
+                MouseLeftButtonDown="Canvas_MouseLeftButtonDown"
+                MouseMove="Canvas_MouseMove"
+                MouseLeftButtonUp="Canvas_MouseLeftButtonUp">
+            <Rectangle x:Name="SelectionRect"
+                       Stroke="Red"
+                       StrokeThickness="2"
+                       Fill="#30FFFFFF"/>
+            <TextBlock x:Name="SizeText"
+                      Foreground="White"
+                      Background="#A0000000"
+                      Padding="5"
+                      Visibility="Collapsed"/>
+        </Canvas>
+    </Grid>
+</Window> 
