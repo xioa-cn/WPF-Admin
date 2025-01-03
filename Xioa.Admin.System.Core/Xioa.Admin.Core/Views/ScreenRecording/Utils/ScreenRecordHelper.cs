@@ -90,8 +90,6 @@ public class ScreenRecordHelper
     /// <param name="outFilePath">录屏文件保存路径</param>
     public static void Start(string outFilePath)
     {
-        // 开始录制时显示边框
-       // ShowBorderWindow();
         try
         {
             if (File.Exists(outFilePath))
@@ -109,26 +107,45 @@ public class ScreenRecordHelper
             string videoInput;
             if (recordRegion.HasValue)
             {
-                // 使用区域录制参数
                 var r = recordRegion.Value;
+                if (r.Width <= 0 || r.Height <= 0)
+                {
+                    throw new Exception($"Invalid region size: {r.Width}x{r.Height}");
+                }
+
+                // 确保宽高是2的倍数
+                int width = r.Width + (r.Width % 2);
+                int height = r.Height + (r.Height % 2);
+                
                 videoInput = $"-f gdigrab -framerate 30 -offset_x {r.X} -offset_y {r.Y} " +
-                           $"-video_size {r.Width}x{r.Height} -i desktop";
+                           $"-video_size {width}x{height} -i desktop";
             }
             else
             {
-                // 全屏录制
-                videoInput = "-f gdigrab -framerate 30 -i desktop";
+                // 获取主屏幕分辨率
+                var screenWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
+                var screenHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
+                
+                // 确保宽高是2的倍数
+                screenWidth += (screenWidth % 2);
+                screenHeight += (screenHeight % 2);
+                
+                videoInput = $"-f gdigrab -framerate 30 -video_size {screenWidth}x{screenHeight} -i desktop";
             }
 
+            // 使用更简单的编码参数
             string arguments = $"{videoInput} " +
                              $"-f dshow -i audio=\"{list[0]}\" " +
                              "-c:v libx264 " +
-                             "-preset veryfast " +
+                             "-preset veryfast " +    // 改回veryfast
+                             "-crf 23 " +             // 使用CRF模式而不是指定比特率
                              "-pix_fmt yuv420p " +
                              "-c:a aac " +
-                             "-b:a 192k " +
-                             "-movflags +faststart " +
+                             "-b:a 128k " +
+                             "-y " +
                              $"\"{outFilePath}\"";
+
+            Debug.WriteLine($"完整FFmpeg命令: {ffmpegPath} {arguments}");
 
             ProcessStartInfo startInfo = new ProcessStartInfo(ffmpegPath);
             startInfo.WindowStyle = ProcessWindowStyle.Normal;
@@ -143,10 +160,20 @@ public class ScreenRecordHelper
 
             ffmpegProcess.Start();
             ffmpegProcess.BeginErrorReadLine();
+
+            if (ffmpegProcess.HasExited)
+            {
+                throw new Exception("FFmpeg process exited immediately");
+            }
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Failed to start recording: " + ex.Message);
+            Debug.WriteLine($"录制启动失败: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Debug.WriteLine($"内部错误: {ex.InnerException.Message}");
+            }
+            throw;
         }
     }
     /// <summary>
@@ -200,7 +227,13 @@ public class ScreenRecordHelper
     {
         if (!String.IsNullOrEmpty(e.Data))
         {
-            Debug.WriteLine(e.Data.ToString());
+            Debug.WriteLine($"FFmpeg输出: {e.Data}");
+            
+            // 如果包含error字样，特别标注出来
+            if (e.Data.Contains("error", StringComparison.OrdinalIgnoreCase))
+            {
+                Debug.WriteLine($"发现错误: {e.Data}");
+            }
         }
     }
 }

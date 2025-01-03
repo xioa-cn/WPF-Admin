@@ -11,7 +11,7 @@ public partial class RecordingBorderWindow :System.Windows. Window
     {
         InitializeComponent();
 
-        // Æô¶¯±ß¿ò¶¯»­
+        // å¯åŠ¨è¾¹æ¡†åŠ¨ç”»
         var storyboard = (Storyboard)FindResource("BorderAnimation");
         storyboard.Begin();
     }

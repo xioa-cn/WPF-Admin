@@ -136,6 +136,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="ffmpeg\" />
       <Folder Include="Views\PrintView\Converter\" />
     </ItemGroup>
 
