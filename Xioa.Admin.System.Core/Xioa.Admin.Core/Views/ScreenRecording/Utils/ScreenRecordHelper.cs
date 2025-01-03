@@ -211,6 +211,7 @@ public class ScreenRecordHelper
     /// </summary>
     public static void Stop()
     {
+        ClearRecordRegion();
         // 停止录制时隐藏边框
         HideBorderWindow();
         if (ffmpegProcess is null) return;
@@ -229,7 +230,7 @@ public class ScreenRecordHelper
         {
             Debug.WriteLine($"FFmpeg输出: {e.Data}");
             
-            // 如果包含error字样，特别标注出来
+            // error标注出来
             if (e.Data.Contains("error", StringComparison.OrdinalIgnoreCase))
             {
                 Debug.WriteLine($"发现错误: {e.Data}");

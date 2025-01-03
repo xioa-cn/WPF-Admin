@@ -5,6 +5,8 @@ using System.Windows.Shapes;
 using System.Windows.Controls;
 using System.Drawing;
 using Xioa.Admin.Core.Views.ScreenRecording.Utils;
+using System.Windows.Media;
+using Point = System.Windows.Point;
 
 namespace Xioa.Admin.Core.Views.ScreenRecording.Window;
 
@@ -22,6 +24,20 @@ public partial class RegionSelectWindow :System.Windows. Window
         this.Height = SystemParameters.VirtualScreenHeight;
         this.Left = SystemParameters.VirtualScreenLeft;
         this.Top = SystemParameters.VirtualScreenTop;
+    }
+
+    private Point ConvertToPixels(Point wpfPoint)
+    {
+        var source = PresentationSource.FromVisual(this);
+        if (source?.CompositionTarget != null)
+        {
+            Matrix transformToDevice = source.CompositionTarget.TransformToDevice;
+            return new Point(
+                wpfPoint.X * transformToDevice.M11,
+                wpfPoint.Y * transformToDevice.M22
+            );
+        }
+        return wpfPoint;
     }
 
     private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -55,15 +71,15 @@ public partial class RegionSelectWindow :System.Windows. Window
         double top = Math.Min(startPoint.Y, currentPoint.Y);
 
         // 更新选择框
-        SelectionRect.Width = width;
-        SelectionRect.Height = height;
-        Canvas.SetLeft(SelectionRect, left);
-        Canvas.SetTop(SelectionRect, top);
-
-        // 更新尺寸显示
-        SizeText.Text = $"{(int)width} x {(int)height}";
-        Canvas.SetLeft(SizeText, left);
-        Canvas.SetTop(SizeText, top - 25);
+        // SelectionRect.Width = width;
+        // SelectionRect.Height = height;
+        // Canvas.SetLeft(SelectionRect, left);
+        // Canvas.SetTop(SelectionRect, top);
+        //
+        // // 更新尺寸显示
+        // SizeText.Text = $"{(int)width} x {(int)height}";
+        // Canvas.SetLeft(SizeText, left);
+        // Canvas.SetTop(SizeText, top - 25);
 
         e.Handled = true;
     }
@@ -83,12 +99,16 @@ public partial class RegionSelectWindow :System.Windows. Window
             double left = Math.Min(startPoint.X, currentPoint.X);
             double top = Math.Min(startPoint.Y, currentPoint.Y);
 
-            // 创建选择区域
+            // 转换为设备像素
+            var deviceStart = ConvertToPixels(new Point(left, top));
+            var deviceSize = ConvertToPixels(new Point(width, height));
+
+            // 创建选择区域（使用设备像素）
             selectedRegion = new System.Drawing.Rectangle(
-                (int)left,
-                (int)top,
-                (int)width,
-                (int)height
+                (int)deviceStart.X,
+                (int)deviceStart.Y,
+                (int)deviceSize.X,
+                (int)deviceSize.Y
             );
 
             // 设置录制区域
