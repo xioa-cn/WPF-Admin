@@ -7,6 +7,7 @@ using Xioa.Admin.Core.Views.AntDiagram;
 using Xioa.Admin.Core.Views.BaiDuMap;
 using Xioa.Admin.Core.Views.DataSearch;
 using Xioa.Admin.Core.Views.DataSkip;
+using Xioa.Admin.Core.Views.DataValidator;
 using Xioa.Admin.Core.Views.DataVsualization;
 using Xioa.Admin.Core.Views.DialogView;
 using Xioa.Admin.Core.Views.DragPicture;
@@ -132,6 +133,10 @@ public partial class MainViewModel : ObservableObject {
                     new TreeItemModel() {
                         Content = "图片拖入",
                         Page = new DragPicturePage()
+                    },
+                    new TreeItemModel() {
+                        Content = "数据验证",
+                        Page = new DataValidatorPage(),
                     }
                 }
             },
