@@ -13,7 +13,6 @@ using System.Linq;
 
 namespace Xioa.Admin.Core.Views.Video;
 
-
 public partial class VideoPage : Page {
     private DispatcherTimer timer;
     private bool isPlaying = false;
@@ -25,33 +24,33 @@ public partial class VideoPage : Page {
     private Grid? mainGrid = null;
     private DateTime lastClickTime = DateTime.MinValue;
     private const double DOUBLE_CLICK_TIME = 300; // 双击时间阈值（毫秒）
-    private TimeSpan? pendingPosition = null;  // 添加这个字段来存储待恢复的位置
-    private bool isLooping { get; set; } = false;  // 添加循环播放标志
+    private TimeSpan? pendingPosition = null; // 添加这个字段来存储待恢复的位置
+    private bool isLooping { get; set; } = false; // 添加循环播放标志
 
     public VideoPage() {
         InitializeComponent();
-        InitializeTimer();
+
         this.Loaded += VideoPage_Loaded;
         this.Unloaded += VideoPage_Unloaded;
-        
+    }
+
+    private void VideoPage_Loaded(object sender, RoutedEventArgs e) {
+        InitializeTimer();
         // 保存主Grid的引用
         mainGrid = (Grid)Content;
-        
+        timelineSlider.PreviewMouseDown -= TimelineSlider_PreviewMouseDown;
+        timelineSlider.PreviewMouseUp -= TimelineSlider_PreviewMouseUp;
         timelineSlider.PreviewMouseDown += TimelineSlider_PreviewMouseDown;
         timelineSlider.PreviewMouseUp += TimelineSlider_PreviewMouseUp;
-    }
-
-    private void VideoPage_Loaded(object sender, RoutedEventArgs e)
-    {
         // 当页面加载时恢复状态
         VideoState.Instance.RestoreState(mediaPlayer);
+        PauseButton_Click(null, null);
     }
 
-    private void VideoPage_Unloaded(object sender, RoutedEventArgs e)
-    {
+    private void VideoPage_Unloaded(object sender, RoutedEventArgs e) {
         // 当页面卸载时保存状态
         VideoState.Instance.SaveState(mediaPlayer, isPlaying);
-        
+
         if (timer != null)
         {
             timer.Stop();
@@ -59,13 +58,11 @@ public partial class VideoPage : Page {
         }
     }
 
-    private void TimelineSlider_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-    {
+    private void TimelineSlider_PreviewMouseDown(object sender, MouseButtonEventArgs e) {
         userIsDraggingSlider = true;
     }
 
-    private void TimelineSlider_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-    {
+    private void TimelineSlider_PreviewMouseUp(object sender, MouseButtonEventArgs e) {
         userIsDraggingSlider = false;
         if (mediaPlayer.Source != null)
         {
@@ -73,6 +70,7 @@ public partial class VideoPage : Page {
             UpdateTimeDisplay();
         }
     }
+
     private void InitializeTimer() {
         timer = new DispatcherTimer();
         timer.Interval = TimeSpan.FromSeconds(1);
@@ -87,10 +85,8 @@ public partial class VideoPage : Page {
         }
     }
 
-    private void OpenButton_Click(object sender, RoutedEventArgs e)
-    {
-        var openFileDialog = new OpenFileDialog
-        {
+    private void OpenButton_Click(object sender, RoutedEventArgs e) {
+        var openFileDialog = new OpenFileDialog {
             Filter = "视频文件|*.mp4;*.avi;*.wmv;*.mkv|所有文件|*.*"
         };
 
@@ -138,11 +134,13 @@ public partial class VideoPage : Page {
         {
             mediaPlayer.Pause();
             playButton.Content = "播放";
+            timer.Stop();
         }
         else
         {
             mediaPlayer.Play();
             playButton.Content = "暂停";
+            timer.Start();
         }
 
         isPlaying = !isPlaying;
@@ -159,7 +157,7 @@ public partial class VideoPage : Page {
         isPlaying = false;
         playButton.Content = "播放";
     }
-    
+
     private void MediaPlayer_MediaEnded(object sender, RoutedEventArgs e) {
         if (isLooping)
         {
@@ -194,25 +192,26 @@ public partial class VideoPage : Page {
             mediaPlayer.Volume = e.NewValue;
         }
     }
-    private void MediaPlayer_MediaOpened(object sender, RoutedEventArgs e)
-    {
+
+    private void MediaPlayer_MediaOpened(object sender, RoutedEventArgs e) {
         if (mediaPlayer.NaturalDuration.HasTimeSpan)
         {
             timelineSlider.Minimum = 0;
             timelineSlider.Maximum = mediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
             timelineSlider.SmallChange = 1;
             timelineSlider.LargeChange = Math.Min(10, mediaPlayer.NaturalDuration.TimeSpan.TotalSeconds / 10);
-            
+
             // 如果有待恢复的位置，在这里恢复
             if (pendingPosition.HasValue)
             {
                 mediaPlayer.Position = pendingPosition.Value;
                 pendingPosition = null;
             }
-            
+
             UpdateTimeDisplay();
         }
     }
+
     private void UpdateTimeDisplay() {
         if (mediaPlayer.NaturalDuration.HasTimeSpan)
         {
@@ -222,8 +221,7 @@ public partial class VideoPage : Page {
         }
     }
 
-    private void ForwardButton_Click(object sender, RoutedEventArgs e)
-    {
+    private void ForwardButton_Click(object sender, RoutedEventArgs e) {
         if (mediaPlayer.Source != null)
         {
             var newPosition = mediaPlayer.Position + TimeSpan.FromSeconds(SEEK_SECONDS);
@@ -236,12 +234,12 @@ public partial class VideoPage : Page {
             {
                 mediaPlayer.Position = mediaPlayer.NaturalDuration.TimeSpan;
             }
+
             UpdateTimeDisplay();
         }
     }
 
-    private void RewindButton_Click(object sender, RoutedEventArgs e)
-    {
+    private void RewindButton_Click(object sender, RoutedEventArgs e) {
         if (mediaPlayer.Source != null)
         {
             var newPosition = mediaPlayer.Position - TimeSpan.FromSeconds(SEEK_SECONDS);
@@ -254,31 +252,29 @@ public partial class VideoPage : Page {
             {
                 mediaPlayer.Position = TimeSpan.Zero;
             }
+
             UpdateTimeDisplay();
         }
     }
-  
-    private void MediaPlayer_BufferingStarted(object sender, RoutedEventArgs e)
-    {
+
+    private void MediaPlayer_BufferingStarted(object sender, RoutedEventArgs e) {
         // 当视频开始缓冲时显示 loading 面板
         loadingPanel.Visibility = Visibility.Visible;
     }
 
-    private void MediaPlayer_BufferingEnded(object sender, RoutedEventArgs e)
-    {
+    private void MediaPlayer_BufferingEnded(object sender, RoutedEventArgs e) {
         // 当视频缓冲结束时隐藏 loading 面板
         loadingPanel.Visibility = Visibility.Collapsed;
     }
 
-    private void MediaPlayer_MediaFailed(object sender, ExceptionRoutedEventArgs e)
-    {
+    private void MediaPlayer_MediaFailed(object sender, ExceptionRoutedEventArgs e) {
         // 当视频加载失败时
-        loadingPanel.Visibility = Visibility.Collapsed;  // 隐藏 loading
-        
+        loadingPanel.Visibility = Visibility.Collapsed; // 隐藏 loading
+
         // 显示错误信息
         string errorMessage = e.ErrorException?.Message ?? "未知错误";
         MessageBox.Show($"视频加载失败: {errorMessage}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-        
+
         // 重置播放器状态
         mediaPlayer.Stop();
         isPlaying = false;
@@ -286,8 +282,7 @@ public partial class VideoPage : Page {
         timer.Stop();
     }
 
-    private void FullscreenButton_Click(object sender, RoutedEventArgs e)
-    {
+    private void FullscreenButton_Click(object sender, RoutedEventArgs e) {
         if (!isFullscreen)
         {
             // 进入全屏
@@ -300,8 +295,7 @@ public partial class VideoPage : Page {
         }
     }
 
-    private void EnterFullscreen()
-    {
+    private void EnterFullscreen() {
         try
         {
             // 保存当前视频状态
@@ -311,14 +305,14 @@ public partial class VideoPage : Page {
 
             // 创建全屏窗口
             fullscreenWindow = new FullscreenWindow();
-            
+
             // 设置全屏窗口的媒体播放器状态
             fullscreenWindow.mediaPlayer.Source = currentSource;
             fullscreenWindow.mediaPlayer.Volume = currentVolume;
-            
+
             // 显示全屏窗口
             fullscreenWindow.Show();
-            
+
             // 设置位置和播放状态
             fullscreenWindow.mediaPlayer.Position = currentPosition;
             if (isPlaying)
@@ -340,7 +334,7 @@ public partial class VideoPage : Page {
 
             // 注册事件处理
             fullscreenWindow.Closed += FullscreenWindow_Closed;
-            
+
             // 暂停原窗口的播放
             mediaPlayer.Pause();
         }
@@ -351,19 +345,18 @@ public partial class VideoPage : Page {
         }
     }
 
-    private void FullscreenWindow_Closed(object? sender, EventArgs e)
-    {
+    private void FullscreenWindow_Closed(object? sender, EventArgs e) {
         try
         {
             if (fullscreenWindow != null)
             {
                 // 保存全屏窗口的状态
                 var position = fullscreenWindow.mediaPlayer.Position;
-                var wasPlaying = fullscreenWindow.IsPlaying;  // 使用窗口的播放状态
+                var wasPlaying = fullscreenWindow.IsPlaying; // 使用窗口的播放状态
 
                 // 恢复原窗口的播放状态
                 mediaPlayer.Position = position;
-                
+
                 // 使用 Dispatcher 确保状态正确恢复
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
@@ -392,8 +385,7 @@ public partial class VideoPage : Page {
         }
     }
 
-    private void ExitFullscreen()
-    {
+    private void ExitFullscreen() {
         if (fullscreenWindow != null)
         {
             fullscreenWindow.Close();
@@ -401,10 +393,9 @@ public partial class VideoPage : Page {
     }
 
     // 双击视频区域切换全屏
-    private void MediaPlayer_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-    {
+    private void MediaPlayer_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
         var clickTime = DateTime.Now;
-        
+
         // 检查是否是双击（两次点击间隔小于300毫秒）
         if ((clickTime - lastClickTime).TotalMilliseconds < DOUBLE_CLICK_TIME)
         {
@@ -417,7 +408,7 @@ public partial class VideoPage : Page {
             {
                 ExitFullscreen();
             }
-            
+
             // 重置点击时间
             lastClickTime = DateTime.MinValue;
         }
@@ -428,9 +419,8 @@ public partial class VideoPage : Page {
         }
     }
 
-    private void LoopButton_Click(object sender, RoutedEventArgs e)
-    {
+    private void LoopButton_Click(object sender, RoutedEventArgs e) {
         isLooping = !isLooping;
-        loopButton.Opacity = isLooping ? 1.0 : 0.5;  // 通过透明度显示状态
+        loopButton.Opacity = isLooping ? 1.0 : 0.5; // 通过透明度显示状态
     }
 }
