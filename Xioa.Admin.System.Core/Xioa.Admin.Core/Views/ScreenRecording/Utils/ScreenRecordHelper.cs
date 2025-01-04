@@ -75,6 +75,36 @@ public class ScreenRecordHelper {
         }
     }
 
+    private static void FindDevices() {
+        // 获取 wasapi 设备列表
+        Process deviceListProcess = new Process {
+            StartInfo = new ProcessStartInfo {
+                FileName = _ffmpegPath,
+                Arguments = "-list_devices true -f wasapi -i dummy",
+                UseShellExecute = false,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            }
+        };
+
+        string deviceList = string.Empty;
+        deviceListProcess.ErrorDataReceived += (sender, e) =>
+        {
+            if (!string.IsNullOrEmpty(e.Data))
+            {
+                deviceList += e.Data + Environment.NewLine;
+            }
+        };
+
+        deviceListProcess.Start();
+        deviceListProcess.BeginErrorReadLine();
+        deviceListProcess.WaitForExit();
+
+        // 查找默认音频输出设备
+        var match = System.Text.RegularExpressions.Regex.Match(deviceList,
+            @"(?<="")\{[0-9A-F\-\.]+\}\.\{[0-9A-F\-]+\}(?="")");
+    }
+
     /// <summary>
     /// 开始录制
     /// </summary>
@@ -97,45 +127,62 @@ public class ScreenRecordHelper {
             }
 
             // 查找虚拟音频捕获设备和麦克风
-            var stereoMix = audioDevices.FirstOrDefault(d =>
-                d.Contains("Stereo Mix", StringComparison.OrdinalIgnoreCase) ||
-                d.Contains("Virtual Audio", StringComparison.OrdinalIgnoreCase));
+            // var stereoMix = audioDevices.FirstOrDefault(d =>
+            //     d.Contains("Stereo Mix", StringComparison.OrdinalIgnoreCase) ||
+            //     d.Contains("Virtual Audio", StringComparison.OrdinalIgnoreCase));
+            //
+            // var microphone = audioDevices.FirstOrDefault(d =>
+            //     d.Contains("Microphone", StringComparison.OrdinalIgnoreCase));
+            //
+            // if (stereoMix != null && microphone != null)
+            // {
+            //     // 同时使用两个音频输入源
+            //     audioInput = $"-f dshow -i audio=\"{stereoMix}\" " +
+            //                  $"-f dshow -i audio=\"{microphone}\" " +
+            //                  // 混音滤镜
+            //                  "-filter_complex " +
+            //                  "\"[1:a]volume=0.5[a1];" + // 降低麦克风音量
+            //                  "[0:a][a1]amix=inputs=2:duration=first:dropout_transition=2[aout]\" " +
+            //                  "-map 0:v -map \"[aout]\" ";
+            // }
+            // else if (stereoMix != null)
+            // {
+            //     // 只有系统声音
+            //     audioInput = $"-f dshow -i audio=\"{stereoMix}\"";
+            // }
+            // else if (microphone != null)
+            // {
+            //     // 只有麦克风
+            //     audioInput = $"-f dshow -i audio=\"{microphone}\"";
+            // }
+            // else
+            // {
+            var defaultAudio = GetDefaultAudioInputDevice();
 
-            var microphone = audioDevices.FirstOrDefault(d =>
-                d.Contains("Microphone", StringComparison.OrdinalIgnoreCase));
 
-            if (stereoMix != null && microphone != null)
+            audioInput = $"-f dshow -i audio=\"{defaultAudio}\"";
+            // else
+            // {
+            //     throw new NullReferenceException(nameof(audioDevices));
+            // }
+            // }
+
+            //FindDevices();
+            // var outputDevices = GetDefaultAudioDevice();
+            var audioOutput = string.Empty;
+            var h = audioDevices.FirstOrDefault(e => e.Contains("立体声混音"));
+            if (h is not null)
             {
-                // 同时使用两个音频输入源
-                audioInput = $"-f dshow -i audio=\"{stereoMix}\" " +
-                             $"-f dshow -i audio=\"{microphone}\" " +
-                             // 混音滤镜
-                             "-filter_complex " +
-                             "\"[1:a]volume=0.5[a1];" + // 降低麦克风音量
-                             "[0:a][a1]amix=inputs=2:duration=first:dropout_transition=2[aout]\" " +
-                             "-map 0:v -map \"[aout]\" ";
-            }
-            else if (stereoMix != null)
-            {
-                // 只有系统声音
-                audioInput = $"-f dshow -i audio=\"{stereoMix}\"";
-            }
-            else if (microphone != null)
-            {
-                // 只有麦克风
-                audioInput = $"-f dshow -i audio=\"{microphone}\"";
-            }
-            else
-            {
-                if (audioDevices.Count > 0)
-                    audioInput = $"-f dshow -i audio=\"{audioDevices[0]}\"";
-                else
-                {
-                    throw new NullReferenceException(nameof(audioDevices));
-                }
+                audioOutput = string.Join(" ", // 音频输入 - 使用WASAPI捕获输出声音
+                    "-f dshow",
+                    $"-i audio=\"{h}\" ", // 正确的WASAPI格式
+                    "-filter_complex [1:a]volume=0.8[a1];[2:a]volume=0.8[a2];[a1][a2]amix=inputs=2[a]",
+                    "-map 0:v -map \"[a]\""
+                ); // 设置为立体声
             }
 
-            Debug.WriteLine("Audio输出:" + audioInput);
+            Debug.WriteLine("Audio输入:" + audioInput);
+            Debug.WriteLine("Audio输入出:" + audioOutput);
             string videoInput;
             if (_recordRegion.HasValue)
             {
@@ -168,12 +215,13 @@ public class ScreenRecordHelper {
             // 使用更简单的编码参数
             string arguments = string.Join(" ", $"{videoInput} ",
                 $"{audioInput}",
+                audioOutput,
                 "-c:v libx264 ",
                 "-preset veryfast ",
                 "-crf 23 ", // 使用CRF模式而不是指定比特率
                 "-pix_fmt yuv420p ",
                 "-c:a aac ",
-                "-b:a 128K ",
+                "-b:a 128k ",
                 "-y ",
                 $"\"{outFilePath}\"").Trim();
 
@@ -209,6 +257,68 @@ public class ScreenRecordHelper {
             // 下载 ffmpeg 复制到Debug路径下 才可执行 录屏 => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg", "ffmpeg.exe");
             throw;
         }
+    }
+
+    /// <summary>
+    /// 获取默认音频输出设备ID（WASAPI格式）
+    /// </summary>
+    private static MMDevice? GetDefaultAudioDevice() {
+        try
+        {
+            using var enumerator = new MMDeviceEnumerator();
+            var device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+            if (device is null)
+                return null;
+            // 返回WASAPI格式的设备ID
+            return device;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error getting default audio device: {ex.Message}");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// 获取默认输出设备
+    /// </summary>
+    public static string GetDefaultAudioInputDevice() {
+        using (var enumerator = new MMDeviceEnumerator())
+        {
+            var defaultDevice = enumerator.GetDefaultAudioEndpoint(DataFlow.Capture, Role.Console);
+            return defaultDevice.FriendlyName;
+        }
+    }
+
+    /// <summary>
+    /// 获取所有输出设备
+    /// </summary>
+    public static List<AudioDeviceInfo> GetOutputDevices() {
+        var devices = new List<AudioDeviceInfo>();
+
+        try
+        {
+            using (var enumerator = new MMDeviceEnumerator())
+            {
+                var defaultDevice = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+
+                foreach (var device in enumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active))
+                {
+                    devices.Add(new AudioDeviceInfo {
+                        Id = device.ID,
+                        Name = device.FriendlyName,
+                        IsDefault = device.ID == defaultDevice.ID,
+                        DataFlow = DataFlow.Render
+                    });
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error getting output devices: {ex.Message}");
+        }
+
+        return devices;
     }
 
     /// <summary>
@@ -267,4 +377,11 @@ public class ScreenRecordHelper {
             Debug.WriteLine($"发现错误: {e.Data}");
         }
     }
+}
+
+public class AudioDeviceInfo {
+    public string Id { get; set; }
+    public string Name { get; set; }
+    public bool IsDefault { get; set; }
+    public DataFlow DataFlow { get; set; } // Render = 输出, Capture = 输入
 }

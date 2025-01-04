@@ -52,9 +52,17 @@ namespace Xioa.Admin.Core.Views.ScreenRecording.ViewModel
             StartStatus = false;
             if (string.IsNullOrEmpty(SavePath))
             {
-                System.Windows.MessageBox.Show("存储路径为空");
-                StartStatus = true;
-                return;
+                SelectSavePath();
+
+
+                if (string.IsNullOrEmpty(SavePath))
+                {
+                    System.Windows.MessageBox.Show("存储路径为空！");
+                    StartStatus = true;
+                    return;
+                }
+                
+                
             }
             timer.Start();
             stopwatch.Reset();
