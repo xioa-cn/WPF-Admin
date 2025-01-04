@@ -173,6 +173,7 @@ public class ScreenRecordHelper
             {
                 Debug.WriteLine($"内部错误: {ex.InnerException.Message}");
             }
+            // 下载 ffmpeg 复制到Debug路径下 才可执行 录屏
             throw;
         }
     }
