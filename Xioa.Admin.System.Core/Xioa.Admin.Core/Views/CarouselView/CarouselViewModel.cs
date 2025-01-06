@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Threading;
 using Xioa.Admin.Core.Services.ViewModels;
 using Xioa.Admin.Core.Views.CarouselView.Model;
@@ -133,8 +134,8 @@ public partial class CarouselViewModel : ViewModelBase
 
         Images[index].IsActive = true;
     }
-    
-    protected override void ReleaseUnmanagedResources()
+
+    protected override void Dispose(bool disposing)
     {
         // 清理托管资源
         if (_timer is not null)
@@ -143,8 +144,9 @@ public partial class CarouselViewModel : ViewModelBase
             _timer.Tick -= Timer_Tick;
             _timer = null;
         }
+
         IsAutoPlaying = false;
-        base.ReleaseUnmanagedResources();
+        base.Dispose();
     }
 
     ~CarouselViewModel()
