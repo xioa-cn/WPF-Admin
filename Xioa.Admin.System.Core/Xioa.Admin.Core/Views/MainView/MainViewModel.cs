@@ -144,7 +144,7 @@ public partial class MainViewModel : ObservableObject {
                         Page = new DragList.DragListPage(),
                     },
                     new TreeItemModel() {
-                        Content = "虚拟化显示",
+                        Content = "虚拟化列",
                         Page = new VirtualizingListPage(),
                     }
                 }

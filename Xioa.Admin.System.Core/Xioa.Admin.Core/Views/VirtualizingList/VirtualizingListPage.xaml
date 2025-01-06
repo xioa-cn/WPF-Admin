@@ -27,7 +27,7 @@
         </StackPanel>
         <!--
             VirtualizingPanel.IsVirtualizing="True" - 启用UI虚拟化
-            - 只为当前可见区域的项创建可视化元素（Visual Elements）
+            只为当前可见区域的项创建可视化元素（Visual Elements）
             不可见区域的项不会创建UI元素，只保留数据
             比如有10万条数据，但屏幕只能显示20条，那么只会创建这20条的UI元素
             
@@ -87,20 +87,18 @@
             BorderBrush="Gray"
             BorderThickness="1"
             ItemsSource="{Binding Items}"
-            ScrollViewer.IsDeferredScrollingEnabled="True"
-            VirtualizingPanel.CacheLength="5"
-            VirtualizingPanel.CacheLengthUnit="Page"
             VirtualizingPanel.IsVirtualizing="True"
-            VirtualizingPanel.ScrollUnit="Pixel"
-            VirtualizingPanel.VirtualizationMode="Recycling">
+            VirtualizingPanel.VirtualizationMode="Recycling"
+            VirtualizingPanel.CacheLength="2"
+            VirtualizingPanel.CacheLengthUnit="Page">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
                         Width="200"
                         DisplayMemberBinding="{Binding Title}"
-                        Header="标题(虚拟化)" />
+                        Header="标题" />
                     <GridViewColumn
-                        Width="auto"
+                        Width="400"
                         DisplayMemberBinding="{Binding Description}"
                         Header="描述" />
                 </GridView>
