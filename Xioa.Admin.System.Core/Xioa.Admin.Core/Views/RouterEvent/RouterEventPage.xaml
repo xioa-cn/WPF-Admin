@@ -43,6 +43,9 @@
                 然后是 MiddlePanel 触发 MouseDown
                 最后是 OuterBorder 触发 MouseDown
             </TextBlock>
+            <TextBlock>
+                可以用 e.Handled = true;来阻止事件继续传播
+            </TextBlock>
         </StackPanel>
 
         <!--  主要内容区域  -->
