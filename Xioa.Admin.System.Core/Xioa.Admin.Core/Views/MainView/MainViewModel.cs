@@ -26,6 +26,7 @@ using Xioa.Admin.Core.Views.GanttChart;
 using Xioa.Admin.Core.Views.GetColorUtil;
 using Xioa.Admin.Core.Views.NAudioPlayer;
 using Xioa.Admin.Core.Views.PercentSize;
+using Xioa.Admin.Core.Views.RouterEvent;
 using Xioa.Admin.Core.Views.ScreenRecording;
 using Xioa.Admin.Core.Views.TopicView.Views;
 using Xioa.Admin.Core.Views.Video;
@@ -150,12 +151,16 @@ public partial class MainViewModel : ObservableObject {
                 }
             },
             new TreeItemModel() {
-                Content = "服务",
+                Content = "基础服务",
                 Icon = IconPaths.RefreshToken,
                 Children = {
                     new TreeItemModel() {
                         Content = "Token刷新",
                         Page = new RefreshTokenPage(),
+                    },
+                    new TreeItemModel() {
+                        Content = "路由事件",
+                        Page = new RouterEventPage()
                     }
                 }
             },
