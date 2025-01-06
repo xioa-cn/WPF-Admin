@@ -12,13 +12,11 @@ namespace Xioa.Admin.Core.Views.CarouselView;
 /// @author Xioa
 /// @date  2024年12月7日
 /// </summary>
-public partial class CarouselViewModel : ViewModelBase, IDisposable
+public partial class CarouselViewModel : ViewModelBase
 {
     private DispatcherTimer? _timer;
-    private bool _disposed;
 
-    [ObservableProperty]
-    private bool _isAutoPlaying;
+    [ObservableProperty] private bool _isAutoPlaying;
 
     public ObservableCollection<CarouselImage> Images { get; } = new();
 
@@ -37,8 +35,6 @@ public partial class CarouselViewModel : ViewModelBase, IDisposable
             Interval = TimeSpan.FromSeconds(1)
         };
         _timer.Tick += Timer_Tick;
-
-
     }
 
 
@@ -113,6 +109,7 @@ public partial class CarouselViewModel : ViewModelBase, IDisposable
         {
             item.IsActive = false;
         }
+
         image.IsActive = true;
     }
 
@@ -123,6 +120,7 @@ public partial class CarouselViewModel : ViewModelBase, IDisposable
             if (Images[i].IsActive)
                 return i;
         }
+
         return 0;
     }
 
@@ -132,28 +130,25 @@ public partial class CarouselViewModel : ViewModelBase, IDisposable
         {
             image.IsActive = false;
         }
+
         Images[index].IsActive = true;
     }
-
-    public void Dispose()
+    
+    protected override void ReleaseUnmanagedResources()
     {
-        IsAutoPlaying = false;
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-
         // 清理托管资源
-        _timer.Stop();
-        _timer.Tick -= Timer_Tick;
-        _timer = null;
+        if (_timer is not null)
+        {
+            _timer.Stop();
+            _timer.Tick -= Timer_Tick;
+            _timer = null;
+        }
+        IsAutoPlaying = false;
+        base.ReleaseUnmanagedResources();
     }
 
     ~CarouselViewModel()
     {
-        Dispose(false);
+        this.Dispose();
     }
 }
-
