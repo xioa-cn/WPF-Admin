@@ -34,7 +34,7 @@ namespace Xioa.Admin.Core
             {
                 // 程序接受外部参数
             }
-
+            StartupCommandLine(e.Args);
             Logger.LogInfo("打开了软件");
             ThemeManager.Instance.IsDarkTheme = false;
             Logger.LogInfo("主题加载");
