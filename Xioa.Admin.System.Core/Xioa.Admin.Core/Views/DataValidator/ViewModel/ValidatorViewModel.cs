@@ -4,53 +4,43 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows;
+using Xioa.Admin.Core.Views.DataValidator.Validations;
+using HandyControl.Controls;
 
 namespace Xioa.Admin.Core.Views.DataValidator.ViewModel;
 
 public partial class ValidatorViewModel : ObservableValidator
 {
-    [ObservableProperty]
-    [NotifyDataErrorInfo]
-    [Required(ErrorMessage = "用户名不能为空")]
-    [MinLength(3, ErrorMessage = "用户名最少需要3个字符")]
-    [MaxLength(20, ErrorMessage = "用户名最多20个字符")]
-    private string _username;
+    [ObservableProperty] private float _age;
 
+    [FloatRule(0, 100, ErrorMessage = "数值必须在0到100之间")]
     [ObservableProperty]
+    [Required(ErrorMessage = "不能为空值")]
     [NotifyDataErrorInfo]
-    [Required(ErrorMessage = "邮箱不能为空")]
-    [EmailAddress(ErrorMessage = "请输入有效的邮箱地址")]
-    private string _email;
+    private string _height = "0";
 
-    [RelayCommand(CanExecute = nameof(CanRegister))]
-    private void Register()
+    [RelayCommand]
+    private void Submit()
     {
-        ValidateAllProperties();
-        
-        if (HasErrors)
-        {
-            MessageBox.Show("请修正所有错误后再提交", "验证错误");
-            return;
-        }
-
-        MessageBox.Show($"注册成功！\n用户名: {Username}\n邮箱: {Email}", "注册成功");
-        ClearForm();
+        Growl.Success($"UI-Submit!{Age}");
+    }
+    [RelayCommand(CanExecute = nameof(CanSubmit))]
+    private void VmSubmit()
+    {
+        Growl.Success($"VM-Submit!{Height}");
     }
 
-    private bool CanRegister()
+    private bool CanSubmit()
     {
+        // 检查所有属性是否有效
+        ValidateAllProperties();
         return !HasErrors;
     }
-    
-    private void ClearForm()
-    {
-        Username = string.Empty;
-        Email = string.Empty;
-    }
 
+    // 当属性变化时重新检查命令是否可用
     protected override void OnPropertyChanged(PropertyChangedEventArgs e)
     {
         base.OnPropertyChanged(e);
-        RegisterCommand.NotifyCanExecuteChanged();
+        SubmitCommand.NotifyCanExecuteChanged();
     }
 }
