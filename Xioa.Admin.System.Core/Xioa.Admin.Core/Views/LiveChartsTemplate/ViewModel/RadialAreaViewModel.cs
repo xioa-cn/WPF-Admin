@@ -66,7 +66,8 @@ public partial class RadialAreaViewModel:Xioa.Admin.Core.Services.ViewModels.Vie
         new PolarAxis
         {
             LabelsRotation = LiveCharts.TangentAngle,
-            Labels = new string[] { "数值A", "数值B", "数值C", "数值D", "数值E" }
+            Labels = new string[] { "数值A", "数值B", "数值C", "数值D", "数值E" },
+            LabelsBackground = LvcColor.Empty
         }
     };
 
@@ -75,6 +76,9 @@ public partial class RadialAreaViewModel:Xioa.Admin.Core.Services.ViewModels.Vie
         new PolarAxis
         {
             TextSize = 0,
+            ForceStepToMin = true,
+            MinStep = 1,
+            SeparatorsPaint = new SolidColorPaint(SKColors.SkyBlue),
             //LabelsRotation = 0,
             //LabelsHorizontalAlignment = Align.End,
             //LabelsPadding = new Padding(20),
