@@ -137,6 +137,10 @@ public partial class MainViewModel : ObservableObject {
                     new TreeItemModel() {
                         Content = "数据验证",
                         Page = new DataValidatorPage(),
+                    },
+                    new TreeItemModel() {
+                        Content = "列表排序",
+                        Page = new DragList.DragListPage(),
                     }
                 }
             },
