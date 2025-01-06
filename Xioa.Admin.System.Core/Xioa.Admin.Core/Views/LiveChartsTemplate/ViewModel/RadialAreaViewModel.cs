@@ -15,7 +15,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月2日
 /// </summary>
-public partial class RadialAreaViewModel
+public partial class RadialAreaViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     private PolarLineSeries<int> value1 = new PolarLineSeries<int>
     { 

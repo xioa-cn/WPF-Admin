@@ -17,7 +17,7 @@ namespace Xioa.Admin.Core.Views.WeldingMonitor.ViewModel
     /// 焊接监控视图模型
     /// 负责处理焊接数据的实时监控、数据展示和报警管理
     /// </summary>
-    public partial class WeldingMonitorViewModel : ObservableObject
+    public partial class WeldingMonitorViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
     {
         // 用于定时更新数据的计时器，间隔100ms
         private readonly DispatcherTimer _timer = new()

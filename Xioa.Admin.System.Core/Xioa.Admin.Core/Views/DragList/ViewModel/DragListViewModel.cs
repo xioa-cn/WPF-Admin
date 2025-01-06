@@ -7,7 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Xioa.Admin.Core.Views.DragList.ViewModel;
 
-public partial class DragListViewModel : ObservableObject, IDragDropVm {
+public partial class DragListViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase, IDragDropVm {
     // 后进先出
     private readonly Stack<(int FromIndex, int ToIndex)> _undoStack = new();
 

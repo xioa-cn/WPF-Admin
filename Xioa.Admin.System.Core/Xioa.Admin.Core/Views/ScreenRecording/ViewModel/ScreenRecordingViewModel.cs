@@ -14,7 +14,7 @@ using Xioa.Admin.Core.Views.ScreenRecording.Window;
 
 namespace Xioa.Admin.Core.Views.ScreenRecording.ViewModel
 {
-    public partial class ScreenRecordingViewModel : ObservableObject
+    public partial class ScreenRecordingViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
     {
         public ICommand SetRegionCommand { get; private set; }
         public ICommand SelectSavePathCommand { get; private set; }

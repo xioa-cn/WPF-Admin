@@ -8,7 +8,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月3日
 /// </summary>
-public partial class PolarCoordinatesViewModel
+public partial class PolarCoordinatesViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public ISeries[] Series { get; set; } = new ISeries[] {
         new PolarLineSeries<ObservablePolarPoint>

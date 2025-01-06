@@ -38,7 +38,7 @@ namespace Xioa.Admin.Core.Views.MainView;
 /// @author Xioa
 /// @date  2024年11月27日
 /// </summary>
-public partial class MainViewModel : ObservableObject {
+public partial class MainViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase {
     public static ObservableCollection<TreeItemModel> TreeItemModels { get; } =
         new ObservableCollection<TreeItemModel>() {
             new TreeItemModel() {

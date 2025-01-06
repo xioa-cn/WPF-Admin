@@ -8,7 +8,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月3日
 /// </summary>
-public class PushoutViewModel
+public class PushoutViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public IEnumerable<ISeries> Series { get; set; } =
         new[] { 6, 5, 4, 6, 2 }.AsPieSeries((value, series) =>

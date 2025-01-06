@@ -15,6 +15,7 @@ using System.Threading;
 using Xioa.Admin.Core.Views.DataVsualization.Model;
 using LiveChartsCore.Drawing;
 using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
+using Xioa.Admin.Core.Services.ViewModels;
 
 namespace Xioa.Admin.Core.Views.DataVsualization;
 
@@ -22,7 +23,7 @@ namespace Xioa.Admin.Core.Views.DataVsualization;
 /// @author Xioa
 /// @date  2024年11月29日
 /// </summary>
-public partial class DataVisualizationViewModel : ObservableObject
+public partial class DataVisualizationViewModel : ViewModelBase
 {
     public partial class DataWeek : ObservableObject
     {

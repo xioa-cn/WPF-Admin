@@ -11,7 +11,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月3日
 /// </summary>
-public partial class CrosshairsViewModel
+public partial class CrosshairsViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public ISeries[] Series { get; set; } = new ISeries[] {
         new LineSeries<double> { Values = new double[]{200, 558, 458, 249, 457, 339, 587} },

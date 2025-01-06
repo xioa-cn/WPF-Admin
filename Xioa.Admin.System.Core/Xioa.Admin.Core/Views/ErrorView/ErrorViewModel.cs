@@ -7,7 +7,7 @@ using HandyControl.Controls;
 
 namespace Xioa.Admin.Core.Views.ErrorView;
 
-public partial class ErrorViewModel : ObservableObject
+public partial class ErrorViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     [ObservableProperty] private object? _content;
 

@@ -16,7 +16,7 @@ namespace Xioa.Admin.Core.Views.QrCode;
 /// @author Xioa
 /// @date  2024年12月3日
 /// </summary>
-public partial class QrCodeViewModel : ObservableObject
+public partial class QrCodeViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     [ObservableProperty] private object? _source;
     public QrCodeViewModel()

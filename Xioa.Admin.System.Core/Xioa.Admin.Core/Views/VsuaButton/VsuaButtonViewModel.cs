@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Xioa.Admin.Core.Views.VsuaButton
 {
-    public partial class VsuaButtonViewModel : ObservableObject
+    public partial class VsuaButtonViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
     {
 
     }

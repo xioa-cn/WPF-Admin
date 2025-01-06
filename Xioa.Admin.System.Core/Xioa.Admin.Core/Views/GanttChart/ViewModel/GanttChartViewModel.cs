@@ -10,7 +10,7 @@ using Xioa.Admin.Core.Views.GanttChart.Model;
 
 namespace Xioa.Admin.Core.Views.GanttChart.ViewModel
 {
-    public partial class GanttChartViewModel : ObservableObject
+    public partial class GanttChartViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
     {
         [ObservableProperty]
         private ObservableCollection<MonthInfo> _months;

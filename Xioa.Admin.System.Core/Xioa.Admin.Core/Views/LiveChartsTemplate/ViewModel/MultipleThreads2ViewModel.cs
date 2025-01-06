@@ -14,7 +14,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月3日
 /// </summary>
-public partial class MultipleThreads2ViewModel
+public partial class MultipleThreads2ViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     private readonly Random _r = new();
     private readonly int _delay = 100;

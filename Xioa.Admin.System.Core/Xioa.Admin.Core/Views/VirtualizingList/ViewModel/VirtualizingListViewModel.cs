@@ -9,7 +9,7 @@ using Xioa.Admin.Core.Views.VirtualizingList.Model;
 
 namespace Xioa.Admin.Core.Views.VirtualizingList.ViewModel;
 
-public partial class VirtualizingListViewModel : ObservableObject
+public partial class VirtualizingListViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public ObservableCollection<ItemModel> Items { get; }
 

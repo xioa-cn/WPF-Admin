@@ -8,7 +8,7 @@ using SkiaSharp;
 
 namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 
-public partial class BasicPolarViewModel
+public partial class BasicPolarViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public ISeries[] Series { get; set; } = new [] {
         new PolarLineSeries<double>

@@ -17,7 +17,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月2日
 /// </summary>
-public partial class ScrollableChartsViewModel
+public partial class ScrollableChartsViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     private bool _isDown = false;
     private readonly ObservableCollection<ObservablePoint> _values = new ObservableCollection<ObservablePoint>();

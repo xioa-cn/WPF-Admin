@@ -4,11 +4,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Xioa.Admin.Core.Services.ViewModels;
 using Xioa.Admin.Core.Views.DataSkip.Models;
 
 namespace Xioa.Admin.Core.Views.DataSkip;
 
-public partial class DataSkipViewModel : ObservableObject
+public partial class DataSkipViewModel : ViewModelBase
 {
     /// <summary>
     /// 存储所有数据项的集合

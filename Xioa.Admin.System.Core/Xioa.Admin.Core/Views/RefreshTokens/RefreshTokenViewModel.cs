@@ -16,7 +16,7 @@ using System.Net;
 
 namespace Xioa.Admin.Core.Views.RefreshTokens
 {
-    public partial class RefreshTokenViewModel : ObservableObject
+    public partial class RefreshTokenViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
     {
         [ObservableProperty]
         private bool _isRefreshing;

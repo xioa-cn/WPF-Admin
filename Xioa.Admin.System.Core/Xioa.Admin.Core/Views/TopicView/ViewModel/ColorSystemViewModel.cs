@@ -10,7 +10,7 @@ using Xioa.Admin.Core.Views.TopicView.Model;
 namespace Xioa.Admin.Core.Views.TopicView.ViewModel
 {
 
-    public partial class ColorSystemViewModel : ObservableObject
+    public partial class ColorSystemViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
     {
         public ObservableCollection<SystemtColors> Colors { get; set; } = new ObservableCollection<SystemtColors>();
         public ColorSystemViewModel()

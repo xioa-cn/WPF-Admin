@@ -13,7 +13,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate;
 /// @author Xioa
 /// @date  2024年12月2日
 /// </summary>
-public partial class ChartsViewModel : ObservableObject
+public partial class ChartsViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     [ObservableProperty] private object? _Content;
     [ObservableProperty] private string? _SearchContent;

@@ -14,7 +14,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月2日
 /// </summary>
-public partial class RealTimeViewModel
+public partial class RealTimeViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     private readonly Random _random = new();
     private readonly List<DateTimePoint> _values = new();

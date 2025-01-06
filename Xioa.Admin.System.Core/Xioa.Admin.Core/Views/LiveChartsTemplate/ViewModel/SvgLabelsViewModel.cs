@@ -13,7 +13,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月3日
 /// </summary>
-public partial class SvgLabelsViewModel
+public partial class SvgLabelsViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public IEnumerable<ISeries> Series { get; set; }
 

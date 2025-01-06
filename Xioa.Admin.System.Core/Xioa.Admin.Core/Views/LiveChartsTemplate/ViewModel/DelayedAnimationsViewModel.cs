@@ -9,7 +9,7 @@ using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
 
 namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 
-public partial class DelayedAnimationsViewModel
+public partial class DelayedAnimationsViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public List<ISeries> Series { get; set; }
 

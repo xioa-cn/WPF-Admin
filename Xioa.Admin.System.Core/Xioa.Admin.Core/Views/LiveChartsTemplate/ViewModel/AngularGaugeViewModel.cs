@@ -11,7 +11,7 @@ using LiveChartsCore.VisualElements;
 
 namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 
-public partial class AngularGaugeViewModel
+public partial class AngularGaugeViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     private readonly Random _random = new();
 

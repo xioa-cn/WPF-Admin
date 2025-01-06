@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace Xioa.Admin.Core.Views.PercentSize.ViewModel;
 
-public partial class PercentSizeViewModel : ObservableObject
+public partial class PercentSizeViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     [ObservableProperty] private double _width = 50;
     [ObservableProperty] private double _height = 50;

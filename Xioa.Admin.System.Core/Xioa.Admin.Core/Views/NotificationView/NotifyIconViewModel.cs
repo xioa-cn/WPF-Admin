@@ -12,7 +12,7 @@ namespace Xioa.Admin.Core.Views.NotificationView;
 /// @author Xioa
 /// @date  2024年12月17日
 /// </summary>
-public partial class NotifyIconViewModel : ObservableObject, IDialogResultable<CloseEnum>
+public partial class NotifyIconViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase, IDialogResultable<CloseEnum>
 {
     public CloseEnum Result { get; set; }
     public Action CloseAction { get; set; }

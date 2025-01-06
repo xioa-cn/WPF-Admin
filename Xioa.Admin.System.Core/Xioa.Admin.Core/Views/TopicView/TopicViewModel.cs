@@ -4,7 +4,7 @@ using Xioa.Admin.Core.Views.MainView.Model;
 
 namespace Xioa.Admin.Core.Views.TopicView;
 
-public partial class TopicViewModel : ObservableObject
+public partial class TopicViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public string[] Themes { get; set; } =
     {

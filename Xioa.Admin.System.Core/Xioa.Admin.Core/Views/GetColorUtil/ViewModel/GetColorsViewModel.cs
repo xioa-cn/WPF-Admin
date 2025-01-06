@@ -2,6 +2,6 @@
 
 namespace Xioa.Admin.Core.Views.GetColorUtil.ViewModel;
 
-public partial class GetColorsViewModel :ObservableObject {
+public partial class GetColorsViewModel :Xioa.Admin.Core.Services.ViewModels.ViewModelBase {
     
 }

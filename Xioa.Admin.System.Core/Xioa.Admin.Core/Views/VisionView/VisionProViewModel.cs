@@ -6,6 +6,6 @@ namespace Xioa.Admin.Core.Views.VisionView;
 /// @author Xioa
 /// @date  2024年12月10日
 /// </summary>
-public partial class VisionProViewModel : ObservableObject
+public partial class VisionProViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
 }

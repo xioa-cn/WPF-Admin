@@ -10,7 +10,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月3日
 /// </summary>
-public class OutsideLabelsViewModel
+public class OutsideLabelsViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     private static int _index = 0;
     private static string[] _names = new string[] {"Maria", "Susan", "Charles", "Fiona", "George"};

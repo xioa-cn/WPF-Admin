@@ -12,7 +12,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月3日
 /// </summary>
-public partial class WorldHeatMapViewModel
+public partial class WorldHeatMapViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     private bool _isBrazilInChart = true;
     private readonly HeatLand _brazil;

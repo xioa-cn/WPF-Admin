@@ -15,7 +15,7 @@ namespace Xioa.Admin.Core.Views.PrintView;
 /// @belong-sln：Xioa.Admin.System.Core 
 /// @desc：PrintViewModel
 ///</summary>
-public partial class PrintViewModel : ObservableObject
+public partial class PrintViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     private readonly IPrintService _printService;
 

@@ -11,7 +11,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月2日
 /// </summary>
-public partial class WindDirectionViewModel
+public partial class WindDirectionViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public ISeries[]? Series { get; set; }
     private LineSeries<DataPoint, ArrowGeometry>? _lineSeries;

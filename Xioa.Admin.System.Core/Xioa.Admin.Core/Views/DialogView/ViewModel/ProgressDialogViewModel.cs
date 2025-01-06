@@ -13,7 +13,7 @@ namespace Xioa.Admin.Core.Views.DialogView.ViewModel;
 /// @author Xioa
 /// @date  2024年12月17日
 /// </summary>
-public partial class ProgressDialogViewModel : ObservableObject, IDialogResultable<string>
+public partial class ProgressDialogViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase, IDialogResultable<string>
 {
     [ObservableProperty] private string message;
     public Dialog? Dialog;

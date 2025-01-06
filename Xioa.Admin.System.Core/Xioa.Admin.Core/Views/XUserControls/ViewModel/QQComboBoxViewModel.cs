@@ -6,7 +6,7 @@ using HandyControl.Controls;
 
 namespace Xioa.Admin.Core.Views.XUserControls.ViewModel;
 
-public partial class QQComboBoxViewModel : ObservableObject
+public partial class QQComboBoxViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     [ObservableProperty] private string? _InputText;
 

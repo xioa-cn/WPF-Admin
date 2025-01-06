@@ -10,7 +10,7 @@ using HandyControl.Controls;
 
 namespace Xioa.Admin.Core.Views.ExcelView;
 
-public partial class ExcelViewModel
+public partial class ExcelViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public ObservableCollection<ExcelTestModel> ExcelTestModels { get; set; }
 
@@ -52,9 +52,9 @@ public partial class ExcelViewModel
             sheet1.Cells[i + 1, 6].Value = ExcelTestModels[i].StartTime;
             sheet1.Cells[i + 1, 7].Value = ExcelTestModels[i].EndTime;
         }
-        
+
         package.Save();
-        
+
         Growl.Success("导出成功");
     }
 

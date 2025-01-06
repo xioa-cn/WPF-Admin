@@ -4,9 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 namespace Xioa.Admin.Core.Services.ViewModels;
 
 public partial class ViewModelBase : ObservableObject, IDisposable {
-   
-
-    private void ReleaseUnmanagedResources() {
+    protected virtual void ReleaseUnmanagedResources() {
         // TODO 在此释放非托管资源
     }
 

@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Web.WebView2.Wpf;
+using Xioa.Admin.Core.Services.ViewModels;
 
 namespace Xioa.Admin.Core.Views.BaiDuMap;
 
@@ -9,7 +10,7 @@ namespace Xioa.Admin.Core.Views.BaiDuMap;
 /// @author Xioa
 /// @date  2024年12月4日
 /// </summary>
-public partial class BaiDuMapViewModel : ObservableObject
+public partial class BaiDuMapViewModel : ViewModelBase
 {
     [ObservableProperty] private string? _value;
 

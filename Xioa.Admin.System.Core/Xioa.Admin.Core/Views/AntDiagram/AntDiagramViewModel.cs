@@ -6,6 +6,6 @@ namespace Xioa.Admin.Core.Views.AntDiagram;
 /// @author Xioa
 /// @date  2024年12月13日
 /// </summary>
-public partial class AntDiagramViewModel : ObservableObject
+public partial class AntDiagramViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
 }

@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Threading;
+using Xioa.Admin.Core.Services.ViewModels;
 using Xioa.Admin.Core.Views.CarouselView.Model;
 
 namespace Xioa.Admin.Core.Views.CarouselView;
@@ -11,7 +12,7 @@ namespace Xioa.Admin.Core.Views.CarouselView;
 /// @author Xioa
 /// @date  2024年12月7日
 /// </summary>
-public partial class CarouselViewModel : ObservableObject, IDisposable
+public partial class CarouselViewModel : ViewModelBase, IDisposable
 {
     private DispatcherTimer? _timer;
     private bool _disposed;

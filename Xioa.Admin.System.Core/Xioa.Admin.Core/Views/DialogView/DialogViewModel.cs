@@ -7,14 +7,13 @@ using Xioa.Admin.Core.Views.DialogView.Model;
 using Xioa.Admin.Core.Views.DialogView.ViewModel;
 using HandyControl.Controls;
 using HandyControl.Tools.Extension;
-
 namespace Xioa.Admin.Core.Views.DialogView;
 
 /// <summary>
 /// @author Xioa
 /// @date  2024年12月17日
 /// </summary>
-public partial class DialogViewModel : ObservableObject
+public partial class DialogViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public string Message { get; set; } = "DialogViewModel";
 

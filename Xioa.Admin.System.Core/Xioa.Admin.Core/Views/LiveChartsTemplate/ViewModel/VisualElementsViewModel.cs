@@ -18,7 +18,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月2日
 /// </summary>
-public partial class VisualElementsViewModel
+public partial class VisualElementsViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public IEnumerable<ChartElement<SkiaSharpDrawingContext>> VisualElements { get; set; }
 

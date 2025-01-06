@@ -14,7 +14,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月2日
 /// </summary>
-public partial class MyChartsTitleViewModel : ObservableObject
+public partial class MyChartsTitleViewModel :Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     LineSeries<double, VariableSVGPathGeometry> series1 = new LineSeries<double, VariableSVGPathGeometry>
     {

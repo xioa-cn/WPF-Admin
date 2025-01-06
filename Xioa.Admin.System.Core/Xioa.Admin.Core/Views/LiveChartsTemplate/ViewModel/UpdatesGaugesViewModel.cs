@@ -12,7 +12,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月3日
 /// </summary>
-public partial class UpdatesGaugesViewModel
+public partial class UpdatesGaugesViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     private readonly Random _random = new();
 

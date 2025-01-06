@@ -4,6 +4,7 @@ using HandyControl.Controls;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Xioa.Admin.Core.Services.ViewModels;
 
 namespace Xioa.Admin.Core.Views.DataSearch;
 
@@ -11,7 +12,7 @@ namespace Xioa.Admin.Core.Views.DataSearch;
 /// @author Xioa
 /// @date  2024年12月4日
 /// </summary>
-public partial class DataSearchViewModel : ObservableObject
+public partial class DataSearchViewModel : ViewModelBase
 {
     public ObservableCollection<object> ObjectCollection { get; set; } = new ObservableCollection<object>();
 
@@ -23,9 +24,9 @@ public partial class DataSearchViewModel : ObservableObject
 
     public DataSearchViewModel()
     {
-        foreach (var item in Enumerable.Range(0,100))
+        foreach (var item in Enumerable.Range(0, 100))
         {
-            ObjectCollection.Add(new { Id=item});
+            ObjectCollection.Add(new { Id = item });
         }
     }
 

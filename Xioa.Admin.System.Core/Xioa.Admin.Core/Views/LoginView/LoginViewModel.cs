@@ -13,7 +13,7 @@ namespace Xioa.Admin.Core.Views.LoginView;
 /// @author Xioa
 /// @date  2024年11月28日
 /// </summary>
-public partial class LoginViewModel : ObservableObject
+public partial class LoginViewModel :Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     [ObservableProperty] private string? _userName;
     [ObservableProperty] private string? _password;

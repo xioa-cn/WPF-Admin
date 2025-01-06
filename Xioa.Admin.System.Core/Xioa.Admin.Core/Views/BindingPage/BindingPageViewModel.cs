@@ -5,10 +5,11 @@ using System.Windows;
 using System.Threading.Tasks;
 using System;
 using System.Windows.Threading;
+using Xioa.Admin.Core.Services.ViewModels;
 
 namespace Xioa.Admin.Core.Views.BindingPage
 {
-    public partial class BindingPageViewModel : ObservableObject
+    public partial class BindingPageViewModel : ViewModelBase
     {
         [ObservableProperty] private string userName;
         [ObservableProperty] private string firstName;

@@ -11,7 +11,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月3日
 /// </summary>
-public partial class BarsBackgroundViewModel
+public partial class BarsBackgroundViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public ISeries[] Series { get; set; } =
     {

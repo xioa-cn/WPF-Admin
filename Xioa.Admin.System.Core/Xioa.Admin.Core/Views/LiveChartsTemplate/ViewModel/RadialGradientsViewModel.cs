@@ -9,7 +9,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月3日
 /// </summary>
-public partial class RadialGradientsViewModel
+public partial class RadialGradientsViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     private static readonly SKColor[] s_colors =new SKColor[] {
         new SKColor(179, 229, 252),

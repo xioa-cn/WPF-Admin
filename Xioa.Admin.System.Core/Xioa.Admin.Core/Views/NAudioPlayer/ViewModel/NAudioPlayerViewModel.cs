@@ -10,7 +10,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Xioa.Admin.Core.Views.NAudioPlayer.ViewModel;
 
-public partial class NAudioPlayerViewModel : ObservableObject {
+public partial class NAudioPlayerViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase {
     private IWavePlayer? wavePlayer;
     private WaveStream? audioStream;
 

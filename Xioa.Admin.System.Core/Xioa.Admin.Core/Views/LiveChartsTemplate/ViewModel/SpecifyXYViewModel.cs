@@ -12,7 +12,7 @@ namespace Xioa.Admin.Core.Views.LiveChartsTemplate.ViewModel;
 /// @author Xioa
 /// @date  2024年12月2日
 /// </summary>
-public class SpecifyXYViewModel
+public class SpecifyXYViewModel:Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     public ISeries[] Series { get; set; } = new ISeries[]
     {

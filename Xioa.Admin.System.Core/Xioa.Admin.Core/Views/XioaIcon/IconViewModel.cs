@@ -6,7 +6,7 @@ namespace Xioa.Admin.Core.Views.XioaIcon;
 /// @author Xioa
 /// @date  2024年12月16日
 /// </summary>
-public partial class IconViewModel : ObservableObject
+public partial class IconViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase
 {
     private string? name;
 

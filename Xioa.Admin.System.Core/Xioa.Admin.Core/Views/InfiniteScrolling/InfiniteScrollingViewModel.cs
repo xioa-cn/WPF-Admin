@@ -9,7 +9,7 @@ namespace Xioa.Admin.Core.Views.InfiniteScrolling;
 /// @author Xioa
 /// @date  2024-12-26 09:08:47
 /// </summary>
-public class InfiniteScrollingViewModel : ObservableObject {
+public class InfiniteScrollingViewModel : Xioa.Admin.Core.Services.ViewModels.ViewModelBase {
     public InfiniteScrollingViewModel() {
         Items = new ObservableCollection<string>();
         LoadInitialData();
