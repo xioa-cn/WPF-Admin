@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="Xioa.Admin.Core.Views.DragList.DragListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Xioa.Admin.Core.Views.DragList"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Xioa.Admin.Core.Views.DragList.ViewModel"
+    Title="DragPage"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <vm:DragListViewModel />
+    </Page.DataContext>
+    <StackPanel>
+        <Button
+            Margin="10"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Command="{Binding TestLookCommand}">
+            Test
+        </Button>
+        <ListBox
+            AllowDrop="True"
+            Drop="ListBox_Drop"
+            ItemsSource="{Binding Items}"
+            PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown"
+            PreviewMouseMove="ListBox_PreviewMouseMove">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Margin="5"
+                        Padding="10"
+                        Background="Transparent"
+                        CornerRadius="5">
+                        <TextBlock Text="{Binding DisplayText}" />
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+</Page>
