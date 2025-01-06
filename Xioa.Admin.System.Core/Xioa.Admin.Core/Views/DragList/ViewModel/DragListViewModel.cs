@@ -7,13 +7,12 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Xioa.Admin.Core.Views.DragList.ViewModel;
 
-public partial class DragListViewModel : ObservableObject 
-{
+public partial class DragListViewModel : ObservableObject, IDragDropVm {
+    // 后进先出
     private readonly Stack<(int FromIndex, int ToIndex)> _undoStack = new();
-    
+
     // 字符串类型实现 IDragDropItem
-    private class StringDragItem : IDragDropItem
-    {
+    private class StringDragItem : IDragDropItem {
         private readonly string _value;
         public StringDragItem(string value) => _value = value;
         public string DisplayText => _value;
@@ -21,23 +20,20 @@ public partial class DragListViewModel : ObservableObject
 
     public ObservableCollection<IDragDropItem> Items { get; } = new();
 
-    public DragListViewModel()
-    {
+    public DragListViewModel() {
         foreach (var item in new[] { "ITEM1", "ITEM2", "ITEM3", "ITEM4", "ITEM5" })
         {
             Items.Add(new StringDragItem(item));
         }
     }
 
-    public void MoveItem(int fromIndex, int toIndex)
-    {
+    public void MoveItem(int fromIndex, int toIndex) {
         _undoStack.Push((fromIndex, toIndex));
         Items.Move(fromIndex, toIndex);
     }
 
     [RelayCommand]
-    private void Undo()
-    {
+    private void Undo() {
         if (_undoStack.Count > 0)
         {
             var (fromIndex, toIndex) = _undoStack.Pop();

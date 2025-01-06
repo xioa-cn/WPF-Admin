@@ -12,14 +12,11 @@
         <vm:DragListViewModel />
     </Page.DataContext>
     <StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <Button
-                Margin="0,0,10,0"
-                Command="{Binding TestLookCommand}">
-                Test
+        <StackPanel Margin="10" Orientation="Horizontal">
+            <Button Margin="0,0,10,0" Command="{Binding TestLookCommand}">
+                测试
             </Button>
-            <Button
-                Command="{Binding UndoCommand}">
+            <Button Command="{Binding UndoCommand}">
                 撤销
             </Button>
         </StackPanel>

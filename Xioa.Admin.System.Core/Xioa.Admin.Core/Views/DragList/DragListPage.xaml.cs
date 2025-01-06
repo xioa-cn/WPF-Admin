@@ -31,10 +31,10 @@ public partial class DragListPage : Page
             if (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
                 Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance)
             {
-                ListBox listBox = sender as ListBox;
+                ListBox? listBox = sender as ListBox;
                 ListBoxItem listBoxItem = FindAncestor<ListBoxItem>((DependencyObject)e.OriginalSource);
 
-                if (listBoxItem != null && listBoxItem.DataContext is IDragDropItem dragItem)
+                if (listBoxItem.DataContext is IDragDropItem dragItem)
                 {
                     var dataObject = new DataObject();
                     dataObject.SetData("DragDropItem", dragItem);
@@ -58,7 +58,7 @@ public partial class DragListPage : Page
 
                 if (sourceIndex != -1 && targetIndex != -1)
                 {
-                    var vm = DataContext as DragListViewModel;
+                    var vm = DataContext as IDragDropVm;
                     vm?.MoveItem(sourceIndex, targetIndex);
                 }
             }
