@@ -84,8 +84,6 @@
         <ListView
             x:Name="VirtualizedList"
             Grid.Row="1"
-            BorderBrush="Gray"
-            BorderThickness="1"
             ItemsSource="{Binding Items}"
             VirtualizingPanel.IsVirtualizing="True"
             VirtualizingPanel.VirtualizationMode="Recycling"

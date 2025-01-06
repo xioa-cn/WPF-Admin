@@ -23,8 +23,6 @@ namespace Xioa.Admin.Core.Views.RouterEvent
             //然后是 MiddlePanel 触发 MouseDown
             //最后是 OuterBorder 触发 MouseDown
 
-
-
             // 为三个层级添加事件处理
             EventButton.AddHandler(Button.MouseDownEvent, new MouseButtonEventHandler(Element_MouseDown), true);
             EventButton.AddHandler(Button.PreviewMouseDownEvent, new MouseButtonEventHandler(Element_PreviewMouseDown), true);

@@ -19,7 +19,7 @@
                 Margin="0,0,0,10"
                 FontSize="20"
                 FontWeight="Bold"
-                Text="路由事件系统演示" />
+                Text="路由事件系统演示(隧道事件,冒泡事件,直接事件)" />
             <TextBlock Margin="0,0,0,10" Text="点击下方按钮,观察事件冒泡和隧道效果" />
             <Button
                 Name="Clear"
@@ -30,14 +30,14 @@
                 Click="Clear_Click"
                 Content="清除" />
             <TextBlock TextWrapping="Wrap">
-                隧道阶段（Tunneling）-Preview事件
+                隧道事件（Tunneling）-Preview事件
                 事件从最外层向内传播：
                 OuterBorder 先收到 PreviewMouseDown
                 然后是 MiddlePanel 收到 PreviewMouseDown
                 最后是 EventButton 收到 PreviewMouseDown
             </TextBlock>
             <TextBlock TextWrapping="Wrap">
-                冒泡阶段（Bubbling）-普通事件
+                冒泡事件（Bubbling）-普通事件
                 事件从触发点向外传播：
                 EventButton 先触发 MouseDown
                 然后是 MiddlePanel 触发 MouseDown
@@ -45,6 +45,19 @@
             </TextBlock>
             <TextBlock>
                 可以用 e.Handled = true;来阻止事件继续传播
+            </TextBlock>
+            <TextBlock>
+                直接事件 (Direct Events)
+                只在事件源头处理，不进行传播
+                常见的直接事件包括：
+                MouseEnter
+                MouseLeave
+                GotFocus
+                LostFocus
+                Loaded
+                Unloaded
+                SourceUpdated
+                TargetUpdated
             </TextBlock>
         </StackPanel>
 
