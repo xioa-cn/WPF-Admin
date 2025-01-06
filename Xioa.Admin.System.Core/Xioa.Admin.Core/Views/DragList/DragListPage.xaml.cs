@@ -59,9 +59,21 @@ public partial class DragListPage : Page
                 if (sourceIndex != -1 && targetIndex != -1)
                 {
                     var vm = DataContext as DragListViewModel;
-                    vm?.Items.Move(sourceIndex, targetIndex);
+                    vm?.MoveItem(sourceIndex, targetIndex);
                 }
             }
+        }
+    }
+
+    protected override void OnPreviewKeyDown(KeyEventArgs e)
+    {
+        base.OnPreviewKeyDown(e);
+        
+        if (e.Key == Key.Z && Keyboard.Modifiers == ModifierKeys.Control)
+        {
+            var vm = DataContext as DragListViewModel;
+            vm?.UndoCommand.Execute(null);
+            e.Handled = true;
         }
     }
 
