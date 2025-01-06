@@ -146,7 +146,7 @@ public partial class CarouselViewModel : ViewModelBase
         }
 
         IsAutoPlaying = false;
-        base.Dispose();
+        base.Dispose(disposing);
     }
 
     ~CarouselViewModel()
