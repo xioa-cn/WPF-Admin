@@ -29,6 +29,7 @@ using Xioa.Admin.Core.Views.PercentSize;
 using Xioa.Admin.Core.Views.ScreenRecording;
 using Xioa.Admin.Core.Views.TopicView.Views;
 using Xioa.Admin.Core.Views.Video;
+using Xioa.Admin.Core.Views.VirtualizingList;
 
 namespace Xioa.Admin.Core.Views.MainView;
 
@@ -141,6 +142,10 @@ public partial class MainViewModel : ObservableObject {
                     new TreeItemModel() {
                         Content = "列表排序",
                         Page = new DragList.DragListPage(),
+                    },
+                    new TreeItemModel() {
+                        Content = "虚拟化显示",
+                        Page = new VirtualizingListPage(),
                     }
                 }
             },

@@ -1,0 +1,112 @@
+﻿<Page
+    x:Class="Xioa.Admin.Core.Views.VirtualizingList.VirtualizingListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Xioa.Admin.Core.Views.VirtualizingList"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Xioa.Admin.Core.Views.VirtualizingList.ViewModel"
+    Title="VirtualizingListPage"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <vm:VirtualizingListViewModel />
+    </Page.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Text="内存占用: " />
+            <TextBlock x:Name="MemoryUsageText" VerticalAlignment="Center" />
+            <Button
+                Margin="20,0"
+                Click="AddMoreItems_Click"
+                Content="添加10万条数据" />
+        </StackPanel>
+        <!--
+            VirtualizingPanel.IsVirtualizing="True" - 启用UI虚拟化
+            - 只为当前可见区域的项创建可视化元素（Visual Elements）
+            不可见区域的项不会创建UI元素，只保留数据
+            比如有10万条数据，但屏幕只能显示20条，那么只会创建这20条的UI元素
+            
+            
+            VirtualizingPanel.VirtualizationMode="Recycling" - 使用回收模式，重用列表项容器
+            当项滚出可视区域时，其UI容器不会被销毁
+            而是被回收并重用于新滚入可视区域的项
+            这样避免了频繁创建和销毁UI元素的开销
+            
+            VirtualizingPanel.ScrollUnit="Pixel" - 使用像素级滚动，提供更流畅的滚动体验
+            
+            ScrollViewer.IsDeferredScrollingEnabled="True" - 启用延迟滚动，提高滚动性能
+            在滚动时不会立即更新所有内容
+            等滚动停止或减慢时才更新，提高性能
+            
+            VirtualizingPanel.CacheLength="5"
+            VirtualizingPanel.CacheLengthUnit="Page"
+            在可见区域前后保留一定数量的已实例化项
+            提供更流畅的滚动体验
+            避免快速滚动时出现空白
+            
+            
+            ┌─────────────────────┐
+            │     缓存区域        │ ← 预加载，但不可见
+            ├─────────────────────┤
+            │                     │
+            │     可见区域        │ ← 只有这里的项才创建UI元素
+            │    (20个项目)       │
+            │                     │
+            ├─────────────────────┤
+            │     缓存区域        │ ← 预加载，但不可见
+            └─────────────────────┘
+            ↑
+            其他99960个项目
+            只保存数据不创建UI
+            
+            
+            性能对比：
+            1. 不使用虚拟化：
+            10万条数据 = 10万个UI元素
+            内存占用大
+            初始加载慢
+            滚动卡顿
+            2. 使用虚拟化：
+            10万条数据 = 20个UI元素（可见） + 缓存区域
+            内存占用小
+            初始加载快
+            滚动流畅
+            
+            
+            为什么在处理大量数据时，虚拟化能够显著提升性能的原因:它通过"按需创建"和"重用机制"来优化资源使用。
+        -->
+        <!--  启用虚拟化的ListView  -->
+        <ListView
+            x:Name="VirtualizedList"
+            Grid.Row="1"
+            BorderBrush="Gray"
+            BorderThickness="1"
+            ItemsSource="{Binding Items}"
+            ScrollViewer.IsDeferredScrollingEnabled="True"
+            VirtualizingPanel.CacheLength="5"
+            VirtualizingPanel.CacheLengthUnit="Page"
+            VirtualizingPanel.IsVirtualizing="True"
+            VirtualizingPanel.ScrollUnit="Pixel"
+            VirtualizingPanel.VirtualizationMode="Recycling">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        Width="200"
+                        DisplayMemberBinding="{Binding Title}"
+                        Header="标题(虚拟化)" />
+                    <GridViewColumn
+                        Width="auto"
+                        DisplayMemberBinding="{Binding Description}"
+                        Header="描述" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+    </Grid>
+</Page>
