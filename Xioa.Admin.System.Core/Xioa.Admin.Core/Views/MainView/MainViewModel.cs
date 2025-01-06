@@ -161,6 +161,10 @@ public partial class MainViewModel : ObservableObject {
                     new TreeItemModel() {
                         Content = "路由事件",
                         Page = new RouterEventPage()
+                    },
+                    new TreeItemModel() {
+                        Content = "绑定优化",
+                        Page = new BindingPage.BindingPage(),
                     }
                 }
             },

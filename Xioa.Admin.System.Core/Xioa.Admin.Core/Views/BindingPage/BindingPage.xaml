@@ -1,0 +1,92 @@
+﻿<Page
+    x:Class="Xioa.Admin.Core.Views.BindingPage.BindingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Xioa.Admin.Core.Views.BindingPage"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="绑定示例"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <local:BindingPageViewModel />
+    </Page.DataContext>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  普通 Binding 示例  -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock
+                Margin="0,0,0,5"
+                FontWeight="Bold"
+                Text="普通 Binding 示例:" />
+            <TextBox
+                Width="200"
+                Margin="0,0,0,5"
+                HorizontalAlignment="Left"
+                Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="{Binding UserName, StringFormat='输入的内容: {0}'}" />
+        </StackPanel>
+
+        <!--  MultiBinding 示例  -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,20">
+            <TextBlock
+                Margin="0,0,0,5"
+                FontWeight="Bold"
+                Text="MultiBinding 示例:" />
+            <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
+                <TextBox
+                    Width="100"
+                    Margin="0,0,5,0"
+                    Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Width="100" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="全名: {0} {1}">
+                        <Binding Path="FirstName" />
+                        <Binding Path="LastName" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </StackPanel>
+
+        <!--  PriorityBinding 示例  -->
+        <StackPanel Grid.Row="2" Margin="0,0,0,20">
+            <TextBlock
+                Margin="0,0,0,5"
+                FontWeight="Bold"
+                Text="PriorityBinding 示例:" />
+            <TextBlock>
+                <TextBlock.Text>
+                    <PriorityBinding FallbackValue="defaultvalue">
+                        <Binding Path="RealTimeData" />
+                        <Binding Path="CacheData" />
+                        <Binding Path="DefaultData" />
+                    </PriorityBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <Button
+                Width="200"
+                Margin="0,5,0,0"
+                HorizontalAlignment="Left"
+                Command="{Binding LoadRealTimeDataCommand}"
+                Content="LoadRealTimeData" />
+            <Button
+                Width="200"
+                Margin="0,5,0,0"
+                HorizontalAlignment="Left"
+                Command="{Binding LoadCacheDataCommand}"
+                Content="LoadCacheData" />
+            <Button
+                Width="200"
+                Margin="0,5,0,0"
+                HorizontalAlignment="Left"
+                Command="{Binding ClearDataCommand}"
+                Content="ClearData" />
+        </StackPanel>
+    </Grid>
+</Page>
