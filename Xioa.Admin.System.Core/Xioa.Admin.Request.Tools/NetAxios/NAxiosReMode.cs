@@ -16,20 +16,25 @@ public partial class NAxios {
             Version = request.Version
         };
 
-        // 复制请求头
+        // 复制请求头，但要避免重复
         foreach (var header in request.Headers)
         {
-            clone.Headers.TryAddWithoutValidation(header.Key, header.Value);
+            if (!clone.Headers.Contains(header.Key))
+            {
+                clone.Headers.TryAddWithoutValidation(header.Key, header.Value);
+            }
         }
 
         // 复制请求内容
         if (request.Content == null) return clone;
+        
+        var content = await request.Content.ReadAsStringAsync();
+        clone.Content = new StringContent(content, Encoding.UTF8, "application/json");
+        
+        // 复制内容头，但要避免重复
+        foreach (var header in request.Content.Headers)
         {
-            var content = await request.Content.ReadAsStringAsync();
-            clone.Content = new StringContent(content, Encoding.UTF8, request.Content.Headers.ContentType?.MediaType);
-            
-            // 复制内容头
-            foreach (var header in request.Content.Headers)
+            if (!clone.Content.Headers.Contains(header.Key))
             {
                 clone.Content.Headers.TryAddWithoutValidation(header.Key, header.Value);
             }

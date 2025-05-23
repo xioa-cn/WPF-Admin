@@ -56,17 +56,19 @@
     &lt;TestId&gt;xUnit::EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0::net6.0::TestWebService.NAxiosFileProgress.UploadProgressTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dd48a6a9_002D96ea_002D4aab_002D87fe_002D9c81af504182/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="UploadProgressTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dd48a6a9_002D96ea_002D4aab_002D87fe_002D9c81af504182/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="UploadProgressTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0::net6.0::TestWebService.NAxiosFilesProgress.UploadProgressTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0::net6.0::TestWebService.test.Test1&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e8d78c65_002Dd0ac_002D4516_002Da749_002Df6783fdc8105/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestMethod1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e8d78c65_002Dd0ac_002D4516_002Da749_002Df6783fdc8105/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestMethod1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0::net6.0::TestWebService.NAxiosTest.TestMethod1&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0::net6.0::TestWebService.NAxiosFile.TestMethod1&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0::net6.0::TestWebService.NAxiosFilesProgress.UploadProgressTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0::net6.0::TestWebService.NAxiosFiles.TestMethod1&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0::net6.0::TestWebService.NAxiosFileProgress.UploadProgressTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::EE36C69C-BD7C-4EB8-9DF6-211FCB4683D0::net6.0::TestWebService.test.Test1&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

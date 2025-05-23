@@ -95,9 +95,7 @@ public partial class NAxios : IAxios
     private static StringContent CreateJsonContent(object? data)
     {
         var json = data == null ? "{}" : JsonSerializer.Serialize(data, JsonOptions);
-        var content = new StringContent(json, Encoding.UTF8);
-        content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        return content;
+        return new StringContent(json, Encoding.UTF8,"application/json");
     }
 
     /// <summary>
@@ -225,7 +223,7 @@ public partial class NAxios : IAxios
     {
         var finalUrl = BuildUrl(url);
         var content = CreateJsonContent(data);
-
+        
         var request = new HttpRequestMessage(HttpMethod.Post, finalUrl)
         {
             Content = content
@@ -248,18 +246,23 @@ public partial class NAxios : IAxios
             {
                 // 内容头 - 需要设置到 Content.Headers
                 case "content-type":
+                    // 跳过Content-Type的设置，因为已经在CreateJsonContent中设置过了
+                    continue;
                 case "content-length":
                 case "content-language":
                 case "content-encoding":
                 case "content-range":
                 case "content-location":
                 case "content-md5":
-                    // 跳过内容头，因为已经在 CreateJsonContent 中设置
-                    continue;
+                    if (requestMessage.Content != null)
+                    {
+                        requestMessage.Content.Headers.TryAddWithoutValidation(header.Key, header.Value);
+                    }
+                    break;
 
                 // 请求头 - 设置到 Request.Headers
                 default:
-                    var result = requestMessage.Headers.TryAddWithoutValidation(header.Key, header.Value);
+                    requestMessage.Headers.TryAddWithoutValidation(header.Key, header.Value);
                     break;
             }
         }
